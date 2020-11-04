@@ -1,0 +1,6 @@
+framework module Pods_fastgi {
+  umbrella header "Pods-fastgi-umbrella.h"
+
+  export *
+  module * { export * }
+}
