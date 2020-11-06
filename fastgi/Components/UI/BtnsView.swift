@@ -30,15 +30,17 @@ struct BtnsView: View {
                 ButtonCreditAmountView(text: "100 Bs.", montoRecarga: self.$montoRecarga, currentBtn: self.$currentBtn, btn: .Btn100)
                 .padding()
                 
-                if currentBtn != .BtnOther{
-                    ButtonCreditAmountView(text: "Other", montoRecarga: self.$montoRecarga, currentBtn: self.$currentBtn, btn: .BtnOther)
+                if currentBtn != .BtnOther {
+                    InputCreditAmountView(amounValue: self.$montoRecarga)
                     .padding()
+                   // ButtonCreditAmountView(text: "Other", montoRecarga: self.$montoRecarga, currentBtn: self.$currentBtn, btn: .BtnOther)
+                   // .padding()
                 }
-                else{
+                /*else{
                     InputCreditAmountView(amounValue: self.$montoRecarga)
                     .padding()
                     
-                }
+                }*/
                 
                
             }
