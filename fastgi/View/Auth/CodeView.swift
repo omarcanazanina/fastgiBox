@@ -13,13 +13,17 @@ struct CodeView: View {
     @ObservedObject var loginVM = LoginViewModel()
     @State var pin: String = ""
     var number: String
-    @State var contTest: Int = 0
-    
     var body: some View {
         VStack(spacing:10) {
-            Text("Verificar código")
+            /*Text("Verificar código")
                 .foregroundColor(.white)
-                .padding(.top,60)
+                .padding(.top,60)*/
+            
+            Image("fastgi_white")
+                .resizable()
+                .scaledToFit()
+                .frame(height:60)
+            
             Text("Ingresa el código de verificación")
                 .padding(.top)
                 .font(.caption)
@@ -30,20 +34,13 @@ struct CodeView: View {
                     .keyboardType(.numberPad)
                     .foregroundColor(.black)
                     .padding(.horizontal)
-                    .onTapGesture{
-                        self.contTest += 1
-                    }
-                
                 
             }.accentColor(Color("primary"))
             .padding(12)
             .background(Color.white)
             .clipShape(Capsule())
             .frame(width:220)
-            
-            
-            Text("Press \(self.contTest) times")
-            
+
             Button(action: {
             })
             {
@@ -69,9 +66,11 @@ struct CodeView: View {
             Spacer()
             Spacer()
         }
-        .padding([.top, .leading, .trailing])
+        .padding(.top,60)
+        .padding([.leading, .trailing])
         .frame(maxWidth:.infinity, maxHeight: .infinity)
         .background(Color("primary"))
+        .edgesIgnoringSafeArea(.top)
     }
 }
 

@@ -42,11 +42,12 @@ struct SettingsView: View {
                 Button(action: {
                     self.menu = true
                 }){
-                    Image(systemName: "ellipsis")
-                        .resizable()
-                        .frame(width: 30, height: 6)
-                        .padding(.trailing,6)
-                }.buttonStyle(PlainButtonStyle())
+                    VStack{
+                        Image(systemName: "ellipsis")
+                    }
+                    .frame(width: 30, height: 30)
+                }
+                .buttonStyle(PlainButtonStyle())
             }
             NavigationLink(destination: MenuView(), isActive: $menu) {
                 EmptyView()
@@ -170,6 +171,19 @@ struct SettingsView: View {
                             .frame(maxWidth:.infinity, alignment: .trailing)
                     }
                 }
+                VStack(alignment: .leading, spacing: 8){
+                    Divider()
+                    HStack{
+                        
+                        Text("MÉTODOS DE PAGO")
+                            .textStyle(TitleStyle())
+                        
+                        
+                        Image(systemName: "chevron.right")
+                            .padding(.trailing)
+                            .frame(maxWidth:.infinity, alignment: .trailing)
+                    }
+                }
             }
         }
         .frame(maxWidth: .infinity, alignment: .leading)
@@ -182,8 +196,10 @@ struct SettingsView: View {
         //  HStack{
         ScrollView{
             self.header
+                .padding(.leading)
+                .padding(.top,45)
             self.imageProfile
-           // self.header
+            self.header
             //self.testimageProfile
             Spacer()
                 .frame(height:20)
@@ -196,10 +212,7 @@ struct SettingsView: View {
             print("el statusresponse\(self.imageVM.statusResponse )")
             print("se ejecuto")
         }
-        
         //}
-        
-        
     }
     
     
@@ -275,7 +288,7 @@ struct SettingsView: View {
         //.onAppear{
          //   self.imageVM.downloadImage()
         //}
-        
+        .edgesIgnoringSafeArea(.top)
     }
 }
 

@@ -15,7 +15,7 @@ struct TabsView: View {
             TabView {
                 HomeView(currentBtnEm: $currentBtnEm)
                     .tabItem {
-                        Image(systemName: "house")
+                        Image("home")
                         Text("Inicio")
                     }
                 HistoryView()

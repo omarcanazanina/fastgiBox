@@ -13,20 +13,30 @@ struct FormCreditCardView: View {
     var body: some View {
         VStack{
             ScrollView(){
-                VStack(spacing: 8){
+                VStack(alignment: .leading, spacing: 8){
+                    Text("TITULAR")
+                        .textStyle(TitleStyle())
                     TextField("Nombre titutlar", text:  self.$testForm)
                         .textFieldStyle(Input())
-                    
+                        Text("NÚMERO")
+                            .textStyle(TitleStyle())
                     TextField("Número", text:  self.$testForm)
                         .textFieldStyle(Input())
                     
                     HStack{
-                        TextField("Mes / Año", text:  self.$testForm)
-                            .textFieldStyle(Input())
-                        TextField("CVV", text:  self.$testForm)
-                            .textFieldStyle(Input())
+                        VStack(alignment: .leading){
+                            Text("MES / AÑO")
+                                .textStyle(TitleStyle())
+                            TextField("Mes / Año", text:  self.$testForm)
+                                .textFieldStyle(Input())
+                        }
+                        VStack(alignment: .leading){
+                            Text("CVV")
+                                .textStyle(TitleStyle())
+                            TextField("CVV", text:  self.$testForm)
+                                .textFieldStyle(Input())
+                        }
                     }
-                    
                     Button(action: {
                     }){
                         Text("Aceptar")
@@ -36,11 +46,9 @@ struct FormCreditCardView: View {
                             .background(Color("primary"))
                             .clipShape(Capsule())
                             .shadow(color: Color.black.opacity(0.1), radius: 4, x: 2, y: 3)
-                        
                     }
                 }
             }
-            
         }.padding()
         
     }

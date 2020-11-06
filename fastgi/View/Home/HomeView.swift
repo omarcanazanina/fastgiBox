@@ -39,12 +39,15 @@ struct HomeView: View {
     var body: some View {
         VStack{
             HeaderUserView(text: self.loginVM.user.nombres, _id :self.loginVM.user._id)
+                .padding(.leading)
+                .padding(.top,45)
             self.home
                 .onAppear{
                     self.loginVM.DatosUser()
                     print(self.loginVM.user)
                 }
         }
+        .edgesIgnoringSafeArea(.top)
         //.edgesIgnoringSafeArea(.all)
        /* .navigationBarTitle("Home", displayMode: .inline)
         .navigationBarItems(
