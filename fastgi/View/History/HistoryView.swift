@@ -134,6 +134,8 @@ struct HistoryView: View {
              //
              HeaderUserView(text: self.loginModelView.user.nombres)*/
             HeaderUserView(text: self.loginVM.user.nombres, _id :self.loginVM.user._id)
+                .padding(.leading)
+                .padding(.top,50)
             VStack{
                 Picker(selection: $optionPicker, label: Text("")) {
                     Text("Realizadas").tag(0)
@@ -163,6 +165,7 @@ struct HistoryView: View {
                 self.RecargaVM.listRecargas()
             }
         }
+        .edgesIgnoringSafeArea(.top)
        /* .navigationBarTitle("", displayMode: .inline)
         .navigationBarItems(
             leading:
