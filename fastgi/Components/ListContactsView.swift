@@ -19,7 +19,9 @@ struct ListContactsView: View {
     @ObservedObject private var contactsVM = ContactsViewModel()
     //test updateContacts
     @ObservedObject private var contactsA = Contacts()
-   
+    //referesh
+    @State private var isShowingReferesh = false
+    
     var list:some View{
         //HStack{
             List {
@@ -56,7 +58,7 @@ struct ListContactsView: View {
                     )
                    
                 }
-                Button(action: {
+               /* Button(action: {
                     self.contactsVM.updateContacts()
                 }) {
                     Text("Update")
@@ -71,9 +73,23 @@ struct ListContactsView: View {
                     Text(self.contactsVM.messageError)
                         .foregroundColor(.red)
                     //self.alert = true
-                }
+                }*/
               
+            }.pullToRefresh(isShowing: $isShowingReferesh) {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                    self.isShowingReferesh = false
+                    print("cargo")
+                    self.contactsVM.updateContacts()
+                }
+              /* if self.contactsVM.isloading == true{
+                            Loader()
+                }else if self.contactsVM.messageError != ""{
+                    Text(self.contactsVM.messageError)
+                        .foregroundColor(.red)
+                    //self.alert = true
+                }*/
             }
+            
        
             .alert(item: $contactsVM1.permissionsError) {_ in
                 Alert(title: Text("Permiso denegado"), message: Text(contactsVM1.permissionsError?.description ?? "error no conocido"), dismissButton: .default(Text("Ok"),action: { self.contactsVM1.openSettings()}))

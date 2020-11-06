@@ -74,6 +74,7 @@
 		92A3BB0425536DB100DF3707 /* Optional+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A3BB0325536DB100DF3707 /* Optional+Extensions.swift */; };
 		92A3BB0725536DCD00DF3707 /* Validation+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A3BB0625536DCD00DF3707 /* Validation+Extensions.swift */; };
 		92A3BB0A25536DE600DF3707 /* BrokenRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A3BB0925536DE600DF3707 /* BrokenRule.swift */; };
+		92DBE2A225537827001B791B /* SwiftUIRefresh in Frameworks */ = {isa = PBXBuildFile; productRef = 92DBE2A125537827001B791B /* SwiftUIRefresh */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -154,6 +155,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				92DBE2A225537827001B791B /* SwiftUIRefresh in Frameworks */,
 				573DD5AA824DD586829F7E7E /* Pods_fastgi.framework in Frameworks */,
 				92A3BAFF25536D7A00DF3707 /* ValidatedPropertyKit in Frameworks */,
 			);
@@ -434,6 +436,7 @@
 			name = fastgi;
 			packageProductDependencies = (
 				92A3BAFE25536D7A00DF3707 /* ValidatedPropertyKit */,
+				92DBE2A125537827001B791B /* SwiftUIRefresh */,
 			);
 			productName = fastgi;
 			productReference = 92A3BA212553616F00DF3707 /* fastgi.app */;
@@ -464,6 +467,7 @@
 			mainGroup = 92A3BA182553616F00DF3707;
 			packageReferences = (
 				92A3BAFD25536D7A00DF3707 /* XCRemoteSwiftPackageReference "ValidatedPropertyKit" */,
+				92DBE2A025537827001B791B /* XCRemoteSwiftPackageReference "SwiftUIRefresh" */,
 			);
 			productRefGroup = 92A3BA222553616F00DF3707 /* Products */;
 			projectDirPath = "";
@@ -805,6 +809,14 @@
 				minimumVersion = 0.0.4;
 			};
 		};
+		92DBE2A025537827001B791B /* XCRemoteSwiftPackageReference "SwiftUIRefresh" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/timbersoftware/SwiftUIRefresh.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.0.3;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -812,6 +824,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 92A3BAFD25536D7A00DF3707 /* XCRemoteSwiftPackageReference "ValidatedPropertyKit" */;
 			productName = ValidatedPropertyKit;
+		};
+		92DBE2A125537827001B791B /* SwiftUIRefresh */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 92DBE2A025537827001B791B /* XCRemoteSwiftPackageReference "SwiftUIRefresh" */;
+			productName = SwiftUIRefresh;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

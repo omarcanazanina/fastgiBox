@@ -6,16 +6,21 @@
 //
 
 import SwiftUI
+import SwiftUIRefresh
 
 struct ContentView: View {
+    
+    @State private var isShowing = false
     var body: some View {
-        Text("Hello, world!")
-            .padding()
-    }
-}
-
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
+        List {
+            Text("Item 1")
+            Text("Item 2")
+        }
+        .pullToRefresh(isShowing: $isShowing) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                self.isShowing = false
+                print("cargo")
+            }
+        }
     }
 }

@@ -65,6 +65,10 @@ struct SettingsView: View {
         HStack(alignment: .center){
                 WebImage(url: URL(string: "https://api.fastgi.com/avatar/\(self.loginVM.user._id)" ))
                     .placeholder(Image( "user-default"))
+                    .onSuccess { image, data, cacheType in
+                        // Success
+                        // Note: Data exist only when queried from disk cache or network. Use `.queryMemoryData` if you really need data
+                    }
                 //Image(uiImage: self.imageVM.image ?? UIImage(named: "placeholder")!)
                     .resizable()
                     .foregroundColor(.white)
@@ -179,6 +183,7 @@ struct SettingsView: View {
         ScrollView{
             self.header
             self.imageProfile
+           // self.header
             //self.testimageProfile
             Spacer()
                 .frame(height:20)
