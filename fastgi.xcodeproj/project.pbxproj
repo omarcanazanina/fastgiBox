@@ -382,12 +382,9 @@
 				92A3BAE525536AAB00DF3707 /* Loader.swift */,
 				92A3BAE825536ACD00DF3707 /* ListAreaCodeView.swift */,
 				92A3BAEB25536AF200DF3707 /* CardServiceHomeView.swift */,
-<<<<<<< HEAD
 				92278A5E2556186E00D746EA /* Helper.swift */,
-=======
 				C0EA57ED25561D2A003FE66F /* ListCreditCardView.swift */,
 				C0EA57F025561ED8003FE66F /* ItemListCreditCardView.swift */,
->>>>>>> ui
 			);
 			path = Components;
 			sourceTree = "<group>";
