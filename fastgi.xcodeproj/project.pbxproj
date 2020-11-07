@@ -74,6 +74,8 @@
 		92A3BB0425536DB100DF3707 /* Optional+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A3BB0325536DB100DF3707 /* Optional+Extensions.swift */; };
 		92A3BB0725536DCD00DF3707 /* Validation+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A3BB0625536DCD00DF3707 /* Validation+Extensions.swift */; };
 		92A3BB0A25536DE600DF3707 /* BrokenRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A3BB0925536DE600DF3707 /* BrokenRule.swift */; };
+		C0EA57EE25561D2A003FE66F /* ListCreditCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0EA57ED25561D2A003FE66F /* ListCreditCardView.swift */; };
+		C0EA57F125561ED8003FE66F /* ItemListCreditCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0EA57F025561ED8003FE66F /* ItemListCreditCardView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -147,6 +149,8 @@
 		92A3BB0325536DB100DF3707 /* Optional+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Optional+Extensions.swift"; sourceTree = "<group>"; };
 		92A3BB0625536DCD00DF3707 /* Validation+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Validation+Extensions.swift"; sourceTree = "<group>"; };
 		92A3BB0925536DE600DF3707 /* BrokenRule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrokenRule.swift; sourceTree = "<group>"; };
+		C0EA57ED25561D2A003FE66F /* ListCreditCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCreditCardView.swift; sourceTree = "<group>"; };
+		C0EA57F025561ED8003FE66F /* ItemListCreditCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemListCreditCardView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -374,6 +378,8 @@
 				92A3BAE525536AAB00DF3707 /* Loader.swift */,
 				92A3BAE825536ACD00DF3707 /* ListAreaCodeView.swift */,
 				92A3BAEB25536AF200DF3707 /* CardServiceHomeView.swift */,
+				C0EA57ED25561D2A003FE66F /* ListCreditCardView.swift */,
+				C0EA57F025561ED8003FE66F /* ItemListCreditCardView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -552,6 +558,7 @@
 				92A3BAC52553694800DF3707 /* CreditCardView.swift in Sources */,
 				92A3BAAF2553684900DF3707 /* HomeView.swift in Sources */,
 				92A3BACE255369A600DF3707 /* ListContactsView.swift in Sources */,
+				C0EA57F125561ED8003FE66F /* ItemListCreditCardView.swift in Sources */,
 				92A3BB0725536DCD00DF3707 /* Validation+Extensions.swift in Sources */,
 				92A3BABA255368BE00DF3707 /* SettingsView.swift in Sources */,
 				92A3BA272553616F00DF3707 /* SceneDelegate.swift in Sources */,
@@ -591,6 +598,7 @@
 				92A3BAC82553696500DF3707 /* MenuView.swift in Sources */,
 				92A3BA75255365AF00DF3707 /* ImageModel.swift in Sources */,
 				92A3BAEC25536AF200DF3707 /* CardServiceHomeView.swift in Sources */,
+				C0EA57EE25561D2A003FE66F /* ListCreditCardView.swift in Sources */,
 				92A3BAD1255369C900DF3707 /* TransactionDetailView.swift in Sources */,
 				92A3BA92255366DE00DF3707 /* ContactsResponse.swift in Sources */,
 				92A3BAAA2553682400DF3707 /* FormLoadCreditView.swift in Sources */,

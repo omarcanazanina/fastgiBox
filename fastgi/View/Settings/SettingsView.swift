@@ -169,7 +169,7 @@ struct SettingsView: View {
                 }
                 VStack(alignment: .leading, spacing: 8){
                     Divider()
-                    HStack{
+                    /*HStack{
                         
                         Text("MÉTODOS DE PAGO")
                             .textStyle(TitleStyle())
@@ -178,6 +178,16 @@ struct SettingsView: View {
                         Image(systemName: "chevron.right")
                             .padding(.trailing)
                             .frame(maxWidth:.infinity, alignment: .trailing)
+                    }*/
+                    NavigationLink(destination: ListCreditCardView()) {
+                        HStack{
+                            Image(systemName: "creditcard")
+                            Text("MÉTODOS DE PAGO")
+                                .font(.caption)
+                            Image(systemName: "chevron.right")
+                                .padding(.trailing)
+                                .frame(maxWidth:.infinity, alignment: .trailing)
+                        }
                     }
                 }
             }
