@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		573DD5AA824DD586829F7E7E /* Pods_fastgi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7241C4EA69AEDD4B4C54A236 /* Pods_fastgi.framework */; };
+		92278A5F2556186E00D746EA /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92278A5E2556186E00D746EA /* Helper.swift */; };
 		92A3BA252553616F00DF3707 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A3BA242553616F00DF3707 /* AppDelegate.swift */; };
 		92A3BA272553616F00DF3707 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A3BA262553616F00DF3707 /* SceneDelegate.swift */; };
 		92A3BA292553616F00DF3707 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A3BA282553616F00DF3707 /* ContentView.swift */; };
@@ -81,6 +82,7 @@
 		35E979A5822FE3ED491C105A /* Pods-fastgi.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-fastgi.release.xcconfig"; path = "Target Support Files/Pods-fastgi/Pods-fastgi.release.xcconfig"; sourceTree = "<group>"; };
 		7241C4EA69AEDD4B4C54A236 /* Pods_fastgi.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_fastgi.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		82479469E54D08A5E407B6D5 /* Pods-fastgi.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-fastgi.debug.xcconfig"; path = "Target Support Files/Pods-fastgi/Pods-fastgi.debug.xcconfig"; sourceTree = "<group>"; };
+		92278A5E2556186E00D746EA /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		92A3BA212553616F00DF3707 /* fastgi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = fastgi.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		92A3BA242553616F00DF3707 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		92A3BA262553616F00DF3707 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -376,6 +378,7 @@
 				92A3BAE525536AAB00DF3707 /* Loader.swift */,
 				92A3BAE825536ACD00DF3707 /* ListAreaCodeView.swift */,
 				92A3BAEB25536AF200DF3707 /* CardServiceHomeView.swift */,
+				92278A5E2556186E00D746EA /* Helper.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -588,6 +591,7 @@
 				92A3BAE325536A9500DF3707 /* TabsView.swift in Sources */,
 				92A3BB0A25536DE600DF3707 /* BrokenRule.swift in Sources */,
 				92A3BAE925536ACD00DF3707 /* ListAreaCodeView.swift in Sources */,
+				92278A5F2556186E00D746EA /* Helper.swift in Sources */,
 				92A3BAF725536B8C00DF3707 /* SelectCreditCardView.swift in Sources */,
 				92A3BA622553648C00DF3707 /* ImageViewModel.swift in Sources */,
 				92A3BA7F255365FA00DF3707 /* RecargaModel.swift in Sources */,

@@ -37,7 +37,10 @@ struct FormUserDataView: View {
                         .textStyle(TitleStyle())
                     TextField("C.I.", text:  self.$loginVM.user.ci, onEditingChanged: { changed in self.AddSpace = false})
                     .textFieldStyle(Input())
-                        .keyboardType(.numbersAndPunctuation)
+                        .keyboardType(.numberPad)
+                        .onTapGesture {
+                            self.hideKeyboard()
+                          }
                     Text("CORREO ELECTRÓNICO")
                         .textStyle(TitleStyle())
                     TextField("user@email.com", text: self.$loginVM.user.correo, onEditingChanged: { changed in self.AddSpace = false})
@@ -75,7 +78,7 @@ struct FormUserDataView: View {
                         .textStyle(TitleStyle())
                     TextField("nit", text: self.$loginVM.user.nit, onEditingChanged: { changed in self.AddSpace = false})
                         .textFieldStyle(Input())
-                        .keyboardType(.numbersAndPunctuation)
+                        .keyboardType(.numberPad)
                         //.padding(.bottom, self.AddSpace ? 40 : 0)
                     
                     
