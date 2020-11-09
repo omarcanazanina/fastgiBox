@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import UIKit
 
 struct LoginView: View {
     @ObservedObject var loginVM = LoginViewModel()
@@ -17,6 +18,7 @@ struct LoginView: View {
     
     @ObservedObject var login = Login()
     @State var telefono: String = ""
+    
     
     init(){
         UITableView.appearance().backgroundColor = .clear
@@ -33,6 +35,8 @@ struct LoginView: View {
                     .font(.caption)
                     .foregroundColor(.white)
                     .padding(.bottom)
+                
+                /*Button select codes*/
                 Button(action: {
                     self.showingSheet.toggle()
                 }) {
@@ -67,6 +71,10 @@ struct LoginView: View {
                         .keyboardType(.namePhonePad)
                         .clipShape(Capsule())
                 }
+                .onTapGesture {
+                    self.hideKeyboard()
+                  }
+            
                 BrokenRulesView(brokenRules: self.loginVM.brokenRules)
                 
                 Button(action: {
@@ -75,7 +83,8 @@ struct LoginView: View {
                 })
                 {
                     Text("Ingresar")
-                }.buttonStyle(LoginButtonStyle())
+                        .textStyle(TextButtonLoginStyle())
+                }
                 Spacer()
                 
                 NavigationLink(destination: CodeView(number: self.loginVM.telefono.bound), tag: "idlogin", selection: self.$login.ruta) {
@@ -83,6 +92,7 @@ struct LoginView: View {
                 }
                 
             }
+            
             .padding([.top, .leading, .trailing])
             .frame(maxWidth:.infinity, maxHeight: .infinity)
             .background(Color("primary"))
@@ -90,6 +100,8 @@ struct LoginView: View {
         }.accentColor(.white)
         
     }
+    
+ 
 }
 
 struct LoginView_Previews: PreviewProvider {
@@ -97,3 +109,4 @@ struct LoginView_Previews: PreviewProvider {
         LoginView()
     }
 }
+

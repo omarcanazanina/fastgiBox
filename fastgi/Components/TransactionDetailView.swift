@@ -22,6 +22,7 @@ struct TransactionDetailView: View {
     let dateFormatter = DateFormatter()
     var dateStringFormatter = DateFormatter()
     @ObservedObject var loginVM = LoginViewModel()
+    
     var FlaseCheck: some View{
         Image(systemName: "xmark")
             .resizable()
@@ -41,12 +42,13 @@ struct TransactionDetailView: View {
             .frame(width: 40, height: 40)
             .padding(10)
     }
+    
     var logo: some View{
         Image("logo_fastgi")
             .resizable()
             .frame(width: 80, height: 80)
-            
     }
+    
     var body: some View {
         VStack(alignment: .center, spacing: 10){
             self.logo
@@ -61,7 +63,7 @@ struct TransactionDetailView: View {
             
             VStack(alignment: .center, spacing: 10){
                 HStack{
-                    Text("NÚMERO DE TRANSACCIÓN")
+                    Text("Nro. TRANSACCIÓN")
                         .foregroundColor(Color("primary"))
                         .bold()
                         .textStyle(TitleStyle())
@@ -109,7 +111,7 @@ struct TransactionDetailView: View {
                     
                 }
                 HStack{
-                    Text("NOMBRE DEL ORIGINANTE")
+                    Text("ORIGEN")
                         .foregroundColor(Color("primary"))
                         .bold()
                         .textStyle(TitleStyle())
@@ -121,7 +123,7 @@ struct TransactionDetailView: View {
                     
                 }
                 HStack{
-                    Text("NOMBRE DEL ABONADO")
+                    Text("ABONADO")
                         .foregroundColor(Color("primary"))
                         .bold()
                         .textStyle(TitleStyle())
@@ -179,7 +181,7 @@ struct TransactionDetailView: View {
                     dateStringFormatter.dateFormat = "HH:mm:ss"
                     let horaFromString = dateStringFormatter.date(from: self.fecha)
                     self.horaFormat = dateStringFormatter.string(from: horaFromString ?? date)
-
+                }
                     self.loginVM.DatosUser()
                 
             }
@@ -189,7 +191,7 @@ struct TransactionDetailView: View {
             if self.showBtn! {
                 
                 Button(action: {
-                  /*  self.exportToPDF(fecha_: self.fechaFormat, empresa_: self.empresa, phone_: self.phone, monto_: self.monto,fechaFormat_: self.fechaFormat, horaFormat_: self.horaFormat, showBtn_: false)*/
+                    self.exportToPDF(fecha_: self.fechaFormat, empresa_: self.empresa, phone_: self.phone, monto_: self.monto,fechaFormat_: self.fechaFormat, horaFormat_: self.horaFormat, showBtn_: false, nombreO_: self.loginVM.user.nombres)
                 }){
                     Text("Compartir")
                 }.buttonStyle(PrimaryButtonOutlineStyle())
@@ -199,22 +201,19 @@ struct TransactionDetailView: View {
         }.background(Color.white)
     }
 }
-
-struct TransactionDetailView_Previews: PreviewProvider {
-    static var previews: some View {
-        Group {
-            TransactionDetailView(fecha: "", empresa: "", phone: "", monto: "", control: 0, fechaFormat: "", horaFormat: "")
-                .previewDevice("iPhone 11")
-                .preferredColorScheme(.dark)
+    struct TransactionDetailView_Previews: PreviewProvider {
+        static var previews: some View {
+            Group {
+                TransactionDetailView(fecha: "", empresa: "", phone: "", monto: "", control: 0, fechaFormat: "", horaFormat: "")
+                    .previewDevice("iPhone 11")
+                    .preferredColorScheme(.dark)
+            }
         }
     }
-}
 
 
-
-/*extension TransactionDetailView {
-    func exportToPDF(fecha_: String, empresa_: String, phone_: String, monto_: String,fechaFormat_: String,horaFormat_:String, showBtn_: Bool) {
-        
+extension TransactionDetailView {
+    func exportToPDF(fecha_: String, empresa_: String, phone_: String, monto_: String,fechaFormat_: String,horaFormat_:String, showBtn_: Bool, nombreO_: String) {
         
         print(fecha_)
         
@@ -260,7 +259,4 @@ struct TransactionDetailView_Previews: PreviewProvider {
         pdfVC.view.removeFromSuperview()
     }
     
-}*/
-
 }
-

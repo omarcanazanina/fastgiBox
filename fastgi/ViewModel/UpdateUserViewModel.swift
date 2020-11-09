@@ -6,10 +6,10 @@
 //
 
 import Foundation
-import Alamofire
 import Combine
 import SwiftUI
 import ValidatedPropertyKit
+import Alamofire
 
 class UpdateUserViewModel: ObservableObject {
     //validation

@@ -46,7 +46,7 @@ struct ButtonCreditAmountView: View {
                 .foregroundColor(self.currentBtn == btn ? Color.white : Color("normal-text"))
                 .frame(maxWidth:.infinity)
                 .padding(8)
-                .background(self.currentBtn == btn ? Color("primary") : Color("card"))
+                .background(self.currentBtn == btn ? Color("primary") : Color("input"))
                 .clipShape(Capsule())
                 .shadow(color: Color.black.opacity(0.1), radius: 2, x: 1, y: 1)
         }

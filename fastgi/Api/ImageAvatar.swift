@@ -11,6 +11,9 @@ import Combine
 import SwiftUI
 import AVKit
 
+
+import SDWebImageSwiftUI
+
 class ImageAvatar: ObservableObject {
     private let tokenKey = "token"
     private let idKey = "usuario._id"
@@ -40,6 +43,7 @@ class ImageAvatar: ObservableObject {
              let fileURL = documentsURL.appendingPathComponent("\(idusu).jpeg")
              
              return (fileURL, [.removePreviousFile, .createIntermediateDirectories])
+         
              }
             //let destination = DownloadRequest.suggestedDownloadDestination(for: .documentDirectory)
             

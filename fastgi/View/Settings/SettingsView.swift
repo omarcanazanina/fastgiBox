@@ -36,14 +36,36 @@ struct SettingsView: View {
     }
     
     var header:some View {
-        ZStack(){
-            HStack(){
+        HStack{
+            HStack{
+                Spacer()
+                Button(action: {
+                  
+                }){
+                    VStack{
+                        //Image(systemName: "ellipsis")
+                    }
+                    .frame(width: 40, height: 40)
+                }
+                .buttonStyle(PlainButtonStyle())
+            }
+      
+        }
+    }
+
+    var icon:some View {
+        HStack{
+            HStack{
                 Spacer()
                 Button(action: {
                     self.menu = true
+                    print("menu")
                 }){
                     VStack{
                         Image(systemName: "ellipsis")
+                            .resizable()
+                            .frame(width: 30, height: 6)
+                            .padding(.trailing,6)
                     }
                     .frame(width: 30, height: 30)
                 }
@@ -52,21 +74,18 @@ struct SettingsView: View {
             NavigationLink(destination: MenuView(), isActive: $menu) {
                 EmptyView()
             }.isDetailLink(false)
-            
-            /*NavigationLink(destination: MenuView(), isActive: $menu) {
-             Text("Do Something")
-             }*/
-            
         }
     }
-    
-    
     
     var imageProfile:some View {
         HStack(alignment: .center){
                 WebImage(url: URL(string: "https://api.fastgi.com/avatar/\(self.loginVM.user._id)" ))
-                    .placeholder(Image( "user-default"))
+                    .onSuccess { image, data, cacheType in
+                        // Success
+                        // Note: Data exist only when queried from disk cache or network. Use `.queryMemoryData` if you really need data
+                    }
                 //Image(uiImage: self.imageVM.image ?? UIImage(named: "placeholder")!)
+                    .placeholder(Image( "user-default"))
                     .resizable()
                     .foregroundColor(.white)
                     .frame(width: 100.0, height: 100.0)
@@ -199,28 +218,26 @@ struct SettingsView: View {
     
     
     var content:some View{
-        //  HStack{
-        ScrollView{
-            self.header
-                .padding(.leading)
-                .padding(.top,45)
-            self.imageProfile
-            //self.testimageProfile
-            Spacer()
-                .frame(height:20)
-            self.infoUser
-            //self.header
-        }//.onAppear(perform: self.loginModelView.DatosUser)
+        HStack{
+            ScrollView{
+                self.header
+                    .padding(.leading)
+                    .padding(.top,35)
+                self.imageProfile
+                self.icon
+                Spacer()
+                    .frame(height:20)
+                self.infoUser
+            }
         .onAppear{
             self.loginVM.DatosUser()
             //self.imageVM.downloadImage()
             print("el statusresponse\(self.imageVM.statusResponse )")
             print("se ejecuto")
         }
-        //}
-    }
-    
-    
+        }
+}
+
     
     var body: some View {
         VStack{
