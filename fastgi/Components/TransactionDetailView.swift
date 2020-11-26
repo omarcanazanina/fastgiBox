@@ -63,7 +63,7 @@ struct TransactionDetailView: View {
             
             VStack(alignment: .center, spacing: 10){
                 HStack{
-                    Text("NÚMERO DE TRANSACCIÓN")
+                    Text("Nro. TRANSACCIÓN")
                         .foregroundColor(Color("primary"))
                         .bold()
                         .textStyle(TitleStyle())
@@ -111,7 +111,7 @@ struct TransactionDetailView: View {
                     
                 }
                 HStack{
-                    Text("NOMBRE DEL ORIGINANTE")
+                    Text("ORIGEN")
                         .foregroundColor(Color("primary"))
                         .bold()
                         .textStyle(TitleStyle())
@@ -123,7 +123,7 @@ struct TransactionDetailView: View {
                     
                 }
                 HStack{
-                    Text("NOMBRE DEL ABONADO")
+                    Text("ABONADO")
                         .foregroundColor(Color("primary"))
                         .bold()
                         .textStyle(TitleStyle())

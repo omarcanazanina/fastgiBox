@@ -32,7 +32,6 @@ struct CodeView: View {
                 TextField("Código", text: $pin)// $telefono)
                     .textContentType(.oneTimeCode)
                     .keyboardType(.numberPad)
-                    .foregroundColor(.black)
                     .padding(.horizontal)
                    
             }.accentColor(Color("primary"))
@@ -77,5 +76,7 @@ struct CodeView: View {
 struct CodeView_Previews: PreviewProvider {
     static var previews: some View {
         CodeView(number: "")
+            
+            
     }
 }
