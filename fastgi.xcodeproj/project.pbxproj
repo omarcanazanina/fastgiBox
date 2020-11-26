@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		573DD5AA824DD586829F7E7E /* Pods_fastgi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7241C4EA69AEDD4B4C54A236 /* Pods_fastgi.framework */; };
+		92278A5F2556186E00D746EA /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92278A5E2556186E00D746EA /* Helper.swift */; };
 		92A3BA252553616F00DF3707 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A3BA242553616F00DF3707 /* AppDelegate.swift */; };
 		92A3BA272553616F00DF3707 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A3BA262553616F00DF3707 /* SceneDelegate.swift */; };
 		92A3BA292553616F00DF3707 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A3BA282553616F00DF3707 /* ContentView.swift */; };
@@ -76,12 +77,14 @@
 		92A3BB0A25536DE600DF3707 /* BrokenRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A3BB0925536DE600DF3707 /* BrokenRule.swift */; };
 		C0EA57EE25561D2A003FE66F /* ListCreditCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0EA57ED25561D2A003FE66F /* ListCreditCardView.swift */; };
 		C0EA57F125561ED8003FE66F /* ItemListCreditCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0EA57F025561ED8003FE66F /* ItemListCreditCardView.swift */; };
+		92DBE2A225537827001B791B /* SwiftUIRefresh in Frameworks */ = {isa = PBXBuildFile; productRef = 92DBE2A125537827001B791B /* SwiftUIRefresh */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		35E979A5822FE3ED491C105A /* Pods-fastgi.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-fastgi.release.xcconfig"; path = "Target Support Files/Pods-fastgi/Pods-fastgi.release.xcconfig"; sourceTree = "<group>"; };
 		7241C4EA69AEDD4B4C54A236 /* Pods_fastgi.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_fastgi.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		82479469E54D08A5E407B6D5 /* Pods-fastgi.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-fastgi.debug.xcconfig"; path = "Target Support Files/Pods-fastgi/Pods-fastgi.debug.xcconfig"; sourceTree = "<group>"; };
+		92278A5E2556186E00D746EA /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		92A3BA212553616F00DF3707 /* fastgi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = fastgi.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		92A3BA242553616F00DF3707 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		92A3BA262553616F00DF3707 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -158,6 +161,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				92DBE2A225537827001B791B /* SwiftUIRefresh in Frameworks */,
 				573DD5AA824DD586829F7E7E /* Pods_fastgi.framework in Frameworks */,
 				92A3BAFF25536D7A00DF3707 /* ValidatedPropertyKit in Frameworks */,
 			);
@@ -380,6 +384,7 @@
 				92A3BAEB25536AF200DF3707 /* CardServiceHomeView.swift */,
 				C0EA57ED25561D2A003FE66F /* ListCreditCardView.swift */,
 				C0EA57F025561ED8003FE66F /* ItemListCreditCardView.swift */,
+				92278A5E2556186E00D746EA /* Helper.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -440,6 +445,7 @@
 			name = fastgi;
 			packageProductDependencies = (
 				92A3BAFE25536D7A00DF3707 /* ValidatedPropertyKit */,
+				92DBE2A125537827001B791B /* SwiftUIRefresh */,
 			);
 			productName = fastgi;
 			productReference = 92A3BA212553616F00DF3707 /* fastgi.app */;
@@ -470,6 +476,7 @@
 			mainGroup = 92A3BA182553616F00DF3707;
 			packageReferences = (
 				92A3BAFD25536D7A00DF3707 /* XCRemoteSwiftPackageReference "ValidatedPropertyKit" */,
+				92DBE2A025537827001B791B /* XCRemoteSwiftPackageReference "SwiftUIRefresh" */,
 			);
 			productRefGroup = 92A3BA222553616F00DF3707 /* Products */;
 			projectDirPath = "";
@@ -591,6 +598,7 @@
 				92A3BAE325536A9500DF3707 /* TabsView.swift in Sources */,
 				92A3BB0A25536DE600DF3707 /* BrokenRule.swift in Sources */,
 				92A3BAE925536ACD00DF3707 /* ListAreaCodeView.swift in Sources */,
+				92278A5F2556186E00D746EA /* Helper.swift in Sources */,
 				92A3BAF725536B8C00DF3707 /* SelectCreditCardView.swift in Sources */,
 				92A3BA622553648C00DF3707 /* ImageViewModel.swift in Sources */,
 				92A3BA7F255365FA00DF3707 /* RecargaModel.swift in Sources */,
@@ -813,6 +821,14 @@
 				minimumVersion = 0.0.4;
 			};
 		};
+		92DBE2A025537827001B791B /* XCRemoteSwiftPackageReference "SwiftUIRefresh" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/timbersoftware/SwiftUIRefresh.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.0.3;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -820,6 +836,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 92A3BAFD25536D7A00DF3707 /* XCRemoteSwiftPackageReference "ValidatedPropertyKit" */;
 			productName = ValidatedPropertyKit;
+		};
+		92DBE2A125537827001B791B /* SwiftUIRefresh */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 92DBE2A025537827001B791B /* XCRemoteSwiftPackageReference "SwiftUIRefresh" */;
+			productName = SwiftUIRefresh;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

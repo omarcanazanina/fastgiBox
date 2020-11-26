@@ -13,32 +13,41 @@ struct BtnsView: View {
     @Binding var montoRecarga : String
     var body: some View {
         VStack(spacing:1){
-            HStack{
+            // 10 20 30 50
+            /*HStack{
                 ButtonCreditAmountView(text: "10 Bs.", montoRecarga: self.$montoRecarga, currentBtn: self.$currentBtn, btn: .Btn10)
-                    .padding()
+                    .padding(6)
                 ButtonCreditAmountView(text: "20 Bs.", montoRecarga: self.$montoRecarga, currentBtn: self.$currentBtn, btn: .Btn20)
-                .padding()
+                .padding(6)
             }
             HStack{
                 ButtonCreditAmountView(text: "30 Bs.", montoRecarga: self.$montoRecarga, currentBtn: self.$currentBtn, btn: .Btn30)
-                .padding()
+                .padding(6)
                 ButtonCreditAmountView(text: "50 Bs.", montoRecarga: self.$montoRecarga, currentBtn: self.$currentBtn, btn: .Btn50)
-                .padding()
+                .padding(6)
+            }*/
+            HStack{
+                ButtonCreditAmountView(text: "20 Bs.", montoRecarga: self.$montoRecarga, currentBtn: self.$currentBtn, btn: .Btn20)
+                .padding(6)
+                ButtonCreditAmountView(text: "50 Bs.", montoRecarga: self.$montoRecarga, currentBtn: self.$currentBtn, btn: .Btn50)
+                .padding(6)
             }
 
             HStack{
                 ButtonCreditAmountView(text: "100 Bs.", montoRecarga: self.$montoRecarga, currentBtn: self.$currentBtn, btn: .Btn100)
-                .padding()
+                .padding(6)
                 
-                if currentBtn != .BtnOther{
-                    ButtonCreditAmountView(text: "Other", montoRecarga: self.$montoRecarga, currentBtn: self.$currentBtn, btn: .BtnOther)
-                    .padding()
+                if currentBtn != .BtnOther {
+                    InputCreditAmountView(amounValue: self.$montoRecarga)
+                    .padding(6)
+                   // ButtonCreditAmountView(text: "Other", montoRecarga: self.$montoRecarga, currentBtn: self.$currentBtn, btn: .BtnOther)
+                   // .padding()
                 }
-                else{
+                /*else{
                     InputCreditAmountView(amounValue: self.$montoRecarga)
                     .padding()
                     
-                }
+                }*/
                 
                
             }
@@ -49,7 +58,7 @@ struct BtnsView: View {
 
 struct BtnsView_Previews: PreviewProvider {
     static var previews: some View {
-        BtnsView(currentBtn: .constant(.Btn10),text: "", montoRecarga: .constant("10"))
+        BtnsView(currentBtn: .constant(.Btn20),text: "", montoRecarga: .constant("10"))
     }
 }
 

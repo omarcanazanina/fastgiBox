@@ -19,11 +19,21 @@ struct ListContactsView: View {
     @ObservedObject private var contactsVM = ContactsViewModel()
     //test updateContacts
     @ObservedObject private var contactsA = Contacts()
-   
+    //referesh
+    @State private var isShowingReferesh = false
+    //search
+    @State private var searchText : String = ""
+    let contacts = ["Herlan Garzon", "Omar Canaza", "Elvin Mollinedo", "Agustin Ayaviri", "Daniel Jaimes", "Amilkar Dominguez"]
     var list:some View{
-        //HStack{
+        VStack{
+            //(contact:ContactModel) inSearchBar(text: $searchText, placeholder: "Buscar")
             List {
+             //   ForEach(self.contacts.filter {
+             //       self.searchText.isEmpty ? true : $0.lowercased().contains(self.searchText.lowercased())
+             //   }, id: \.self) { item in
+                //
                 ForEach(self.contactsVM.listContacts, id: \.self._id){ (contact:ContactModel) in
+              
                     Button(action: {
                         self.telefono = contact.telefono
                         self.nombre = contact.nombre
@@ -56,7 +66,7 @@ struct ListContactsView: View {
                     )
                    
                 }
-                Button(action: {
+               /* Button(action: {
                     self.contactsVM.updateContacts()
                 }) {
                     Text("Update")
@@ -71,14 +81,28 @@ struct ListContactsView: View {
                     Text(self.contactsVM.messageError)
                         .foregroundColor(.red)
                     //self.alert = true
-                }
+                }*/
               
+            }.pullToRefresh(isShowing: $isShowingReferesh) {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                    self.isShowingReferesh = false
+                    print("cargo")
+                    self.contactsVM.updateContacts()
+                }
+              /* if self.contactsVM.isloading == true{
+                            Loader()
+                }else if self.contactsVM.messageError != ""{
+                    Text(self.contactsVM.messageError)
+                        .foregroundColor(.red)
+                    //self.alert = true
+                }*/
             }
+            
        
             .alert(item: $contactsVM1.permissionsError) {_ in
                 Alert(title: Text("Permiso denegado"), message: Text(contactsVM1.permissionsError?.description ?? "error no conocido"), dismissButton: .default(Text("Ok"),action: { self.contactsVM1.openSettings()}))
             }
-       // }
+        }
     }
     
     

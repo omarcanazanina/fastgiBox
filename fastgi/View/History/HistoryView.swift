@@ -128,11 +128,6 @@ struct HistoryView: View {
         
         //NavigationView{
         VStack {
-            //omar
-            /*Spacer()
-             Spacer()
-             //
-             HeaderUserView(text: self.loginModelView.user.nombres)*/
             HeaderUserView(text: self.loginVM.user.nombres, _id :self.loginVM.user._id)
                 .padding(.leading)
                 .padding(.top,50)

@@ -10,5 +10,6 @@ target 'fastgi' do
 pod 'Alamofire'
 pod 'SwiftyJSON'
 pod 'SDWebImageSwiftUI'
+pod "SwiftUIRefresh"
 
 end

@@ -37,49 +37,48 @@ struct FormUserDataView: View {
                         .textStyle(TitleStyle())
                     TextField("C.I.", text:  self.$loginVM.user.ci, onEditingChanged: { changed in self.AddSpace = false})
                     .textFieldStyle(Input())
-                     
+                        .keyboardType(.numberPad)
+                        .onTapGesture {
+                            self.hideKeyboard()
+                          }
                     Text("CORREO ELECTRÓNICO")
                         .textStyle(TitleStyle())
                     TextField("user@email.com", text: self.$loginVM.user.correo, onEditingChanged: { changed in self.AddSpace = false})
                     .textFieldStyle(Input())
-                    
+                        .keyboardType(.emailAddress)
                     Text("NOMBRES")
                         .textStyle(TitleStyle())
                     TextField("user name", text: self.$loginVM.user.nombres, onEditingChanged: { changed in self.AddSpace = false})
                     .textFieldStyle(Input())
-                    
+                        .keyboardType(.alphabet)
                     Text("APELLIDOS")
                         .textStyle(TitleStyle())
                     TextField("user lastname", text: self.$loginVM.user.apellidos, onEditingChanged: { changed in self.AddSpace = false})
                     .textFieldStyle(Input())
-                    
+                        .keyboardType(.alphabet)
                 }
                 VStack(alignment: .leading, spacing: 8){
-                    
                     Text("DIRECCIÓN")
                         .textStyle(TitleStyle())
                     TextField("user address", text: self.$loginVM.user.direccion, onEditingChanged: { changed in self.AddSpace = false})
                     .textFieldStyle(Input())
-                    
+                        .keyboardType(.alphabet)
                     Divider()
                         .padding(.vertical)
-                    
                     Text("DATOS DE FACTURACIÓN")
                         .textStyle(TitleStyle())
-                    
                     Text("NOMBRE")
                         .textStyle(TitleStyle())
-                    
                     TextField("Nombre", text: self.$loginVM.user.nombrenit, onEditingChanged: { changed in self.AddSpace = false})
                         .textFieldStyle(Input())
-                    
+                        .keyboardType(.alphabet)
                     //.onAppear(perform: {self.IsKeyboardUp(Is: false)})
                     
                     Text("NIT")
                         .textStyle(TitleStyle())
-                    
                     TextField("nit", text: self.$loginVM.user.nit, onEditingChanged: { changed in self.AddSpace = false})
                         .textFieldStyle(Input())
+                        .keyboardType(.numberPad)
                         //.padding(.bottom, self.AddSpace ? 40 : 0)
                     
                     

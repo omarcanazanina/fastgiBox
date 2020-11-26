@@ -23,7 +23,7 @@ struct FormLoadCreditView: View {
     @State var showingSheet = false
     @State private  var nombreContact = ""
     
-    var body: some View {
+    var home: some View {
         ScrollView{
             //botones de la empresa
             HStack{
@@ -106,6 +106,15 @@ struct FormLoadCreditView: View {
                 }
                 
             }
+        }
+    }
+    
+    var body: some View {
+        VStack{
+            self.home
+        }
+        .onAppear{
+            self.contactsVM.getContacts()
         }
     }
 }
