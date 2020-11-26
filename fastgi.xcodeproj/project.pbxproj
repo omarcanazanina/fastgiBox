@@ -75,9 +75,10 @@
 		92A3BB0425536DB100DF3707 /* Optional+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A3BB0325536DB100DF3707 /* Optional+Extensions.swift */; };
 		92A3BB0725536DCD00DF3707 /* Validation+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A3BB0625536DCD00DF3707 /* Validation+Extensions.swift */; };
 		92A3BB0A25536DE600DF3707 /* BrokenRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A3BB0925536DE600DF3707 /* BrokenRule.swift */; };
+		92DBE2A225537827001B791B /* SwiftUIRefresh in Frameworks */ = {isa = PBXBuildFile; productRef = 92DBE2A125537827001B791B /* SwiftUIRefresh */; };
 		C0EA57EE25561D2A003FE66F /* ListCreditCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0EA57ED25561D2A003FE66F /* ListCreditCardView.swift */; };
 		C0EA57F125561ED8003FE66F /* ItemListCreditCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0EA57F025561ED8003FE66F /* ItemListCreditCardView.swift */; };
-		92DBE2A225537827001B791B /* SwiftUIRefresh in Frameworks */ = {isa = PBXBuildFile; productRef = 92DBE2A125537827001B791B /* SwiftUIRefresh */; };
+		C0F649C32570468900115D1C /* TestCardServicesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F649C22570468900115D1C /* TestCardServicesView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -154,6 +155,7 @@
 		92A3BB0925536DE600DF3707 /* BrokenRule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrokenRule.swift; sourceTree = "<group>"; };
 		C0EA57ED25561D2A003FE66F /* ListCreditCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCreditCardView.swift; sourceTree = "<group>"; };
 		C0EA57F025561ED8003FE66F /* ItemListCreditCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemListCreditCardView.swift; sourceTree = "<group>"; };
+		C0F649C22570468900115D1C /* TestCardServicesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCardServicesView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -366,6 +368,7 @@
 		92A3BAC02553690700DF3707 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				C0F649C12570467200115D1C /* TestUI */,
 				92A3BAEE25536B0300DF3707 /* UI */,
 				92A3BAC12553692E00DF3707 /* FormCreditCardView.swift */,
 				92A3BAC42553694800DF3707 /* CreditCardView.swift */,
@@ -423,6 +426,14 @@
 				7241C4EA69AEDD4B4C54A236 /* Pods_fastgi.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C0F649C12570467200115D1C /* TestUI */ = {
+			isa = PBXGroup;
+			children = (
+				C0F649C22570468900115D1C /* TestCardServicesView.swift */,
+			);
+			path = TestUI;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -561,6 +572,7 @@
 				92A3BACB2553698200DF3707 /* SearchBar.swift in Sources */,
 				92A3BAB32553687000DF3707 /* FormUserDataView.swift in Sources */,
 				92A3BA55255363B800DF3707 /* UpdateUser.swift in Sources */,
+				C0F649C32570468900115D1C /* TestCardServicesView.swift in Sources */,
 				92A3BADA25536A2B00DF3707 /* ButtonCreditAmountView.swift in Sources */,
 				92A3BAC52553694800DF3707 /* CreditCardView.swift in Sources */,
 				92A3BAAF2553684900DF3707 /* HomeView.swift in Sources */,
