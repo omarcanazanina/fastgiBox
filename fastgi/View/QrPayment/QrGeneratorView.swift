@@ -15,7 +15,7 @@ struct QrGeneratorView: View {
     let filter = CIFilter.qrCodeGenerator()
     
     var showBtn: Bool? = true
-    
+    //funcion generar QR
     func generarQR(text: String) -> UIImage{
         let data = Data(text.utf8)
         filter.setValue(data, forKey: "inputMessage")
@@ -28,23 +28,42 @@ struct QrGeneratorView: View {
         return UIImage(systemName: "xmark.circle") ?? UIImage()
     }
     
+    //funcion generar barcode
+    func generateBarcode(from string: String) -> UIImage? {
+        let data = string.data(using: String.Encoding.ascii)
+
+        if let filter = CIFilter(name: "CICode128BarcodeGenerator") {
+            filter.setValue(data, forKey: "inputMessage")
+            let transform = CGAffineTransform(scaleX: 3, y: 3)
+
+            if let output = filter.outputImage?.transformed(by: transform) {
+                return UIImage(ciImage: output)
+            }
+        }
+
+        return nil
+    }
+    
+    
     var body: some View {
-       // TextField("Texto a QR", text: self.$texto)
-        Image(uiImage: generarQR(text: self.texto))
-            .interpolation(.none)
-            .resizable()
-            .scaledToFit()
-            .frame(width: 350, height: 350)
+        VStack{
+            // TextField("Texto a QR", text: self.$texto)
+             
+            Image(uiImage: generarQR(text: self.texto))
+                 .interpolation(.none)
+                 .resizable()
+                 .scaledToFit()
+                 .frame(width: 350, height: 350)
+        }
+     
         
         
         if self.showBtn! {
-            
             Button(action: {
                 self.exportToPDF()
             }){
                 Text("Compartir")
             }
-            
         }
     }
 }

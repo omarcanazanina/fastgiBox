@@ -37,31 +37,35 @@ struct HomeView: View {
     var home:some View{
         ScrollView{
             HStack{
-                CardServiceHomeView(logo: "Entel", isSelect: false, currentBtnEm: self.$currentBtnEm, btn: .Entel)
-                CardServiceHomeView(logo: "Viva", isSelect: false, currentBtnEm: self.$currentBtnEm, btn: .Viva)
-                CardServiceHomeView(logo: "Tigo", isSelect: false, currentBtnEm: self.$currentBtnEm, btn: .Tigo)
-                Spacer()
-            }.padding(.horizontal)
-            Button(action: {
-                self.showScanner = true
-            }){
-                Text("escanear QR")
-            }.sheet(isPresented: self.$showScanner) {
-                CodeScannerView(codeTypes: [.qr]){ result in
-                    switch result {
-                    case .success(let codigo):
-                        self.resultado = codigo
-                        self.showScanner = false
-                        //self.action = 1
-                    case .failure(let error):
-                        print(error.localizedDescription)
+                HStack{
+                    CardServiceHomeView(logo: "Entel", isSelect: false, currentBtnEm: self.$currentBtnEm, btn: .Entel)
+                    CardServiceHomeView(logo: "Viva", isSelect: false, currentBtnEm: self.$currentBtnEm, btn: .Viva)
+                    CardServiceHomeView(logo: "Tigo", isSelect: false, currentBtnEm: self.$currentBtnEm, btn: .Tigo)
+                    Spacer()
+                }.padding(.horizontal)
+                Button(action: {
+                    self.showScanner = true
+                }){
+                    Text("escanear QR")
+                }.sheet(isPresented: self.$showScanner) {
+                    CodeScannerView(codeTypes: [.qr]){ result in
+                        switch result {
+                        case .success(let codigo):
+                            self.resultado = codigo
+                            self.showScanner = false
+                            self.action = 1
+                        case .failure(let error):
+                            print(error.localizedDescription)
+                        }
+                   
                     }
-                   /* NavigationLink(destination: QrGeneratorView(), tag: 1, selection: self.$action) {
-                        EmptyView()
-                }*/
                 }
+               // Text(self.resultado)
             }
-            Text(self.resultado)
+            NavigationLink(destination: PayView(monto: self.resultado), tag: 1, selection: self.$action) {
+                EmptyView()
+            }
+         
            
         }.padding(.top)
        
