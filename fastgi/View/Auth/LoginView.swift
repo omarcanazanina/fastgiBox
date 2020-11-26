@@ -63,17 +63,22 @@ struct LoginView: View {
                         .frame(maxWidth:120)
                         .clipShape(Capsule())
                     
-                    TextField("Teléfono", text: self.$loginVM.telefono.bound)// $telefono)
+                    TextField("Teléfono", text: self.$loginVM.telefono.bound)
                         .keyboardType(.numberPad)
                         .padding(12)
                         .background(Color.white)
                         .foregroundColor(.black)
-                        .keyboardType(.namePhonePad)
                         .clipShape(Capsule())
+                        .introspectTextField { (textField) in
+                            let toolBar = UIToolbar(frame: CGRect(x: 0, y: 0, width: textField.frame.size.width, height: 44))
+                            let flexButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil)
+                            let doneButton = UIBarButtonItem(title: "Cerrar", style: .done, target: self, action: #selector(textField.doneButtonTapped(button:)))
+                         doneButton.tintColor = .darkGray
+                            toolBar.items = [flexButton, doneButton]
+                            toolBar.setItems([flexButton, doneButton], animated: true)
+                            textField.inputAccessoryView = toolBar
+                         }
                 }
-                .onTapGesture {
-                    self.hideKeyboard()
-                  }
             
                 BrokenRulesView(brokenRules: self.loginVM.brokenRules)
                 

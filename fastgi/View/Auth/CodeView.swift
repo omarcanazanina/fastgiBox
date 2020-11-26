@@ -33,7 +33,7 @@ struct CodeView: View {
                     .textContentType(.oneTimeCode)
                     .keyboardType(.numberPad)
                     .padding(.horizontal)
-                
+                   
             }.accentColor(Color("primary"))
             .padding(12)
             .background(Color.white)

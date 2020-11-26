@@ -197,8 +197,9 @@ struct TransactionDetailView: View {
                 }.buttonStyle(PrimaryButtonOutlineStyle())
                 
             }
-
-        }.background(Color.white)
+            
+        }
+        .background(Color.white)
     }
 }
     struct TransactionDetailView_Previews: PreviewProvider {

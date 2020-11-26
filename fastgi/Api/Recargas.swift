@@ -24,8 +24,9 @@ class Recargas: ObservableObject {
     
     
     func sendRecarga(empresa:BtnEm, recarga:String, telefono:String, text: String){
+        
         let parametros : Parameters = [
-            "id": storage.string(forKey: idKey)!,
+            "id": "5fbe3f3bdee3371becd7bbf3",// storage.string(forKey: idKey)!,
             "empresa": empresa,
             "recarga":recarga,
             "telefono":telefono
@@ -52,7 +53,7 @@ class Recargas: ObservableObject {
                     case let .success(data):
                         //Cast respuesta a SmsResponse
                         if let decodedResponse = try? JSONDecoder().decode(RecargaResponse.self, from: data) {
-                            //print(decodedResponse.recarga)
+                            print(decodedResponse.recarga)
                             self.control = decodedResponse.recarga.empresa
                             self.recargaResponse = decodedResponse.recarga
                             print(self.recargaResponse!)
@@ -84,7 +85,7 @@ class Recargas: ObservableObject {
                headers.add(name: "token", value: token)
            }
            //"5f56de014e834e3bc4c02059"
-           let idusu = storage.string(forKey: idKey)!
+           let idusu = "5fbe3f3bdee3371becd7bbf3"//storage.string(forKey: idKey)!
                guard let url = URL(string: "https://api.fastgi.com/historial/\(idusu)") else { return }
                
                

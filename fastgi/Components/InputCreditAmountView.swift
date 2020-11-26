@@ -12,7 +12,7 @@ struct InputCreditAmountView: View {
        var body: some View {
         
        TextField("Otro:", text: $amounValue)
-            .keyboardType(.numbersAndPunctuation)
+            .keyboardType(.numberPad)
             .foregroundColor(Color("normal-text"))
             .frame(maxWidth:.infinity)
             .padding(8)
@@ -20,6 +20,17 @@ struct InputCreditAmountView: View {
             .background(Color("input"))
             .clipShape(Capsule())
             .shadow(color: Color.black.opacity(0.1), radius: 2, x: 1, y: 1)
+        
+        //
+        .introspectTextField { (textField) in
+            let toolBar = UIToolbar(frame: CGRect(x: 0, y: 0, width: textField.frame.size.width, height: 44))
+            let flexButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil)
+            let doneButton = UIBarButtonItem(title: "Cerrar", style: .done, target: self, action: #selector(textField.doneButtonTapped(button:)))
+         doneButton.tintColor = .darkGray
+            toolBar.items = [flexButton, doneButton]
+            toolBar.setItems([flexButton, doneButton], animated: true)
+            textField.inputAccessoryView = toolBar
+         }
        }
 }
 
