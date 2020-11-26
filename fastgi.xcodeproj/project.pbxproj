@@ -8,7 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		573DD5AA824DD586829F7E7E /* Pods_fastgi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7241C4EA69AEDD4B4C54A236 /* Pods_fastgi.framework */; };
+		9202E994255DF196009115ED /* WelcomeTermsAndConditionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9202E993255DF196009115ED /* WelcomeTermsAndConditionsView.swift */; };
+		9202E997255DF485009115ED /* test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9202E996255DF485009115ED /* test.swift */; };
+		9208DE4B256EFB4A00EA9C23 /* RegistrationFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9208DE4A256EFB4A00EA9C23 /* RegistrationFormView.swift */; };
+		9224FE6A256DE45F00F79FA4 /* MembershipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9224FE69256DE45F00F79FA4 /* MembershipView.swift */; };
 		92278A5F2556186E00D746EA /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92278A5E2556186E00D746EA /* Helper.swift */; };
+		9279D548256F0C6500890C84 /* QrReaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9279D547256F0C6500890C84 /* QrReaderView.swift */; };
+		9279D54C256F0D5400890C84 /* CodeScanner in Frameworks */ = {isa = PBXBuildFile; productRef = 9279D54B256F0D5400890C84 /* CodeScanner */; };
+		9279D54F256F15A400890C84 /* QrGeneratorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9279D54E256F15A400890C84 /* QrGeneratorView.swift */; };
 		92A3BA252553616F00DF3707 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A3BA242553616F00DF3707 /* AppDelegate.swift */; };
 		92A3BA272553616F00DF3707 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A3BA262553616F00DF3707 /* SceneDelegate.swift */; };
 		92A3BA292553616F00DF3707 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A3BA282553616F00DF3707 /* ContentView.swift */; };
@@ -84,7 +91,13 @@
 		35E979A5822FE3ED491C105A /* Pods-fastgi.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-fastgi.release.xcconfig"; path = "Target Support Files/Pods-fastgi/Pods-fastgi.release.xcconfig"; sourceTree = "<group>"; };
 		7241C4EA69AEDD4B4C54A236 /* Pods_fastgi.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_fastgi.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		82479469E54D08A5E407B6D5 /* Pods-fastgi.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-fastgi.debug.xcconfig"; path = "Target Support Files/Pods-fastgi/Pods-fastgi.debug.xcconfig"; sourceTree = "<group>"; };
+		9202E993255DF196009115ED /* WelcomeTermsAndConditionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeTermsAndConditionsView.swift; sourceTree = "<group>"; };
+		9202E996255DF485009115ED /* test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = test.swift; sourceTree = "<group>"; };
+		9208DE4A256EFB4A00EA9C23 /* RegistrationFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationFormView.swift; sourceTree = "<group>"; };
+		9224FE69256DE45F00F79FA4 /* MembershipView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MembershipView.swift; sourceTree = "<group>"; };
 		92278A5E2556186E00D746EA /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
+		9279D547256F0C6500890C84 /* QrReaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QrReaderView.swift; sourceTree = "<group>"; };
+		9279D54E256F15A400890C84 /* QrGeneratorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QrGeneratorView.swift; sourceTree = "<group>"; };
 		92A3BA212553616F00DF3707 /* fastgi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = fastgi.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		92A3BA242553616F00DF3707 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		92A3BA262553616F00DF3707 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -161,6 +174,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9279D54C256F0D5400890C84 /* CodeScanner in Frameworks */,
 				92DBE2A225537827001B791B /* SwiftUIRefresh in Frameworks */,
 				573DD5AA824DD586829F7E7E /* Pods_fastgi.framework in Frameworks */,
 				92A3BAFF25536D7A00DF3707 /* ValidatedPropertyKit in Frameworks */,
@@ -177,6 +191,17 @@
 				35E979A5822FE3ED491C105A /* Pods-fastgi.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		9224FE5E256DE2E500F79FA4 /* QrPayment */ = {
+			isa = PBXGroup;
+			children = (
+				9224FE69256DE45F00F79FA4 /* MembershipView.swift */,
+				9208DE4A256EFB4A00EA9C23 /* RegistrationFormView.swift */,
+				9279D547256F0C6500890C84 /* QrReaderView.swift */,
+				9279D54E256F15A400890C84 /* QrGeneratorView.swift */,
+			);
+			path = QrPayment;
 			sourceTree = "<group>";
 		};
 		92A3BA182553616F00DF3707 = {
@@ -310,6 +335,7 @@
 		92A3BA9D2553675C00DF3707 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				9224FE5E256DE2E500F79FA4 /* QrPayment */,
 				92A3BABC255368DD00DF3707 /* History */,
 				92A3BAB12553685900DF3707 /* Settings */,
 				92A3BAAD2553683700DF3707 /* Home */,
@@ -351,6 +377,7 @@
 				92A3BAB22553687000DF3707 /* FormUserDataView.swift */,
 				92A3BAB6255368A600DF3707 /* TermsAndConditionsView.swift */,
 				92A3BAB9255368BE00DF3707 /* SettingsView.swift */,
+				9202E996255DF485009115ED /* test.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -403,6 +430,7 @@
 			children = (
 				92A3BAF625536B8C00DF3707 /* SelectCreditCardView.swift */,
 				92A3BAFA25536CEC00DF3707 /* Styles.swift */,
+				9202E993255DF196009115ED /* WelcomeTermsAndConditionsView.swift */,
 			);
 			path = Styles;
 			sourceTree = "<group>";
@@ -446,6 +474,7 @@
 			packageProductDependencies = (
 				92A3BAFE25536D7A00DF3707 /* ValidatedPropertyKit */,
 				92DBE2A125537827001B791B /* SwiftUIRefresh */,
+				9279D54B256F0D5400890C84 /* CodeScanner */,
 			);
 			productName = fastgi;
 			productReference = 92A3BA212553616F00DF3707 /* fastgi.app */;
@@ -477,6 +506,7 @@
 			packageReferences = (
 				92A3BAFD25536D7A00DF3707 /* XCRemoteSwiftPackageReference "ValidatedPropertyKit" */,
 				92DBE2A025537827001B791B /* XCRemoteSwiftPackageReference "SwiftUIRefresh" */,
+				9279D54A256F0D5400890C84 /* XCRemoteSwiftPackageReference "CodeScanner" */,
 			);
 			productRefGroup = 92A3BA222553616F00DF3707 /* Products */;
 			projectDirPath = "";
@@ -551,19 +581,23 @@
 				92A3BB0425536DB100DF3707 /* Optional+Extensions.swift in Sources */,
 				92A3BAF325536B3400DF3707 /* BtnsView.swift in Sources */,
 				92A3BA8F255366C400DF3707 /* UpdateUserResponse.swift in Sources */,
+				9208DE4B256EFB4A00EA9C23 /* RegistrationFormView.swift in Sources */,
 				92A3BA95255366F700DF3707 /* RecargaResponse.swift in Sources */,
 				92A3BA8C255366AC00DF3707 /* ImageResponse.swift in Sources */,
 				92A3BA9B2553673200DF3707 /* DataUserResponse.swift in Sources */,
 				92A3BA65255364AE00DF3707 /* UpdateUserViewModel.swift in Sources */,
 				92A3BA68255364CF00DF3707 /* ContactsViewModel.swift in Sources */,
+				9202E997255DF485009115ED /* test.swift in Sources */,
 				92A3BA252553616F00DF3707 /* AppDelegate.swift in Sources */,
 				92A3BA822553661600DF3707 /* UpdateUserModel.swift in Sources */,
+				9202E994255DF196009115ED /* WelcomeTermsAndConditionsView.swift in Sources */,
 				92A3BACB2553698200DF3707 /* SearchBar.swift in Sources */,
 				92A3BAB32553687000DF3707 /* FormUserDataView.swift in Sources */,
 				92A3BA55255363B800DF3707 /* UpdateUser.swift in Sources */,
 				92A3BADA25536A2B00DF3707 /* ButtonCreditAmountView.swift in Sources */,
 				92A3BAC52553694800DF3707 /* CreditCardView.swift in Sources */,
 				92A3BAAF2553684900DF3707 /* HomeView.swift in Sources */,
+				9279D548256F0C6500890C84 /* QrReaderView.swift in Sources */,
 				92A3BACE255369A600DF3707 /* ListContactsView.swift in Sources */,
 				C0EA57F125561ED8003FE66F /* ItemListCreditCardView.swift in Sources */,
 				92A3BB0725536DCD00DF3707 /* Validation+Extensions.swift in Sources */,
@@ -575,6 +609,7 @@
 				92A3BA852553662D00DF3707 /* ErrorModel.swift in Sources */,
 				92A3BA5E2553642800DF3707 /* Login.swift in Sources */,
 				92A3BABE255368F300DF3707 /* HistoryView.swift in Sources */,
+				9224FE6A256DE45F00F79FA4 /* MembershipView.swift in Sources */,
 				92A3BA45255362C500DF3707 /* ImagePicker.swift in Sources */,
 				92A3BA58255363D800DF3707 /* Contacts.swift in Sources */,
 				92A3BA882553664700DF3707 /* UsuarioModel.swift in Sources */,
@@ -599,6 +634,7 @@
 				92A3BB0A25536DE600DF3707 /* BrokenRule.swift in Sources */,
 				92A3BAE925536ACD00DF3707 /* ListAreaCodeView.swift in Sources */,
 				92278A5F2556186E00D746EA /* Helper.swift in Sources */,
+				9279D54F256F15A400890C84 /* QrGeneratorView.swift in Sources */,
 				92A3BAF725536B8C00DF3707 /* SelectCreditCardView.swift in Sources */,
 				92A3BA622553648C00DF3707 /* ImageViewModel.swift in Sources */,
 				92A3BA7F255365FA00DF3707 /* RecargaModel.swift in Sources */,
@@ -813,6 +849,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		9279D54A256F0D5400890C84 /* XCRemoteSwiftPackageReference "CodeScanner" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "http://github.com/twostraws/CodeScanner";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.7;
+			};
+		};
 		92A3BAFD25536D7A00DF3707 /* XCRemoteSwiftPackageReference "ValidatedPropertyKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SvenTiigi/ValidatedPropertyKit.git";
@@ -832,6 +876,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		9279D54B256F0D5400890C84 /* CodeScanner */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9279D54A256F0D5400890C84 /* XCRemoteSwiftPackageReference "CodeScanner" */;
+			productName = CodeScanner;
+		};
 		92A3BAFE25536D7A00DF3707 /* ValidatedPropertyKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 92A3BAFD25536D7A00DF3707 /* XCRemoteSwiftPackageReference "ValidatedPropertyKit" */;

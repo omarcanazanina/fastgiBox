@@ -7,8 +7,6 @@
 
 import SwiftUI
 
-
-
 /*Login button style*/
 struct LoginButtonStyle: ButtonStyle{
     func makeBody(configuration: Self.Configuration) -> some View{
@@ -137,4 +135,7 @@ struct Input: ViewModifier {
 func UIColorPrimary() -> UIColor {
     return UIColor(red: 0.44, green: 0.13, blue: 0.92, alpha: 1)
 }
+
+
+
 

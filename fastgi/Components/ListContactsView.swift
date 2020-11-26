@@ -26,13 +26,9 @@ struct ListContactsView: View {
     let contacts = ["Herlan Garzon", "Omar Canaza", "Elvin Mollinedo", "Agustin Ayaviri", "Daniel Jaimes", "Amilkar Dominguez"]
     var list:some View{
         VStack{
-            //(contact:ContactModel) inSearchBar(text: $searchText, placeholder: "Buscar")
+            SearchBar(text: $searchText, placeholder: "Buscar")
             List {
-             //   ForEach(self.contacts.filter {
-             //       self.searchText.isEmpty ? true : $0.lowercased().contains(self.searchText.lowercased())
-             //   }, id: \.self) { item in
-                //
-                ForEach(self.contactsVM.listContacts, id: \.self._id){ (contact:ContactModel) in
+                ForEach(self.contactsVM.listContacts.filter({searchText.isEmpty ? true : $0.nombre.lowercased().contains(searchText.lowercased())}), id: \.self._id){ (contact:ContactModel) in
               
                     Button(action: {
                         self.telefono = contact.telefono

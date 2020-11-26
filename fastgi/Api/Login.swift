@@ -123,22 +123,23 @@ class Login: ObservableObject {
         }
         let idusu = storage.string(forKey: idKey)!
         guard let url = URL(string: "https://api.fastgi.com/usuario/\(idusu)") else { return }
+        print("este es el idusuario\(idusu)")
             DispatchQueue.main.async {
                 AF.request(url,method:.get,headers: headers )
-                    .validate(contentType: ["application/json"])
+                    //.validate(contentType: ["application/json"])
                     .responseData{response in
-                        print(response)
+                       // debugPrint(response)
                         switch response.result {
                         case let .success(data):
                             //Cast respuesta a MeResponce
                             if let decodedResponse = try? JSONDecoder().decode(DataUserResponse.self, from: data) {
-                                print(decodedResponse.usuario._id)
+                               // print(decodedResponse.usuario)
                                 self.userResponse=decodedResponse.usuario
                                 return
                             }
                             //Cast respuesta a ErrorResponce
                             if let decodedResponse = try? JSONDecoder().decode(ErrorResponse.self, from: data) {
-                                print(decodedResponse.err.name)
+                                //print(decodedResponse.err.name)
                                 if decodedResponse.err.name == "TokenExpiredError" || decodedResponse.err.name == "JsonWebTokenError"{
                                     self.navigationRoot.changeRootClose()
                                 }

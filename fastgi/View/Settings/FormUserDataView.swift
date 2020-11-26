@@ -38,9 +38,15 @@ struct FormUserDataView: View {
                     TextField("C.I.", text:  self.$loginVM.user.ci, onEditingChanged: { changed in self.AddSpace = false})
                     .textFieldStyle(Input())
                         .keyboardType(.numberPad)
-                        .onTapGesture {
-                            self.hideKeyboard()
-                          }
+                        .introspectTextField { (textField) in
+                            let toolBar = UIToolbar(frame: CGRect(x: 0, y: 0, width: textField.frame.size.width, height: 44))
+                            let flexButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil)
+                            let doneButton = UIBarButtonItem(title: "Cerrar", style: .done, target: self, action: #selector(textField.doneButtonTapped(button:)))
+                         doneButton.tintColor = .darkGray
+                            toolBar.items = [flexButton, doneButton]
+                            toolBar.setItems([flexButton, doneButton], animated: true)
+                            textField.inputAccessoryView = toolBar
+                         }
                     Text("CORREO ELECTRÓNICO")
                         .textStyle(TitleStyle())
                     TextField("user@email.com", text: self.$loginVM.user.correo, onEditingChanged: { changed in self.AddSpace = false})
@@ -79,9 +85,15 @@ struct FormUserDataView: View {
                     TextField("nit", text: self.$loginVM.user.nit, onEditingChanged: { changed in self.AddSpace = false})
                         .textFieldStyle(Input())
                         .keyboardType(.numberPad)
-                        //.padding(.bottom, self.AddSpace ? 40 : 0)
-                    
-                    
+                        .introspectTextField { (textField) in
+                            let toolBar = UIToolbar(frame: CGRect(x: 0, y: 0, width: textField.frame.size.width, height: 44))
+                            let flexButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil)
+                            let doneButton = UIBarButtonItem(title: "Cerrar", style: .done, target: self, action: #selector(textField.doneButtonTapped(button:)))
+                         doneButton.tintColor = .darkGray
+                            toolBar.items = [flexButton, doneButton]
+                            toolBar.setItems([flexButton, doneButton], animated: true)
+                            textField.inputAccessoryView = toolBar
+                         }
                     /*Spacer()
                         .frame(height:80)*/
                 }

@@ -34,7 +34,7 @@ struct CodeView: View {
                     .keyboardType(.numberPad)
                     .foregroundColor(.black)
                     .padding(.horizontal)
-                
+                   
             }.accentColor(Color("primary"))
             .padding(12)
             .background(Color.white)

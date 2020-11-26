@@ -21,25 +21,37 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Create the SwiftUI view that provides the window contents.
         let authState = AuthState()
         let mainView = TabsView(currentBtnEm: .constant(.Entel))//.environmentObject(home)
-        let loginView = LoginView()
-
-        // Use a UIHostingController as window root view controller.
-        if authState.isAuth {
-            // Use a UIHostingController as window root view controller.
+        let loginView =  TabsView(currentBtnEm: .constant(.Entel))//LoginView()//
+        let welcome = WelcomeTermsAndConditionsView()
+        //welcome
+        let storage = UserDefaults.standard
+        if storage.string(forKey: "termsAndConditions") == nil{
             if let windowScene = scene as? UIWindowScene {
                 let window = UIWindow(windowScene: windowScene)
-                window.rootViewController = UIHostingController(rootView:mainView.environmentObject(authState))
+                window.rootViewController = UIHostingController(rootView:welcome.environmentObject(authState))
                 self.window = window
                 window.makeKeyAndVisible()
             }
         }else{
-            if let windowScene = scene as? UIWindowScene {
-                let window = UIWindow(windowScene: windowScene)
-                window.rootViewController = UIHostingController(rootView:loginView.environmentObject(authState))
-                self.window = window
-                window.makeKeyAndVisible()
+            if authState.isAuth {
+                // Use a UIHostingController as window root view controller.
+                if let windowScene = scene as? UIWindowScene {
+                    let window = UIWindow(windowScene: windowScene)
+                    window.rootViewController = UIHostingController(rootView:mainView.environmentObject(authState))
+                    self.window = window
+                    window.makeKeyAndVisible()
+                }
+            }else{
+                if let windowScene = scene as? UIWindowScene {
+                    let window = UIWindow(windowScene: windowScene)
+                    window.rootViewController = UIHostingController(rootView:loginView.environmentObject(authState))
+                    self.window = window
+                    window.makeKeyAndVisible()
+                }
             }
         }
+        // Use a UIHostingController as window root view controller.
+        
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

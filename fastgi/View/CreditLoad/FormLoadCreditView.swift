@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Introspect
 
 struct FormLoadCreditView: View {
     @State  var SelectEm :BtnEm
@@ -35,7 +36,17 @@ struct FormLoadCreditView: View {
                     TextField("Número de teléfono", text: $telefono)
                         .padding(.horizontal,12)
                         .padding(.vertical,8)
-                        .keyboardType(.numbersAndPunctuation)
+                        .keyboardType(.numberPad)
+                        //.cornerRadius(25)
+                        .introspectTextField { (textField) in
+                            let toolBar = UIToolbar(frame: CGRect(x: 0, y: 0, width: textField.frame.size.width, height: 44))
+                            let flexButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil)
+                            let doneButton = UIBarButtonItem(title: "Cerrar", style: .done, target: self, action: #selector(textField.doneButtonTapped(button:)))
+                         doneButton.tintColor = .darkGray
+                            toolBar.items = [flexButton, doneButton]
+                            toolBar.setItems([flexButton, doneButton], animated: true)
+                            textField.inputAccessoryView = toolBar
+                         }
                     Button(action: {
                         if self.contactsVM.listContacts.count == 0{
                             print("no hay contactos")
@@ -60,7 +71,9 @@ struct FormLoadCreditView: View {
                     }
                     //end
                 }.background(Color("input"))
-                .clipShape(Capsule())
+                //.border(Color.white, width: 2)
+                //.cornerRadius(25)
+                //.clipShape(Capsule())
             }.padding()
             //Card select
             NavigationLink(destination: SelectCreditCardView()) {
@@ -80,9 +93,9 @@ struct FormLoadCreditView: View {
             VStack{
                 ContentButtonsView(currentBtn: $montoRecarga1,text: "", montoRecarga:  $montoRecarga)
                 Button(action: {
-                    print(self.SelectEm)
+                    /*print(self.SelectEm)
                     print(self.montoRecarga)
-                    print(self.telefono)
+                    print(self.telefono)*/
                         self.RecargaVM.SendRecarga(empresa: self.SelectEm, recarga: self.montoRecarga, telefono: self.telefono,  text: "")
                         self.action = 1
                           //self.login.ruta = "recarga"
@@ -112,7 +125,10 @@ struct FormLoadCreditView: View {
     var body: some View {
         VStack{
             self.home
-        }
+                .padding(.leading)
+                .padding(.top,80)
+            
+        }.edgesIgnoringSafeArea(.top)
         .onAppear{
             self.contactsVM.getContacts()
         }

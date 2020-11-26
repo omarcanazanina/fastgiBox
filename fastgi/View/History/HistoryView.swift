@@ -125,47 +125,29 @@ struct HistoryView: View {
     
     
     var body: some View {
-        
-        //NavigationView{
         VStack {
-            HeaderUserView(text: self.loginVM.user.nombres, _id :self.loginVM.user._id)
-                .padding(.leading)
-                .padding(.top,50)
             VStack{
                 Picker(selection: $optionPicker, label: Text("")) {
                     Text("Realizadas").tag(0)
                     Text("No realizadas").tag(1)
                 }.pickerStyle(SegmentedPickerStyle())
                 .padding()
-                
-                //Text("Value: \(optionPicker)")
-                
                 if(optionPicker==0){
-                    //Text("list realizadas")
-                    
                     self.list
                     NavigationLink(destination: TransactionDetailView(fecha: self.fecha, empresa: self.empresa, phone: self.phone, monto: self.monto, control: 0, fechaFormat: "", horaFormat: ""), tag: 1, selection: self.$action) {
                         EmptyView()
-                        
                     }
                 }
                 if(optionPicker==1){
                     //Text("list no realizadas")
                     self.listNot
                 }
-                
             }
             .onAppear{
                 self.loginVM.DatosUser()
                 self.RecargaVM.listRecargas()
             }
         }
-        .edgesIgnoringSafeArea(.top)
-       /* .navigationBarTitle("", displayMode: .inline)
-        .navigationBarItems(
-            leading:
-                HeaderUserView(text: self.loginVM.user.nombres, _id: self.loginVM.user._id)
-        )*/
     }
 }
 
