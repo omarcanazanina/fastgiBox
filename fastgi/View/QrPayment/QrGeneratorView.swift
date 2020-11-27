@@ -46,36 +46,26 @@ struct QrGeneratorView: View {
     
     
     var body: some View {
+       // TextField("Texto a QR", text: self.$texto)
         VStack{
-            /*let barCodeImage = UIImage()
-            let barCode = UIImageView(image: barCodeImage)
-            barCode.image = generateBarcode(from: "Having fun with Swift")
-            */
-            
-           // let image = generateBarcode(from: "Hacking with Swift")
-        
-            Image(uiImage: generateBarcode(from: "Hacking with Swift")!)
-             .interpolation(.none)
-             .resizable()
-             .scaledToFit()
-             .frame(width: 350, height: 350)            // TextField("Texto a QR", text: self.$texto)
-            
             Image(uiImage: generarQR(text: self.texto))
-             .interpolation(.none)
-             .resizable()
-             .scaledToFit()
-             .frame(width: 350, height: 350)
-        }
-     
-        
-        
-        if self.showBtn! {
-            Button(action: {
-                self.exportToPDF()
-            }){
-                Text("Compartir")
+                .interpolation(.none)
+                .resizable()
+                .scaledToFit()
+                .frame(width: 350, height: 350)
+            
+            
+            if self.showBtn! {
+                
+                Button(action: {
+                    self.exportToPDF()
+                }){
+                    Text("Compartir")
+                }.buttonStyle(PrimaryButtonOutlineStyle())
+                
             }
         }
+
     }
 }
 

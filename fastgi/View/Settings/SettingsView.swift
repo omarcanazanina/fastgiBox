@@ -254,7 +254,8 @@ struct SettingsView: View {
                     VStack{
                         Image(systemName: "ellipsis")
                             .resizable()
-                            .frame(width: 30, height: 6)
+                            .scaledToFit()
+                            .frame(width: 10)
                             .padding(.trailing,6)
                     }
                     .frame(width: 30, height: 30)
@@ -400,8 +401,8 @@ struct SettingsView: View {
                     }
                     NavigationLink(destination: QrGeneratorView()) {
                         HStack{
-                            Image(systemName: "creditcard")
-                            Text("QR")
+                            Image(systemName: "qrcode")
+                            Text("MI QR")
                                 .font(.caption)
                             Image(systemName: "chevron.right")
                                 .padding(.trailing)

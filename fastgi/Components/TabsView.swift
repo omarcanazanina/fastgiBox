@@ -19,22 +19,22 @@ struct TabsView: View {
                 
                 HomeView(currentBtnEm: $currentBtnEm)
                     .tabItem {
-                        Image("home")
+                        Image(self.selectedTab == 0 ? "home.fill" : "home")
                         Text("Inicio")
                     }.tag(0)
                 HistoryView()
                     .tabItem {
-                        Image(systemName: "chart.bar")
+                        Image(systemName: self.selectedTab == 1 ? "chart.bar.fill" : "chart.bar")
                         Text("Historial")
                     }.tag(1)
                 MembershipView()
                     .tabItem {
-                        Image(systemName: "chart.bar")
+                        Image("handshakes")
                         Text("Afiliarse")
                     }.tag(2)
                 SettingsView()
                     .tabItem {
-                        Image(systemName: "person.circle")
+                        Image(systemName: self.selectedTab == 3 ? "person.circle.fill" : "person.circle")
                         Text("Ajustes")
           
                     }.tag(3)
@@ -84,7 +84,8 @@ extension TabsView{
                         VStack{
                             Image(systemName: "ellipsis")
                                 .resizable()
-                                .frame(width: 30, height: 6)
+                                .scaledToFit()
+                                .frame(width: 20)
                                 .padding(.trailing,6)
                             //.font(.title)
                         }
