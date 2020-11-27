@@ -42,7 +42,7 @@ struct HistoryView: View {
                  **/
                 ForEach(self.RecargaVM.ListRecargas, id: \.self._id){ (recarga:RecargaModel) in
                     Button(action: {
-                        //self.login.ruta = "detail"
+                        print(self.RecargaVM.ListRecargas)
                         self.action = 1
                         self.fecha = recarga.fecha
                         print("esta es la fecha\(self.fecha)")

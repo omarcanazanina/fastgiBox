@@ -16,6 +16,17 @@ struct PayView: View {
             Text(self.monto)
             Text("MONTO BS.")
             TextField("Ingrese monto", text: $test)
+                .keyboardType(.numberPad)
+                .introspectTextField { (textField) in
+                    let toolBar = UIToolbar(frame: CGRect(x: 0, y: 0, width: textField.frame.size.width, height: 44))
+                    let flexButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil)
+                    let doneButton = UIBarButtonItem(title: "Cerrar", style: .done, target: self, action: #selector(textField.doneButtonTapped(button:)))
+                 doneButton.tintColor = .darkGray
+                    toolBar.items = [flexButton, doneButton]
+                    toolBar.setItems([flexButton, doneButton], animated: true)
+                    textField.inputAccessoryView = toolBar
+                 }
+
         }
         
     }

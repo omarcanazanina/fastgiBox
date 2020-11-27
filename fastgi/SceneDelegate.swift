@@ -21,7 +21,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Create the SwiftUI view that provides the window contents.
         let authState = AuthState()
         let mainView = TabsView(currentBtnEm: .constant(.Entel))//.environmentObject(home)
-        let loginView =  TabsView(currentBtnEm: .constant(.Entel))//LoginView()//
+        let loginView = LoginView()//TabsView(currentBtnEm: .constant(.Entel))
         let welcome = WelcomeTermsAndConditionsView()
         //welcome
         let storage = UserDefaults.standard

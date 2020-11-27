@@ -87,13 +87,13 @@ class Recargas: ObservableObject {
            //"5f56de014e834e3bc4c02059"
            let idusu = "5fbe3f3bdee3371becd7bbf3"//storage.string(forKey: idKey)!
                guard let url = URL(string: "https://api.fastgi.com/historial/\(idusu)") else { return }
-               
+        print("este es el idusuariolist recargas\(idusu)")
                
                DispatchQueue.main.async {
                    AF.request(url,method:.get,headers: headers )
                        //.validate(contentType: ["application/json"])
                        .responseData{response in
-                        print(response)
+                        //debugPrint(response)
                            switch response.result {
                            case let .success(data):
                                //Cast respuesta a MeResponce
