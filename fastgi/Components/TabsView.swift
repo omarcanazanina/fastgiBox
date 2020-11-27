@@ -29,7 +29,7 @@ struct TabsView: View {
                     }.tag(1)
                 MembershipView()
                     .tabItem {
-                        Image(systemName: "chart.bar")
+                        Image("handshakes")
                         Text("Afiliarse")
                     }.tag(2)
                 SettingsView()

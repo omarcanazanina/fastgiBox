@@ -30,22 +30,25 @@ struct QrGeneratorView: View {
     
     var body: some View {
        // TextField("Texto a QR", text: self.$texto)
-        Image(uiImage: generarQR(text: self.texto))
-            .interpolation(.none)
-            .resizable()
-            .scaledToFit()
-            .frame(width: 350, height: 350)
-        
-        
-        if self.showBtn! {
+        VStack{
+            Image(uiImage: generarQR(text: self.texto))
+                .interpolation(.none)
+                .resizable()
+                .scaledToFit()
+                .frame(width: 350, height: 350)
             
-            Button(action: {
-                self.exportToPDF()
-            }){
-                Text("Compartir")
+            
+            if self.showBtn! {
+                
+                Button(action: {
+                    self.exportToPDF()
+                }){
+                    Text("Compartir")
+                }.buttonStyle(PrimaryButtonOutlineStyle())
+                
             }
-            
         }
+
     }
 }
 
