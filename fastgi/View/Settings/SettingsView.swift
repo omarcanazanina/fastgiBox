@@ -254,7 +254,8 @@ struct SettingsView: View {
                     VStack{
                         Image(systemName: "ellipsis")
                             .resizable()
-                            .frame(width: 30, height: 6)
+                            .scaledToFit()
+                            .frame(width: 10)
                             .padding(.trailing,6)
                     }
                     .frame(width: 30, height: 30)

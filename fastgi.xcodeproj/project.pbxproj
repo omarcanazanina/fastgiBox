@@ -10,6 +10,7 @@
 		573DD5AA824DD586829F7E7E /* Pods_fastgi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7241C4EA69AEDD4B4C54A236 /* Pods_fastgi.framework */; };
 		9202E994255DF196009115ED /* WelcomeTermsAndConditionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9202E993255DF196009115ED /* WelcomeTermsAndConditionsView.swift */; };
 		9202E997255DF485009115ED /* test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9202E996255DF485009115ED /* test.swift */; };
+		92064B8E25706ABA00D84932 /* PayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92064B8D25706ABA00D84932 /* PayView.swift */; };
 		9208DE4B256EFB4A00EA9C23 /* RegistrationFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9208DE4A256EFB4A00EA9C23 /* RegistrationFormView.swift */; };
 		9224FE6A256DE45F00F79FA4 /* MembershipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9224FE69256DE45F00F79FA4 /* MembershipView.swift */; };
 		92278A5F2556186E00D746EA /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92278A5E2556186E00D746EA /* Helper.swift */; };
@@ -94,6 +95,7 @@
 		82479469E54D08A5E407B6D5 /* Pods-fastgi.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-fastgi.debug.xcconfig"; path = "Target Support Files/Pods-fastgi/Pods-fastgi.debug.xcconfig"; sourceTree = "<group>"; };
 		9202E993255DF196009115ED /* WelcomeTermsAndConditionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeTermsAndConditionsView.swift; sourceTree = "<group>"; };
 		9202E996255DF485009115ED /* test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = test.swift; sourceTree = "<group>"; };
+		92064B8D25706ABA00D84932 /* PayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayView.swift; sourceTree = "<group>"; };
 		9208DE4A256EFB4A00EA9C23 /* RegistrationFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationFormView.swift; sourceTree = "<group>"; };
 		9224FE69256DE45F00F79FA4 /* MembershipView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MembershipView.swift; sourceTree = "<group>"; };
 		92278A5E2556186E00D746EA /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
@@ -202,6 +204,7 @@
 				9208DE4A256EFB4A00EA9C23 /* RegistrationFormView.swift */,
 				9279D547256F0C6500890C84 /* QrReaderView.swift */,
 				9279D54E256F15A400890C84 /* QrGeneratorView.swift */,
+				92064B8D25706ABA00D84932 /* PayView.swift */,
 			);
 			path = QrPayment;
 			sourceTree = "<group>";
@@ -658,6 +661,7 @@
 				92A3BAD1255369C900DF3707 /* TransactionDetailView.swift in Sources */,
 				92A3BA92255366DE00DF3707 /* ContactsResponse.swift in Sources */,
 				92A3BAAA2553682400DF3707 /* FormLoadCreditView.swift in Sources */,
+				92064B8E25706ABA00D84932 /* PayView.swift in Sources */,
 				92A3BAA02553678900DF3707 /* CodeView.swift in Sources */,
 				92A3BAFB25536CEC00DF3707 /* Styles.swift in Sources */,
 			);

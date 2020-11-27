@@ -133,7 +133,9 @@ struct HomeView: View {
             
             
             Text(self.resultado)
-           
+                       NavigationLink(destination: PayView(monto: self.resultado), tag: 1, selection: self.$action) {
+                EmptyView()
+            }
         }.padding()
        
         
