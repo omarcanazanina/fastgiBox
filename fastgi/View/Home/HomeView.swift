@@ -126,7 +126,8 @@ struct HomeView: View {
                             .frame(maxWidth:.infinity)
                 }.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
                 
-            }.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
+            }
+            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
  
             
             
