@@ -11,9 +11,6 @@ struct ListAreaCodeView: View {
     @Binding var showingSheet:Bool
     @Binding var code:String
     @Binding var country:String
-    
-    
-    
     var listCodes:some View{
         List{
             Button(action: {

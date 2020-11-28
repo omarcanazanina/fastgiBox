@@ -13,7 +13,75 @@ struct RegistrationFormView: View {
     var bancos = ["UNION", "FIE", "MERCANTIL", "BNB"]
     var tipos = ["AHORROS", "CORRIENTE"]
     var autos = ["TAXIS", "MICROBUSES"]
+    
     @State private var selectedColor = 0
+    
+    @State var showingSheetBank = false
+    @State var bank: String = "Seleccionar"
+    var pickerBank: some View{
+        Button(action: {
+            self.showingSheetBank.toggle()
+        }) {
+            HStack{
+                Text(self.bank)
+                Spacer()
+                Image(systemName: "arrowtriangle.down.fill")
+                    .font(.caption)
+                    .foregroundColor(Color("primary"))
+            }
+        }
+        .buttonStyle(PlainButtonStyle())
+        .sheet(isPresented: $showingSheetBank) {
+            ListBankView(
+                showingSheet: self.$showingSheetBank,
+                bank: self.$bank)
+        }
+    }
+    
+    @State var showingSheetAccountType = false
+    @State var accountType: String = "Seleccionar"
+    var pickerAccountType: some View{
+        Button(action: {
+            self.showingSheetAccountType.toggle()
+        }) {
+            HStack{
+                Text(self.accountType)
+                Spacer()
+                Image(systemName: "arrowtriangle.down.fill")
+                    .font(.caption)
+                    .foregroundColor(Color("primary"))
+            }
+        }
+        .buttonStyle(PlainButtonStyle())
+        .sheet(isPresented: $showingSheetAccountType) {
+            ListAccountTypeView(
+                showingSheet: self.$showingSheetAccountType,
+                accountType: self.$accountType)
+        }
+    }
+    
+    @State var showingSheetTransportType = false
+    @State var transportType: String = "Seleccionar"
+    var pickerTransportType: some View{
+        Button(action: {
+            self.showingSheetTransportType.toggle()
+        }) {
+            HStack{
+                Text(self.transportType)
+                Spacer()
+                Image(systemName: "arrowtriangle.down.fill")
+                    .font(.caption)
+                    .foregroundColor(Color("primary"))
+            }
+        }
+        .buttonStyle(PlainButtonStyle())
+        .sheet(isPresented: $showingSheetTransportType) {
+            ListTransportTypeView(
+                showingSheet: self.$showingSheetTransportType,
+                transportType: self.$transportType
+            )
+        }
+    }
     
     var body: some View {
         ScrollView(){
@@ -45,18 +113,21 @@ struct RegistrationFormView: View {
                         .textStyle(TitleStyle())
                     Text("BANCO")
                         .textStyle(TitleStyle())
-                    Picker(selection: $selectedColor, label: Text("Please choose a color")) {
+                    self.pickerBank
+                    /*Picker(selection: $selectedColor, label: Text("Please choose a color")) {
                         ForEach(0 ..< bancos.count) {
                             Text(self.bancos[$0])
                         }
                     }
+                    */
                     Text("TIPO DE CUENTA")
                         .textStyle(TitleStyle())
-                    Picker(selection: $selectedColor, label: Text("Please choose a color")) {
+                    self.pickerAccountType
+                    /*Picker(selection: $selectedColor, label: Text("Please choose a color")) {
                         ForEach(0 ..< tipos.count) {
                             Text(self.tipos[$0])
                         }
-                    }
+                    }*/
                     VStack(alignment: .leading, spacing: 8){
                         Text("NUMERO DE CUENTA")
                             .textStyle(TitleStyle())
@@ -66,11 +137,12 @@ struct RegistrationFormView: View {
                             .textStyle(TitleStyle())
                         Text("AUTOMOVIL")
                             .textStyle(TitleStyle())
-                        Picker(selection: $selectedColor, label: Text("Please choose a color")) {
+                        self.pickerTransportType
+                        /*Picker(selection: $selectedColor, label: Text("Please choose a color")) {
                             ForEach(0 ..< autos.count) {
                                 Text(self.autos[$0])
                             }
-                        }
+                        }*/
                         
                         Text("SINDICATO")
                             .textStyle(TitleStyle())

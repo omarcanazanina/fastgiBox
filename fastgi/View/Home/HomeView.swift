@@ -48,7 +48,6 @@ struct HomeView: View {
             .cornerRadius(10)
             .frame(maxWidth:.infinity)
             .shadow(color: Color.black.opacity(0.1), radius: 4, x: 2, y: 3)
-            
         }
         //.background(Color.red.opacity(0.5))
         .sheet(isPresented: self.$showScanner) {
@@ -69,6 +68,7 @@ struct HomeView: View {
     }
     
     var btnTransport:some View{
+        HStack{
             Button(action: {
                 self.showScanner = true
             }){
@@ -95,9 +95,10 @@ struct HomeView: View {
                     case .failure(let error):
                         print(error.localizedDescription)
                     }
-                 
                 }
             }
+        }
+      
     }
     
     var home:some View{
@@ -126,10 +127,9 @@ struct HomeView: View {
                             .frame(maxWidth:.infinity)
                 }.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
                 
-            }
-            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
+            }.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
  
-            
+          
             
             Text(self.resultado)
            /*     NavigationLink(destination: PayView(monto: self.resultado), tag: 1, selection: self.$action) {
