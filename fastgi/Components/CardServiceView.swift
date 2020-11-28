@@ -25,7 +25,8 @@ struct CardServiceView: View {
         HStack{
             Button(action: {
                 self.currentBtnEm = self.btn
-                //print(self.currentBtnEm)
+                //print("este es el current\(self.currentBtnEm)")
+              //  print("este es el current\(self.btn)")
             }) {
                 Image(logo)
                     .resizable()

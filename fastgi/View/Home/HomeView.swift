@@ -69,37 +69,35 @@ struct HomeView: View {
     }
     
     var btnTransport:some View{
-        Button(action: {
-            self.showScanner = true
-        }){
-            HStack{
-                Image("Mi_teleferico")
-                    .resizable()
-                    .frame(width:80, height: 80)
-                    .padding(10)
-            }
-            .background(Color("card"))
-            .cornerRadius(10)
-            .frame(maxWidth:.infinity)
-            .shadow(color: Color.black.opacity(0.1), radius: 4, x: 2, y: 3)
-            
-        }
-        //.background(Color.blue.opacity(0.5))
-        .sheet(isPresented: self.$showScanner) {
-            CodeScannerView(codeTypes: [.qr]){ result in
-                switch result {
-                case .success(let codigo):
-                    self.resultado = codigo
-                    self.showScanner = false
-                    //self.action = 1
-                case .failure(let error):
-                    print(error.localizedDescription)
+            Button(action: {
+                self.showScanner = true
+            }){
+                HStack{
+                    Image("Mi_teleferico")
+                        .resizable()
+                        .frame(width:80, height: 80)
+                        .padding(10)
                 }
-               /* NavigationLink(destination: QrGeneratorView(), tag: 1, selection: self.$action) {
-                    EmptyView()
-            }*/
+                .background(Color("card"))
+                .cornerRadius(10)
+                .frame(maxWidth:.infinity)
+                .shadow(color: Color.black.opacity(0.1), radius: 4, x: 2, y: 3)
+                
             }
-        }
+            //.background(Color.blue.opacity(0.5))
+            .sheet(isPresented: self.$showScanner) {
+                CodeScannerView(codeTypes: [.qr]){ result in
+                    switch result {
+                    case .success(let codigo):
+                        self.resultado = codigo
+                        self.showScanner = false
+                        self.action = 1
+                    case .failure(let error):
+                        print(error.localizedDescription)
+                    }
+                 
+                }
+            }
     }
     
     var home:some View{
@@ -132,10 +130,10 @@ struct HomeView: View {
  
             
             
-            Text(self.resultado)
-                       NavigationLink(destination: PayView(monto: self.resultado), tag: 1, selection: self.$action) {
+           /* Text(self.resultado)
+                NavigationLink(destination: PayView(monto: self.resultado), tag: 1, selection: self.$action) {
                 EmptyView()
-            }
+            }*/
         }.padding()
        
         
@@ -147,7 +145,7 @@ struct HomeView: View {
           
                 .onAppear{
                     self.loginVM.DatosUser()
-                    print(self.loginVM.user)
+                    //print(self.loginVM.user)
                 }
         }
 }
