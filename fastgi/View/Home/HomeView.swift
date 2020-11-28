@@ -39,7 +39,7 @@ struct HomeView: View {
             self.showScanner = true
         }){
             VStack{
-                Image("Transport")
+                Image("Mi_teleferico")
                     .resizable()
                     .frame(width:80, height: 80)
                     .padding(10)
@@ -73,7 +73,7 @@ struct HomeView: View {
                 self.showScanner = true
             }){
                 HStack{
-                    Image("Mi_teleferico")
+                    Image("Transport")
                         .resizable()
                         .frame(width:80, height: 80)
                         .padding(10)
@@ -120,8 +120,8 @@ struct HomeView: View {
                     .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
                     .padding(.vertical,10)
                 HStack(spacing:10){
-                    self.btnTransport
                     self.btnTeleferic
+                    self.btnTransport
                         Spacer()
                             .frame(maxWidth:.infinity)
                 }.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
@@ -131,8 +131,8 @@ struct HomeView: View {
  
             
             
-           /* Text(self.resultado)
-                NavigationLink(destination: PayView(monto: self.resultado), tag: 1, selection: self.$action) {
+            Text(self.resultado)
+           /*     NavigationLink(destination: PayView(monto: self.resultado), tag: 1, selection: self.$action) {
                 EmptyView()
             }*/
         }.padding()
