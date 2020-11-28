@@ -39,7 +39,7 @@ struct HomeView: View {
             self.showScanner = true
         }){
             VStack{
-                Image("Transport")
+                Image("Mi_teleferico")
                     .resizable()
                     .frame(width:80, height: 80)
                     .padding(10)
@@ -48,7 +48,6 @@ struct HomeView: View {
             .cornerRadius(10)
             .frame(maxWidth:.infinity)
             .shadow(color: Color.black.opacity(0.1), radius: 4, x: 2, y: 3)
-            
         }
         //.background(Color.red.opacity(0.5))
         .sheet(isPresented: self.$showScanner) {
@@ -69,11 +68,12 @@ struct HomeView: View {
     }
     
     var btnTransport:some View{
+        HStack{
             Button(action: {
                 self.showScanner = true
             }){
                 HStack{
-                    Image("Mi_teleferico")
+                    Image("Transport")
                         .resizable()
                         .frame(width:80, height: 80)
                         .padding(10)
@@ -95,9 +95,10 @@ struct HomeView: View {
                     case .failure(let error):
                         print(error.localizedDescription)
                     }
-                 
                 }
             }
+        }
+      
     }
     
     var home:some View{
@@ -120,19 +121,18 @@ struct HomeView: View {
                     .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
                     .padding(.vertical,10)
                 HStack(spacing:10){
-                    self.btnTransport
                     self.btnTeleferic
+                    self.btnTransport
                         Spacer()
                             .frame(maxWidth:.infinity)
                 }.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
                 
-            }
-            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
+            }.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
  
+          
             
-            
-           /* Text(self.resultado)
-                NavigationLink(destination: PayView(monto: self.resultado), tag: 1, selection: self.$action) {
+            Text(self.resultado)
+           /*     NavigationLink(destination: PayView(monto: self.resultado), tag: 1, selection: self.$action) {
                 EmptyView()
             }*/
         }.padding()
