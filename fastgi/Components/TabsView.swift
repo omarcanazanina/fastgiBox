@@ -29,7 +29,8 @@ struct TabsView: View {
                     }.tag(1)
                 MembershipView()
                     .tabItem {
-                        Image("handshakes")
+                        Image(self.selectedTab == 2 ? "handshakes.fill" : "handshakes")
+                        //Image("handshakes")
                         Text("Afiliarse")
                     }.tag(2)
                 SettingsView()
