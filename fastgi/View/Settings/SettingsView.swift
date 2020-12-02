@@ -314,12 +314,8 @@ struct SettingsView: View {
     
     var infoUser:some View{
         ScrollView(){
-            //
-            
-            //
             VStack(alignment: .leading, spacing: 8){
                 VStack(alignment: .leading, spacing: 8){
-                    
                     Text("DATOS PERSONALES")
                         .textStyle(TitleStyle())
                     HStack{
@@ -379,16 +375,6 @@ struct SettingsView: View {
                 }
                 VStack(alignment: .leading, spacing: 8){
                     Divider()
-                    /*HStack{
-                        
-                        Text("MÉTODOS DE PAGO")
-                            .textStyle(TitleStyle())
-                        
-                        
-                        Image(systemName: "chevron.right")
-                            .padding(.trailing)
-                            .frame(maxWidth:.infinity, alignment: .trailing)
-                    }*/
                     NavigationLink(destination: ListCreditCardView()) {
                         HStack{
                             Image(systemName: "creditcard")
@@ -420,44 +406,17 @@ struct SettingsView: View {
     
     var content:some View{
         VStack{
-            /*VStack{
-                //Spacer()
-               // self.icon
-                 //   .padding(.leading)
-                 //   .padding(.top,45)
-                //.background(Color.green)
-                self.imageProfile
-                .background(Color.gray)
-              //  self.icon
-                Spacer()
-                    .frame(height:20)
-            }.background(Color.blue)
-            HStack{
-                self.infoUser
-            }*/
-            //.background(Color.green)
-            //.edgesIgnoringSafeArea(.top)
                 ScrollView{
-                   /* Spacer()
-                    self.icon
-                        .background(Color.green)
-                        .padding(.leading)
-                        .padding(.top,45)
-                    self.icon
-                        .background(Color.gray)*/
                 self.imageProfile
-               // self.icon
                 Spacer()
                     .frame(height:20)
                 self.infoUser
+                }
+            Button(action:{
+                self.loginVM.DatosUser()
+            }){
+                Text("Prueba")
             }
-            
-        .onAppear{
-            self.loginVM.DatosUser()
-            //self.imageVM.downloadImage()
-            print("el statusresponse\(self.imageVM.statusResponse )")
-            print("se ejecuto")
-        }
         }
 }
 
@@ -486,8 +445,6 @@ struct SettingsView: View {
                     {
                         ImagePicker(image: self.$imageVM.image, isShown: self.$showImagePicker, sourceType: self.sourceType)
                     }
-                    
-                    
                 }
                 .actionSheet(isPresented: self.$showSheet) {
                     ActionSheet(title: Text("Opciones"), buttons: [
@@ -504,14 +461,10 @@ struct SettingsView: View {
                         .cancel()
                     ])
                 }
+            }.onAppear{
+                print("onappear de settings")
+                self.loginVM.DatosUser()
             }
-            //navView
-        
-      
-        //.onAppear{
-         //   self.imageVM.downloadImage()
-        //}
-       // .edgesIgnoringSafeArea(.top)
     }
 }
 

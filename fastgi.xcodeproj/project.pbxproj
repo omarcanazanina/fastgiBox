@@ -83,6 +83,7 @@
 		92A3BB0425536DB100DF3707 /* Optional+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A3BB0325536DB100DF3707 /* Optional+Extensions.swift */; };
 		92A3BB0725536DCD00DF3707 /* Validation+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A3BB0625536DCD00DF3707 /* Validation+Extensions.swift */; };
 		92A3BB0A25536DE600DF3707 /* BrokenRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A3BB0925536DE600DF3707 /* BrokenRule.swift */; };
+		92B776972575C02200210258 /* RegistrationFormView1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92B776962575C02200210258 /* RegistrationFormView1.swift */; };
 		92DBE2A225537827001B791B /* SwiftUIRefresh in Frameworks */ = {isa = PBXBuildFile; productRef = 92DBE2A125537827001B791B /* SwiftUIRefresh */; };
 		C0722FA8257197AC00D5B225 /* ListBankView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0722FA7257197AC00D5B225 /* ListBankView.swift */; };
 		C0722FAB2571A07500D5B225 /* ListAccountTypeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0722FAA2571A07500D5B225 /* ListAccountTypeView.swift */; };
@@ -171,6 +172,7 @@
 		92A3BB0325536DB100DF3707 /* Optional+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Optional+Extensions.swift"; sourceTree = "<group>"; };
 		92A3BB0625536DCD00DF3707 /* Validation+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Validation+Extensions.swift"; sourceTree = "<group>"; };
 		92A3BB0925536DE600DF3707 /* BrokenRule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrokenRule.swift; sourceTree = "<group>"; };
+		92B776962575C02200210258 /* RegistrationFormView1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationFormView1.swift; sourceTree = "<group>"; };
 		C0722FA7257197AC00D5B225 /* ListBankView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListBankView.swift; sourceTree = "<group>"; };
 		C0722FAA2571A07500D5B225 /* ListAccountTypeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListAccountTypeView.swift; sourceTree = "<group>"; };
 		C0722FAD2571A49300D5B225 /* ListTransportTypeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTransportTypeView.swift; sourceTree = "<group>"; };
@@ -211,6 +213,7 @@
 				9279D547256F0C6500890C84 /* QrReaderView.swift */,
 				9279D54E256F15A400890C84 /* QrGeneratorView.swift */,
 				92064B8D25706ABA00D84932 /* PayView.swift */,
+				92B776962575C02200210258 /* RegistrationFormView1.swift */,
 			);
 			path = QrPayment;
 			sourceTree = "<group>";
@@ -635,6 +638,7 @@
 				92A3BA852553662D00DF3707 /* ErrorModel.swift in Sources */,
 				92A3BA5E2553642800DF3707 /* Login.swift in Sources */,
 				92A3BABE255368F300DF3707 /* HistoryView.swift in Sources */,
+				92B776972575C02200210258 /* RegistrationFormView1.swift in Sources */,
 				9224FE6A256DE45F00F79FA4 /* MembershipView.swift in Sources */,
 				92A3BA45255362C500DF3707 /* ImagePicker.swift in Sources */,
 				92A3BA58255363D800DF3707 /* Contacts.swift in Sources */,

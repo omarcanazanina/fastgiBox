@@ -7,7 +7,7 @@
 
 import SwiftUI
 import CoreImage.CIFilterBuiltins
-
+import UIKit
 struct QrGeneratorView: View {
     @State private var texto = "omaroidunico"
     

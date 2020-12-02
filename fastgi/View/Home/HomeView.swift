@@ -11,6 +11,8 @@ import Introspect
 import CodeScanner
 
 struct HomeView: View {
+    @ObservedObject var login = Login()
+    
     @ObservedObject var loginVM = LoginViewModel()
     @Binding var currentBtnEm: BtnEm
     //
@@ -39,7 +41,7 @@ struct HomeView: View {
             self.showScanner = true
         }){
             VStack{
-                Image("Transport")
+                Image("Mi_teleferico")
                     .resizable()
                     .frame(width:80, height: 80)
                     .padding(10)
@@ -48,7 +50,6 @@ struct HomeView: View {
             .cornerRadius(10)
             .frame(maxWidth:.infinity)
             .shadow(color: Color.black.opacity(0.1), radius: 4, x: 2, y: 3)
-            
         }
         //.background(Color.red.opacity(0.5))
         .sheet(isPresented: self.$showScanner) {
@@ -69,37 +70,37 @@ struct HomeView: View {
     }
     
     var btnTransport:some View{
-        Button(action: {
-            self.showScanner = true
-        }){
-            HStack{
-                Image("Mi_teleferico")
-                    .resizable()
-                    .frame(width:80, height: 80)
-                    .padding(10)
-            }
-            .background(Color("card"))
-            .cornerRadius(10)
-            .frame(maxWidth:.infinity)
-            .shadow(color: Color.black.opacity(0.1), radius: 4, x: 2, y: 3)
-            
-        }
-        //.background(Color.blue.opacity(0.5))
-        .sheet(isPresented: self.$showScanner) {
-            CodeScannerView(codeTypes: [.qr]){ result in
-                switch result {
-                case .success(let codigo):
-                    self.resultado = codigo
-                    self.showScanner = false
-                    //self.action = 1
-                case .failure(let error):
-                    print(error.localizedDescription)
+        HStack{
+            Button(action: {
+                self.showScanner = true
+            }){
+                HStack{
+                    Image("Transport")
+                        .resizable()
+                        .frame(width:80, height: 80)
+                        .padding(10)
                 }
-               /* NavigationLink(destination: QrGeneratorView(), tag: 1, selection: self.$action) {
-                    EmptyView()
-            }*/
+                .background(Color("card"))
+                .cornerRadius(10)
+                .frame(maxWidth:.infinity)
+                .shadow(color: Color.black.opacity(0.1), radius: 4, x: 2, y: 3)
+                
+            }
+            //.background(Color.blue.opacity(0.5))
+            .sheet(isPresented: self.$showScanner) {
+                CodeScannerView(codeTypes: [.qr]){ result in
+                    switch result {
+                    case .success(let codigo):
+                        self.resultado = codigo
+                        self.showScanner = false
+                        self.action = 1
+                    case .failure(let error):
+                        print(error.localizedDescription)
+                    }
+                }
             }
         }
+      
     }
     
     var home:some View{
@@ -122,20 +123,20 @@ struct HomeView: View {
                     .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
                     .padding(.vertical,10)
                 HStack(spacing:10){
-                    self.btnTransport
                     self.btnTeleferic
+                    self.btnTransport
                         Spacer()
                             .frame(maxWidth:.infinity)
                 }.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
                 
             }.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
  
-            
+          
             
             Text(self.resultado)
-                       NavigationLink(destination: PayView(monto: self.resultado), tag: 1, selection: self.$action) {
+           /*     NavigationLink(destination: PayView(monto: self.resultado), tag: 1, selection: self.$action) {
                 EmptyView()
-            }
+            }*/
         }.padding()
        
         
@@ -144,11 +145,14 @@ struct HomeView: View {
     var body: some View {
         HStack{
             self.home
-          
-                .onAppear{
+            /*Button(action:{
+                self.login.DataUser()
+            }){
+                Text("prueba")
+            }*/
+                /*.onAppear{
                     self.loginVM.DatosUser()
-                    print(self.loginVM.user)
-                }
+                }*/
         }
 }
    

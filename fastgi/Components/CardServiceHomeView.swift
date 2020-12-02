@@ -21,8 +21,10 @@ struct CardServiceHomeView: View {
         HStack{
             Button(action: {
                 //self.login.ruta = "recargas"
-                self.action = 1
                 self.currentBtnEm = self.btn
+                self.action = 1
+                print("este es el current desde el home\(self.currentBtnEm)")
+                print("este es el btn desde el home\(self.btn)")
             }) {
                 Image(logo)
                     .resizable()
@@ -34,26 +36,17 @@ struct CardServiceHomeView: View {
                 )
             }.buttonStyle(PlainButtonStyle())
             if self.logo == "Entel"{
-                NavigationLink(destination: FormLoadCreditView(SelectEm: .Entel, montoRecarga1: .Btn10, montoRecarga: ""), tag: 1, selection: self.$action) {
+                NavigationLink(destination: FormLoadCreditView(Empresa: self.logo, SelectEm: .Entel, montoRecarga1: .Btn10, montoRecarga: ""), tag: 1, selection: self.$action) {
                     EmptyView()
                 }
-               /* NavigationLink(destination: FormLoadCreditView(Empresa: self.logo, montoRecarga: "10" , text: "10 Bs.", montoRecarga1: .Btn10, SelectEm: .Entel), tag: 1, selection: self.$action) {
-                    EmptyView()
-                }*/
             }else if self.logo == "Viva"{
-                NavigationLink(destination: FormLoadCreditView(SelectEm: .Entel, montoRecarga1: .Btn10, montoRecarga: ""), tag: 1, selection: self.$action) {
+                NavigationLink(destination: FormLoadCreditView(Empresa: self.logo, SelectEm: .Viva, montoRecarga1: .Btn10, montoRecarga: ""), tag: 1, selection: self.$action) {
                     EmptyView()
                 }
-               /* NavigationLink(destination: FormLoadCreditView(Empresa: self.logo, montoRecarga: "10", text: "10 Bs.", montoRecarga1: .Btn10, SelectEm: .Viva), tag: 1, selection: self.$action) {
-                    EmptyView()
-                }*/
             }else{
-                NavigationLink(destination: FormLoadCreditView(SelectEm: .Entel, montoRecarga1: .Btn10, montoRecarga: ""), tag: 1, selection: self.$action) {
+                NavigationLink(destination: FormLoadCreditView(Empresa: self.logo, SelectEm: .Tigo, montoRecarga1: .Btn10, montoRecarga: ""), tag: 1, selection: self.$action) {
                     EmptyView()
                 }
-                /*NavigationLink(destination: FormLoadCreditView(Empresa: self.logo, montoRecarga: "10", text: "10 Bs.", montoRecarga1: .Btn10, SelectEm: .Tigo), tag: 1, selection: self.$action) {
-                    EmptyView()
-                }*/
             }
         }
             

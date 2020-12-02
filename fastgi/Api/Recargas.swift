@@ -26,7 +26,7 @@ class Recargas: ObservableObject {
     func sendRecarga(empresa:BtnEm, recarga:String, telefono:String, text: String){
         
         let parametros : Parameters = [
-            "id": "5fbe3f3bdee3371becd7bbf3",// storage.string(forKey: idKey)!,
+            "id": storage.string(forKey: idKey)!,
             "empresa": empresa,
             "recarga":recarga,
             "telefono":telefono
@@ -47,12 +47,14 @@ class Recargas: ObservableObject {
             AF.request(url,method:.post,parameters: parametros,headers: headers )
                 // .validate(contentType: ["application/json"])
                 .responseData{response in
+                    //print("aki")
                     // debugPrint(response)
                     //print(response)
                     switch response.result {
                     case let .success(data):
                         //Cast respuesta a SmsResponse
                         if let decodedResponse = try? JSONDecoder().decode(RecargaResponse.self, from: data) {
+                            print("entro a la recarga")
                             print(decodedResponse.recarga)
                             self.control = decodedResponse.recarga.empresa
                             self.recargaResponse = decodedResponse.recarga
@@ -85,22 +87,21 @@ class Recargas: ObservableObject {
                headers.add(name: "token", value: token)
            }
            //"5f56de014e834e3bc4c02059"
-           let idusu = "5fbe3f3bdee3371becd7bbf3"//storage.string(forKey: idKey)!
+           let idusu = storage.string(forKey: idKey)!
                guard let url = URL(string: "https://api.fastgi.com/historial/\(idusu)") else { return }
-               
-               
+        //print("este es el idusuariolist recargas\(idusu)")
                DispatchQueue.main.async {
                    AF.request(url,method:.get,headers: headers )
                        //.validate(contentType: ["application/json"])
                        .responseData{response in
-                        print(response)
+                        //debugPrint(response)
                            switch response.result {
                            case let .success(data):
                                //Cast respuesta a MeResponce
                                if let decodedResponse = try? JSONDecoder().decode(GetRecargasResponse.self, from: data) {
                                // print(decodedResponse.recarga)
                                 self.getRecargasResponse=decodedResponse
-                                print(self.getRecargasResponse?.recarga as Any)
+                                print(self.getRecargasResponse?.recarga ?? "")
                                    return
                                }
                            case let .failure(error):

@@ -9,6 +9,7 @@ import SwiftUI
 import Introspect
 
 struct FormLoadCreditView: View {
+    var Empresa: String
     @State  var SelectEm :BtnEm
     @State private  var telefono = ""
     @State var montoRecarga1: BtnCA
@@ -137,6 +138,7 @@ struct FormLoadCreditView: View {
 
 struct FormLoadCreditView_Previews: PreviewProvider {
     static var previews: some View {
-        FormLoadCreditView(SelectEm: .Entel, montoRecarga1: .Btn10, montoRecarga: "")
+       // FormLoadCreditView(SelectEm: .Entel, montoRecarga1: .Btn10, montoRecarga: "")
+        FormLoadCreditView(Empresa: "", SelectEm: .Tigo, montoRecarga1: .Btn10, montoRecarga: "")
     }
 }
