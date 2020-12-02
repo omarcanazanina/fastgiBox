@@ -11,6 +11,8 @@ import Introspect
 import CodeScanner
 
 struct HomeView: View {
+    @ObservedObject var login = Login()
+    
     @ObservedObject var loginVM = LoginViewModel()
     @Binding var currentBtnEm: BtnEm
     //
@@ -143,11 +145,14 @@ struct HomeView: View {
     var body: some View {
         HStack{
             self.home
-          
-                .onAppear{
+            /*Button(action:{
+                self.login.DataUser()
+            }){
+                Text("prueba")
+            }*/
+                /*.onAppear{
                     self.loginVM.DatosUser()
-                    //print(self.loginVM.user)
-                }
+                }*/
         }
 }
    

@@ -123,7 +123,7 @@ class Login: ObservableObject {
         }
         let idusu = storage.string(forKey: idKey)!
         guard let url = URL(string: "https://api.fastgi.com/usuario/\(idusu)") else { return }
-        print("este es el idusuario\(idusu)")
+        //print("este es el idusuario\(idusu)")
             DispatchQueue.main.async {
                 AF.request(url,method:.get,headers: headers )
                     //.validate(contentType: ["application/json"])
@@ -133,7 +133,7 @@ class Login: ObservableObject {
                         case let .success(data):
                             //Cast respuesta a MeResponce
                             if let decodedResponse = try? JSONDecoder().decode(DataUserResponse.self, from: data) {
-                               // print(decodedResponse.usuario)
+                                print(decodedResponse.usuario)
                                 self.userResponse=decodedResponse.usuario
                                 return
                             }
