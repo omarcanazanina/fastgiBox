@@ -85,6 +85,7 @@
 		92A3BB0A25536DE600DF3707 /* BrokenRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A3BB0925536DE600DF3707 /* BrokenRule.swift */; };
 		92B776972575C02200210258 /* RegistrationFormView1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92B776962575C02200210258 /* RegistrationFormView1.swift */; };
 		92DBE2A225537827001B791B /* SwiftUIRefresh in Frameworks */ = {isa = PBXBuildFile; productRef = 92DBE2A125537827001B791B /* SwiftUIRefresh */; };
+		C05413E525783C2F000343EB /* TestWizardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05413E425783C2F000343EB /* TestWizardView.swift */; };
 		C0722FA8257197AC00D5B225 /* ListBankView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0722FA7257197AC00D5B225 /* ListBankView.swift */; };
 		C0722FAB2571A07500D5B225 /* ListAccountTypeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0722FAA2571A07500D5B225 /* ListAccountTypeView.swift */; };
 		C0722FAE2571A49300D5B225 /* ListTransportTypeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0722FAD2571A49300D5B225 /* ListTransportTypeView.swift */; };
@@ -173,6 +174,7 @@
 		92A3BB0625536DCD00DF3707 /* Validation+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Validation+Extensions.swift"; sourceTree = "<group>"; };
 		92A3BB0925536DE600DF3707 /* BrokenRule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrokenRule.swift; sourceTree = "<group>"; };
 		92B776962575C02200210258 /* RegistrationFormView1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationFormView1.swift; sourceTree = "<group>"; };
+		C05413E425783C2F000343EB /* TestWizardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestWizardView.swift; sourceTree = "<group>"; };
 		C0722FA7257197AC00D5B225 /* ListBankView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListBankView.swift; sourceTree = "<group>"; };
 		C0722FAA2571A07500D5B225 /* ListAccountTypeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListAccountTypeView.swift; sourceTree = "<group>"; };
 		C0722FAD2571A49300D5B225 /* ListTransportTypeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTransportTypeView.swift; sourceTree = "<group>"; };
@@ -475,6 +477,7 @@
 			isa = PBXGroup;
 			children = (
 				C0F649C22570468900115D1C /* TestCardServicesView.swift */,
+				C05413E425783C2F000343EB /* TestWizardView.swift */,
 			);
 			path = TestUI;
 			sourceTree = "<group>";
@@ -652,6 +655,7 @@
 				92A3BAD4255369EC00DF3707 /* InputCreditAmountView.swift in Sources */,
 				92A3BAD725536A0700DF3707 /* BtnsEmView.swift in Sources */,
 				92A3BA7C255365E000DF3707 /* ContactsModel.swift in Sources */,
+				C05413E525783C2F000343EB /* TestWizardView.swift in Sources */,
 				92A3BADD25536A5600DF3707 /* CardServiceView.swift in Sources */,
 				92A3BAA3255367C600DF3707 /* BrokenRulesView.swift in Sources */,
 				92A3BA512553638700DF3707 /* ImageAvatar.swift in Sources */,
