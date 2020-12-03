@@ -28,9 +28,6 @@ class LoginViewModel: ObservableObject {
     
     private var disposables: Set<AnyCancellable> = []
     
-    //datos del usuario
-    @Published var user = UpdateUserModel(role: "", estado: true, _id: "", telefono: "", pin: "", fecha: "", apellidos: "", correo: "", direccion: "", nit: "", nombrenit: "", nombres: "", ci: "")
-    
     private var testvariable: AnyPublisher<String, Never> {
         loginResponse.$ruta
             .receive(on: RunLoop.main)
@@ -61,19 +58,6 @@ class LoginViewModel: ObservableObject {
         .eraseToAnyPublisher()
     }
     
-    //DataUser
-    private var DataUserPublisher: AnyPublisher<UpdateUserModel, Never> {
-          loginResponse.$userResponse
-              .receive(on: RunLoop.main)
-              .map { response in
-                  guard let response = response else {
-                    return self.user
-                  }
-                  return response
-              }
-              .eraseToAnyPublisher()
-      }
-    
     
     init(){
         testvariable
@@ -92,23 +76,11 @@ class LoginViewModel: ObservableObject {
             .assign(to: \.isloading, on: self)
             .store(in: &disposables)
         
-        //DataUser
-          DataUserPublisher
-              .receive(on: RunLoop.main)
-              .assign(to: \.user, on: self)
-              .store(in: &disposables)
-        
-        
     }
     
     func verificarCode(telefono:String,code:String) {
         loginResponse.confirmCode(telefono: telefono, pin: code)
     }
-    
-    func DatosUser() {
-        loginResponse.DataUser()
-      }
-    
     
     //validation
     func validationInput()  {

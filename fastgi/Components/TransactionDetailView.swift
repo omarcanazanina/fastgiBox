@@ -21,7 +21,9 @@ struct TransactionDetailView: View {
     
     let dateFormatter = DateFormatter()
     var dateStringFormatter = DateFormatter()
-    @ObservedObject var loginVM = LoginViewModel()
+    
+    //datos user
+    @ObservedObject var userDataVM = UserDataViewModel()
     
     var FlaseCheck: some View{
         Image(systemName: "xmark")
@@ -117,7 +119,7 @@ struct TransactionDetailView: View {
                         .textStyle(TitleStyle())
                         .frame(maxWidth: .infinity, alignment: .trailing)
                     
-                    Text(self.loginVM.user.nombres)
+                    Text("\(self.userDataVM.user.nombres) \(self.userDataVM.user.apellidos)")
                         .foregroundColor(.black)
                         .frame(maxWidth: .infinity, alignment: .leading)
                     
@@ -182,7 +184,7 @@ struct TransactionDetailView: View {
                     let horaFromString = dateStringFormatter.date(from: self.fecha)
                     self.horaFormat = dateStringFormatter.string(from: horaFromString ?? date)
                 }
-                    self.loginVM.DatosUser()
+                    self.userDataVM.DatosUser()
                 
             }
             Spacer()
@@ -191,7 +193,7 @@ struct TransactionDetailView: View {
             if self.showBtn! {
                 
                 Button(action: {
-                    self.exportToPDF(fecha_: self.fechaFormat, empresa_: self.empresa, phone_: self.phone, monto_: self.monto,fechaFormat_: self.fechaFormat, horaFormat_: self.horaFormat, showBtn_: false, nombreO_: self.loginVM.user.nombres)
+                    self.exportToPDF(fecha_: self.fechaFormat, empresa_: self.empresa, phone_: self.phone, monto_: self.monto,fechaFormat_: self.fechaFormat, horaFormat_: self.horaFormat, showBtn_: false, nombreO_: self.userDataVM.user.nombres)
                 }){
                     Text("Compartir")
                 }.buttonStyle(PrimaryButtonOutlineStyle())

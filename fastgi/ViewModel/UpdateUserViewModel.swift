@@ -58,7 +58,6 @@ class UpdateUserViewModel: ObservableObject {
         }
     
     init(){
-        
         isLoadingPublished
             .receive(on: RunLoop.main)
             .assign(to: \.isloading, on: self)
@@ -69,11 +68,7 @@ class UpdateUserViewModel: ObservableObject {
                 .receive(on: RunLoop.main)
                 .assign(to: \.userDataUpdate, on: self)
                 .store(in: &disposables)
-        
     }
-    
-    
-    
     /*func DatosUserUpdate() {
         loginResponse.DataUser()
          }*/

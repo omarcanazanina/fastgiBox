@@ -37,11 +37,15 @@ class UserDataViewModel: ObservableObject {
               .assign(to: \.user, on: self)
               .store(in: &disposables)
         
-        DatosUser()
+        
+       DatosUser()
     }
     
     func DatosUser() {
-        userDataResponse.DataUser()
+       // if self.control == 0 {
+            userDataResponse.DataUser()
+        //}
+       
       }
     
 }

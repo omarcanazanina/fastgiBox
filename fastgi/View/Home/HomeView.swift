@@ -12,13 +12,10 @@ import CodeScanner
 
 struct HomeView: View {
     @ObservedObject var login = Login()
-    
     @ObservedObject var loginVM = LoginViewModel()
     @Binding var currentBtnEm: BtnEm
     //
-    
     @State var text = ""
-    
     //lector qr
     @State private var showScanner = false
     @State private var resultado = ""
@@ -26,14 +23,12 @@ struct HomeView: View {
     @State private var action:Int? = 0
     
     init(currentBtnEm: Binding<BtnEm>) {
-        
         self._currentBtnEm = currentBtnEm
         
         //Config for NavigationBar Transparent
         let appearance = UINavigationBarAppearance()
         appearance.shadowColor = .clear
         UINavigationBar.appearance().standardAppearance = appearance
-        
     }
     
     var btnTeleferic:some View{
@@ -135,15 +130,23 @@ struct HomeView: View {
                 EmptyView()
             }*/
         }.padding()
-       
-        
     }
     
     var body: some View {
         HStack{
             self.home
+                VStack{
+                Button(action:{
+                    //self.showScanner = true
+                    self.action = 9
+                }){
+                    Text("lector")
+                }
+                    NavigationLink(destination: PayView(monto: self.resultado), tag: 9, selection: self.$action) {
+                    EmptyView()
+                }
+            }
         }
-
 }
    
 }

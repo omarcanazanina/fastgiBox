@@ -11,7 +11,7 @@ struct TabsView: View {
     @State private var selectedTab = 0
     @Binding var currentBtnEm: BtnEm
     //header
-    @ObservedObject var loginVM = LoginViewModel()
+    //@ObservedObject var loginVM = LoginViewModel()
     @State var menu : Bool = false
     
     //new datauser
@@ -50,10 +50,6 @@ struct TabsView: View {
                     self.headerDerecha()
              )
         }
-        /*.onAppear{
-            self.loginVM.DatosUser()
-        }*/
-      
     }
     
 }
