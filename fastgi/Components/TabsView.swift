@@ -14,8 +14,8 @@ struct TabsView: View {
     @ObservedObject var loginVM = LoginViewModel()
     @State var menu : Bool = false
     
-    //history
-   // @ObservedObject var RecargaVM = RecargaViewModel()
+    //new datauser
+    @ObservedObject var userDataVM = UserDataViewModel()
     var body: some View {
         NavigationView{
             TabView(selection: $selectedTab) {
@@ -39,7 +39,6 @@ struct TabsView: View {
                     .tabItem {
                         Image(systemName: self.selectedTab == 3 ? "person.circle.fill" : "person.circle")
                         Text("Ajustes")
-          
                     }.tag(3)
             }
             .accentColor(Color("primary"))
@@ -50,10 +49,11 @@ struct TabsView: View {
                  trailing:
                     self.headerDerecha()
              )
-        }.onAppear{
-            self.loginVM.DatosUser()
-          //  self.RecargaVM.listRecargas()
         }
+        /*.onAppear{
+            self.loginVM.DatosUser()
+        }*/
+      
     }
     
 }
@@ -109,8 +109,8 @@ extension TabsView{
     }
     
     func headerIzquierda() -> AnyView{
-        if self.selectedTab == 0 || self.selectedTab == 1 || self.selectedTab == 2{
-            return AnyView(HeaderUserView(text: self.loginVM.user.nombres, _id :self.loginVM.user._id))
+        if self.selectedTab == 0 || self.selectedTab == 1 || self.selectedTab == 2 {//} || self.selectedTab == 3{
+            return AnyView(HeaderUserView(text: "\(self.userDataVM.user.nombres) \(self.userDataVM.user.apellidos)", _id :self.userDataVM.user._id))
         }
         return AnyView(EmptyView())
         

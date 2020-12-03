@@ -223,6 +223,7 @@ struct SettingsView: View {
     //imagen
     // @ObservedObject var image = ImageAvatar()
     @ObservedObject var imageVM = ImageViewModel()
+    
     //test
     // @State private var image : UIImage? = nil
     //back
@@ -235,7 +236,9 @@ struct SettingsView: View {
     @State private var sourceType: UIImagePickerController.SourceType = .camera
     //control del menu
     @State var controlMenu = 3
-
+    
+    //datos test
+    @ObservedObject var userDataVM = UserDataViewModel()
     init() {
         UISegmentedControl.appearance().selectedSegmentTintColor = UIColorPrimary()
         UISegmentedControl.appearance().setTitleTextAttributes([.foregroundColor: UIColor.white], for: .selected)
@@ -321,35 +324,40 @@ struct SettingsView: View {
                     HStack{
                         Text("DOCUMENTO DE IDENTIDAD")
                             .textStyle(TitleStyle())
-                        Text(self.loginVM.user.ci)
+                        Text(self.userDataVM.user.ci)
+                        //Text(self.loginVM.user.ci)
                             .padding(.trailing)
                             .frame(maxWidth:.infinity, alignment: .trailing)
                     }
                     HStack{
                         Text("CORREO ELECTRÓNICO")
                             .textStyle(TitleStyle())
-                        Text(self.loginVM.user.correo)
+                        Text(self.userDataVM.user.correo)
+                        //Text(self.loginVM.user.correo)
                             .padding(.trailing)
                             .frame(maxWidth:.infinity, alignment: .trailing)
                     }
                     HStack{
                         Text("NOMBRES")
                             .textStyle(TitleStyle())
-                        Text(self.loginVM.user.nombres)
+                        Text(self.userDataVM.user.nombres)
+                        //Text(self.loginVM.user.nombres)
                             .padding(.trailing)
                             .frame(maxWidth:.infinity, alignment: .trailing)
                     }
                     HStack{
                         Text("APELLIDOS")
                             .textStyle(TitleStyle())
-                        Text(self.loginVM.user.apellidos)
+                        Text(self.userDataVM.user.apellidos)
+                        //Text(self.loginVM.user.apellidos)
                             .padding(.trailing)
                             .frame(maxWidth:.infinity, alignment: .trailing)
                     }
                     HStack{
                         Text("DIRECCIÓN")
                             .textStyle(TitleStyle())
-                        Text(self.loginVM.user.direccion)
+                        Text(self.userDataVM.user.direccion)
+                        //Text(self.loginVM.user.direccion)
                             .padding(.trailing)
                             .frame(maxWidth:.infinity, alignment: .trailing)
                     }
@@ -360,7 +368,8 @@ struct SettingsView: View {
                     HStack{
                         Text("NOMBRE")
                             .textStyle(TitleStyle())
-                        Text(self.loginVM.user.nombrenit)
+                        Text(self.userDataVM.user.nombrenit)
+                            //Text(self.loginVM.user.nombrenit)
                             .padding(.trailing)
                             .frame(maxWidth:.infinity, alignment: .trailing)
                     }
@@ -368,7 +377,8 @@ struct SettingsView: View {
                         
                         Text("NIT")
                             .textStyle(TitleStyle())
-                        Text(self.loginVM.user.nit)
+                        Text(self.userDataVM.user.nit)
+                            //Text(self.loginVM.user.nit)
                             .padding(.trailing)
                             .frame(maxWidth:.infinity, alignment: .trailing)
                     }
@@ -412,11 +422,6 @@ struct SettingsView: View {
                     .frame(height:20)
                 self.infoUser
                 }
-            Button(action:{
-                self.loginVM.DatosUser()
-            }){
-                Text("Prueba")
-            }
         }
 }
 
@@ -461,9 +466,6 @@ struct SettingsView: View {
                         .cancel()
                     ])
                 }
-            }.onAppear{
-                print("onappear de settings")
-                self.loginVM.DatosUser()
             }
     }
 }

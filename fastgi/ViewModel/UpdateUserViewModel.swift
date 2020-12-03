@@ -73,13 +73,10 @@ class UpdateUserViewModel: ObservableObject {
     }
     
     
-    /*func updateUser() {
-        let contentTypes=["role","estado","_id","telefono","pin","fecha","","","","","",""]
-    }*/
     
-    func DatosUserUpdate() {
+    /*func DatosUserUpdate() {
         loginResponse.DataUser()
-         }
+         }*/
     
     func updateUser(ci: String, correo: String, nombres: String, apellidos: String, direccion: String, nombrenit: String, nit: String)  {
         UpdateUserResponse.updateUser(ci: ci, correo: correo, nombres: nombres, apellidos: apellidos, direccion: direccion, nombrenit: nombrenit, nit: nit)

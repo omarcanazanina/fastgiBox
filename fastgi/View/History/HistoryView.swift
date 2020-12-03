@@ -133,12 +133,6 @@ struct HistoryView: View {
                 }.pickerStyle(SegmentedPickerStyle())
                 .padding()
                 if(optionPicker==0){
-                    Button(action:{
-                        self.RecargaVM.listRecargas()
-                    }){
-                        Text("tesr")
-                    }
-                    
                     self.list
                     NavigationLink(destination: TransactionDetailView(fecha: self.fecha, empresa: self.empresa, phone: self.phone, monto: self.monto, control: 0, fechaFormat: "", horaFormat: ""), tag: 1, selection: self.$action) {
                         EmptyView()
@@ -149,11 +143,6 @@ struct HistoryView: View {
                     self.listNot
                 }
             }
-          //  .onAppear{
-                //self.loginVM.DatosUser()
-                //print("onappear History")
-            //    self.RecargaVM.listRecargas()
-            //}
         }
     }
 }

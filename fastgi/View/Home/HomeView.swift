@@ -130,10 +130,7 @@ struct HomeView: View {
                 }.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
                 
             }.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
- 
-          
-            
-            Text(self.resultado)
+             Text(self.resultado)
            /*     NavigationLink(destination: PayView(monto: self.resultado), tag: 1, selection: self.$action) {
                 EmptyView()
             }*/
@@ -145,15 +142,8 @@ struct HomeView: View {
     var body: some View {
         HStack{
             self.home
-            /*Button(action:{
-                self.login.DataUser()
-            }){
-                Text("prueba")
-            }*/
-                /*.onAppear{
-                    self.loginVM.DatosUser()
-                }*/
         }
+
 }
    
 }

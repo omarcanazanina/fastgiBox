@@ -69,11 +69,13 @@ class RecargaViewModel: ObservableObject {
              .receive(on: RunLoop.main)
              .assign(to: \.ListRecargas, on: self)
              .store(in: &disposables)
+        
+        listRecargas()
     }
     
     func listRecargas() {
         self.RecargaResponse.ListRecargas()
-       }
+    }
     
  /*   func SendRecarga(empresa:BtnEm,recarga:BtnCA,telefono:String) {
         RecargaResponse.sendRecarga(empresa:empresa, recarga:recarga, telefono: telefono)
