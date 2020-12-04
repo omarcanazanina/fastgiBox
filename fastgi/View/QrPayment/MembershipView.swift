@@ -27,7 +27,7 @@ struct MembershipView: View {
                 .shadow(color: Color.black.opacity(0.1), radius: 4, x: 2, y: 3)
                 
             }
-            NavigationLink(destination: RegistrationFormView(), tag: 1, selection: self.$action) {
+            NavigationLink(destination: SlideFormJoinView(), tag: 1, selection: self.$action) {
                 EmptyView()
             }
             Button(action: {
