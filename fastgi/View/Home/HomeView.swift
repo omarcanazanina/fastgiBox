@@ -68,6 +68,7 @@ struct HomeView: View {
         HStack{
             Button(action: {
                 self.showScanner = true
+                self.action = 1
             }){
                 HStack{
                     Image("Transport")
@@ -87,13 +88,17 @@ struct HomeView: View {
                     switch result {
                     case .success(let codigo):
                         self.resultado = codigo
-                        self.showScanner = false
-                        self.action = 1
+                        //self.showScanner = false
+                       
                     case .failure(let error):
                         print(error.localizedDescription)
                     }
                 }
             }
+                NavigationLink(destination: PayView(user: self.resultado), tag: 1, selection: self.$action) {
+                    EmptyView()
+                }
+            
         }
       
     }
@@ -125,7 +130,7 @@ struct HomeView: View {
                 }.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
                 
             }.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
-             Text(self.resultado)
+           //  Text(self.resultado)
            /*     NavigationLink(destination: PayView(monto: self.resultado), tag: 1, selection: self.$action) {
                 EmptyView()
             }*/
@@ -135,17 +140,6 @@ struct HomeView: View {
     var body: some View {
         HStack{
             self.home
-                VStack{
-                Button(action:{
-                    //self.showScanner = true
-                    self.action = 9
-                }){
-                    Text("lector")
-                }
-                    NavigationLink(destination: PayView(monto: self.resultado), tag: 9, selection: self.$action) {
-                    EmptyView()
-                }
-            }
         }
 }
    

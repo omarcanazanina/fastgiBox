@@ -24,7 +24,6 @@ class Recargas: ObservableObject {
     
     
     func sendRecarga(empresa:BtnEm, recarga:String, telefono:String, text: String){
-        
         let parametros : Parameters = [
             "id": storage.string(forKey: idKey)!,
             "empresa": empresa,

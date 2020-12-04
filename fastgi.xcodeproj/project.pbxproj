@@ -85,6 +85,10 @@
 		92A3BB0425536DB100DF3707 /* Optional+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A3BB0325536DB100DF3707 /* Optional+Extensions.swift */; };
 		92A3BB0725536DCD00DF3707 /* Validation+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A3BB0625536DCD00DF3707 /* Validation+Extensions.swift */; };
 		92A3BB0A25536DE600DF3707 /* BrokenRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A3BB0925536DE600DF3707 /* BrokenRule.swift */; };
+		92AB8CF22579B6C4006F0FA7 /* QrPayment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92AB8CF12579B6C4006F0FA7 /* QrPayment.swift */; };
+		92AB8CF52579B779006F0FA7 /* QrPaymentResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92AB8CF42579B779006F0FA7 /* QrPaymentResponse.swift */; };
+		92AB8CF82579B7F4006F0FA7 /* QrPaymentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92AB8CF72579B7F4006F0FA7 /* QrPaymentModel.swift */; };
+		92AB8CFB2579B9E1006F0FA7 /* QrPaymentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92AB8CFA2579B9E1006F0FA7 /* QrPaymentViewModel.swift */; };
 		92B776972575C02200210258 /* RegistrationFormView1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92B776962575C02200210258 /* RegistrationFormView1.swift */; };
 		92DBE2A225537827001B791B /* SwiftUIRefresh in Frameworks */ = {isa = PBXBuildFile; productRef = 92DBE2A125537827001B791B /* SwiftUIRefresh */; };
 		C0722FA8257197AC00D5B225 /* ListBankView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0722FA7257197AC00D5B225 /* ListBankView.swift */; };
@@ -176,6 +180,10 @@
 		92A3BB0325536DB100DF3707 /* Optional+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Optional+Extensions.swift"; sourceTree = "<group>"; };
 		92A3BB0625536DCD00DF3707 /* Validation+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Validation+Extensions.swift"; sourceTree = "<group>"; };
 		92A3BB0925536DE600DF3707 /* BrokenRule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrokenRule.swift; sourceTree = "<group>"; };
+		92AB8CF12579B6C4006F0FA7 /* QrPayment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QrPayment.swift; sourceTree = "<group>"; };
+		92AB8CF42579B779006F0FA7 /* QrPaymentResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QrPaymentResponse.swift; sourceTree = "<group>"; };
+		92AB8CF72579B7F4006F0FA7 /* QrPaymentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QrPaymentModel.swift; sourceTree = "<group>"; };
+		92AB8CFA2579B9E1006F0FA7 /* QrPaymentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QrPaymentViewModel.swift; sourceTree = "<group>"; };
 		92B776962575C02200210258 /* RegistrationFormView1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationFormView1.swift; sourceTree = "<group>"; };
 		C0722FA7257197AC00D5B225 /* ListBankView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListBankView.swift; sourceTree = "<group>"; };
 		C0722FAA2571A07500D5B225 /* ListAccountTypeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListAccountTypeView.swift; sourceTree = "<group>"; };
@@ -307,6 +315,7 @@
 				92A3BA5A2553641100DF3707 /* Recargas.swift */,
 				92A3BA5D2553642800DF3707 /* Login.swift */,
 				927D1DA025785C4200A97455 /* UserData.swift */,
+				92AB8CF12579B6C4006F0FA7 /* QrPayment.swift */,
 			);
 			path = Api;
 			sourceTree = "<group>";
@@ -321,6 +330,7 @@
 				92A3BA6D2553651C00DF3707 /* RecargaViewModel.swift */,
 				92A3BA702553655500DF3707 /* LoginViewModel.swift */,
 				927D1DA325785DF700A97455 /* UserDataViewModel.swift */,
+				92AB8CFA2579B9E1006F0FA7 /* QrPaymentViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -335,6 +345,7 @@
 				92A3BA812553661600DF3707 /* UpdateUserModel.swift */,
 				92A3BA842553662D00DF3707 /* ErrorModel.swift */,
 				92A3BA872553664700DF3707 /* UsuarioModel.swift */,
+				92AB8CF72579B7F4006F0FA7 /* QrPaymentModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -348,6 +359,7 @@
 				92A3BA94255366F700DF3707 /* RecargaResponse.swift */,
 				92A3BA972553671200DF3707 /* SmsResponse.swift */,
 				92A3BA9A2553673200DF3707 /* DataUserResponse.swift */,
+				92AB8CF42579B779006F0FA7 /* QrPaymentResponse.swift */,
 			);
 			path = Response;
 			sourceTree = "<group>";
@@ -610,6 +622,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				927D1DA125785C4200A97455 /* UserData.swift in Sources */,
+				92AB8CF82579B7F4006F0FA7 /* QrPaymentModel.swift in Sources */,
 				92A3BAB7255368A600DF3707 /* TermsAndConditionsView.swift in Sources */,
 				92A3BB0425536DB100DF3707 /* Optional+Extensions.swift in Sources */,
 				92A3BAF325536B3400DF3707 /* BtnsView.swift in Sources */,
@@ -618,6 +631,8 @@
 				9208DE4B256EFB4A00EA9C23 /* RegistrationFormView.swift in Sources */,
 				92A3BA95255366F700DF3707 /* RecargaResponse.swift in Sources */,
 				92A3BA8C255366AC00DF3707 /* ImageResponse.swift in Sources */,
+				92AB8CFB2579B9E1006F0FA7 /* QrPaymentViewModel.swift in Sources */,
+				92AB8CF52579B779006F0FA7 /* QrPaymentResponse.swift in Sources */,
 				92A3BA9B2553673200DF3707 /* DataUserResponse.swift in Sources */,
 				92A3BA65255364AE00DF3707 /* UpdateUserViewModel.swift in Sources */,
 				92A3BA68255364CF00DF3707 /* ContactsViewModel.swift in Sources */,
@@ -652,6 +667,7 @@
 				92A3BA882553664700DF3707 /* UsuarioModel.swift in Sources */,
 				92A3BAC22553692E00DF3707 /* FormCreditCardView.swift in Sources */,
 				92A3BA712553655500DF3707 /* LoginViewModel.swift in Sources */,
+				92AB8CF22579B6C4006F0FA7 /* QrPayment.swift in Sources */,
 				92A3BA492553631C00DF3707 /* NavigationRoot.swift in Sources */,
 				92A3BA422553629F00DF3707 /* PhotoCaptureView.swift in Sources */,
 				92A3BA292553616F00DF3707 /* ContentView.swift in Sources */,

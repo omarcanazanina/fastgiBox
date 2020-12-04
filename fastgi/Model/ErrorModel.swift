@@ -23,3 +23,9 @@ struct ErrorUpdateUser : Codable{
     var name: String
     var message: String
 }
+
+//error de token pagoqr
+struct ErrorQrPayment : Codable{
+    var name: String
+    var message: String
+}
