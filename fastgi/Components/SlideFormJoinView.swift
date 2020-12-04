@@ -31,7 +31,7 @@ struct SlideFormJoinView: View {
                 .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
             Text("\(optionSlide)")
             Text("\(move)")
-        }.frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height-140, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+        }.frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height-180, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
     }
     var slide2:some View{
         VStack{
@@ -39,7 +39,7 @@ struct SlideFormJoinView: View {
                 .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
             Text("\(optionSlide)")
             Text("\(move)")
-        }.frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height-140, alignment: .center)
+        }.frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height-180, alignment: .center)
     }
     var slide3:some View{
         VStack{
@@ -47,7 +47,7 @@ struct SlideFormJoinView: View {
                 .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
             Text("\(optionSlide)")
             Text("\(move)")
-        }.frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height-140, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+        }.frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height-180, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
     }
     var indicator1:some View{
         HStack(spacing:0){
