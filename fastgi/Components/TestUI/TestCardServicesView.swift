@@ -30,7 +30,6 @@ struct TestCardServicesView: View {
                             .stroke(  self.isSelect! ? Color("primary") : Color("card"), lineWidth: 4)
                 )
             }
-
             VStack(){
                 
                 Image(systemName: "person.circle")
