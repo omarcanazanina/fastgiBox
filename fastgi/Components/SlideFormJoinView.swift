@@ -1,13 +1,13 @@
 //
-//  TestWizardView.swift
+//  SildeFormJoinView.swift
 //  fastgi
 //
-//  Created by Amilkar on 12/2/20.
+//  Created by Amilkar on 12/4/20.
 //
 
 import SwiftUI
 
-struct TestWizardView: View {
+struct SlideFormJoinView: View {
     var isSelect:Bool? = true
     @State private var move:CGFloat = UIScreen.main.bounds.width
     @State private var optionSlide:Int = 1
@@ -248,8 +248,8 @@ struct TestWizardView: View {
     }
 }
 
-struct TestWizardView_Previews: PreviewProvider {
+struct SlideFormJoinView_Previews: PreviewProvider {
     static var previews: some View {
-        TestWizardView()  
+        SlideFormJoinView()
     }
 }
