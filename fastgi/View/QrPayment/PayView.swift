@@ -13,7 +13,10 @@ struct PayView: View {
     var user: String
     //datos user
     @ObservedObject var userDataVM = UserDataViewModel()
-    
+    //test
+    @ObservedObject var qrPayment = QrPayment()
+    @ObservedObject var qrPaymentVM = QrPaymentViewModel()
+    @State private var action:Int? = 0
     var imageProfile:some View {
         HStack(alignment: .center){
                 WebImage(url: URL(string: "https://i.postimg.cc/8kJ4bSVQ/image.jpg" ))
@@ -33,28 +36,15 @@ struct PayView: View {
         
     }
     
-    var buttonSuccess:some View {
-        VStack(){
-            Button(action: {
-            }){
-                Text("Pagar")
-                    .foregroundColor(Color.white)
-                    .frame(maxWidth:.infinity)
-                    .padding(8)
-                    .background(Color("primary"))
-                    .clipShape(Capsule())
-                    .shadow(color: Color.black.opacity(0.1), radius: 4, x: 2, y: 3)
-                
-            }
-        }
-        .padding()
-    }
+  
     
+    
+   
     var body: some View {
-        NavigationView{
+       // NavigationView{
             VStack{
-                //Text("Pagar transporte")
-                   // .font(.title)
+                Text("Pagar transporte")
+                    .font(.title)
                 self.imageProfile
                 Text(self.user)
                 VStack(alignment: .leading, spacing: 8){
@@ -74,9 +64,33 @@ struct PayView: View {
                          }
                 }
                 self.buttonSuccess
-            }
-        }.navigationBarTitle("Pagar transporte", displayMode: .inline)
+            }.padding(.horizontal)
+        //}//.navigationBarTitle("Pagar transporte", displayMode: .inline)
     }
+    
+    var buttonSuccess:some View {
+        VStack(){
+            Button(action: {
+                self.qrPaymentVM.pagoQr(id_cobrador: self.user, monto: self.monto)
+                //self.qrPayment.pagoQr(id_cobrador: self.user, monto: self.monto)
+                self.action = 1
+            }){
+                Text("Pagar")
+                    .foregroundColor(Color.white)
+                    .frame(maxWidth:.infinity)
+                    .padding(8)
+                    .background(Color("primary"))
+                    .clipShape(Capsule())
+                    .shadow(color: Color.black.opacity(0.1), radius: 4, x: 2, y: 3)
+                
+            }
+            NavigationLink(destination: TestpayDetail(monto: self.monto, id_cobrador: self.qrPaymentVM.qrPayData.id_cobrador, id_usuario: self.qrPaymentVM.qrPayData.id_usuario), tag: 1, selection: self.$action) {
+                EmptyView()
+        }
+        }
+        .padding()
+    }
+    
 }
 
 struct PayView_Previews: PreviewProvider {

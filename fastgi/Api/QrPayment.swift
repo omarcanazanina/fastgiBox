@@ -15,12 +15,11 @@ class QrPayment: ObservableObject {
     private let tokenKey = "token"
     private let idKey = "usuario._id"
     
-    func pagoQr(monto:BtnEm, recarga:String, telefono:String, text: String){
+    @Published var pagoResponse: QrPaymentModel?
+    
+    func verificaUser(id_cobrador: String){
         let parametros : Parameters = [
-            "id": storage.string(forKey: idKey)!,
-            "empresa": monto,
-            "recarga":recarga,
-            "telefono":telefono
+            "id_cobrador": id_cobrador
         ]
         
         // creando headers
@@ -32,8 +31,8 @@ class QrPayment: ObservableObject {
             headers.add(name: "token", value: token)
         }
         
-        
-        guard let url = URL(string: "https://api.fastgi.com/pago") else { return }
+        let idusu = storage.string(forKey: idKey)!
+        guard let url = URL(string: "https://api.fastgi.com/transporte/\(idusu)") else { return }
         DispatchQueue.main.async {
             AF.request(url,method:.post,parameters: parametros,headers: headers )
                 // .validate(contentType: ["application/json"])
@@ -41,12 +40,53 @@ class QrPayment: ObservableObject {
                     switch response.result {
                     case let .success(data):
                         //Cast respuesta a SmsResponse
+                        if let decodedResponse = try? JSONDecoder().decode(verificaUserResponse.self, from: data) {
+                            print("respuesta de la peticion \(decodedResponse.id_cobrador)")
+                           //self.pagoResponse=decodedResponse.usuario
+                            return
+                        }
+                        //Cast respuesta a ErrorResponce
+                        if let decodedResponse = try? JSONDecoder().decode(ErrorVerificaUserResponse.self, from: data) {
+                            print(decodedResponse.err.message)
+                            //  self.ErrorRes = decodedResponse.err.message
+                            return
+                        }
+                    case let .failure(error):
+                        print(error)
+                    }
+                }
+        }
+        
+    }
+    
+    
+    func pagoQr(id_cobrador:String, monto:String){
+        let parametros : Parameters = [
+            "id_cobrador": id_cobrador,
+            "monto": monto
+        ]
+        
+        // creando headers
+        var headers: HTTPHeaders = [
+            "Accept": "application/json"
+        ]
+        
+        if let token = storage.string(forKey: tokenKey){
+            headers.add(name: "token", value: token)
+        }
+        
+        let idusu = storage.string(forKey: idKey)!
+        guard let url = URL(string: "https://api.fastgi.com/transtrans/\(idusu)") else { return }
+        DispatchQueue.main.async {
+            AF.request(url,method:.post,parameters: parametros,headers: headers )
+                // .validate(contentType: ["application/json"])
+                .responseData{response in
+                    switch response.result {
+                    case let .success(data):
                         if let decodedResponse = try? JSONDecoder().decode(QrPaymentResponse.self, from: data) {
-                            print(decodedResponse.pago)
-                            // self.control = decodedResponse.recarga.empresa
-                            //self.recargaResponse = decodedResponse.recarga
-                            //print(self.recargaResponse!)
-                            // self.ruta = "idlogin"
+                            //print(decodedResponse.recarga)
+                            self.pagoResponse = decodedResponse.recarga
+                            print(self.pagoResponse!)
                             return
                         }
                         //Cast respuesta a ErrorResponce

@@ -19,6 +19,7 @@
 		9279D54F256F15A400890C84 /* QrGeneratorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9279D54E256F15A400890C84 /* QrGeneratorView.swift */; };
 		927D1DA125785C4200A97455 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 927D1DA025785C4200A97455 /* UserData.swift */; };
 		927D1DA425785DF700A97455 /* UserDataViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 927D1DA325785DF700A97455 /* UserDataViewModel.swift */; };
+		9290C1BB257AFFB000504158 /* TestpayDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9290C1BA257AFFB000504158 /* TestpayDetail.swift */; };
 		92A3BA252553616F00DF3707 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A3BA242553616F00DF3707 /* AppDelegate.swift */; };
 		92A3BA272553616F00DF3707 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A3BA262553616F00DF3707 /* SceneDelegate.swift */; };
 		92A3BA292553616F00DF3707 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A3BA282553616F00DF3707 /* ContentView.swift */; };
@@ -115,6 +116,7 @@
 		9279D54E256F15A400890C84 /* QrGeneratorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QrGeneratorView.swift; sourceTree = "<group>"; };
 		927D1DA025785C4200A97455 /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 		927D1DA325785DF700A97455 /* UserDataViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataViewModel.swift; sourceTree = "<group>"; };
+		9290C1BA257AFFB000504158 /* TestpayDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestpayDetail.swift; sourceTree = "<group>"; };
 		92A3BA212553616F00DF3707 /* fastgi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = fastgi.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		92A3BA242553616F00DF3707 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		92A3BA262553616F00DF3707 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -230,6 +232,7 @@
 				9279D54E256F15A400890C84 /* QrGeneratorView.swift */,
 				92064B8D25706ABA00D84932 /* PayView.swift */,
 				92B776962575C02200210258 /* RegistrationFormView1.swift */,
+				9290C1BA257AFFB000504158 /* TestpayDetail.swift */,
 			);
 			path = QrPayment;
 			sourceTree = "<group>";
@@ -658,6 +661,7 @@
 				92A3BACE255369A600DF3707 /* ListContactsView.swift in Sources */,
 				C0100033257ACF3B00945FCA /* SlideFormJoinView.swift in Sources */,
 				C0EA57F125561ED8003FE66F /* ItemListCreditCardView.swift in Sources */,
+				9290C1BB257AFFB000504158 /* TestpayDetail.swift in Sources */,
 				92A3BB0725536DCD00DF3707 /* Validation+Extensions.swift in Sources */,
 				92A3BABA255368BE00DF3707 /* SettingsView.swift in Sources */,
 				92A3BA272553616F00DF3707 /* SceneDelegate.swift in Sources */,

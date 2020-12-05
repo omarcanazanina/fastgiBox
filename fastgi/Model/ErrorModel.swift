@@ -29,3 +29,10 @@ struct ErrorQrPayment : Codable{
     var name: String
     var message: String
 }
+
+//error verificaUser
+struct ErrorVerificaUser : Codable{
+    var name: String
+    var message: String
+    var expiredAt: String
+}

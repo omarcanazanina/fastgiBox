@@ -21,6 +21,8 @@ struct HomeView: View {
     @State private var resultado = ""
     
     @State private var action:Int? = 0
+    //test
+    @ObservedObject var qrPayment = QrPayment()
     
     init(currentBtnEm: Binding<BtnEm>) {
         self._currentBtnEm = currentBtnEm
@@ -69,6 +71,7 @@ struct HomeView: View {
             Button(action: {
                 self.showScanner = true
                 self.action = 1
+               
             }){
                 HStack{
                     Image("Transport")
@@ -88,6 +91,7 @@ struct HomeView: View {
                     switch result {
                     case .success(let codigo):
                         self.resultado = codigo
+                        //self.qrPayment.verificaUser(id_cobrador: codigo)
                         //self.showScanner = false
                        
                     case .failure(let error):
@@ -140,6 +144,17 @@ struct HomeView: View {
     var body: some View {
         HStack{
             self.home
+            
+           /* Button(action:{
+                self.qrPayment.verificaUser(id_cobrador: "5fbe3893dee3371becd7bbf1")
+            }){
+                Text("verifica")
+            }
+            Button(action:{
+                self.qrPayment.pagoQr(id_cobrador: "5fbe3893dee3371becd7bbf1", monto: "30")
+            }){
+                Text("pago")
+            }*/
         }
 }
    
