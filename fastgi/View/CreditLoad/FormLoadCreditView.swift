@@ -97,7 +97,7 @@ struct FormLoadCreditView: View {
                     /*print(self.SelectEm)
                     print(self.montoRecarga)
                     print(self.telefono)*/
-                        self.RecargaVM.SendRecarga(empresa: self.SelectEm, recarga: self.montoRecarga, telefono: self.telefono,  text: "")
+                        //self.RecargaVM.SendRecarga(empresa: self.SelectEm, recarga: self.montoRecarga, telefono: self.telefono,  text: "")
                         self.action = 1
                           //self.login.ruta = "recarga"
                    

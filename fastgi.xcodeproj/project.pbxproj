@@ -14,6 +14,8 @@
 		9208DE4B256EFB4A00EA9C23 /* RegistrationFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9208DE4A256EFB4A00EA9C23 /* RegistrationFormView.swift */; };
 		9224FE6A256DE45F00F79FA4 /* MembershipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9224FE69256DE45F00F79FA4 /* MembershipView.swift */; };
 		92278A5F2556186E00D746EA /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92278A5E2556186E00D746EA /* Helper.swift */; };
+		925F07282580323000153B5A /* Afiliacion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 925F07272580323000153B5A /* Afiliacion.swift */; };
+		925F072B2580372B00153B5A /* AfiliacionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 925F072A2580372B00153B5A /* AfiliacionViewModel.swift */; };
 		9279D548256F0C6500890C84 /* QrReaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9279D547256F0C6500890C84 /* QrReaderView.swift */; };
 		9279D54C256F0D5400890C84 /* CodeScanner in Frameworks */ = {isa = PBXBuildFile; productRef = 9279D54B256F0D5400890C84 /* CodeScanner */; };
 		9279D54F256F15A400890C84 /* QrGeneratorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9279D54E256F15A400890C84 /* QrGeneratorView.swift */; };
@@ -112,6 +114,8 @@
 		9208DE4A256EFB4A00EA9C23 /* RegistrationFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationFormView.swift; sourceTree = "<group>"; };
 		9224FE69256DE45F00F79FA4 /* MembershipView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MembershipView.swift; sourceTree = "<group>"; };
 		92278A5E2556186E00D746EA /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
+		925F07272580323000153B5A /* Afiliacion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Afiliacion.swift; sourceTree = "<group>"; };
+		925F072A2580372B00153B5A /* AfiliacionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AfiliacionViewModel.swift; sourceTree = "<group>"; };
 		9279D547256F0C6500890C84 /* QrReaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QrReaderView.swift; sourceTree = "<group>"; };
 		9279D54E256F15A400890C84 /* QrGeneratorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QrGeneratorView.swift; sourceTree = "<group>"; };
 		927D1DA025785C4200A97455 /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
@@ -323,6 +327,7 @@
 				92A3BA5D2553642800DF3707 /* Login.swift */,
 				927D1DA025785C4200A97455 /* UserData.swift */,
 				92AB8CF12579B6C4006F0FA7 /* QrPayment.swift */,
+				925F07272580323000153B5A /* Afiliacion.swift */,
 			);
 			path = Api;
 			sourceTree = "<group>";
@@ -338,6 +343,7 @@
 				92A3BA702553655500DF3707 /* LoginViewModel.swift */,
 				927D1DA325785DF700A97455 /* UserDataViewModel.swift */,
 				92AB8CFA2579B9E1006F0FA7 /* QrPaymentViewModel.swift */,
+				925F072A2580372B00153B5A /* AfiliacionViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -688,6 +694,7 @@
 				92A3BA7C255365E000DF3707 /* ContactsModel.swift in Sources */,
 				C05413E525783C2F000343EB /* TestWizardView.swift in Sources */,
 				92A3BADD25536A5600DF3707 /* CardServiceView.swift in Sources */,
+				925F07282580323000153B5A /* Afiliacion.swift in Sources */,
 				92A3BAA3255367C600DF3707 /* BrokenRulesView.swift in Sources */,
 				92A3BA512553638700DF3707 /* ImageAvatar.swift in Sources */,
 				92A3BA5B2553641100DF3707 /* Recargas.swift in Sources */,
@@ -703,6 +710,7 @@
 				92278A5F2556186E00D746EA /* Helper.swift in Sources */,
 				9279D54F256F15A400890C84 /* QrGeneratorView.swift in Sources */,
 				92A3BAF725536B8C00DF3707 /* SelectCreditCardView.swift in Sources */,
+				925F072B2580372B00153B5A /* AfiliacionViewModel.swift in Sources */,
 				92A3BA622553648C00DF3707 /* ImageViewModel.swift in Sources */,
 				92A3BA7F255365FA00DF3707 /* RecargaModel.swift in Sources */,
 				92A3BA79255365C800DF3707 /* ContactModel.swift in Sources */,

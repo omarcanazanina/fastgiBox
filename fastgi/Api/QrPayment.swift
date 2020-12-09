@@ -103,5 +103,122 @@ class QrPayment: ObservableObject {
         
     }
     
+    func pagoQr1(id_cobrador:String, monto:String){
+        let parametros : Parameters = [
+            "id_cobrador": id_cobrador,
+            "monto": monto
+        ]
+        
+        // creando headers
+        var headers: HTTPHeaders = [
+            "Accept": "application/json"
+        ]
+        
+        if let token = storage.string(forKey: tokenKey){
+            headers.add(name: "token", value: token)
+        }
+        
+        let idusu = storage.string(forKey: idKey)!
+        guard let url = URL(string: "https://api.fastgi.com/transtrans/\(idusu)") else { return }
+        DispatchQueue.main.async {
+            AF.request(url,method:.post,parameters: parametros,headers: headers )
+                // .validate(contentType: ["application/json"])
+                .responseData{response in
+                    switch response.result {
+                    case let .success(data):
+                        if let decodedResponse = try? JSONDecoder().decode(QrPaymentResponse.self, from: data) {
+                            //print(decodedResponse.recarga)
+                            self.pagoResponse = decodedResponse.recarga
+                            print(self.pagoResponse!)
+                            return
+                        }
+                        //Cast respuesta a ErrorResponce
+                        if let decodedResponse = try? JSONDecoder().decode(ErrorQrPaymentResponse.self, from: data) {
+                            print(decodedResponse.err.message)
+                            //  self.ErrorRes = decodedResponse.err.message
+                            return
+                        }
+                    case let .failure(error):
+                        print(error)
+                    }
+                }
+        }
+        
+    }
+       func liat(id_cobrador:String, monto:String){
+        let parametros : Parameters = [
+            "id_cobrador": id_cobrador,
+            "monto": monto
+        ]
+        
+        // creando headers
+        var headers: HTTPHeaders = [
+            "Accept": "application/json"
+        ]
+        
+        if let token = storage.string(forKey: tokenKey){
+            headers.add(name: "token", value: token)
+        }
+        
+        let idusu = storage.string(forKey: idKey)!
+        guard let url = URL(string: "https://api.fastgi.com/transtrans/\(idusu)") else { return }
+        DispatchQueue.main.async {
+            AF.request(url,method:.post,parameters: parametros,headers: headers )
+                // .validate(contentType: ["application/json"])
+                .responseData{response in
+                    switch response.result {
+                    case let .success(data):
+                        if let decodedResponse = try? JSONDecoder().decode(QrPaymentResponse.self, from: data) {
+                            //print(decodedResponse.recarga)
+                            self.pagoResponse = decodedResponse.recarga
+                            print(self.pagoResponse!)
+                            return
+                        }
+                        //Cast respuesta a ErrorResponce
+                        if let decodedResponse = try? JSONDecoder().decode(ErrorQrPaymentResponse.self, from: data) {
+                            print(decodedResponse.err.message)
+                            //  self.ErrorRes = decodedResponse.err.message
+                            return
+                        }
+                    case let .failure(error):
+                        print(error)
+                    }
+                }
+        }
+        
+    }
+    
+  /*  func ListPagoz(){
+          // creando headers
+          var headers: HTTPHeaders = [
+              "Accept": "application/json"
+          ]
+          if let token = storage.string(forKey: tokenKey){
+              headers.add(name: "token", value: token)
+          }
+          //"5f56de014e834e3bc4c02059"
+          let idusu = storage.string(forKey: idKey)!
+              guard let url = URL(string: "https://api.fastgi.com/pagos/\(idusu)") else { return }
+       //print("este es el idusuariolist recargas\(idusu)")
+              DispatchQueue.main.async {
+                  AF.request(url,method:.get,headers: headers )
+                      //.validate(contentType: ["application/json"])
+                      .responseData{response in
+                       //debugPrint(response)
+                          switch response.result {
+                          case let .success(data):
+                              //Cast respuesta a MeResponce
+                              if let decodedResponse = try? JSONDecoder().decode(GetRecargasResponse.self, from: data) {
+                              // print(decodedResponse.recarga)
+//                               self.getRecargasResponse=decodedResponse
+  //                             print(self.getRecargasResponse?.recarga ?? "")
+                                  return
+                              }
+                          case let .failure(error):
+                              print(error)
+                          }
+                  }
+              }
+      }*/
     
 }

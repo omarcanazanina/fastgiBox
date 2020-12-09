@@ -36,7 +36,7 @@ class QrPaymentViewModel: ObservableObject {
     }
     
     func pagoQr(id_cobrador:String, monto:String) {
-        qrPayResponse.pagoQr(id_cobrador: id_cobrador, monto: monto)
+       // qrPayResponse.pagoQr(id_cobrador: id_cobrador, monto: monto)
         //RecargaResponse.sendRecarga(empresa:empresa, recarga:recarga, telefono: telefono, text:text)
     }
     
