@@ -46,7 +46,7 @@ class Recargas: ObservableObject {
             AF.request(url,method:.post,parameters: parametros,headers: headers )
                 // .validate(contentType: ["application/json"])
                 .responseData{response in
-                    //print("aki")
+                    print("aki")
                     // debugPrint(response)
                     //print(response)
                     switch response.result {

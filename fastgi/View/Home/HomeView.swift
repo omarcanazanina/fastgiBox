@@ -23,7 +23,7 @@ struct HomeView: View {
     @State private var action:Int? = 0
     //test
     @ObservedObject var qrPayment = QrPayment()
-    
+    @ObservedObject var recargas = Recargas()
     init(currentBtnEm: Binding<BtnEm>) {
         self._currentBtnEm = currentBtnEm
         
@@ -145,12 +145,13 @@ struct HomeView: View {
         HStack{
             self.home
             
-           /* Button(action:{
-                self.qrPayment.verificaUser(id_cobrador: "5fbe3893dee3371becd7bbf1")
+            /*  Button(action:{
+                self.recargas.sendRecarga(empresa: .Entel, recarga: "10", telefono: "79434343", text: "")
+                // self.qrPayment.verificaUser(id_cobrador: "5fbe3893dee3371becd7bbf1")
             }){
                 Text("verifica")
             }
-            Button(action:{
+           Button(action:{
                 self.qrPayment.pagoQr(id_cobrador: "5fbe3893dee3371becd7bbf1", monto: "30")
             }){
                 Text("pago")

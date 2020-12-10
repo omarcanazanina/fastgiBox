@@ -94,10 +94,10 @@ struct FormLoadCreditView: View {
             VStack{
                 ContentButtonsView(currentBtn: $montoRecarga1,text: "", montoRecarga:  $montoRecarga)
                 Button(action: {
-                    /*print(self.SelectEm)
+                    print(self.SelectEm)
                     print(self.montoRecarga)
-                    print(self.telefono)*/
-                        //self.RecargaVM.SendRecarga(empresa: self.SelectEm, recarga: self.montoRecarga, telefono: self.telefono,  text: "")
+                    print(self.telefono)
+                        self.RecargaVM.SendRecarga(empresa: self.SelectEm, recarga: self.montoRecarga, telefono: self.telefono,  text: "")
                         self.action = 1
                           //self.login.ruta = "recarga"
                    
