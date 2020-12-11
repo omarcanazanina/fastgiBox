@@ -14,6 +14,8 @@ class UserDataViewModel: ObservableObject {
     var userDataResponse=UserData()
     //datos del usuario
     @Published var user = UpdateUserModel(role: "", estado: true, _id: "", telefono: "", pin: "", fecha: "", apellidos: "", correo: "", direccion: "", nit: "", nombrenit: "", nombres: "", ci: "")
+    //datos del usuario pago
+    @Published var userPago = UpdateUserPagoModel(img: "", role: "", estado: true, _id: "", telefono: "", pin: "", fecha: "", apellidos: "", correo: "", direccion: "", nit: "", nombrenit: "", nombres: "")
     
     private var disposables: Set<AnyCancellable> = []
     
@@ -30,6 +32,19 @@ class UserDataViewModel: ObservableObject {
               .eraseToAnyPublisher()
       }
     
+    //DataUser
+    private var DataUserPagoPublisher: AnyPublisher<UpdateUserPagoModel, Never> {
+          userDataResponse.$userResponsePago
+              .receive(on: RunLoop.main)
+              .map { response in
+                  guard let response = response else {
+                    return self.userPago
+                  }
+                  return response
+              }
+              .eraseToAnyPublisher()
+      }
+    
     init(){
         //DataUser
           DataUserPublisher
@@ -37,15 +52,20 @@ class UserDataViewModel: ObservableObject {
               .assign(to: \.user, on: self)
               .store(in: &disposables)
         
+        //DataUser
+          DataUserPagoPublisher
+              .receive(on: RunLoop.main)
+              .assign(to: \.userPago, on: self)
+              .store(in: &disposables)
         
        DatosUser()
     }
     
     func DatosUser() {
-       // if self.control == 0 {
             userDataResponse.DataUser()
-        //}
-       
       }
     
+    func DatosUserPago(id_usuario: String) {
+            userDataResponse.DataUserPago(id_usuario: id_usuario)
+      }
 }

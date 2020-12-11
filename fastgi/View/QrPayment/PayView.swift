@@ -36,37 +36,6 @@ struct PayView: View {
         
     }
     
-  
-    
-    
-   
-    var body: some View {
-       // NavigationView{
-            VStack{
-                Text("Pagar transporte")
-                    .font(.title)
-                self.imageProfile
-                Text(self.user)
-                VStack(alignment: .leading, spacing: 8){
-                    Text("MONTO BS.")
-                        .textStyle(TitleStyle())
-                    TextField("Ingrese monto", text: $monto)
-                        .textFieldStyle(Input())
-                        .keyboardType(.numberPad)
-                        .introspectTextField { (textField) in
-                            let toolBar = UIToolbar(frame: CGRect(x: 0, y: 0, width: textField.frame.size.width, height: 44))
-                            let flexButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil)
-                            let doneButton = UIBarButtonItem(title: "Cerrar", style: .done, target: self, action: #selector(textField.doneButtonTapped(button:)))
-                         doneButton.tintColor = .darkGray
-                            toolBar.items = [flexButton, doneButton]
-                            toolBar.setItems([flexButton, doneButton], animated: true)
-                            textField.inputAccessoryView = toolBar
-                         }
-                }
-                self.buttonSuccess
-            }.padding(.horizontal)
-        //}//.navigationBarTitle("Pagar transporte", displayMode: .inline)
-    }
     
     var buttonSuccess:some View {
         VStack(){
@@ -84,12 +53,47 @@ struct PayView: View {
                     .shadow(color: Color.black.opacity(0.1), radius: 4, x: 2, y: 3)
                 
             }
-            NavigationLink(destination: TestpayDetail(monto: self.monto, id_cobrador: self.qrPaymentVM.qrPayData.id_cobrador, id_usuario: self.qrPaymentVM.qrPayData.id_usuario), tag: 1, selection: self.$action) {
+           /* NavigationLink(destination: TestpayDetail(monto: self.monto, nombreCobrador: self.user, id_usuario: self.qrPaymentVM.qrPayData.id_usuario), tag: 1, selection: self.$action) {
                 EmptyView()
-        }
+        }*/
+            NavigationLink(destination: TestpayDetail(monto: self.monto, nombreCobrador: self.user, id_usuario: self.qrPaymentVM.qrPayData.id_usuario, fecha: "",fechaFormat: "", horaFormat: ""), tag: 1, selection: self.$action) {
+                 EmptyView()
+         }
         }
         .padding()
     }
+    
+    
+    var body: some View {
+       // NavigationView{
+            VStack{
+                Text("Pagar transporte")
+                    .font(.title)
+                self.imageProfile
+                Text("\(self.user)")
+                //x Text("este es el user\(self.userDataVM.userPago.nombres)")
+                VStack(alignment: .leading, spacing: 8){
+                    Text("MONTO BS.")
+                        .textStyle(TitleStyle())
+                    TextField("Ingrese monto", text: $monto)
+                        .textFieldStyle(Input())
+                        .keyboardType(.numberPad)
+                        .introspectTextField { (textField) in
+                            let toolBar = UIToolbar(frame: CGRect(x: 0, y: 0, width: textField.frame.size.width, height: 44))
+                            let flexButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil)
+                            let doneButton = UIBarButtonItem(title: "Cerrar", style: .done, target: self, action: #selector(textField.doneButtonTapped(button:)))
+                         doneButton.tintColor = .darkGray
+                            toolBar.items = [flexButton, doneButton]
+                            toolBar.setItems([flexButton, doneButton], animated: true)
+                            textField.inputAccessoryView = toolBar
+                         }
+                }
+                self.buttonSuccess
+            }
+            .padding(.horizontal)
+        //}//.navigationBarTitle("Pagar transporte", displayMode: .inline)
+    }
+    
     
 }
 

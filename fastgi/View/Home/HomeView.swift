@@ -23,7 +23,10 @@ struct HomeView: View {
     @State private var action:Int? = 0
     //test
     @ObservedObject var qrPayment = QrPayment()
-    @ObservedObject var recargas = Recargas()
+    @ObservedObject var userData = UserData()
+    @ObservedObject var userDataVM = UserDataViewModel()
+    @State var test = ""
+    
     init(currentBtnEm: Binding<BtnEm>) {
         self._currentBtnEm = currentBtnEm
         
@@ -99,7 +102,7 @@ struct HomeView: View {
                     }
                 }
             }
-                NavigationLink(destination: PayView(user: self.resultado), tag: 1, selection: self.$action) {
+            NavigationLink(destination: PayView(user: "\(self.userDataVM.userPago.nombres) \(self.userDataVM.userPago.apellidos)"), tag: 1, selection: self.$action) {
                     EmptyView()
                 }
             
@@ -134,24 +137,35 @@ struct HomeView: View {
                 }.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
                 
             }.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
-           //  Text(self.resultado)
+            /*VStack{
+                Text("usuario respuesta\(self.userDataVM.userPago.nombres)")
+                Text("llego el user\(self.test)")
+                Button(action:{
+                 // self.recargas.sendRecarga(empresa: .Entel, recarga: "10", telefono: "79434343", text: "")
+                  // self.qrPayment.verificaUser(id_cobrador: "5fbe3893dee3371becd7bbf1")
+                    
+                    self.userDataVM.DatosUserPago(id_usuario: self.test)
+              }){
+                  Text("verifica")
+              }
+            }*/
+            // Text(self.resultado)
            /*     NavigationLink(destination: PayView(monto: self.resultado), tag: 1, selection: self.$action) {
                 EmptyView()
             }*/
+        }
+        .onAppear{
+            print("SE EJECUTO EL ONAPPEAR")
+            self.userDataVM.DatosUserPago(id_usuario: self.resultado)
         }.padding()
     }
     
     var body: some View {
         HStack{
             self.home
-            
-            /*  Button(action:{
-                self.recargas.sendRecarga(empresa: .Entel, recarga: "10", telefono: "79434343", text: "")
-                // self.qrPayment.verificaUser(id_cobrador: "5fbe3893dee3371becd7bbf1")
-            }){
-                Text("verifica")
-            }
-           Button(action:{
+           
+              
+            /* Button(action:{
                 self.qrPayment.pagoQr(id_cobrador: "5fbe3893dee3371becd7bbf1", monto: "30")
             }){
                 Text("pago")

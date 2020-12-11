@@ -15,3 +15,8 @@ struct ErrorDataUserResponse : Codable {
     var ok : Bool
     var err : ErrorUpdateUser
 }
+
+struct DataUserPagoResponse : Codable {
+    var ok: Bool
+    var usuario : UpdateUserPagoModel
+}

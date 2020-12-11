@@ -30,7 +30,7 @@ struct MembershipView: View {
             NavigationLink(destination: SlideFormJoinView(), tag: 1, selection: self.$action) {
                 EmptyView()
             }
-            Button(action: {
+           /* Button(action: {
                 self.action = 2
             }){
                 HStack{
@@ -47,7 +47,7 @@ struct MembershipView: View {
             }
             NavigationLink(destination: RegistrationFormView1(), tag: 2, selection: self.$action) {
                 EmptyView()
-            }
+            }*/
         }
      
     }
