@@ -92,7 +92,6 @@
 		92AB8CF52579B779006F0FA7 /* QrPaymentResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92AB8CF42579B779006F0FA7 /* QrPaymentResponse.swift */; };
 		92AB8CF82579B7F4006F0FA7 /* QrPaymentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92AB8CF72579B7F4006F0FA7 /* QrPaymentModel.swift */; };
 		92AB8CFB2579B9E1006F0FA7 /* QrPaymentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92AB8CFA2579B9E1006F0FA7 /* QrPaymentViewModel.swift */; };
-		92B776972575C02200210258 /* RegistrationFormView1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92B776962575C02200210258 /* RegistrationFormView1.swift */; };
 		92DBE2A225537827001B791B /* SwiftUIRefresh in Frameworks */ = {isa = PBXBuildFile; productRef = 92DBE2A125537827001B791B /* SwiftUIRefresh */; };
 		C0100033257ACF3B00945FCA /* SlideFormJoinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0100032257ACF3B00945FCA /* SlideFormJoinView.swift */; };
 		C05413E525783C2F000343EB /* TestWizardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05413E425783C2F000343EB /* TestWizardView.swift */; };
@@ -193,7 +192,6 @@
 		92AB8CF42579B779006F0FA7 /* QrPaymentResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QrPaymentResponse.swift; sourceTree = "<group>"; };
 		92AB8CF72579B7F4006F0FA7 /* QrPaymentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QrPaymentModel.swift; sourceTree = "<group>"; };
 		92AB8CFA2579B9E1006F0FA7 /* QrPaymentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QrPaymentViewModel.swift; sourceTree = "<group>"; };
-		92B776962575C02200210258 /* RegistrationFormView1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationFormView1.swift; sourceTree = "<group>"; };
 		C0100032257ACF3B00945FCA /* SlideFormJoinView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideFormJoinView.swift; sourceTree = "<group>"; };
 		C05413E425783C2F000343EB /* TestWizardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestWizardView.swift; sourceTree = "<group>"; };
 		C0722FA7257197AC00D5B225 /* ListBankView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListBankView.swift; sourceTree = "<group>"; };
@@ -237,7 +235,6 @@
 				9279D547256F0C6500890C84 /* QrReaderView.swift */,
 				9279D54E256F15A400890C84 /* QrGeneratorView.swift */,
 				92064B8D25706ABA00D84932 /* PayView.swift */,
-				92B776962575C02200210258 /* RegistrationFormView1.swift */,
 				9290C1BA257AFFB000504158 /* TestpayDetail.swift */,
 			);
 			path = QrPayment;
@@ -680,7 +677,6 @@
 				92A3BA852553662D00DF3707 /* ErrorModel.swift in Sources */,
 				92A3BA5E2553642800DF3707 /* Login.swift in Sources */,
 				92A3BABE255368F300DF3707 /* HistoryView.swift in Sources */,
-				92B776972575C02200210258 /* RegistrationFormView1.swift in Sources */,
 				9224FE6A256DE45F00F79FA4 /* MembershipView.swift in Sources */,
 				C0F0CF5C258037E000959338 /* ListCITypeView.swift in Sources */,
 				92A3BA45255362C500DF3707 /* ImagePicker.swift in Sources */,
