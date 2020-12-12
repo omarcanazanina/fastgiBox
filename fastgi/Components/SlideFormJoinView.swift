@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct SlideFormJoinView: View {
+    @ObservedObject var userDataVM = UserDataViewModel()
+    
+    //@State private var nombreCompletoUser: String = ""
     @State private var inputText: String = ""
     var isSelect:Bool? = true
     @State private var move:CGFloat = UIScreen.main.bounds.width
@@ -54,7 +57,7 @@ struct SlideFormJoinView: View {
                     .textStyle(TitleStyle())
                 Text("TITULAR")
                     .textStyle(TitleStyle())
-                TextField("Titular", text: $inputText)
+                TextField("Titular", text: self.$userDataVM.user.nombres)
                     .textFieldStyle(Input())
                 Text("BANCO")
                     .textStyle(TitleStyle())
@@ -63,6 +66,16 @@ struct SlideFormJoinView: View {
                     .textStyle(TitleStyle())
                 TextField("Nro. de cuenta", text: $inputText)
                     .textFieldStyle(Input())
+                    .keyboardType(.numberPad)
+                    .introspectTextField { (textField) in
+                        let toolBar = UIToolbar(frame: CGRect(x: 0, y: 0, width: textField.frame.size.width, height: 44))
+                        let flexButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil)
+                        let doneButton = UIBarButtonItem(title: "Cerrar", style: .done, target: self, action: #selector(textField.doneButtonTapped(button:)))
+                     doneButton.tintColor = .darkGray
+                        toolBar.items = [flexButton, doneButton]
+                        toolBar.setItems([flexButton, doneButton], animated: true)
+                        textField.inputAccessoryView = toolBar
+                     }
             }.padding()
             Spacer()
         }.frame(width: UIScreen.main.bounds.width)
@@ -95,18 +108,28 @@ struct SlideFormJoinView: View {
                     .textStyle(TitleStyle())
                 Text("NOMBRE COMPLETO")
                     .textStyle(TitleStyle())
-                TextField("Nombre completo", text: $inputText)
+                TextField("Nombre completo", text: self.$userDataVM.user.nombres)
                     .textFieldStyle(Input())
                 Text("DOCUMENTO DE IDENTIDAD")
                     .textStyle(TitleStyle())
                 HStack{
-                    TextField("Nro. Documento", text: $inputText)
+                    TextField("Nro. Documento", text: self.$userDataVM.user.ci)
                         .textFieldStyle(Input())
+                        .keyboardType(.numberPad)
+                        .introspectTextField { (textField) in
+                            let toolBar = UIToolbar(frame: CGRect(x: 0, y: 0, width: textField.frame.size.width, height: 44))
+                            let flexButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil)
+                            let doneButton = UIBarButtonItem(title: "Cerrar", style: .done, target: self, action: #selector(textField.doneButtonTapped(button:)))
+                         doneButton.tintColor = .darkGray
+                            toolBar.items = [flexButton, doneButton]
+                            toolBar.setItems([flexButton, doneButton], animated: true)
+                            textField.inputAccessoryView = toolBar
+                         }
                     self.pickerCIType
                 }
                 Text("CORREO ELECTRÓNICO")
                     .textStyle(TitleStyle())
-                TextField("Correo electrónico", text: $inputText)
+                TextField("Correo electrónico", text: self.$userDataVM.user.correo)
                     .textFieldStyle(Input())
             }.padding()
             Spacer()
@@ -287,17 +310,23 @@ struct SlideFormJoinView: View {
                         self.previus()
                     }
                 }
-            Text("Aceptar")
-                .frame(maxWidth:150)
-                .padding(12)
-                .foregroundColor(.white)
-                .background(Color("primary"))
-                .clipShape(Capsule())
-                .onTapGesture {
-                    withAnimation(Animation.spring()){
-                        self.next()
+            
+            Button(action: {
+                print("presiono Aceptar ****************************")
+            }){
+                Text("Aceptar")
+                    .frame(maxWidth:150)
+                    .padding(12)
+                    .foregroundColor(.white)
+                    .background(Color("primary"))
+                    .clipShape(Capsule())
+                    .onTapGesture {
+                        withAnimation(Animation.spring()){
+                            self.next()
+                        }
                     }
-                }
+            }
+           
         }
     }
     var body: some View {
@@ -345,8 +374,9 @@ struct SlideFormJoinView: View {
                 }
             }.padding(.bottom,10)
             
+        }.onAppear{
+            self.userDataVM.DatosUser()
         }
-        
     }
 }
 

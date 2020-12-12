@@ -13,22 +13,95 @@ struct ListBankView: View {
         List{
             Button(action: {
                 self.showingSheet = false
-                self.bank = "Bank 1"
+                self.bank = "Bisa S.A."
             })
             {
                 HStack(){
-                    Text("🏦 Bank 1")
+                    Text("🏦 Bisa S.A.")
                 }
             }
             Button(action: {
                 self.showingSheet = false
-                self.bank = "Bank 2"
+                self.bank = "Económico S.A."
             })
             {
                 HStack(){
-                    Text("🏦 Bank 2")
+                    Text("🏦 Económico S.A.")
                 }
             }
+            Button(action: {
+                self.showingSheet = false
+                self.bank = "Fassil S.A."
+            })
+            {
+                HStack(){
+                    Text("🏦 Fassil S.A.")
+                }
+            }
+            Button(action: {
+                self.showingSheet = false
+                self.bank = "Fortaleza S.A."
+            })
+            {
+                HStack(){
+                    Text("🏦 Fortaleza S.A.")
+                }
+            }
+            Button(action: {
+                self.showingSheet = false
+                self.bank = "Ganadero S.A."
+            })
+            {
+                HStack(){
+                    Text("🏦 Ganadero S.A.")
+                }
+            }
+            Button(action: {
+                self.showingSheet = false
+                self.bank = "Prodem S.A."
+            })
+            {
+                HStack(){
+                    Text("🏦 Prodem S.A.")
+                }
+            }
+            Button(action: {
+                self.showingSheet = false
+                self.bank = "Unión S.A."
+            })
+            {
+                HStack(){
+                    Text("🏦 Unión S.A.")
+                }
+            }
+            Button(action: {
+                self.showingSheet = false
+                self.bank = "Mercantil Santa Cruz S.A."
+            })
+            {
+                HStack(){
+                    Text("🏦 Mercantil Santa Cruz S.A.")
+                }
+            }
+            Button(action: {
+                self.showingSheet = false
+                self.bank = "Nacional de Bolivia S.A."
+            })
+            {
+                HStack(){
+                    Text("🏦 Nacional de Bolivia S.A.")
+                }
+            }
+            Button(action: {
+                self.showingSheet = false
+                self.bank = "Fomento a Iniciativas Económicas S.A."
+            })
+            {
+                HStack(){
+                    Text("🏦 Fomento a Iniciativas Económicas S.A.")
+                }
+            }
+            
         }
     }
     var body: some View {

@@ -122,7 +122,7 @@ struct TestpayDetail: View {
                         .textStyle(TitleStyle())
                         .frame(maxWidth: .infinity, alignment: .trailing)
                     
-                    Text("\(self.monto)")
+                    Text("\(self.monto).00 Bs.")
                         .foregroundColor(.black)
                         .frame(maxWidth: .infinity, alignment: .leading)
                     
