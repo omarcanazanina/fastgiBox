@@ -25,6 +25,7 @@ struct FormLoadCreditView: View {
     @State var showingSheet = false
     @State private  var nombreContact = ""
     
+    
     var home: some View {
         ScrollView{
             //botones de la empresa
@@ -95,6 +96,7 @@ struct FormLoadCreditView: View {
                 ContentButtonsView(currentBtn: $montoRecarga1,text: "", montoRecarga:  $montoRecarga)
                 Button(action: {
                     print(self.SelectEm)
+                    print(self.montoRecarga1)
                     print(self.montoRecarga)
                     print(self.telefono)
                         self.RecargaVM.SendRecarga(empresa: self.SelectEm, recarga: self.montoRecarga, telefono: self.telefono,  text: "")
@@ -139,6 +141,6 @@ struct FormLoadCreditView: View {
 struct FormLoadCreditView_Previews: PreviewProvider {
     static var previews: some View {
        // FormLoadCreditView(SelectEm: .Entel, montoRecarga1: .Btn10, montoRecarga: "")
-        FormLoadCreditView(Empresa: "", SelectEm: .Tigo, montoRecarga1: .Btn10, montoRecarga: "")
+        FormLoadCreditView(Empresa: "", SelectEm: .Tigo, montoRecarga1: .Btn30, montoRecarga: "")
     }
 }

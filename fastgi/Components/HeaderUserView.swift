@@ -15,7 +15,8 @@ struct HeaderUserView: View {
     @State var controlMenu = 1
     var imgProfile:some View{
         HStack{
-            WebImage(url: URL(string: "https://api.fastgi.com/avatar/\(_id)" ))
+            WebImage(url: URL(string: "https://i.postimg.cc/8kJ4bSVQ/image.jpg" ))
+            //WebImage(url: URL(string: "https://api.fastgi.com/avatar/\(_id)" ))
                 .placeholder(Image( "user-default"))
                     .resizable()
                     .frame(width:35, height: 35)

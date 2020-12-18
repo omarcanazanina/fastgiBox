@@ -24,7 +24,7 @@ struct TransactionDetailView: View {
     
     //datos user
     @ObservedObject var userDataVM = UserDataViewModel()
-    
+    var navigationRoot = NavigationRoot()
     var FlaseCheck: some View{
         Image(systemName: "xmark")
             .resizable()
@@ -189,7 +189,12 @@ struct TransactionDetailView: View {
             }
             Spacer()
             
-            
+            Button(action: {
+                self.navigationRoot.setRootView()
+            })
+            {
+                Text("OK")
+            }
             if self.showBtn! {
                 
                 Button(action: {

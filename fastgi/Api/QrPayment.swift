@@ -14,7 +14,8 @@ class QrPayment: ObservableObject {
     private let storage = UserDefaults.standard
     private let tokenKey = "token"
     private let idKey = "usuario._id"
-    
+    @Published var messageError :String = ""
+    @Published var userCorrecto :String = ""
     @Published var pagoResponse: QrPaymentModel?
     
     func verificaUser(id_cobrador: String){
@@ -41,13 +42,17 @@ class QrPayment: ObservableObject {
                     case let .success(data):
                         //Cast respuesta a SmsResponse
                         if let decodedResponse = try? JSONDecoder().decode(verificaUserResponse.self, from: data) {
-                            print("respuesta de la peticion \(decodedResponse.id_cobrador)")
+                           // print("respuesta de la peticion \(decodedResponse.id_cobrador)")
+                            self.userCorrecto = decodedResponse.id_cobrador
+                            print("resp del verifca user akiiiii*** \(self.userCorrecto)")
                            //self.pagoResponse=decodedResponse.usuario
                             return
                         }
                         //Cast respuesta a ErrorResponce
                         if let decodedResponse = try? JSONDecoder().decode(ErrorVerificaUserResponse.self, from: data) {
-                            print(decodedResponse.err.message)
+                            //print("ESTE ES EL ERROR \(decodedResponse.err.kind)")
+                            self.messageError = decodedResponse.err.kind
+                            print("EL ERROR ES \(self.messageError)")
                             //  self.ErrorRes = decodedResponse.err.message
                             return
                         }
@@ -91,7 +96,7 @@ class QrPayment: ObservableObject {
                         }
                         //Cast respuesta a ErrorResponce
                         if let decodedResponse = try? JSONDecoder().decode(ErrorQrPaymentResponse.self, from: data) {
-                            print(decodedResponse.err.message)
+                            print("ESTE ES EL ERROR \(decodedResponse.err.message)")
                             //  self.ErrorRes = decodedResponse.err.message
                             return
                         }

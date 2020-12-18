@@ -272,8 +272,9 @@ struct SettingsView: View {
     
     var imageProfile:some View {
         HStack(alignment: .center){
-                WebImage(url: URL(string: "https://api.fastgi.com/avatar/\(self.userDataVM.user._id)" ))
-                    .onSuccess { image, data, cacheType in
+                //WebImage(url: URL(string: "https://api.fastgi.com/avatar/\(self.userDataVM.user._id)" ))
+            WebImage(url: URL(string: "https://i.postimg.cc/8kJ4bSVQ/image.jpg" ))
+            .onSuccess { image, data, cacheType in
                         // Success
                         // Note: Data exist only when queried from disk cache or network. Use `.queryMemoryData` if you really need data
                     }

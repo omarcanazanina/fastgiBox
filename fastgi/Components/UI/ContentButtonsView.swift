@@ -19,7 +19,7 @@ struct ContentButtonsView: View {
 
 struct ContentButtonsView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentButtonsView(currentBtn: .constant(.Btn10), text: "", montoRecarga: .constant("10"))
+        ContentButtonsView(currentBtn: .constant(.Btn30), text: "", montoRecarga: .constant("30"))
     }
 }
 

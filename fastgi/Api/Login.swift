@@ -17,7 +17,8 @@ class Login: ObservableObject {
     @Published var iscomplete = false
     @Published var loginResponse = false
     @Published var messageError :String = ""
-    
+    //sms por el momento
+    @Published var pin :Usuario?
     @EnvironmentObject private var authState : AuthState
     private let tokenKey = "token"
     private let idKey = "usuario._id"
@@ -43,6 +44,7 @@ class Login: ObservableObject {
                         //Cast respuesta a SmsResponse
                         if let decodedResponse = try? JSONDecoder().decode(SmsResponse.self, from: data) {
                             print(decodedResponse.usuario)
+                            self.pin = decodedResponse.usuario
                             self.ruta = "idlogin"
                             self.isloading = false
                             self.iscomplete = true
@@ -65,6 +67,7 @@ class Login: ObservableObject {
     }
     
     func confirmCode(telefono:String,pin:String) {
+       // self.iscomplete = false
         self.isloading = true
         let parametros : Parameters = [
             "telefono": telefono,
@@ -82,21 +85,21 @@ class Login: ObservableObject {
                             //sesion
                             self.storage.set(decodedResponse.token, forKey: self.tokenKey)
                             self.storage.set(decodedResponse.usuario._id, forKey: self.idKey)
-                            
                             SDWebImageDownloader.shared.setValue(decodedResponse.token, forHTTPHeaderField: "token")
                             print(decodedResponse)
                             //
                             self.loginResponse = true
                             // self.authState.isAuth = true
-                            self.navigationRoot.setRootView()
                             self.isloading = false
                             self.iscomplete = true
+                            self.navigationRoot.setRootView()
                             return
                         }
                         //Cast respuesta a ErrorResponce
-                        if let decodedResponse = try? JSONDecoder().decode(ErrorResponse.self, from: data) {
+                        if let decodedResponse = try? JSONDecoder().decode(ErrorSmsResponse.self, from: data) {
                             print(decodedResponse.err.message)
                             self.messageError = decodedResponse.err.message
+                            //print(self.messageError)
                             self.isloading = false
                             self.iscomplete = true
                             return

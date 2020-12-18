@@ -14,7 +14,7 @@ struct TestpayDetail: View {
     var fecha: String
     //datos user
     @ObservedObject var userDataVM = UserDataViewModel()
-    
+    var navigationRoot = NavigationRoot()
     //fechaformat
     let date = Date()
     @State var fechaFormat : String
@@ -130,7 +130,12 @@ struct TestpayDetail: View {
           
             }
             Spacer()
-                
+            Button(action: {
+                self.navigationRoot.setRootView()
+            })
+            {
+                Text("OK")
+            }
             if self.showBtn! {
                 
                 Button(action: {

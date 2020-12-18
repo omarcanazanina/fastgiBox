@@ -112,8 +112,11 @@ struct FormUserDataView: View {
         VStack(){
             Button(action: {
                 self.updateVM.updateUser(ci: self.userDataVM.user.ci, correo: self.userDataVM.user.correo, nombres: self.userDataVM.user.nombres, apellidos: self.userDataVM.user.apellidos, direccion: self.userDataVM.user.direccion, nombrenit: self.userDataVM.user.nombrenit, nit: self.userDataVM.user.nit)
-                self.authState.navigateBack = true
+                //self.authState.navigateBack = true
                 self.alertState = true
+                
+               
+                
               
             }){
                 Text("Aceptar")
@@ -137,7 +140,7 @@ struct FormUserDataView: View {
     var alerts:Alert{
         Alert(title: Text("Fastgi"), message: Text("Datos modificados correctamente."), dismissButton: .default(Text("Aceptar"), action: {
             self.presentationMode.wrappedValue.dismiss()
-            
+            self.navigationRoot.setRootView()
         }))
     }
     @State var valueKeyboard : CGFloat = 0

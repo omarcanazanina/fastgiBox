@@ -14,7 +14,9 @@ class QrPaymentViewModel: ObservableObject {
     var qrPayResponse=QrPayment()
     private var disposables: Set<AnyCancellable> = []
     @Published var qrPayData = QrPaymentModel(_id: "", monto: "", id_cobrador: "", id_usuario: "", fecha: "")
-    
+    //user inextente
+    @Published var messageError: String = ""
+    @Published var userCorrecto: String = ""
     private var PagoQrDataPublisher: AnyPublisher<QrPaymentModel, Never> {
         qrPayResponse.$pagoResponse
             .receive(on: RunLoop.main)
@@ -26,6 +28,25 @@ class QrPaymentViewModel: ObservableObject {
         }
         .eraseToAnyPublisher()
     }
+    //usuario inexistente
+    private var ErrorPublished: AnyPublisher<String, Never> {
+        qrPayResponse.$messageError
+            .receive(on: RunLoop.main)
+            .map { response in
+                return response
+        }
+        .eraseToAnyPublisher()
+    }
+    
+    //usuario inexistente
+    private var UserPublished: AnyPublisher<String, Never> {
+        qrPayResponse.$userCorrecto
+            .receive(on: RunLoop.main)
+            .map { response in
+                return response
+        }
+        .eraseToAnyPublisher()
+    }
     
     init() {
         //Datapago
@@ -33,11 +54,27 @@ class QrPaymentViewModel: ObservableObject {
             .receive(on: RunLoop.main)
             .assign(to: \.qrPayData, on: self)
             .store(in: &disposables)
+        
+        ErrorPublished
+            .receive(on: RunLoop.main)
+            .assign(to: \.messageError, on: self)
+            .store(in: &disposables)
+        
+        UserPublished
+            .receive(on: RunLoop.main)
+            .assign(to: \.userCorrecto, on: self)
+            .store(in: &disposables)
+        
+        //userVerifi(id_cobrador: self.userCorrecto)
     }
     
     func pagoQr(id_cobrador:String, monto:String) {
        // qrPayResponse.pagoQr(id_cobrador: id_cobrador, monto: monto)
         //RecargaResponse.sendRecarga(empresa:empresa, recarga:recarga, telefono: telefono, text:text)
+    }
+    
+    func userVerifi(id_cobrador: String){
+        qrPayResponse.verificaUser(id_cobrador: id_cobrador)
     }
     
 }

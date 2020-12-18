@@ -18,7 +18,7 @@ class UserDataViewModel: ObservableObject {
     @Published var userPago = UpdateUserPagoModel(img: "", role: "", estado: true, _id: "", telefono: "", pin: "", fecha: "", apellidos: "", correo: "", direccion: "", nit: "", nombrenit: "", nombres: "")
     
     private var disposables: Set<AnyCancellable> = []
-    
+    @Published var messageError: String = ""
     //DataUser
     private var DataUserPublisher: AnyPublisher<UpdateUserModel, Never> {
           userDataResponse.$userResponse
@@ -44,6 +44,16 @@ class UserDataViewModel: ObservableObject {
               }
               .eraseToAnyPublisher()
       }
+    //recuperar usuario no en bd
+    private var ErrorPublished: AnyPublisher<String, Never> {
+        userDataResponse.$messageError
+            .receive(on: RunLoop.main)
+            .map { response in
+                return response
+        }
+        .eraseToAnyPublisher()
+    }
+    
     
     init(){
         //DataUser
@@ -52,11 +62,17 @@ class UserDataViewModel: ObservableObject {
               .assign(to: \.user, on: self)
               .store(in: &disposables)
         
+        ErrorPublished
+            .receive(on: RunLoop.main)
+            .assign(to: \.messageError, on: self)
+            .store(in: &disposables)
+                   
         //DataUser
           DataUserPagoPublisher
               .receive(on: RunLoop.main)
               .assign(to: \.userPago, on: self)
               .store(in: &disposables)
+        
         
        DatosUser()
     }

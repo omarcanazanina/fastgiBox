@@ -11,7 +11,11 @@ struct ErrorR : Codable {
     var name : String
     var message: String
 }
-
+//error al ingresar el code pin sms
+struct ErrorSms : Codable {
+    //var name : String
+    var message: String
+}
 //error de token recarga
 struct ErrorRecarga : Codable{
     var name: String
@@ -32,7 +36,8 @@ struct ErrorQrPayment : Codable{
 
 //error verificaUser
 struct ErrorVerificaUser : Codable{
-    var name: String
-    var message: String
-    var expiredAt: String
+    var stringValue: String
+    var kind: String
+    var value: String
+    var path: String
 }

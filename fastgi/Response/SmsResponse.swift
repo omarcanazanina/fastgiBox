@@ -16,6 +16,16 @@ struct ErrorResponse:Codable {
     var ok : Bool
     var err : ErrorR
 }
+//error ingreso code pin sms
+
+struct ErrorSmsResponse:Codable {
+    var ok : Bool
+    var err : ErrorSms
+}
+struct ErrorResponsePago:Codable {
+    var ok : Bool
+    var err : ErrorVerificaUser
+}
 
 struct LoginSmsResponse:Codable {
     var ok :Bool

@@ -91,7 +91,7 @@ struct LoginView: View {
                         .textStyle(TextButtonLoginStyle())
                 }
                 Spacer()
-                
+               // Text("SMS \(self.loginVM.pin.pin)")
                 NavigationLink(destination: CodeView(number: self.loginVM.telefono.bound), tag: "idlogin", selection: self.$login.ruta) {
                     EmptyView()
                 }

@@ -11,11 +11,18 @@ import SDWebImageSwiftUI
 struct PayView: View {
     @State private var monto: String = ""
     var user: String
+    var resultado: String
     //datos user
     @ObservedObject var userDataVM = UserDataViewModel()
     //test
     @ObservedObject var qrPayment = QrPayment()
     @ObservedObject var qrPaymentVM = QrPaymentViewModel()
+    //
+    
+    /*init() {
+        recuperarUser()
+    }*/
+    
     @State private var action:Int? = 0
     var imageProfile:some View {
         HStack(alignment: .center){
@@ -65,13 +72,14 @@ struct PayView: View {
     
     
     var body: some View {
-       // NavigationView{
+        //NavigationView{
             VStack{
                 Text("Pagar transporte")
                     .font(.title)
                 self.imageProfile
                 Text("\(self.user)")
-                //x Text("este es el user\(self.userDataVM.userPago.nombres)")
+                //Text("error \(self.qrPaymentVM.messageError)")
+               // Text("este es el user\(self.qrPaymentVM.userCorrecto)")
                 VStack(alignment: .leading, spacing: 8){
                     Text("MONTO BS.")
                         .textStyle(TitleStyle())
@@ -88,10 +96,20 @@ struct PayView: View {
                             textField.inputAccessoryView = toolBar
                          }
                 }
+                /*Button(action:{
+                    self.qrPaymentVM.userVerifi(id_cobrador: "5fbe3893dee3371becd7bbf1")
+                }){
+                    Text("sadad")
+                }*/
                 self.buttonSuccess
             }
             .padding(.horizontal)
-        //}//.navigationBarTitle("Pagar transporte", displayMode: .inline)
+          
+        //}.onAppear{
+            //print("se ejecuto el onAppear del pay")
+            //self.qrPaymentVM.userVerifi(id_cobrador: "5fbe3893dee3371becd7bbf1")
+        //}
+        //.navigationBarTitle("Pagar transporte", displayMode: .inline)
     }
     
     
@@ -99,6 +117,13 @@ struct PayView: View {
 
 struct PayView_Previews: PreviewProvider {
     static var previews: some View {
-        PayView(user: "")
+        PayView(user: "", resultado: "")
+    }
+}
+
+extension PayView{
+    func recuperarUser() -> String {
+        self.qrPaymentVM.userVerifi(id_cobrador: self.resultado)
+        return "SE EJECUTO EXITOSAMENTE"
     }
 }

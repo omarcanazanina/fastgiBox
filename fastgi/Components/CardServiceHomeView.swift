@@ -36,15 +36,15 @@ struct CardServiceHomeView: View {
                 )
             }.buttonStyle(PlainButtonStyle())
             if self.logo == "Entel"{
-                NavigationLink(destination: FormLoadCreditView(Empresa: self.logo, SelectEm: .Entel, montoRecarga1: .Btn10, montoRecarga: ""), tag: 1, selection: self.$action) {
+                NavigationLink(destination: FormLoadCreditView(Empresa: self.logo, SelectEm: .Entel, montoRecarga1: .Btn30, montoRecarga: ""), tag: 1, selection: self.$action) {
                     EmptyView()
                 }
             }else if self.logo == "Viva"{
-                NavigationLink(destination: FormLoadCreditView(Empresa: self.logo, SelectEm: .Viva, montoRecarga1: .Btn10, montoRecarga: ""), tag: 1, selection: self.$action) {
+                NavigationLink(destination: FormLoadCreditView(Empresa: self.logo, SelectEm: .Viva, montoRecarga1: .Btn30, montoRecarga: ""), tag: 1, selection: self.$action) {
                     EmptyView()
                 }
             }else{
-                NavigationLink(destination: FormLoadCreditView(Empresa: self.logo, SelectEm: .Tigo, montoRecarga1: .Btn10, montoRecarga: ""), tag: 1, selection: self.$action) {
+                NavigationLink(destination: FormLoadCreditView(Empresa: self.logo, SelectEm: .Tigo, montoRecarga1: .Btn30, montoRecarga: ""), tag: 1, selection: self.$action) {
                     EmptyView()
                 }
             }

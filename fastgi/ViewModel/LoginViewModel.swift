@@ -23,7 +23,8 @@ class LoginViewModel: ObservableObject {
     @Published var messageError: String = ""
     @Published var isloading: Bool = false
     @Published var statusResponce = false
-    
+    //sms porel momento
+    @Published var pin = Usuario(role: "", estado: true, _id: "", telefono: "", pin: "", fecha: "")
     var loginResponse=Login()
     
     private var disposables: Set<AnyCancellable> = []
@@ -58,6 +59,18 @@ class LoginViewModel: ObservableObject {
         .eraseToAnyPublisher()
     }
     
+    //DataUser
+    private var dataPinPublished: AnyPublisher<Usuario, Never> {
+        loginResponse.$pin
+              .receive(on: RunLoop.main)
+              .map { response in
+                  guard let response = response else {
+                    return self.pin
+                  }
+                  return response
+              }
+              .eraseToAnyPublisher()
+      }
     
     init(){
         testvariable
@@ -74,6 +87,11 @@ class LoginViewModel: ObservableObject {
         isLoadingPublished
             .receive(on: RunLoop.main)
             .assign(to: \.isloading, on: self)
+            .store(in: &disposables)
+        
+        dataPinPublished
+            .receive(on: RunLoop.main)
+            .assign(to: \.pin, on: self)
             .store(in: &disposables)
         
     }

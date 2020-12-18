@@ -11,6 +11,7 @@ import SwiftUI
 struct CodeView: View {
     @EnvironmentObject private var authState : AuthState
     @ObservedObject var loginVM = LoginViewModel()
+    @ObservedObject var login = Login()
     @State var pin: String = ""
     var number: String
     var body: some View {
@@ -39,8 +40,9 @@ struct CodeView: View {
             .background(Color.white)
             .clipShape(Capsule())
             .frame(width:220)
-
+            
             Button(action: {
+                self.login.loginDetail(telefono: self.number)
             })
             {
                 Text("Reenviar SMS")
@@ -56,6 +58,7 @@ struct CodeView: View {
                 Text("Aceptar")
                     .textStyle(TextButtonLoginStyle())
             }
+            //Text("SMS \(self.loginVM.pin.pin)")
             if self.loginVM.isloading == true{
                 Loader()
             }else if self.loginVM.messageError != ""{
