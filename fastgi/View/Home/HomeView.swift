@@ -149,7 +149,7 @@ struct HomeView: View {
         HStack{
             self.home
         }
-     .onAppear{
+             .onAppear{
             print("SE EJECUTO EL ONAPPEAR \(self.resultado)")
             self.userDataVM.DatosUserPago(id_usuario: self.resultado)
            // self.qrPaymentVM.userVerifi(id_cobrador: self.resultado)

@@ -222,7 +222,7 @@ struct SettingsView: View {
     //imagen
     // @ObservedObject var image = ImageAvatar()
     @ObservedObject var imageVM = ImageViewModel()
-    
+    @ObservedObject var afiliacionVM = AfiliacionViewModel()
     //test
     // @State private var image : UIImage? = nil
     //back
@@ -395,16 +395,21 @@ struct SettingsView: View {
                                 .frame(maxWidth:.infinity, alignment: .trailing)
                         }
                     }
-                    NavigationLink(destination: QrGeneratorView()) {
-                        HStack{
-                            Image(systemName: "qrcode")
-                            Text("MI QR")
-                                .font(.caption)
-                            Image(systemName: "chevron.right")
-                                .padding(.trailing)
-                                .frame(maxWidth:.infinity, alignment: .trailing)
+                    if self.afiliacionVM.afiliacionHabilitacion._id == "" {
+                        
+                    }else if self.afiliacionVM.afiliacionHabilitacion.habilitado == true{
+                        NavigationLink(destination: QrGeneratorView()) {
+                            HStack{
+                                Image(systemName: "qrcode")
+                                Text("MI QR")
+                                    .font(.caption)
+                                Image(systemName: "chevron.right")
+                                    .padding(.trailing)
+                                    .frame(maxWidth:.infinity, alignment: .trailing)
+                            }
                         }
                     }
+                  
                 }
             }
         }

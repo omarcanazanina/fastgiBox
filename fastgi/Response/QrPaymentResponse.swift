@@ -30,7 +30,3 @@ struct ErrorVerificaUserResponse : Codable {
 }
 
 
-struct AfiliacionResponse : Codable {
-    let ok : Bool
-    let afiliacion : AfiliacionModel
-}

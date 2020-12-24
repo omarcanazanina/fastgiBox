@@ -47,7 +47,7 @@ class Recargas: ObservableObject {
                 // .validate(contentType: ["application/json"])
                 .responseData{response in
                     print("aki")
-                    // debugPrint(response)
+                     debugPrint(response)
                     //print(response)
                     switch response.result {
                     case let .success(data):

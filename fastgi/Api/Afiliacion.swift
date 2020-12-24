@@ -13,12 +13,16 @@ class Afiliacion: ObservableObject {
     private let storage = UserDefaults.standard
     private let tokenKey = "token"
     private let idKey = "usuario._id"
-    
-    
-    func Afiliacion(id_cobrador:String, monto:String)   {
+    @Published var isloading = false
+    //@Published var habilitacion = false
+    @Published var afiliadoResponse:AffiliateModel?
+    func registroAfiliacion(nombrebanco:String, numerocuenta:String, tiposervicio: String, placa: String)   {
+        self.isloading = true
         let parametros : Parameters = [
-            "id_cobrador": id_cobrador,
-            "monto": monto
+            "nombrebanco": nombrebanco,
+            "numerocuenta": numerocuenta,
+            "tiposervicio": tiposervicio,
+            "placa": placa
         ]
         
         // creando headers
@@ -31,26 +35,78 @@ class Afiliacion: ObservableObject {
         }
         
         let idusu = storage.string(forKey: idKey)!
-        guard let url = URL(string: "https://api.fastgi.com/afiLcion/\(idusu)") else { return }
+        guard let url = URL(string: "https://api.fastgi.com/afiliador/\(idusu)") else { return }
         DispatchQueue.main.async {
             AF.request(url,method:.post,parameters: parametros,headers: headers )
-                // .validate(contentType: ["application/json"])
+                 //.validate(contentType: ["application/json"])
                 .responseData{response in
+                    debugPrint(response)
                     switch response.result {
                     case let .success(data):
-                        if let decodedResponse = try? JSONDecoder().decode(QrPaymentResponse.self, from: data) {
-                            //print(decodedResponse.recarga)
-                           // self.pagoResponse = decodedResponse.recarga
-                            //print(self.pagoResponse!)
+                        //Cast respuesta a AffiliateResponse
+                        if let decodedResponse = try? JSONDecoder().decode(AffiliateResponse.self, from: data) {
+                            print("entro a la afiliacion")
+                            print(decodedResponse.afiliado)
+                            self.isloading = false
                             return
                         }
                         //Cast respuesta a ErrorResponce
-                        if let decodedResponse = try? JSONDecoder().decode(ErrorQrPaymentResponse.self, from: data) {
+                        if let decodedResponse = try? JSONDecoder().decode(ErrorRecargaResponse.self, from: data) {
                             print(decodedResponse.err.message)
+                            self.isloading = false
                             //  self.ErrorRes = decodedResponse.err.message
                             return
                         }
                     case let .failure(error):
+                        self.isloading = false
+                        print(error)
+                    }
+                }
+        }
+        
+    }
+    
+    func verificaAfiliacion(id_cobrador:String)   {
+        self.isloading = true
+        //print("entro al metodo afiliacion")
+        let parametros : Parameters = [
+            "id_cobrador": "2131231"
+        ]
+        
+        // creando headers
+        var headers: HTTPHeaders = [
+            "Accept": "application/json"
+        ]
+        
+        if let token = storage.string(forKey: tokenKey){
+            headers.add(name: "token", value: token)
+        }
+        
+        let idusu = storage.string(forKey: idKey)!
+        guard let url = URL(string: "https://api.fastgi.com/afiliado/\(idusu)") else { return }
+        DispatchQueue.main.async {
+            AF.request(url,method:.post,parameters: parametros,headers: headers )
+                 //.validate(contentType: ["application/json"])
+                .responseData{response in
+                    //debugPrint(response)
+                    switch response.result {
+                    case let .success(data):
+                        //Cast respuesta a AffiliateResponse
+                        if let decodedResponse = try? JSONDecoder().decode(AffiliateResponse.self, from: data) {
+                            self.afiliadoResponse = decodedResponse.afiliado
+                            print("este es la habilitacion \(self.afiliadoResponse)")
+                            self.isloading = false
+                            return
+                        }
+                        //Cast respuesta a ErrorResponce
+                        if let decodedResponse = try? JSONDecoder().decode(ErrorRecargaResponse.self, from: data) {
+                            print(decodedResponse.err.message)
+                            self.isloading = false
+                            //  self.ErrorRes = decodedResponse.err.message
+                            return
+                        }
+                    case let .failure(error):
+                        self.isloading = false
                         print(error)
                     }
                 }

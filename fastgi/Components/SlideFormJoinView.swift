@@ -9,12 +9,20 @@ import SwiftUI
 
 struct SlideFormJoinView: View {
     @ObservedObject var userDataVM = UserDataViewModel()
-    
+    @ObservedObject var afiliacionVM = AfiliacionViewModel()
+    var navigationRoot = NavigationRoot()
     //@State private var nombreCompletoUser: String = ""
     @State private var inputText: String = ""
     var isSelect:Bool? = true
     @State private var move:CGFloat = UIScreen.main.bounds.width
     @State private var optionSlide:Int = 1
+    //datos
+    @State private  var numeroCta = ""
+    @State private  var placa = ""
+    
+    //alerta
+    @State var alertState: Bool = false
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     func next() {
         if self.move == (UIScreen.main.bounds.width*(-1)){return}
         else{
@@ -64,7 +72,7 @@ struct SlideFormJoinView: View {
                 self.pickerBank
                 Text("NUMERO DE CUENTA")
                     .textStyle(TitleStyle())
-                TextField("Nro. de cuenta", text: $inputText)
+                TextField("Nro. de cuenta", text: $numeroCta)
                     .textFieldStyle(Input())
                     .keyboardType(.numberPad)
                     .introspectTextField { (textField) in
@@ -167,7 +175,7 @@ struct SlideFormJoinView: View {
                 self.pickerTransportType
                 Text("PLACA")
                     .textStyle(TitleStyle())
-                TextField("Placa", text: $inputText)
+                TextField("Placa", text: $placa)
                     .textFieldStyle(Input())
             }.padding()
             Spacer()
@@ -311,7 +319,7 @@ struct SlideFormJoinView: View {
                     }
                 }
             
-            Button(action: {
+           /* Button(action: {
                 print("presiono Aceptar ****************************")
             }){
                 Text("Aceptar")
@@ -325,10 +333,41 @@ struct SlideFormJoinView: View {
                             self.next()
                         }
                     }
+            }*/
+            Button(action: {
+                print("presiono Aceptar ****************************")
+                print("el banco es \(self.bank)")
+                print("el numero de cuenta es \(self.numeroCta)")
+                print("el numero de cuenta es \(self.transportType)")
+                print("el numero de placa es \(self.placa)")
+                self.afiliacionVM.registerAffiliate(nombrebanco: self.bank, numerocuenta: self.numeroCta, tiposervicio: self.transportType, placa: self.placa)
+                self.alertState = true
+            }){
+                Text("Aceptar")
+                    .frame(maxWidth:150)
+                    .padding(12)
+                    .foregroundColor(.white)
+                    .background(Color("primary"))
+                    .clipShape(Capsule())
+                    //.onTapGesture {
+                      //  withAnimation(Animation.spring()){
+                        //    self.next()
+                        //}
+                    //}
             }
-           
+            if self.afiliacionVM.isloading == true{
+                //Loader()
+            }
         }
     }
+    
+    var alerts:Alert{
+        Alert(title: Text("Fastgi"), message: Text("Su afiliación esta en proceso verifique de algunos minutos por favor."), dismissButton: .default(Text("Aceptar"), action: {
+            self.presentationMode.wrappedValue.dismiss()
+            self.navigationRoot.setRootView()
+        }))
+    }
+    
     var body: some View {
         VStack{
             VStack{
@@ -376,6 +415,8 @@ struct SlideFormJoinView: View {
             
         }.onAppear{
             self.userDataVM.DatosUser()
+        }.alert(isPresented:  self.$alertState){
+            self.alerts
         }
     }
 }

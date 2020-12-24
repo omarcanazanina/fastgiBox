@@ -28,7 +28,8 @@ class LoginViewModel: ObservableObject {
     var loginResponse=Login()
     
     private var disposables: Set<AnyCancellable> = []
-    
+    //sms
+    @Published var smstext: String = ""
     private var testvariable: AnyPublisher<String, Never> {
         loginResponse.$ruta
             .receive(on: RunLoop.main)
@@ -72,6 +73,15 @@ class LoginViewModel: ObservableObject {
               .eraseToAnyPublisher()
       }
     
+    private var smsTextPublished: AnyPublisher<String, Never> {
+        loginResponse.$smstext
+            .receive(on: RunLoop.main)
+            .map { response in
+                return response
+        }
+        .eraseToAnyPublisher()
+    }
+    
     init(){
         testvariable
             .receive(on: RunLoop.main)
@@ -92,6 +102,11 @@ class LoginViewModel: ObservableObject {
         dataPinPublished
             .receive(on: RunLoop.main)
             .assign(to: \.pin, on: self)
+            .store(in: &disposables)
+        
+        smsTextPublished
+            .receive(on: RunLoop.main)
+            .assign(to: \.smstext, on: self)
             .store(in: &disposables)
         
     }

@@ -16,6 +16,8 @@
 		92278A5F2556186E00D746EA /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92278A5E2556186E00D746EA /* Helper.swift */; };
 		925F07282580323000153B5A /* Afiliacion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 925F07272580323000153B5A /* Afiliacion.swift */; };
 		925F072B2580372B00153B5A /* AfiliacionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 925F072A2580372B00153B5A /* AfiliacionViewModel.swift */; };
+		9271EF1A258D4D2E009659F4 /* AffiliateModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9271EF19258D4D2E009659F4 /* AffiliateModel.swift */; };
+		9271EF1D258D4DC8009659F4 /* AffiliateResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9271EF1C258D4DC8009659F4 /* AffiliateResponse.swift */; };
 		9279D548256F0C6500890C84 /* QrReaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9279D547256F0C6500890C84 /* QrReaderView.swift */; };
 		9279D54C256F0D5400890C84 /* CodeScanner in Frameworks */ = {isa = PBXBuildFile; productRef = 9279D54B256F0D5400890C84 /* CodeScanner */; };
 		9279D54F256F15A400890C84 /* QrGeneratorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9279D54E256F15A400890C84 /* QrGeneratorView.swift */; };
@@ -116,6 +118,8 @@
 		92278A5E2556186E00D746EA /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		925F07272580323000153B5A /* Afiliacion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Afiliacion.swift; sourceTree = "<group>"; };
 		925F072A2580372B00153B5A /* AfiliacionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AfiliacionViewModel.swift; sourceTree = "<group>"; };
+		9271EF19258D4D2E009659F4 /* AffiliateModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AffiliateModel.swift; sourceTree = "<group>"; };
+		9271EF1C258D4DC8009659F4 /* AffiliateResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AffiliateResponse.swift; sourceTree = "<group>"; };
 		9279D547256F0C6500890C84 /* QrReaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QrReaderView.swift; sourceTree = "<group>"; };
 		9279D54E256F15A400890C84 /* QrGeneratorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QrGeneratorView.swift; sourceTree = "<group>"; };
 		927D1DA025785C4200A97455 /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
@@ -358,6 +362,7 @@
 				92A3BA842553662D00DF3707 /* ErrorModel.swift */,
 				92A3BA872553664700DF3707 /* UsuarioModel.swift */,
 				92AB8CF72579B7F4006F0FA7 /* QrPaymentModel.swift */,
+				9271EF19258D4D2E009659F4 /* AffiliateModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -372,6 +377,7 @@
 				92A3BA972553671200DF3707 /* SmsResponse.swift */,
 				92A3BA9A2553673200DF3707 /* DataUserResponse.swift */,
 				92AB8CF42579B779006F0FA7 /* QrPaymentResponse.swift */,
+				9271EF1C258D4DC8009659F4 /* AffiliateResponse.swift */,
 			);
 			path = Response;
 			sourceTree = "<group>";
@@ -698,6 +704,7 @@
 				92A3BAA3255367C600DF3707 /* BrokenRulesView.swift in Sources */,
 				92A3BA512553638700DF3707 /* ImageAvatar.swift in Sources */,
 				92A3BA5B2553641100DF3707 /* Recargas.swift in Sources */,
+				9271EF1D258D4DC8009659F4 /* AffiliateResponse.swift in Sources */,
 				92A3BAF025536B1E00DF3707 /* ContentButtonsView.swift in Sources */,
 				92A3BA4D2553635F00DF3707 /* AuthState.swift in Sources */,
 				92A3BA6B255364F900DF3707 /* ImportContactsViewModel.swift in Sources */,
@@ -716,6 +723,7 @@
 				92A3BA79255365C800DF3707 /* ContactModel.swift in Sources */,
 				92A3BAC82553696500DF3707 /* MenuView.swift in Sources */,
 				92A3BA75255365AF00DF3707 /* ImageModel.swift in Sources */,
+				9271EF1A258D4D2E009659F4 /* AffiliateModel.swift in Sources */,
 				92A3BAEC25536AF200DF3707 /* CardServiceHomeView.swift in Sources */,
 				C0EA57EE25561D2A003FE66F /* ListCreditCardView.swift in Sources */,
 				92A3BAD1255369C900DF3707 /* TransactionDetailView.swift in Sources */,

@@ -14,6 +14,7 @@ struct CodeView: View {
     @ObservedObject var login = Login()
     @State var pin: String = ""
     var number: String
+    var smstext: String
     var body: some View {
         VStack(spacing:10) {
             /*Text("Verificar código")
@@ -58,7 +59,7 @@ struct CodeView: View {
                 Text("Aceptar")
                     .textStyle(TextButtonLoginStyle())
             }
-            //Text("SMS \(self.loginVM.pin.pin)")
+            //Text("SMS \(self.loginVM.smstext)")
             if self.loginVM.isloading == true{
                 Loader()
             }else if self.loginVM.messageError != ""{
@@ -78,7 +79,7 @@ struct CodeView: View {
 
 struct CodeView_Previews: PreviewProvider {
     static var previews: some View {
-        CodeView(number: "")
+        CodeView(number: "", smstext: "")
             
             
     }

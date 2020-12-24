@@ -29,6 +29,8 @@ class Login: ObservableObject {
     var navigationRoot = NavigationRoot()
     //datauser
     @Published var userResponse:UpdateUserModel?
+    //pin
+    @Published var smstext :String = ""
     
     func loginDetail(telefono:String) {
         self.isloading = true
@@ -45,6 +47,7 @@ class Login: ObservableObject {
                         if let decodedResponse = try? JSONDecoder().decode(SmsResponse.self, from: data) {
                             print(decodedResponse.usuario)
                             self.pin = decodedResponse.usuario
+                            self.smstext = decodedResponse.usuario.pin
                             self.ruta = "idlogin"
                             self.isloading = false
                             self.iscomplete = true

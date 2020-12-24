@@ -31,6 +31,8 @@ struct LoginView: View {
                     .font(.largeTitle)
                     .foregroundColor(.white)
                     .padding(.top)
+                //Text("este es el sms \(self.loginVM.smstext)")
+                //Text("este es el sms \(self.loginVM.pin.pin)")
                 Text("Te enviaremos un sms con el código de verificación")
                     .font(.caption)
                     .foregroundColor(.white)
@@ -92,12 +94,12 @@ struct LoginView: View {
                 }
                 Spacer()
                // Text("SMS \(self.loginVM.pin.pin)")
-                NavigationLink(destination: CodeView(number: self.loginVM.telefono.bound), tag: "idlogin", selection: self.$login.ruta) {
+                NavigationLink(destination: CodeView(number: self.loginVM.telefono.bound, smstext: self.loginVM.smstext), tag: "idlogin", selection: self.$login.ruta) {
                     EmptyView()
                 }
                 
             }
-            
+        
             .padding([.top, .leading, .trailing])
             .frame(maxWidth:.infinity, maxHeight: .infinity)
             .background(Color("primary"))

@@ -22,10 +22,4 @@ struct VerificaUserModel : Codable { //,Identifiable {
     let fecha : String
 }
 
-struct AfiliacionModel : Codable { //,Identifiable {
-    let _id : String
-    let id_usuario : String
-    let id_cobrador : String
-    let fecha : String
-}
 
