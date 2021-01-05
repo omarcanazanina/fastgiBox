@@ -24,12 +24,13 @@ class LoginViewModel: ObservableObject {
     @Published var isloading: Bool = false
     @Published var statusResponce = false
     //sms porel momento
-    @Published var pin = Usuario(role: "", estado: true, _id: "", telefono: "", pin: "", fecha: "")
+    //@Published var pin = Usuario(role: "", estado: true, _id: "", telefono: "", pin: "", fecha: "")
     var loginResponse=Login()
     
     private var disposables: Set<AnyCancellable> = []
     //sms
     @Published var smstext: String = ""
+    
     private var testvariable: AnyPublisher<String, Never> {
         loginResponse.$ruta
             .receive(on: RunLoop.main)
@@ -61,7 +62,7 @@ class LoginViewModel: ObservableObject {
     }
     
     //DataUser
-    private var dataPinPublished: AnyPublisher<Usuario, Never> {
+    /*private var dataPinPublished: AnyPublisher<Usuario, Never> {
         loginResponse.$pin
               .receive(on: RunLoop.main)
               .map { response in
@@ -71,7 +72,7 @@ class LoginViewModel: ObservableObject {
                   return response
               }
               .eraseToAnyPublisher()
-      }
+      }*/
     
     private var smsTextPublished: AnyPublisher<String, Never> {
         loginResponse.$smstext
@@ -99,16 +100,20 @@ class LoginViewModel: ObservableObject {
             .assign(to: \.isloading, on: self)
             .store(in: &disposables)
         
-        dataPinPublished
+       /* dataPinPublished
             .receive(on: RunLoop.main)
             .assign(to: \.pin, on: self)
             .store(in: &disposables)
-        
+        */
         smsTextPublished
             .receive(on: RunLoop.main)
             .assign(to: \.smstext, on: self)
             .store(in: &disposables)
         
+    }
+    
+    func loginSms(telefono:String) {
+        loginResponse.loginDetail(telefono: telefono)
     }
     
     func verificarCode(telefono:String,code:String) {

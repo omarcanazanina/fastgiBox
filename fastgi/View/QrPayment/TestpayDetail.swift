@@ -130,21 +130,23 @@ struct TestpayDetail: View {
           
             }
             Spacer()
-            Button(action: {
-                self.navigationRoot.setRootView()
-            })
-            {
-                Text("OK")
-            }
-            if self.showBtn! {
-                
+            HStack{
+                if self.showBtn! {
+                    Button(action: {
+                        self.exportToPDF(fecha_: self.fechaFormat, fechaFormat_: self.fechaFormat, horaFormat_: self.horaFormat, showBtn_: false, servicio_: "Pago transporte", nombreO_: "\(self.userDataVM.user.nombres) \(self.userDataVM.user.apellidos)", nombreA_: self.nombreCobrador, monto_: self.monto, id_usuario_:  "\(self.userDataVM.user.nombres) \(self.userDataVM.user.apellidos)")
+                    }){
+                        Text("Compartir")
+                    }.buttonStyle(PrimaryButtonOutlineStyle())
+                    
+                }
                 Button(action: {
-                    self.exportToPDF(fecha_: self.fechaFormat, fechaFormat_: self.fechaFormat, horaFormat_: self.horaFormat, showBtn_: false, servicio_: "Pago transporte", nombreO_: "\(self.userDataVM.user.nombres) \(self.userDataVM.user.apellidos)", nombreA_: self.nombreCobrador, monto_: self.monto, id_usuario_:  "\(self.userDataVM.user.nombres) \(self.userDataVM.user.apellidos)")
-                }){
-                    Text("Compartir")
+                    self.navigationRoot.setRootView()
+                })
+                {
+                    Text("Aceptar")
                 }.buttonStyle(PrimaryButtonOutlineStyle())
-                
             }
+           
         }
         .onAppear{
           //  self.userDataVM.DatosUserPago(id_usuario: self.id_cobrador)

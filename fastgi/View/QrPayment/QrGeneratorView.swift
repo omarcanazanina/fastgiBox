@@ -9,7 +9,8 @@ import SwiftUI
 import CoreImage.CIFilterBuiltins
 import UIKit
 struct QrGeneratorView: View {
-    @State private var texto = "omaroidunico"
+    //datos user
+    @ObservedObject var userDataVM = UserDataViewModel()
     
     let context = CIContext()
     let filter = CIFilter.qrCodeGenerator()
@@ -48,7 +49,7 @@ struct QrGeneratorView: View {
     var body: some View {
        // TextField("Texto a QR", text: self.$texto)
         VStack{
-            Image(uiImage: generarQR(text: self.texto))
+            Image(uiImage: generarQR(text: self.userDataVM.user._id))
                 .interpolation(.none)
                 .resizable()
                 .scaledToFit()

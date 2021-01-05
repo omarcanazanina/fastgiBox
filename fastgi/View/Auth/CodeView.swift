@@ -59,7 +59,7 @@ struct CodeView: View {
                 Text("Aceptar")
                     .textStyle(TextButtonLoginStyle())
             }
-            //Text("SMS \(self.loginVM.smstext)")
+            Text("SMS \(self.smstext)")
             if self.loginVM.isloading == true{
                 Loader()
             }else if self.loginVM.messageError != ""{

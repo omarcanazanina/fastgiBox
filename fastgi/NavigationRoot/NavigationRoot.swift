@@ -10,6 +10,19 @@ import SwiftUI
 
 class NavigationRoot{
     private let storage = UserDefaults.standard
+    
+    //nav
+    func setRootViewNav (number: String, smstext: String){
+        let scene = UIApplication.shared.connectedScenes.first as? UIWindowScene
+        
+        if let windowScenedelegate = scene?.delegate as? SceneDelegate {
+            let window = UIWindow(windowScene: scene!)
+            window.rootViewController = UIHostingController(rootView:CodeView(number: number, smstext: smstext)            )
+            windowScenedelegate.window = window
+            window.makeKeyAndVisible()
+        }
+    }
+    
     //iniciar sesion
     func setRootView (){
         let authState = AuthState()

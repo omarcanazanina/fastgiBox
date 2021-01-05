@@ -18,7 +18,7 @@ class Login: ObservableObject {
     @Published var loginResponse = false
     @Published var messageError :String = ""
     //sms por el momento
-    @Published var pin :Usuario?
+    //@Published var pin :Usuario?
     @EnvironmentObject private var authState : AuthState
     private let tokenKey = "token"
     private let idKey = "usuario._id"
@@ -46,11 +46,13 @@ class Login: ObservableObject {
                         //Cast respuesta a SmsResponse
                         if let decodedResponse = try? JSONDecoder().decode(SmsResponse.self, from: data) {
                             print(decodedResponse.usuario)
-                            self.pin = decodedResponse.usuario
+                            //self.pin = decodedResponse.usuario
                             self.smstext = decodedResponse.usuario.pin
+                            print("este es el sms \(self.smstext)")
                             self.ruta = "idlogin"
                             self.isloading = false
                             self.iscomplete = true
+                            self.navigationRoot.setRootViewNav(number: telefono, smstext: self.smstext)
                             return
                         }
                         //Cast respuesta a ErrorResponce

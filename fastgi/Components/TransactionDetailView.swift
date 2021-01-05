@@ -188,23 +188,22 @@ struct TransactionDetailView: View {
                 
             }
             Spacer()
-            
-            Button(action: {
-                self.navigationRoot.setRootView()
-            })
-            {
-                Text("OK")
-            }
-            if self.showBtn! {
-                
+            HStack{
+                if self.showBtn! {
+                    Button(action: {
+                        self.exportToPDF(fecha_: self.fechaFormat, empresa_: self.empresa, phone_: self.phone, monto_: self.monto,fechaFormat_: self.fechaFormat, horaFormat_: self.horaFormat, showBtn_: false, nombreO_: self.userDataVM.user.nombres)
+                    }){
+                        Text("Compartir")
+                    }.buttonStyle(PrimaryButtonOutlineStyle())
+                    
+                }
                 Button(action: {
-                    self.exportToPDF(fecha_: self.fechaFormat, empresa_: self.empresa, phone_: self.phone, monto_: self.monto,fechaFormat_: self.fechaFormat, horaFormat_: self.horaFormat, showBtn_: false, nombreO_: self.userDataVM.user.nombres)
-                }){
-                    Text("Compartir")
+                    self.navigationRoot.setRootView()
+                })
+                {
+                    Text("Aceptar")
                 }.buttonStyle(PrimaryButtonOutlineStyle())
-                
             }
-            
         }
         .background(Color.white)
     }

@@ -17,9 +17,6 @@ struct MembershipView: View {
     @State var alertState: Bool = false
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
-    // generador de qr
-    @State private var texto = "omaroidunico"
-    
     let context = CIContext()
     let filter = CIFilter.qrCodeGenerator()
     
@@ -79,7 +76,7 @@ struct MembershipView: View {
                         Text("afiliacion en progreso")
                     }else if self.afiliacionVM.afiliacionHabilitacion.habilitado == true{
                         VStack{
-                            Image(uiImage: generarQR(text: self.texto))
+                            Image(uiImage: generarQR(text: self.userDataVM.user._id))
                                 .interpolation(.none)
                                 .resizable()
                                 .scaledToFit()

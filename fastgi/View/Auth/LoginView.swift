@@ -86,17 +86,21 @@ struct LoginView: View {
                 
                 Button(action: {
                     self.loginVM.validationInput()
-                    self.login.loginDetail(telefono: self.loginVM.telefono.bound)
+                    //self.login.loginDetail(telefono: self.loginVM.telefono.bound)
+                    self.loginVM.loginSms(telefono: self.loginVM.telefono.bound)
                 })
                 {
                     Text("Ingresar")
                         .textStyle(TextButtonLoginStyle())
                 }
+              
                 Spacer()
-               // Text("SMS \(self.loginVM.pin.pin)")
-                NavigationLink(destination: CodeView(number: self.loginVM.telefono.bound, smstext: self.loginVM.smstext), tag: "idlogin", selection: self.$login.ruta) {
+               /* NavigationLink(destination: CodeView(number: self.loginVM.telefono.bound, smstext: self.loginVM.smstext), tag: "idlogin", selection: self.$login.ruta) {
                     EmptyView()
-                }
+                }*/
+              /*  NavigationLink(destination: CodeView(number: "12121212", smstext: self.loginVM.smstext), tag: "idlogin", selection: self.$login.ruta) {
+                    EmptyView()
+                }*/
                 
             }
         
