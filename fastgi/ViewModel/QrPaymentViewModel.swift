@@ -17,6 +17,10 @@ class QrPaymentViewModel: ObservableObject {
     //user inextente
     @Published var messageError: String = ""
     @Published var userCorrecto: String = ""
+    //nav userafiliacion
+    @Published var afiliado : Bool = false
+    @Published var noafiliado : String? = ""
+    
     private var PagoQrDataPublisher: AnyPublisher<QrPaymentModel, Never> {
         qrPayResponse.$pagoResponse
             .receive(on: RunLoop.main)
@@ -48,6 +52,29 @@ class QrPaymentViewModel: ObservableObject {
         .eraseToAnyPublisher()
     }
     
+    //afiliado existe
+    private var UserAfiliacionPublished: AnyPublisher<Bool, Never> {
+        qrPayResponse.$afiliado
+            .receive(on: RunLoop.main)
+            .map { response in
+                return response
+        }
+        .eraseToAnyPublisher()
+    }
+    
+  
+    
+    
+    //afiliado inexistente
+    private var UserAfiliacionInexistentePublished: AnyPublisher<String?, Never> {
+        qrPayResponse.$noafiliado
+            .receive(on: RunLoop.main)
+            .map { response in
+                return response
+        }
+        .eraseToAnyPublisher()
+    }
+    
     init() {
         //Datapago
         PagoQrDataPublisher
@@ -65,6 +92,16 @@ class QrPaymentViewModel: ObservableObject {
             .assign(to: \.userCorrecto, on: self)
             .store(in: &disposables)
         
+        UserAfiliacionPublished
+            .receive(on: RunLoop.main)
+            .assign(to: \.afiliado, on: self)
+            .store(in: &disposables)
+        
+        UserAfiliacionInexistentePublished
+            .receive(on: RunLoop.main)
+            .assign(to: \.noafiliado, on: self)
+            .store(in: &disposables)
+        
         //userVerifi(id_cobrador: self.userCorrecto)
     }
     
@@ -75,6 +112,10 @@ class QrPaymentViewModel: ObservableObject {
     
     func userVerifi(id_cobrador: String){
         qrPayResponse.verificaUser(id_cobrador: id_cobrador)
+    }
+    
+    func userAfiliacion(id_afiliado: String){
+        qrPayResponse.verificaUserAfiliacion(id_afiliado: id_afiliado)
     }
     
 }

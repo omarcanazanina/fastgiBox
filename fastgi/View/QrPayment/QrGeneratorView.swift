@@ -8,6 +8,9 @@
 import SwiftUI
 import CoreImage.CIFilterBuiltins
 import UIKit
+
+import SDWebImageSwiftUI
+
 struct QrGeneratorView: View {
     //datos user
     @ObservedObject var userDataVM = UserDataViewModel()
@@ -45,15 +48,37 @@ struct QrGeneratorView: View {
         return nil
     }
     
+    var imageProfile:some View {
+        HStack(alignment: .center){
+                WebImage(url: URL(string: "https://i.postimg.cc/8kJ4bSVQ/image.jpg" ))
+                    .onSuccess { image, data, cacheType in
+                    }
+                    .placeholder(Image( "user-default"))
+                    .resizable()
+                    .foregroundColor(.white)
+                    .frame(width: 100.0, height: 100.0)
+                    .clipShape(Circle())
+                    .shadow(color: Color.black.opacity(0.1), radius: 4, x: 2, y: 3)
+                    .overlay(
+                        Circle()
+                            .stroke(Color("card"), lineWidth: 2))
+            
+        }
+        
+    }
     
     var body: some View {
        // TextField("Texto a QR", text: self.$texto)
         VStack{
+            self.imageProfile
+            Text("\(self.userDataVM.user.nombres) \(self.userDataVM.user.apellidos)")
+                .font(.title)
+                .bold()
             Image(uiImage: generarQR(text: self.userDataVM.user._id))
                 .interpolation(.none)
                 .resizable()
                 .scaledToFit()
-                .frame(width: 350, height: 350)
+                .frame(width: 300, height: 300)
             
             
             if self.showBtn! {

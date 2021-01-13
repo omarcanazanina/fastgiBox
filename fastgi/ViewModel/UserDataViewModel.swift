@@ -15,7 +15,7 @@ class UserDataViewModel: ObservableObject {
     //datos del usuario
     @Published var user = UpdateUserModel(role: "", estado: true, _id: "", telefono: "", pin: "", fecha: "", apellidos: "", correo: "", direccion: "", nit: "", nombrenit: "", nombres: "", ci: "")
     //datos del usuario pago
-    @Published var userPago = UpdateUserPagoModel(img: "", role: "", estado: true, _id: "", telefono: "", pin: "", fecha: "", apellidos: "", correo: "", direccion: "", nit: "", nombrenit: "", nombres: "")
+    @Published var userResponsePago = UpdateUserPagoModel(img: "", role: "", estado: true, _id: "", telefono: "", pin: "", fecha: "", apellidos: "", correo: "", direccion: "", nit: "", nombrenit: "", nombres: "")
     
     private var disposables: Set<AnyCancellable> = []
     @Published var messageError: String = ""
@@ -38,7 +38,7 @@ class UserDataViewModel: ObservableObject {
               .receive(on: RunLoop.main)
               .map { response in
                   guard let response = response else {
-                    return self.userPago
+                    return self.userResponsePago
                   }
                   return response
               }
@@ -70,11 +70,12 @@ class UserDataViewModel: ObservableObject {
         //DataUser
           DataUserPagoPublisher
               .receive(on: RunLoop.main)
-              .assign(to: \.userPago, on: self)
+              .assign(to: \.userResponsePago, on: self)
               .store(in: &disposables)
         
         
        DatosUser()
+        DatosUserPago(id_usuario: userResponsePago._id)
     }
     
     func DatosUser() {

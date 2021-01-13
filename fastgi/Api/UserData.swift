@@ -21,6 +21,7 @@ class UserData: ObservableObject {
     @Published var userResponse:UpdateUserModel?
     @Published var userResponsePago:UpdateUserPagoModel?
     @Published var messageError :String = ""
+    
     //rutas
     var navigationRoot = NavigationRoot()
     
@@ -95,7 +96,7 @@ class UserData: ObservableObject {
                         if let decodedResponse = try? JSONDecoder().decode(DataUserPagoResponse.self, from: data) {
                             //print(decodedResponse1.usuario)
                             self.userResponsePago = decodedResponse.usuario
-                            print("este es el user\(self.userResponsePago as Any)")
+                            print("este es el user\(self.userResponsePago!)")
                             return
                         }
                         //Cast respuesta a ErrorResponce

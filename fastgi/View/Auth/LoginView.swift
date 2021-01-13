@@ -7,6 +7,7 @@
 
 import SwiftUI
 import UIKit
+import Introspect
 
 struct LoginView: View {
     @ObservedObject var loginVM = LoginViewModel()
@@ -20,13 +21,16 @@ struct LoginView: View {
     @State var telefono: String = ""
     
     
+    
     init(){
         UITableView.appearance().backgroundColor = .clear
     }
     
+    
     var body: some View {
         NavigationView{
             VStack(spacing:10) {
+                
                 Text("Fastgi")
                     .font(.largeTitle)
                     .foregroundColor(.white)
@@ -72,13 +76,14 @@ struct LoginView: View {
                         .foregroundColor(.black)
                         .clipShape(Capsule())
                         .introspectTextField { (textField) in
-                            let toolBar = UIToolbar(frame: CGRect(x: 0, y: 0, width: textField.frame.size.width, height: 44))
+                            /*let toolBar = UIToolbar(frame: CGRect(x: 0, y: 0, width: textField.frame.size.width, height: 44))
                             let flexButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil)
                             let doneButton = UIBarButtonItem(title: "Cerrar", style: .done, target: self, action: #selector(textField.doneButtonTapped(button:)))
                          doneButton.tintColor = .darkGray
                             toolBar.items = [flexButton, doneButton]
                             toolBar.setItems([flexButton, doneButton], animated: true)
-                            textField.inputAccessoryView = toolBar
+                            textField.inputAccessoryView = toolBar*/
+                            textField.becomeFirstResponder()
                          }
                 }
             
@@ -93,8 +98,8 @@ struct LoginView: View {
                     Text("Ingresar")
                         .textStyle(TextButtonLoginStyle())
                 }
-              
                 Spacer()
+                   
                /* NavigationLink(destination: CodeView(number: self.loginVM.telefono.bound, smstext: self.loginVM.smstext), tag: "idlogin", selection: self.$login.ruta) {
                     EmptyView()
                 }*/

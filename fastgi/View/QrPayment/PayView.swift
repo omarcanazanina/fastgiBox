@@ -23,6 +23,10 @@ struct PayView: View {
         recuperarUser()
     }*/
     
+    //alert
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    @State var alertState: Bool = false
+    
     @State private var action:Int? = 0
     var imageProfile:some View {
         HStack(alignment: .center){
@@ -63,7 +67,7 @@ struct PayView: View {
            /* NavigationLink(destination: TestpayDetail(monto: self.monto, nombreCobrador: self.user, id_usuario: self.qrPaymentVM.qrPayData.id_usuario), tag: 1, selection: self.$action) {
                 EmptyView()
         }*/
-            NavigationLink(destination: TestpayDetail(monto: self.monto, nombreCobrador: self.user, id_usuario: self.qrPaymentVM.qrPayData.id_usuario, fecha: "",fechaFormat: "", horaFormat: ""), tag: 1, selection: self.$action) {
+            NavigationLink(destination: TestpayDetail(monto: self.monto, nombreCobrador: "\(self.userDataVM.userResponsePago.nombres) \(self.userDataVM.userResponsePago.apellidos)", id_usuario: "\(self.userDataVM.userResponsePago.nombres) \(self.userDataVM.userResponsePago.apellidos)", fecha: "",fechaFormat: "", horaFormat: ""), tag: 1, selection: self.$action) {
                  EmptyView()
          }
         }
@@ -78,8 +82,8 @@ struct PayView: View {
                     .font(.title)
                 self.imageProfile
                 Text("\(self.user)")
-                //Text("error \(self.qrPaymentVM.messageError)")
-               // Text("este es el user\(self.qrPaymentVM.userCorrecto)")
+                Text("\(self.userDataVM.userResponsePago.nombres) \(self.userDataVM.userResponsePago.apellidos)")
+            
                 VStack(alignment: .leading, spacing: 8){
                     Text("MONTO BS.")
                         .textStyle(TitleStyle())
@@ -94,6 +98,7 @@ struct PayView: View {
                             toolBar.items = [flexButton, doneButton]
                             toolBar.setItems([flexButton, doneButton], animated: true)
                             textField.inputAccessoryView = toolBar
+                            textField.becomeFirstResponder()
                          }
                 }
                 /*Button(action:{
@@ -102,16 +107,53 @@ struct PayView: View {
                     Text("sadad")
                 }*/
                 self.buttonSuccess
+                HStack{
+                    Button(action: {
+                        if self.user != "" {
+                            self.qrPaymentVM.userAfiliacion(id_afiliado: self.user)
+                            self.userDataVM.DatosUserPago(id_usuario: self.user)
+                        }else if self.user == "" {
+                            print("no hay user afiliado")
+                        }
+                        if  self.qrPaymentVM.noafiliado == nil {
+                            self.alertState = true
+                        }
+                    }){
+                        Text("Aceptar")
+                    }
+                    if self.qrPaymentVM.afiliado == true {
+                        Text("user existente")
+                    }
+                    if  self.qrPaymentVM.noafiliado == nil {
+                        
+                        Text("User no esta afiliado")
+                            .foregroundColor(.red)
+                        //self.alertState = true
+                    }
+                }
             }
             .padding(.horizontal)
-          
-        //}.onAppear{
-            //print("se ejecuto el onAppear del pay")
-            //self.qrPaymentVM.userVerifi(id_cobrador: "5fbe3893dee3371becd7bbf1")
-        //}
-        //.navigationBarTitle("Pagar transporte", displayMode: .inline)
+    //}
+            .onAppear{
+                //print("se ejecuto el onAppear del pay")
+                //self.userDataVM.DatosUserPago(id_usuario: self.user)
+                if self.user != "" {
+                    self.qrPaymentVM.userAfiliacion(id_afiliado: self.user)
+                    self.userDataVM.DatosUserPago(id_usuario: self.user)
+                }else if self.user == "" {
+                    print("no hay user afiliado")
+                }
+            }.alert(isPresented:  self.$alertState){
+                self.alerts
+            }
+    //.navigationBarTitle("Pagar transporte", displayMode: .inline)
+}
+    //alerta
+    var alerts:Alert{
+        Alert(title: Text("Fastgi"), message: Text("Usuario no afiliado."), dismissButton: .default(Text("Aceptar"), action: {
+            self.presentationMode.wrappedValue.dismiss()
+        }))
     }
-    
     
 }
 
@@ -123,7 +165,7 @@ struct PayView_Previews: PreviewProvider {
 
 extension PayView{
     func recuperarUser() -> String {
-        self.qrPaymentVM.userVerifi(id_cobrador: self.resultado)
+        //self.qrPaymentVM.userVerifi(id_cobrador: self.user)
         return "SE EJECUTO EXITOSAMENTE"
     }
 }

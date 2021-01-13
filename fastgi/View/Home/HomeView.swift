@@ -28,6 +28,10 @@ struct HomeView: View {
     @ObservedObject var userDataVM = UserDataViewModel()
     @State var test = ""
     
+    //alert
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    @State var alertState: Bool = false
+    
     init(currentBtnEm: Binding<BtnEm>) {
         self._currentBtnEm = currentBtnEm
         
@@ -96,6 +100,7 @@ struct HomeView: View {
                     switch result {
                     case .success(let codigo):
                         self.resultado = codigo
+                        self.action = 1
                         //self.qrPaymentVM.userVerifi(id_cobrador: self.resultado)
                         //self.qrPayment.verificaUser(id_cobrador: codigo)
                         //self.showScanner = false
@@ -104,9 +109,12 @@ struct HomeView: View {
                     }
                 }
             }
-            NavigationLink(destination: PayView(user: "\(self.userDataVM.userPago.nombres) \(self.userDataVM.userPago.apellidos)", resultado: self.resultado), tag: 1, selection: self.$action) {
+            NavigationLink(destination: PayView(user: self.resultado, resultado: ""), tag: 1, selection: self.$action) {
+                EmptyView()
+            }
+          /*=  NavigationLink(destination: PayView(user: "\(self.userDataVM.userPago.nombres) \(self.userDataVM.userPago.apellidos)", resultado: self.resultado), tag: 1, selection: self.$action) {
                     EmptyView()
-                }
+                }*/
            
             
         }
@@ -138,23 +146,50 @@ struct HomeView: View {
                         Spacer()
                             .frame(maxWidth:.infinity)
                 }.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
-                
+               // Text("Res \(self.resultado)")
+                HStack{
+                    Button(action: {
+                        if self.resultado != "" {
+                            self.qrPaymentVM.userAfiliacion(id_afiliado: self.resultado)
+                                self.action = 2
+                        }else if self.resultado == "" {
+                            print("no hay user afiliado")
+                        }
+                    }){
+                     //   Text("Aceptar")
+                    }
+                  //  if self.qrPaymentVM.afiliado == true {
+                        NavigationLink(destination: PayView(user: self.resultado, resultado: ""), tag: 2, selection: self.$action) {
+                            EmptyView()
+                        }
+                  //  }
+                    /*if  self.qrPaymentVM.noafiliado == nil {
+                        Text("User no esta afiliado")
+                            .foregroundColor(.red)
+                        //self.alertState = true
+                    }*/
+                }
             }.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
-        
         }
         .padding()
     }
+    
+  
     
     var body: some View {
         HStack{
             self.home
         }
-             .onAppear{
+        /*.alert(isPresented:  self.$alertState){
+            self.alerts
+        }*/
+       
+        /*.onAppear{
             print("SE EJECUTO EL ONAPPEAR \(self.resultado)")
             self.userDataVM.DatosUserPago(id_usuario: self.resultado)
            // self.qrPaymentVM.userVerifi(id_cobrador: self.resultado)
             
-        }
+        }*/
     }
     
 }
@@ -165,30 +200,3 @@ struct HomeView_Previews: PreviewProvider {
             
     }
 }
-
-
-
-/*VStack{
-   // Text("usuario respuesta\(self.userDataVM.userPago.nombres)")
-   // Text("llego el user\(self.test)")
-    /*if self.qrPaymentVM.messageError != ""{
-        Text("Usuario inexistente")
-        //Text("llego el user\(self.qrPaymentVM.messageError)")
-    }else {
-        Text("todo correcto")
-    }*/
-    
-    Button(action:{
-     // self.recargas.sendRecarga(empresa: .Entel, recarga: "10", telefono: "79434343", text: "")
-      // self.qrPayment.verificaUser(id_cobrador: "5fbe3893dee3371becd7bbf11")
-        self.qrPaymentVM.userVerifi(id_cobrador: "5fbe3893dee3371becd7bbf11")
-        //self.userDataVM.DatosUserPago(id_usuario: self.test)
-  }){
-   //   Text("verifica")
-  }
-}*/
-// Text(self.resultado)
-
-/*     NavigationLink(destination: PayView(monto: self.resultado), tag: 1, selection: self.$action) {
-    EmptyView()
-}*/

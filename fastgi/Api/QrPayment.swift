@@ -18,6 +18,10 @@ class QrPayment: ObservableObject {
     @Published var userCorrecto :String = ""
     @Published var pagoResponse: QrPaymentModel?
     
+    //nav userafiliacion
+    @Published var afiliado : Bool = false
+    @Published var noafiliado : String? = ""
+    
     func verificaUser(id_cobrador: String){
         let parametros : Parameters = [
             "id_cobrador": id_cobrador
@@ -107,11 +111,10 @@ class QrPayment: ObservableObject {
         }
         
     }
-    
-    func pagoQr1(id_cobrador:String, monto:String){
+    //verifica si esta afiliado
+    func verificaUserAfiliacion(id_afiliado: String){
         let parametros : Parameters = [
-            "id_cobrador": id_cobrador,
-            "monto": monto
+            "id_afiliado": id_afiliado
         ]
         
         // creando headers
@@ -123,24 +126,27 @@ class QrPayment: ObservableObject {
             headers.add(name: "token", value: token)
         }
         
-        let idusu = storage.string(forKey: idKey)!
-        guard let url = URL(string: "https://api.fastgi.com/transtrans/\(idusu)") else { return }
+        //let idusu = storage.string(forKey: idKey)!
+        guard let url = URL(string: "https://api.fastgi.com/afiliado/\(id_afiliado)") else { return }
         DispatchQueue.main.async {
             AF.request(url,method:.post,parameters: parametros,headers: headers )
                 // .validate(contentType: ["application/json"])
                 .responseData{response in
                     switch response.result {
                     case let .success(data):
-                        if let decodedResponse = try? JSONDecoder().decode(QrPaymentResponse.self, from: data) {
-                            //print(decodedResponse.recarga)
-                            self.pagoResponse = decodedResponse.recarga
-                            print(self.pagoResponse!)
+                        //Cast respuesta a SmsResponse
+                        if let decodedResponse = try? JSONDecoder().decode(VerificaUserAfiliacionResponse.self, from: data) {
+                            print("verifica afiliacion \(decodedResponse.afiliado)")
+                            self.afiliado = decodedResponse.afiliado.habilitado
+                            print(self.afiliado)
+                            //self.userCorrecto = decodedResponse.id_cobrador
                             return
                         }
                         //Cast respuesta a ErrorResponce
-                        if let decodedResponse = try? JSONDecoder().decode(ErrorQrPaymentResponse.self, from: data) {
-                            print(decodedResponse.err.message)
-                            //  self.ErrorRes = decodedResponse.err.message
+                        if let decodedResponse = try? JSONDecoder().decode(ErrorUserAfiliacionResponse.self, from: data) {
+                            print(decodedResponse)
+                            self.noafiliado = decodedResponse.afiliado
+                            print(self.noafiliado)
                             return
                         }
                     case let .failure(error):
@@ -150,6 +156,8 @@ class QrPayment: ObservableObject {
         }
         
     }
+    
+    //list pagos
        func liat(id_cobrador:String, monto:String){
         let parametros : Parameters = [
             "id_cobrador": id_cobrador,
@@ -193,37 +201,5 @@ class QrPayment: ObservableObject {
         
     }
     
-  /*  func ListPagoz(){
-          // creando headers
-          var headers: HTTPHeaders = [
-              "Accept": "application/json"
-          ]
-          if let token = storage.string(forKey: tokenKey){
-              headers.add(name: "token", value: token)
-          }
-          //"5f56de014e834e3bc4c02059"
-          let idusu = storage.string(forKey: idKey)!
-              guard let url = URL(string: "https://api.fastgi.com/pagos/\(idusu)") else { return }
-       //print("este es el idusuariolist recargas\(idusu)")
-              DispatchQueue.main.async {
-                  AF.request(url,method:.get,headers: headers )
-                      //.validate(contentType: ["application/json"])
-                      .responseData{response in
-                       //debugPrint(response)
-                          switch response.result {
-                          case let .success(data):
-                              //Cast respuesta a MeResponce
-                              if let decodedResponse = try? JSONDecoder().decode(GetRecargasResponse.self, from: data) {
-                              // print(decodedResponse.recarga)
-//                               self.getRecargasResponse=decodedResponse
-  //                             print(self.getRecargasResponse?.recarga ?? "")
-                                  return
-                              }
-                          case let .failure(error):
-                              print(error)
-                          }
-                  }
-              }
-      }*/
     
 }

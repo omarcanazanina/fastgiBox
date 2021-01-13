@@ -7,6 +7,7 @@
 
 
 import SwiftUI
+import Introspect
 
 struct CodeView: View {
     @EnvironmentObject private var authState : AuthState
@@ -15,6 +16,13 @@ struct CodeView: View {
     @State var pin: String = ""
     var number: String
     var smstext: String
+    //contador de intentos
+    @State var contIntentos: Int = 0
+    
+    //alert
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    @State var alertState: Bool = false
+    
     var body: some View {
         VStack(spacing:10) {
             /*Text("Verificar código")
@@ -32,15 +40,24 @@ struct CodeView: View {
                 .foregroundColor(.white)
             HStack{
                 TextField("Código", text: $pin)// $telefono)
-                    .textContentType(.oneTimeCode)
                     .keyboardType(.numberPad)
-                    .padding(.horizontal)
+                    .padding(12)
+                    .background(Color.white)
+                    .foregroundColor(.black)
+                    .clipShape(Capsule())
+                    .frame(width:220)
+                    .introspectTextField { (textField) in
+                        textField.becomeFirstResponder()
+                     }
                    
-            }.accentColor(Color("primary"))
+            }
+           /* .accentColor(Color("primary"))
             .padding(12)
             .background(Color.white)
-            .clipShape(Capsule())
-            .frame(width:220)
+            //.clipShape(Capsule())
+            .frame(width:220)*/
+            
+            Text("Nro de intentos \(self.contIntentos)")
             
             Button(action: {
                 self.login.loginDetail(telefono: self.number)
@@ -50,15 +67,20 @@ struct CodeView: View {
                     .font(.caption)
                     .foregroundColor(.white)
             }
-            
             Button(action: {
-                self.loginVM.verificarCode(telefono: self.number, code: self.pin)
-                //self.authState.isAuth = true
+                self.contIntentos += 1
+                if self.contIntentos <= 3 {
+                    self.loginVM.verificarCode(telefono: self.number, code: self.pin)
+                }else if self.contIntentos >= 4 {
+                    self.alertState = true
+                }
+                
             })
             {
                 Text("Aceptar")
                     .textStyle(TextButtonLoginStyle())
             }
+            
             Text("SMS \(self.smstext)")
             if self.loginVM.isloading == true{
                 Loader()
@@ -74,7 +96,18 @@ struct CodeView: View {
         .frame(maxWidth:.infinity, maxHeight: .infinity)
         .background(Color("primary"))
         .edgesIgnoringSafeArea(.top)
+        
+        .alert(isPresented:  self.$alertState){
+            self.alerts
+        }
     }
+    
+    var alerts:Alert{
+        Alert(title: Text("Fastgi"), message: Text("Intente mas tarde por favor."), dismissButton: .default(Text("Aceptar"), action: {
+            self.presentationMode.wrappedValue.dismiss()
+        }))
+    }
+   
 }
 
 struct CodeView_Previews: PreviewProvider {

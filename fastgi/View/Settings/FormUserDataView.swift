@@ -114,10 +114,6 @@ struct FormUserDataView: View {
                 self.updateVM.updateUser(ci: self.userDataVM.user.ci, correo: self.userDataVM.user.correo, nombres: self.userDataVM.user.nombres, apellidos: self.userDataVM.user.apellidos, direccion: self.userDataVM.user.direccion, nombrenit: self.userDataVM.user.nombrenit, nit: self.userDataVM.user.nit)
                 //self.authState.navigateBack = true
                 self.alertState = true
-                
-               
-                
-              
             }){
                 Text("Aceptar")
                     .foregroundColor(Color.white)

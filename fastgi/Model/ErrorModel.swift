@@ -41,3 +41,4 @@ struct ErrorVerificaUser : Codable{
     var value: String
     var path: String
 }
+
