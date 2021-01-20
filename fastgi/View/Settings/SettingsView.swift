@@ -233,9 +233,6 @@ struct SettingsView: View {
     @State private var showSheet:Bool = false
     @State private var imageSelect : UIImage? = nil
     @State private var sourceType: UIImagePickerController.SourceType = .camera
-    //control del menu
-    @State var controlMenu = 3
-    
     //datos user
     @ObservedObject var userDataVM = UserDataViewModel()
     init() {
@@ -264,6 +261,7 @@ struct SettingsView: View {
                 }
                 .buttonStyle(PlainButtonStyle())
             }
+            
             NavigationLink(destination: MenuView(), isActive: $menu) {
                 EmptyView()
             }.isDetailLink(false)
@@ -398,7 +396,7 @@ struct SettingsView: View {
                     if self.afiliacionVM.afiliacionHabilitacion._id == "" {
                         
                     }else if self.afiliacionVM.afiliacionHabilitacion.habilitado == true{
-                        NavigationLink(destination: QrGeneratorView()) {
+                        NavigationLink(destination: QrGeneratorView(monto: "")) {
                             HStack{
                                 Image(systemName: "qrcode")
                                 Text("MI QR")

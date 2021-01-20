@@ -22,6 +22,11 @@ struct CodeView: View {
     //alert
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @State var alertState: Bool = false
+    @State var alertStateTemp: Bool = false
+    
+    //temporizador
+    @State var timeRemaining = 15
+    let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     
     var body: some View {
         VStack(spacing:10) {
@@ -58,15 +63,30 @@ struct CodeView: View {
             .frame(width:220)*/
             
             Text("Nro de intentos \(self.contIntentos)")
+            //temporizador
+            Text("tiempo espera de sms \(timeRemaining)")
+                        .onReceive(timer) { _ in
+                            if self.timeRemaining > 0 {
+                                self.timeRemaining -= 1
+                            }
+                        }
             
             Button(action: {
-                self.login.loginDetail(telefono: self.number)
+                if self.timeRemaining == 0 {
+                    self.login.loginDetail(telefono: self.number)
+                }else{
+                    print("Espere q el tiempo termine")
+                    self.alertStateTemp = true
+                }
+                
             })
             {
                 Text("Reenviar SMS")
                     .font(.caption)
                     .foregroundColor(.white)
             }
+            
+            
             Button(action: {
                 self.contIntentos += 1
                 if self.contIntentos <= 3 {
@@ -89,7 +109,7 @@ struct CodeView: View {
                     .foregroundColor(.red)
             }
             Spacer()
-            Spacer()
+            //Spacer()
         }
         .padding(.top,60)
         .padding([.leading, .trailing])
@@ -100,6 +120,9 @@ struct CodeView: View {
         .alert(isPresented:  self.$alertState){
             self.alerts
         }
+        .alert(isPresented:  self.$alertStateTemp){
+            self.alertTemp
+        }
     }
     
     var alerts:Alert{
@@ -108,6 +131,11 @@ struct CodeView: View {
         }))
     }
    
+    var alertTemp:Alert{
+        Alert(title: Text("Fastgi"), message: Text("Espere que termine el tiempo por favor."), dismissButton: .default(Text("Aceptar"), action: {
+            self.presentationMode.wrappedValue.dismiss()
+        }))
+    }
 }
 
 struct CodeView_Previews: PreviewProvider {

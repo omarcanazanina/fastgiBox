@@ -146,7 +146,7 @@ class QrPayment: ObservableObject {
                         if let decodedResponse = try? JSONDecoder().decode(ErrorUserAfiliacionResponse.self, from: data) {
                             print(decodedResponse)
                             self.noafiliado = decodedResponse.afiliado
-                            print(self.noafiliado)
+                            print("usuario no afiliado \(self.noafiliado)")
                             return
                         }
                     case let .failure(error):

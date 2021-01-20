@@ -17,8 +17,12 @@ struct HomeView: View {
     //
     @State var text = ""
     //lector qr
-    @State private var showScanner = false
+    @State private var showScannerTeleferico = false
+    @State private var showScannerTransporte = false
     @State private var resultado = ""
+    //lector con monto
+    @State private var idconmonto = ""
+    @State private var montoQR = ""
     
     @State private var action:Int? = 0
     //test
@@ -32,6 +36,11 @@ struct HomeView: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @State var alertState: Bool = false
     
+    
+    // fecha prueba
+    let string = "2021-01-18T21:53:57.977Z"
+    let dateFormatter = DateFormatter()
+    
     init(currentBtnEm: Binding<BtnEm>) {
         self._currentBtnEm = currentBtnEm
         
@@ -43,7 +52,7 @@ struct HomeView: View {
     
     var btnTeleferic:some View{
         Button(action: {
-            self.showScanner = true
+            self.showScannerTeleferico = true
         }){
             VStack{
                 Image("Mi_teleferico")
@@ -57,12 +66,13 @@ struct HomeView: View {
             .shadow(color: Color.black.opacity(0.1), radius: 4, x: 2, y: 3)
         }
         //.background(Color.red.opacity(0.5))
-        .sheet(isPresented: self.$showScanner) {
+        .sheet(isPresented: self.$showScannerTeleferico) {
             CodeScannerView(codeTypes: [.qr]){ result in
                 switch result {
                 case .success(let codigo):
+                    print("teleferico")
                     self.resultado = codigo
-                    self.showScanner = false
+                    self.showScannerTeleferico = false
                     //self.action = 1
                 case .failure(let error):
                     print(error.localizedDescription)
@@ -78,7 +88,7 @@ struct HomeView: View {
         HStack{
         
             Button(action: {
-                self.showScanner = true
+                self.showScannerTransporte = true
                 self.action = 1
                
             }){
@@ -95,28 +105,41 @@ struct HomeView: View {
                 
             }
             //.background(Color.blue.opacity(0.5))
-            .sheet(isPresented: self.$showScanner) {
+            .sheet(isPresented: self.$showScannerTransporte) {
                 CodeScannerView(codeTypes: [.qr]){ result in
                     switch result {
                     case .success(let codigo):
                         self.resultado = codigo
-                        self.action = 1
-                        //self.qrPaymentVM.userVerifi(id_cobrador: self.resultado)
-                        //self.qrPayment.verificaUser(id_cobrador: codigo)
-                        //self.showScanner = false
+                        if self.resultado.count > 24 {
+                            self.idconmonto = String(self.resultado.prefix(24))
+                            print("tiene monto \(self.idconmonto)")
+                            self.montoQR = String(self.resultado.dropFirst(24))
+                            print("el monto \(self.montoQR)")
+                            self.qrPaymentVM.userAfiliacion(id_afiliado: self.idconmonto)
+                            self.showScannerTransporte = false
+                        }else{
+                            print("no tiene monto")
+                            self.qrPaymentVM.userAfiliacion(id_afiliado: self.resultado)
+                            self.showScannerTransporte = false
+                        }
                     case .failure(let error):
                         print(error.localizedDescription)
                     }
                 }
             }
-            NavigationLink(destination: PayView(user: self.resultado, resultado: ""), tag: 1, selection: self.$action) {
+            .onReceive(self.qrPaymentVM.$afiliado) { (afiliado) in
+                if afiliado == true {
+                    if self.idconmonto == ""{
+                        self.userDataVM.DatosUserPago(id_usuario: self.resultado)
+                    }else{
+                        self.userDataVM.DatosUserPago(id_usuario: self.idconmonto)
+                    }
+                   
+                }
+            }
+            NavigationLink(destination: PayView(user: self.userDataVM.userResponsePago, montoQR: self.$montoQR), isActive: self.$userDataVM.nextPayview) {
                 EmptyView()
             }
-          /*=  NavigationLink(destination: PayView(user: "\(self.userDataVM.userPago.nombres) \(self.userDataVM.userPago.apellidos)", resultado: self.resultado), tag: 1, selection: self.$action) {
-                    EmptyView()
-                }*/
-           
-            
         }
       
     }
@@ -146,22 +169,22 @@ struct HomeView: View {
                         Spacer()
                             .frame(maxWidth:.infinity)
                 }.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
-               // Text("Res \(self.resultado)")
                 HStack{
                     Button(action: {
-                        if self.resultado != "" {
-                            self.qrPaymentVM.userAfiliacion(id_afiliado: self.resultado)
-                                self.action = 2
-                        }else if self.resultado == "" {
-                            print("no hay user afiliado")
-                        }
+                        //2021-01-18T21:53:57.977Z
+                        
+                        dateFormatter.dateFormat = "YYYY-MM-DDThh:mm:ss.sTZD"
+                        print(dateFormatter.date(from: string) as Any)
                     }){
-                     //   Text("Aceptar")
+                        //Text("Aceptar")
                     }
+                   
+                    Text(self.resultado)
+                   /* Text(self.resultado)
                   //  if self.qrPaymentVM.afiliado == true {
                         NavigationLink(destination: PayView(user: self.resultado, resultado: ""), tag: 2, selection: self.$action) {
                             EmptyView()
-                        }
+                        }*/
                   //  }
                     /*if  self.qrPaymentVM.noafiliado == nil {
                         Text("User no esta afiliado")
@@ -170,27 +193,34 @@ struct HomeView: View {
                     }*/
                 }
             }.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
+            HStack{
+                if self.qrPaymentVM.noafiliado == nil{
+                    Text("Usuario no afiliado")
+                        .foregroundColor(.red)
+                        .bold()
+                    self.alertNoAfiliado()
+                }
+               
+            }
         }
         .padding()
     }
     
-  
+    var alerts:Alert{
+        Alert(title: Text("Fastgi"), message: Text("Usuario no afiliado."), dismissButton: .default(Text("Aceptar"), action: {
+            self.presentationMode.wrappedValue.dismiss()
+        }))
+    }
     
     var body: some View {
         HStack{
             self.home
         }
-        /*.alert(isPresented:  self.$alertState){
+        
+        .alert(isPresented:  self.$alertState){
             self.alerts
-        }*/
-       
-        /*.onAppear{
-            print("SE EJECUTO EL ONAPPEAR \(self.resultado)")
-            self.userDataVM.DatosUserPago(id_usuario: self.resultado)
-           // self.qrPaymentVM.userVerifi(id_cobrador: self.resultado)
-            
-        }*/
-    }
+        }
+        }
     
 }
 
@@ -200,3 +230,25 @@ struct HomeView_Previews: PreviewProvider {
             
     }
 }
+extension HomeView {
+    func alertNoAfiliado() -> AnyView {
+        if self.qrPaymentVM.noafiliado == nil {
+            self.alertState = true
+        }
+        return AnyView(EmptyView())
+    }
+}
+
+/*
+ if self.resultado.contains("/") {
+     print("existe monto")
+      //var resultadomonto1 = self.resultado.split(separator: "/")
+     self.resultadomonto = self.resultado.split(separator: "/")
+     print(self.resultadomonto)
+     print("iduser \(resultadomonto [0])")
+     print("monto \(resultadomonto [1])")
+     var convString: String = self.resultadomonto.reduce(",") { $0 + " " + $1 }
+     //self.qrPaymentVM.userAfiliacion(id_afiliado: self.resultadomonto[0] as! String)
+     self.showScannerTransporte = false
+ }
+ **/

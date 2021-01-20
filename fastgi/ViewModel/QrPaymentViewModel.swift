@@ -20,7 +20,8 @@ class QrPaymentViewModel: ObservableObject {
     //nav userafiliacion
     @Published var afiliado : Bool = false
     @Published var noafiliado : String? = ""
-    
+    @Published var noafiliadomessage : Bool = false
+    //@Published var noafiliadoAlert : String = ""
     private var PagoQrDataPublisher: AnyPublisher<QrPaymentModel, Never> {
         qrPayResponse.$pagoResponse
             .receive(on: RunLoop.main)
@@ -57,6 +58,10 @@ class QrPaymentViewModel: ObservableObject {
         qrPayResponse.$afiliado
             .receive(on: RunLoop.main)
             .map { response in
+                //if response == false {
+                    //self.noafiliadoAlert = "noafiliado"
+                //}
+                self.noafiliadomessage = true
                 return response
         }
         .eraseToAnyPublisher()

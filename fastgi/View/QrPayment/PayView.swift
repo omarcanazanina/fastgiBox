@@ -10,18 +10,14 @@ import SDWebImageSwiftUI
 
 struct PayView: View {
     @State private var monto: String = ""
-    var user: String
-    var resultado: String
+    var user: UpdateUserPagoModel
+    @Binding var montoQR : String
+    //@State private var otromonto: String = "otromonto"
     //datos user
     @ObservedObject var userDataVM = UserDataViewModel()
     //test
     @ObservedObject var qrPayment = QrPayment()
     @ObservedObject var qrPaymentVM = QrPaymentViewModel()
-    //
-    
-    /*init() {
-        recuperarUser()
-    }*/
     
     //alert
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
@@ -51,8 +47,18 @@ struct PayView: View {
     var buttonSuccess:some View {
         VStack(){
             Button(action: {
-                self.qrPaymentVM.pagoQr(id_cobrador: self.user, monto: self.monto)
-                //self.qrPayment.pagoQr(id_cobrador: self.user, monto: self.monto)
+               /* if self.user != "" {
+                    self.qrPaymentVM.userAfiliacion(id_afiliado: self.user)
+                    self.userDataVM.DatosUserPago(id_usuario: self.user)
+                }else if self.user == "" {
+                    print("no hay user afiliado")
+                }
+                if  self.qrPaymentVM.noafiliado == nil {
+                    self.alertState = true
+                }*/
+                
+                //
+                self.qrPaymentVM.pagoQr(id_cobrador: self.user._id, monto: self.monto)
                 self.action = 1
             }){
                 Text("Pagar")
@@ -67,9 +73,16 @@ struct PayView: View {
            /* NavigationLink(destination: TestpayDetail(monto: self.monto, nombreCobrador: self.user, id_usuario: self.qrPaymentVM.qrPayData.id_usuario), tag: 1, selection: self.$action) {
                 EmptyView()
         }*/
-            NavigationLink(destination: TestpayDetail(monto: self.monto, nombreCobrador: "\(self.userDataVM.userResponsePago.nombres) \(self.userDataVM.userResponsePago.apellidos)", id_usuario: "\(self.userDataVM.userResponsePago.nombres) \(self.userDataVM.userResponsePago.apellidos)", fecha: "",fechaFormat: "", horaFormat: ""), tag: 1, selection: self.$action) {
-                 EmptyView()
-         }
+            if self.montoQR == "" {
+                NavigationLink(destination: TestpayDetail(monto: self.monto, nombreCobrador: "\(self.user.nombres) \(self.user.apellidos)", fecha: "",fechaFormat: "", horaFormat: ""), tag: 1, selection: self.$action) {
+                     EmptyView()
+             }
+            }else{
+                NavigationLink(destination: TestpayDetail(monto: self.montoQR, nombreCobrador: "\(self.user.nombres) \(self.user.apellidos)", fecha: "",fechaFormat: "", horaFormat: ""), tag: 1, selection: self.$action) {
+                     EmptyView()
+             }
+            }
+         
         }
         .padding()
     }
@@ -81,34 +94,44 @@ struct PayView: View {
                 Text("Pagar transporte")
                     .font(.title)
                 self.imageProfile
-                Text("\(self.user)")
-                Text("\(self.userDataVM.userResponsePago.nombres) \(self.userDataVM.userResponsePago.apellidos)")
-            
+                Text("\(self.user.nombres) \(self.user.apellidos)")
                 VStack(alignment: .leading, spacing: 8){
                     Text("MONTO BS.")
                         .textStyle(TitleStyle())
-                    TextField("Ingrese monto", text: $monto)
-                        .textFieldStyle(Input())
-                        .keyboardType(.numberPad)
-                        .introspectTextField { (textField) in
-                            let toolBar = UIToolbar(frame: CGRect(x: 0, y: 0, width: textField.frame.size.width, height: 44))
-                            let flexButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil)
-                            let doneButton = UIBarButtonItem(title: "Cerrar", style: .done, target: self, action: #selector(textField.doneButtonTapped(button:)))
-                         doneButton.tintColor = .darkGray
-                            toolBar.items = [flexButton, doneButton]
-                            toolBar.setItems([flexButton, doneButton], animated: true)
-                            textField.inputAccessoryView = toolBar
-                            textField.becomeFirstResponder()
-                         }
+                    if self.montoQR == "" {
+                        TextField("Ingrese monto", text: $monto)
+                            .textFieldStyle(Input())
+                            .keyboardType(.decimalPad)
+                            .introspectTextField { (textField) in
+                                let toolBar = UIToolbar(frame: CGRect(x: 0, y: 0, width: textField.frame.size.width, height: 44))
+                                let flexButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil)
+                                let doneButton = UIBarButtonItem(title: "Cerrar", style: .done, target: self, action: #selector(textField.doneButtonTapped(button:)))
+                             doneButton.tintColor = .darkGray
+                                toolBar.items = [flexButton, doneButton]
+                                toolBar.setItems([flexButton, doneButton], animated: true)
+                                textField.inputAccessoryView = toolBar
+                                textField.becomeFirstResponder()
+                             }
+                    }else{
+                        TextField("Ingrese monto", text: $montoQR )
+                            .textFieldStyle(Input())
+                            .keyboardType(.decimalPad)
+                            .introspectTextField { (textField) in
+                                let toolBar = UIToolbar(frame: CGRect(x: 0, y: 0, width: textField.frame.size.width, height: 44))
+                                let flexButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil)
+                                let doneButton = UIBarButtonItem(title: "Cerrar", style: .done, target: self, action: #selector(textField.doneButtonTapped(button:)))
+                             doneButton.tintColor = .darkGray
+                                toolBar.items = [flexButton, doneButton]
+                                toolBar.setItems([flexButton, doneButton], animated: true)
+                                textField.inputAccessoryView = toolBar
+                                textField.becomeFirstResponder()
+                             }
+                    }
+                    
                 }
-                /*Button(action:{
-                    self.qrPaymentVM.userVerifi(id_cobrador: "5fbe3893dee3371becd7bbf1")
-                }){
-                    Text("sadad")
-                }*/
                 self.buttonSuccess
                 HStack{
-                    Button(action: {
+                   /* Button(action: {
                         if self.user != "" {
                             self.qrPaymentVM.userAfiliacion(id_afiliado: self.user)
                             self.userDataVM.DatosUserPago(id_usuario: self.user)
@@ -120,8 +143,8 @@ struct PayView: View {
                         }
                     }){
                         Text("Aceptar")
-                    }
-                    if self.qrPaymentVM.afiliado == true {
+                    }*/
+                  /*  if self.qrPaymentVM.afiliado == true {
                         Text("user existente")
                     }
                     if  self.qrPaymentVM.noafiliado == nil {
@@ -129,21 +152,12 @@ struct PayView: View {
                         Text("User no esta afiliado")
                             .foregroundColor(.red)
                         //self.alertState = true
-                    }
+                    }*/
                 }
             }
             .padding(.horizontal)
     //}
-            .onAppear{
-                //print("se ejecuto el onAppear del pay")
-                //self.userDataVM.DatosUserPago(id_usuario: self.user)
-                if self.user != "" {
-                    self.qrPaymentVM.userAfiliacion(id_afiliado: self.user)
-                    self.userDataVM.DatosUserPago(id_usuario: self.user)
-                }else if self.user == "" {
-                    print("no hay user afiliado")
-                }
-            }.alert(isPresented:  self.$alertState){
+            .alert(isPresented:  self.$alertState){
                 self.alerts
             }
     //.navigationBarTitle("Pagar transporte", displayMode: .inline)
@@ -157,11 +171,11 @@ struct PayView: View {
     
 }
 
-struct PayView_Previews: PreviewProvider {
+/*struct PayView_Previews: PreviewProvider {
     static var previews: some View {
-        PayView(user: "", resultado: "")
+        PayView(user: UpdateUserPagoModel, resultado: "")
     }
-}
+}*/
 
 extension PayView{
     func recuperarUser() -> String {

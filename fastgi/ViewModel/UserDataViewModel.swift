@@ -19,6 +19,8 @@ class UserDataViewModel: ObservableObject {
     
     private var disposables: Set<AnyCancellable> = []
     @Published var messageError: String = ""
+    
+    @Published var nextPayview: Bool = false
     //DataUser
     private var DataUserPublisher: AnyPublisher<UpdateUserModel, Never> {
           userDataResponse.$userResponse
@@ -40,6 +42,7 @@ class UserDataViewModel: ObservableObject {
                   guard let response = response else {
                     return self.userResponsePago
                   }
+                self.nextPayview = true
                   return response
               }
               .eraseToAnyPublisher()
@@ -75,7 +78,7 @@ class UserDataViewModel: ObservableObject {
         
         
        DatosUser()
-        DatosUserPago(id_usuario: userResponsePago._id)
+       // DatosUserPago(id_usuario: userResponsePago._id)
     }
     
     func DatosUser() {

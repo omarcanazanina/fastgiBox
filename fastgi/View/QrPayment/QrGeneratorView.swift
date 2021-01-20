@@ -12,6 +12,7 @@ import UIKit
 import SDWebImageSwiftUI
 
 struct QrGeneratorView: View {
+    var monto: String
     //datos user
     @ObservedObject var userDataVM = UserDataViewModel()
     
@@ -19,6 +20,8 @@ struct QrGeneratorView: View {
     let filter = CIFilter.qrCodeGenerator()
     
     var showBtn: Bool? = true
+    var nombreUser : String = ""
+    @State private var action:Int? = 0
     //funcion generar QR
     func generarQR(text: String) -> UIImage{
         let data = Data(text.utf8)
@@ -71,24 +74,47 @@ struct QrGeneratorView: View {
        // TextField("Texto a QR", text: self.$texto)
         VStack{
             self.imageProfile
+           // let nombreUser = "\(self.userDataVM.user.nombres) \(self.userDataVM.user.apellidos)"
+            Text("monto \(self.monto)")
             Text("\(self.userDataVM.user.nombres) \(self.userDataVM.user.apellidos)")
                 .font(.title)
                 .bold()
-            Image(uiImage: generarQR(text: self.userDataVM.user._id))
-                .interpolation(.none)
-                .resizable()
-                .scaledToFit()
-                .frame(width: 300, height: 300)
+            Text(nombreUser)
+                .font(.title)
+                .bold()
+            if self.monto == "" {
+                Image(uiImage: generarQR(text: self.userDataVM.user._id))
+                    .interpolation(.none)
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 300, height: 300)
+            }else {
+                Image(uiImage: generarQR(text: "\(self.userDataVM.user._id)\(self.monto)"))
+                    .interpolation(.none)
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 300, height: 300)
+            }
             
             
-            if self.showBtn! {
-                
+            HStack {
                 Button(action: {
-                    self.exportToPDF()
-                }){
-                    Text("Compartir")
+                    self.action = 1
+                })
+                {
+                    Text("Monto")
                 }.buttonStyle(PrimaryButtonOutlineStyle())
                 
+                if self.showBtn! {
+                    Button(action: {
+                        self.exportToPDF(nombreUser_: "\(self.userDataVM.user.nombres) \(self.userDataVM.user.apellidos)", showBtn_: false)
+                    }){
+                        Text("Compartir")
+                    }.buttonStyle(PrimaryButtonOutlineStyle())
+                }
+            }
+            NavigationLink(destination: EnterAmountView(), tag: 1, selection: self.$action) {
+                    EmptyView()
             }
         }
 
@@ -97,14 +123,19 @@ struct QrGeneratorView: View {
 
 struct QrGeneratorView_Previews: PreviewProvider {
     static var previews: some View {
-        QrGeneratorView()
+        Group{
+            QrGeneratorView(monto: "")
+                .previewDevice("iPhone 11")
+                .preferredColorScheme(.dark)
+        }
+        
     }
 }
 
 
 extension QrGeneratorView {
-    func exportToPDF() {
-        
+    func exportToPDF(nombreUser_: String, showBtn_: Bool) {
+        print(nombreUser_)
         let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
         let outputFileURL = documentDirectory.appendingPathComponent("Fastgi.pdf")
         
@@ -112,7 +143,7 @@ extension QrGeneratorView {
         let width: CGFloat = 8.5 * 72.0
         //Estimate the height of your view
         let height: CGFloat = 1000
-        let charts = QrGeneratorView()
+        let charts = QrGeneratorView(monto: "", showBtn: showBtn_, nombreUser: nombreUser_)
         
         let pdfVC = UIHostingController(rootView: charts)
         pdfVC.view.frame = CGRect(x: 0, y: 0, width: width, height: height)
