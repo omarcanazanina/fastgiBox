@@ -71,6 +71,8 @@ class ContactsViewModel: ObservableObject {
             .receive(on: RunLoop.main)
             .assign(to: \.messageError, on: self)
             .store(in: &disposables)
+        
+        getContacts()
     }
     
     

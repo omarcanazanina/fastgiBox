@@ -25,7 +25,6 @@ struct FormLoadCreditView: View {
     @State var showingSheet = false
     @State private  var nombreContact = ""
     
-    
     var home: some View {
         ScrollView{
             //botones de la empresa
@@ -55,8 +54,7 @@ struct FormLoadCreditView: View {
                             print(self.contactsVM.listContacts.count)
                             self.contacts.sendContacts()
                             self.contactsVM.getContacts()
-                           // self.showingSheet.toggle()
-                        }else{
+                        }else if self.contactsVM.listContacts.count != 0{
                             print("si hay contactos")
                             print(self.contactsVM.listContacts.count)
                             self.showingSheet.toggle()
@@ -99,7 +97,12 @@ struct FormLoadCreditView: View {
                     print(self.montoRecarga1)
                     print(self.montoRecarga)
                     print(self.telefono)
+                    if self.montoRecarga == ""{
+                        self.RecargaVM.SendRecarga(empresa: self.SelectEm, recarga: "30", telefono: self.telefono,  text: "")
+                    }else{
                         self.RecargaVM.SendRecarga(empresa: self.SelectEm, recarga: self.montoRecarga, telefono: self.telefono,  text: "")
+                    }
+                        
                         self.action = 1
                           //self.login.ruta = "recarga"
                    
@@ -131,10 +134,13 @@ struct FormLoadCreditView: View {
                 .padding(.leading)
                 .padding(.top,80)
             
-        }.edgesIgnoringSafeArea(.top)
-        .onAppear{
-            self.contactsVM.getContacts()
         }
+       
+        .edgesIgnoringSafeArea(.top)
+        //llamado desde ContactsViewModel
+        /* .onAppear{
+            self.contactsVM.getContacts()
+        }*/
     }
 }
 

@@ -120,9 +120,8 @@ struct ListContactsView: View {
                         Text("Cerrar").bold()
                             .foregroundColor(Color("primary"))
                     })
-           
-           
-            }.onAppear{
+            }
+        .onAppear{
                 self.contactsVM.getContacts()
           
             }
@@ -132,7 +131,6 @@ struct ListContactsView: View {
 struct ListContactsView_Previews: PreviewProvider {
     @State static var showingSheet = true
     static var previews: some View {
-        //ListContactsView(showingSheet: $showingSheet, telefono: .constant(""), modal: .constant(false))
         ListContactsView(showingSheet: $showingSheet, telefono: .constant(""), nombre: .constant(""), modal: .constant(false))
     }
 }

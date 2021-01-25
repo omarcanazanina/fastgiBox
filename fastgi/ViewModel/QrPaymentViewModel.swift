@@ -20,6 +20,8 @@ class QrPaymentViewModel: ObservableObject {
     //nav userafiliacion
     @Published var afiliado : Bool = false
     @Published var noafiliado : String? = ""
+    //testnoafiliado
+    @Published var enespera : String = ""
     @Published var noafiliadomessage : Bool = false
     //@Published var noafiliadoAlert : String = ""
     private var PagoQrDataPublisher: AnyPublisher<QrPaymentModel, Never> {
@@ -67,6 +69,18 @@ class QrPaymentViewModel: ObservableObject {
         .eraseToAnyPublisher()
     }
     
+    
+    //afiliado existe
+    private var UserNoAfiliacionPublished: AnyPublisher<String, Never> {
+        qrPayResponse.$enespera
+            .receive(on: RunLoop.main)
+            .map { response in
+                return response
+        }
+        .eraseToAnyPublisher()
+    }
+    
+    
   
     
     
@@ -107,6 +121,10 @@ class QrPaymentViewModel: ObservableObject {
             .assign(to: \.noafiliado, on: self)
             .store(in: &disposables)
         
+        UserNoAfiliacionPublished
+            .receive(on: RunLoop.main)
+            .assign(to: \.enespera, on: self)
+            .store(in: &disposables)
         //userVerifi(id_cobrador: self.userCorrecto)
     }
     

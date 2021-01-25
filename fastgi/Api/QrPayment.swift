@@ -21,7 +21,8 @@ class QrPayment: ObservableObject {
     //nav userafiliacion
     @Published var afiliado : Bool = false
     @Published var noafiliado : String? = ""
-    
+    //testafiliacion
+    @Published var enespera : String = ""
     func verificaUser(id_cobrador: String){
         let parametros : Parameters = [
             "id_cobrador": id_cobrador
@@ -138,7 +139,10 @@ class QrPayment: ObservableObject {
                         if let decodedResponse = try? JSONDecoder().decode(VerificaUserAfiliacionResponse.self, from: data) {
                             print("verifica afiliacion \(decodedResponse.afiliado)")
                             self.afiliado = decodedResponse.afiliado.habilitado
-                            print(self.afiliado)
+                            print("desde el qrpayment \(self.afiliado)")
+                            if decodedResponse.afiliado.habilitado == false {
+                                self.enespera = "false"
+                            }
                             //self.userCorrecto = decodedResponse.id_cobrador
                             return
                         }

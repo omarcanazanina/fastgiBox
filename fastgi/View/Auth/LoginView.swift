@@ -75,14 +75,8 @@ struct LoginView: View {
                         .background(Color.white)
                         .foregroundColor(.black)
                         .clipShape(Capsule())
+                        .frame(width:220)
                         .introspectTextField { (textField) in
-                            /*let toolBar = UIToolbar(frame: CGRect(x: 0, y: 0, width: textField.frame.size.width, height: 44))
-                            let flexButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil)
-                            let doneButton = UIBarButtonItem(title: "Cerrar", style: .done, target: self, action: #selector(textField.doneButtonTapped(button:)))
-                         doneButton.tintColor = .darkGray
-                            toolBar.items = [flexButton, doneButton]
-                            toolBar.setItems([flexButton, doneButton], animated: true)
-                            textField.inputAccessoryView = toolBar*/
                             textField.becomeFirstResponder()
                          }
                 }
@@ -106,14 +100,13 @@ struct LoginView: View {
               /*  NavigationLink(destination: CodeView(number: "12121212", smstext: self.loginVM.smstext), tag: "idlogin", selection: self.$login.ruta) {
                     EmptyView()
                 }*/
-                
             }
         
             .padding([.top, .leading, .trailing])
             .frame(maxWidth:.infinity, maxHeight: .infinity)
             .background(Color("primary"))
             .edgesIgnoringSafeArea(.top)
-        }.accentColor(.white)
+        }
         
     }
     

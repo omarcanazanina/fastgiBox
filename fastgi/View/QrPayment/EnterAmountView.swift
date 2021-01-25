@@ -8,13 +8,15 @@
 import SwiftUI
 
 struct EnterAmountView: View {
-    @State private var monto: String = ""
     @State private var action:Int? = 0
+    //modal
+    @Binding var modal:Bool
+    @Binding var monto : String
     
     var buttonSuccess:some View {
         VStack(){
             Button(action: {
-                self.action = 1
+                self.modal.toggle()
             }){
                 Text("Aceptar")
                     .foregroundColor(Color.white)
@@ -28,8 +30,7 @@ struct EnterAmountView: View {
         }.padding()
         
     }
-    
-    var body: some View {
+    var inputAmount: some View {
         VStack{
             VStack(alignment: .leading, spacing: 8){
                 Text("MONTO BS.")
@@ -54,11 +55,36 @@ struct EnterAmountView: View {
             }
         }.padding()
     }
+    var body: some View {
+        NavigationView {
+          
+            VStack {
+                self.inputAmount
+                    .navigationBarItems(trailing: Button(action: {
+                        print("Dismissing sheet view...")
+                        self.modal = false
+                    }) {
+                        Text("Cerrar").bold()
+                            .foregroundColor(Color("primary"))
+                    })
+                    .navigationBarTitle(Text("Monto"), displayMode: .inline)
+                    .navigationBarItems(trailing: Button(action: {
+                        print("Dismissing sheet view...")
+                        self.modal = false
+                    }) {
+                        Text("Cerrar").bold()
+                            .foregroundColor(Color("primary"))
+                    })
+            }
+        }
+
+    }
   
 }
 
 struct EnterAmountView_Previews: PreviewProvider {
+    @State static var showingSheet = true
     static var previews: some View {
-        EnterAmountView()
+        EnterAmountView(modal: .constant(false), monto: .constant(""))
     }
 }

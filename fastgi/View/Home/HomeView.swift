@@ -30,17 +30,15 @@ struct HomeView: View {
     @ObservedObject var qrPaymentVM = QrPaymentViewModel()
     @ObservedObject var userData = UserData()
     @ObservedObject var userDataVM = UserDataViewModel()
-    @State var test = ""
-    
     //alert
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @State var alertState: Bool = false
     
-    
+    @State var ctrl: String = ""
     // fecha prueba
     let string = "2021-01-18T21:53:57.977Z"
     let dateFormatter = DateFormatter()
-    
+   
     init(currentBtnEm: Binding<BtnEm>) {
         self._currentBtnEm = currentBtnEm
         
@@ -134,7 +132,6 @@ struct HomeView: View {
                     }else{
                         self.userDataVM.DatosUserPago(id_usuario: self.idconmonto)
                     }
-                   
                 }
             }
             NavigationLink(destination: PayView(user: self.userDataVM.userResponsePago, montoQR: self.$montoQR), isActive: self.$userDataVM.nextPayview) {
@@ -180,30 +177,24 @@ struct HomeView: View {
                     }
                    
                     Text(self.resultado)
-                   /* Text(self.resultado)
-                  //  if self.qrPaymentVM.afiliado == true {
-                        NavigationLink(destination: PayView(user: self.resultado, resultado: ""), tag: 2, selection: self.$action) {
-                            EmptyView()
-                        }*/
-                  //  }
-                    /*if  self.qrPaymentVM.noafiliado == nil {
-                        Text("User no esta afiliado")
-                            .foregroundColor(.red)
-                        //self.alertState = true
-                    }*/
                 }
+                
             }.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
-            HStack{
-                if self.qrPaymentVM.noafiliado == nil{
-                    Text("Usuario no afiliado")
-                        .foregroundColor(.red)
-                        .bold()
-                    self.alertNoAfiliado()
+            HStack{ //() -> AnyView in
+                if self.qrPaymentVM.noafiliado == nil || self.qrPaymentVM.enespera == "false" {
+                        Text("Usuario aun no afiliado")
+                            .foregroundColor(.red)
+                            .bold()
+                   // self.alertState = true
+                    //self.alertNoAfiliado()
+                    
                 }
-               
+                //return AnyView(EmptyView())
             }
+           
         }
         .padding()
+        
     }
     
     var alerts:Alert{
@@ -215,9 +206,7 @@ struct HomeView: View {
     var body: some View {
         HStack{
             self.home
-        }
-        
-        .alert(isPresented:  self.$alertState){
+        }.alert(isPresented:  self.$alertState){
             self.alerts
         }
         }
@@ -232,9 +221,11 @@ struct HomeView_Previews: PreviewProvider {
 }
 extension HomeView {
     func alertNoAfiliado() -> AnyView {
-        if self.qrPaymentVM.noafiliado == nil {
-            self.alertState = true
-        }
+        print("entro a la func")
+        
+           
+            //self.alertState = true
+    
         return AnyView(EmptyView())
     }
 }
@@ -252,3 +243,17 @@ extension HomeView {
      self.showScannerTransporte = false
  }
  **/
+
+
+/* Text(self.resultado)
+//  if self.qrPaymentVM.afiliado == true {
+     NavigationLink(destination: PayView(user: self.resultado, resultado: ""), tag: 2, selection: self.$action) {
+         EmptyView()
+     }*/
+//  }
+ /*if  self.qrPaymentVM.noafiliado == nil {
+     Text("User no esta afiliado")
+         .foregroundColor(.red)
+     //self.alertState = true
+ }*/
+

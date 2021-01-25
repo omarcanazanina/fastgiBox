@@ -32,10 +32,11 @@ struct BtnsView: View {
                 .padding()
                 
                 if currentBtn != .BtnOther{
+                    
                     ButtonCreditAmountView(text: "Other", montoRecarga: self.$montoRecarga, currentBtn: self.$currentBtn, btn: .BtnOther)
                     .padding()
                 }
-                else{
+                else {
                     InputCreditAmountView(amounValue: self.$montoRecarga)
                     .padding()
                     

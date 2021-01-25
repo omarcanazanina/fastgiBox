@@ -12,7 +12,6 @@ import UIKit
 import SDWebImageSwiftUI
 
 struct QrGeneratorView: View {
-    var monto: String
     //datos user
     @ObservedObject var userDataVM = UserDataViewModel()
     
@@ -22,6 +21,9 @@ struct QrGeneratorView: View {
     var showBtn: Bool? = true
     var nombreUser : String = ""
     @State private var action:Int? = 0
+    //modal
+    @State var modal = false
+    @State var monto = ""
     //funcion generar QR
     func generarQR(text: String) -> UIImage{
         let data = Data(text.utf8)
@@ -71,39 +73,44 @@ struct QrGeneratorView: View {
     }
     
     var body: some View {
-       // TextField("Texto a QR", text: self.$texto)
         VStack{
             self.imageProfile
-           // let nombreUser = "\(self.userDataVM.user.nombres) \(self.userDataVM.user.apellidos)"
-            Text("monto \(self.monto)")
             Text("\(self.userDataVM.user.nombres) \(self.userDataVM.user.apellidos)")
                 .font(.title)
                 .bold()
             Text(nombreUser)
                 .font(.title)
                 .bold()
-            if self.monto == "" {
+            
+           // if self.user.score == 0 {
+                if self.monto == "" {
                 Image(uiImage: generarQR(text: self.userDataVM.user._id))
                     .interpolation(.none)
                     .resizable()
                     .scaledToFit()
                     .frame(width: 300, height: 300)
             }else {
-                Image(uiImage: generarQR(text: "\(self.userDataVM.user._id)\(self.monto)"))
+                Image(uiImage: generarQR(text: "\(self.userDataVM.user._id)\(self.monto)"))//self.user.score
                     .interpolation(.none)
                     .resizable()
                     .scaledToFit()
                     .frame(width: 300, height: 300)
             }
-            
-            
+            if self.monto != ""{
+                Text("\(self.monto) Bs.")
+                    .font(.title)
+            }
+     
             HStack {
                 Button(action: {
-                    self.action = 1
+                    self.modal.toggle()
                 })
                 {
                     Text("Monto")
                 }.buttonStyle(PrimaryButtonOutlineStyle())
+                .sheet(isPresented: $modal) {
+                    EnterAmountView(modal: self.$modal, monto: self.$monto)
+                }
                 
                 if self.showBtn! {
                     Button(action: {
@@ -112,12 +119,14 @@ struct QrGeneratorView: View {
                         Text("Compartir")
                     }.buttonStyle(PrimaryButtonOutlineStyle())
                 }
-            }
-            NavigationLink(destination: EnterAmountView(), tag: 1, selection: self.$action) {
-                    EmptyView()
+                Button(action: {
+                    self.shareLink()
+                })
+                {
+                    Text("Link")
+                }.buttonStyle(PrimaryButtonOutlineStyle())
             }
         }
-
     }
 }
 
@@ -143,7 +152,7 @@ extension QrGeneratorView {
         let width: CGFloat = 8.5 * 72.0
         //Estimate the height of your view
         let height: CGFloat = 1000
-        let charts = QrGeneratorView(monto: "", showBtn: showBtn_, nombreUser: nombreUser_)
+        let charts = QrGeneratorView(showBtn: showBtn_, nombreUser: nombreUser_, monto: "")
         
         let pdfVC = UIHostingController(rootView: charts)
         pdfVC.view.frame = CGRect(x: 0, y: 0, width: width, height: height)
@@ -162,9 +171,7 @@ extension QrGeneratorView {
                 
                 pdfVC.view.layer.render(in: context.cgContext)
             })
-            
             let items = [outputFileURL]
-            
             let av = UIActivityViewController(activityItems: items, applicationActivities: nil)
             UIApplication.shared.windows.first?.rootViewController?.present(av, animated: true, completion: nil)
             
@@ -181,6 +188,13 @@ extension QrGeneratorView {
     
 }
 
+extension QrGeneratorView {
+    func shareLink() {
+            guard let data = URL(string: "http://fastgi.com/") else { return }
+            let av = UIActivityViewController(activityItems: [data], applicationActivities: nil)
+            UIApplication.shared.windows.first?.rootViewController?.present(av, animated: true, completion: nil)
+        }
+}
 // mejorar la calidad de qr
 extension UIImage {
     func resized(toWidth width: CGFloat) -> UIImage? {
