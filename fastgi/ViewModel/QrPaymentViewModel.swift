@@ -15,7 +15,7 @@ class QrPaymentViewModel: ObservableObject {
     private var disposables: Set<AnyCancellable> = []
     @Published var qrPayData = QrPaymentModel(_id: "", monto: "", id_cobrador: "", id_usuario: "", fecha: "")
     //user inextente
-    @Published var messageError: String = ""
+   // @Published var messageError: String = ""
     @Published var userCorrecto: String = ""
     //nav userafiliacion
     @Published var afiliado : Bool = false
@@ -23,6 +23,8 @@ class QrPaymentViewModel: ObservableObject {
     //testnoafiliado
     @Published var enespera : String = ""
     @Published var noafiliadomessage : Bool = false
+    //alert
+    @Published var testalert : Bool = false
     //@Published var noafiliadoAlert : String = ""
     private var PagoQrDataPublisher: AnyPublisher<QrPaymentModel, Never> {
         qrPayResponse.$pagoResponse
@@ -31,19 +33,20 @@ class QrPaymentViewModel: ObservableObject {
                 guard let response = response else {
                     return self.qrPayData
                 }
+                
                 return response
         }
         .eraseToAnyPublisher()
     }
     //usuario inexistente
-    private var ErrorPublished: AnyPublisher<String, Never> {
+   /* private var ErrorPublished: AnyPublisher<String, Never> {
         qrPayResponse.$messageError
             .receive(on: RunLoop.main)
             .map { response in
                 return response
         }
         .eraseToAnyPublisher()
-    }
+    }*/
     
     //usuario inexistente
     private var UserPublished: AnyPublisher<String, Never> {
@@ -75,6 +78,10 @@ class QrPaymentViewModel: ObservableObject {
         qrPayResponse.$enespera
             .receive(on: RunLoop.main)
             .map { response in
+                //$0
+                if response == "false"{
+                    self.testalert = true
+                }
                 return response
         }
         .eraseToAnyPublisher()
@@ -88,8 +95,11 @@ class QrPaymentViewModel: ObservableObject {
     private var UserAfiliacionInexistentePublished: AnyPublisher<String?, Never> {
         qrPayResponse.$noafiliado
             .receive(on: RunLoop.main)
-            .map { response in
-                return response
+            .map {
+                if $0 == nil {
+                    self.testalert = true
+                }
+                return $0
         }
         .eraseToAnyPublisher()
     }
@@ -101,11 +111,11 @@ class QrPaymentViewModel: ObservableObject {
             .assign(to: \.qrPayData, on: self)
             .store(in: &disposables)
         
-        ErrorPublished
+       /* ErrorPublished
             .receive(on: RunLoop.main)
             .assign(to: \.messageError, on: self)
             .store(in: &disposables)
-        
+        */
         UserPublished
             .receive(on: RunLoop.main)
             .assign(to: \.userCorrecto, on: self)

@@ -33,12 +33,8 @@ struct HomeView: View {
     //alert
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @State var alertState: Bool = false
-    
-    @State var ctrl: String = ""
-    // fecha prueba
-    let string = "2021-01-18T21:53:57.977Z"
-    let dateFormatter = DateFormatter()
    
+    
     init(currentBtnEm: Binding<BtnEm>) {
         self._currentBtnEm = currentBtnEm
         
@@ -168,30 +164,29 @@ struct HomeView: View {
                 }.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
                 HStack{
                     Button(action: {
-                        //2021-01-18T21:53:57.977Z
-                        
-                        dateFormatter.dateFormat = "YYYY-MM-DDThh:mm:ss.sTZD"
-                        print(dateFormatter.date(from: string) as Any)
+                        let test = "2021-01-27T20:45:53.167Z"
+                        print(test.toStringDateFormat())
                     }){
-                        //Text("Aceptar")
+                    //    Text("Aceptar")
                     }
-                   
-                    Text(self.resultado)
+                    //NavigationLink(destination: testView(), tag: 3, selection: self.$action) {
+                    //    EmptyView()
+                   // }
+                   // Text(self.resultado)
                 }
                 
             }.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
-            HStack{ //() -> AnyView in
-                if self.qrPaymentVM.noafiliado == nil || self.qrPaymentVM.enespera == "false" {
-                        Text("Usuario aun no afiliado")
-                            .foregroundColor(.red)
-                            .bold()
-                   // self.alertState = true
-                    //self.alertNoAfiliado()
+          /*  .onReceive(self.qrPaymentVM.$noafiliado) {
+                if $0 == nil{
                     
+                    self.alertState = true
                 }
-                //return AnyView(EmptyView())
             }
-           
+            .onReceive(self.qrPaymentVM.$enespera) {
+                if $0 == "false"{
+                    self.alertState = true
+                }
+            }*/
         }
         .padding()
         
@@ -206,7 +201,8 @@ struct HomeView: View {
     var body: some View {
         HStack{
             self.home
-        }.alert(isPresented:  self.$alertState){
+        }
+        .alert(isPresented:  self.$qrPaymentVM.testalert){
             self.alerts
         }
         }
@@ -217,16 +213,6 @@ struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
         HomeView(currentBtnEm: .constant(.Entel))
             
-    }
-}
-extension HomeView {
-    func alertNoAfiliado() -> AnyView {
-        print("entro a la func")
-        
-           
-            //self.alertState = true
-    
-        return AnyView(EmptyView())
     }
 }
 

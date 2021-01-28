@@ -14,7 +14,7 @@ class QrPayment: ObservableObject {
     private let storage = UserDefaults.standard
     private let tokenKey = "token"
     private let idKey = "usuario._id"
-    @Published var messageError :String = ""
+    //@Published var messageError :String = ""
     @Published var userCorrecto :String = ""
     @Published var pagoResponse: QrPaymentModel?
     
@@ -23,6 +23,7 @@ class QrPayment: ObservableObject {
     @Published var noafiliado : String? = ""
     //testafiliacion
     @Published var enespera : String = ""
+    
     func verificaUser(id_cobrador: String){
         let parametros : Parameters = [
             "id_cobrador": id_cobrador
@@ -55,9 +56,9 @@ class QrPayment: ObservableObject {
                         }
                         //Cast respuesta a ErrorResponce
                         if let decodedResponse = try? JSONDecoder().decode(ErrorVerificaUserResponse.self, from: data) {
-                            //print("ESTE ES EL ERROR \(decodedResponse.err.kind)")
-                            self.messageError = decodedResponse.err.kind
-                            print("EL ERROR ES \(self.messageError)")
+                            print("ESTE ES EL ERROR \(decodedResponse)")
+                            //self.messageError = decodedResponse.err.kind
+                            //print("EL ERROR ES \(self.messageError)")
                             //  self.ErrorRes = decodedResponse.err.message
                             return
                         }

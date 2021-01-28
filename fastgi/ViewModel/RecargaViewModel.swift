@@ -18,8 +18,7 @@ class RecargaViewModel: ObservableObject {
     @Published var recargaData = RecargaModel(_id: "", empresa: "", recarga: "", id_usuario: "", telefono: "", fecha: "")
     // lista de recargas
     @Published var ListRecargas : [RecargaModel] = []
-    
-    
+   
     private var TestPublished: AnyPublisher<String, Never> {
         RecargaResponse.$control
             .receive(on: RunLoop.main)

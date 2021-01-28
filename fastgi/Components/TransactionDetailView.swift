@@ -9,6 +9,7 @@ import SwiftUI
 
 struct TransactionDetailView: View {
     var fecha: String
+    var hora: String
     var empresa: String
     var phone: String
     var monto: String
@@ -82,10 +83,16 @@ struct TransactionDetailView: View {
                         .bold()
                         .textStyle(TitleStyle())
                         .frame(maxWidth: .infinity, alignment: .trailing)
-                    
-                    Text(self.fechaFormat)
-                        .foregroundColor(.black)
-                        .frame(maxWidth: .infinity, alignment: .leading)
+                    if self.fechaFormat != ""{
+                        Text(self.fechaFormat)
+                            .foregroundColor(.black)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                    }else{
+                        Text(self.fecha)
+                            .foregroundColor(.black)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                    }
+                  
                     
                 }
                 HStack{
@@ -94,10 +101,16 @@ struct TransactionDetailView: View {
                         .bold()
                         .textStyle(TitleStyle())
                         .frame(maxWidth: .infinity, alignment: .trailing)
+                    if self.horaFormat != ""{
+                        Text(self.horaFormat)
+                            .foregroundColor(.black)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                    }else{
+                        Text(self.hora)
+                            .foregroundColor(.black)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                    }
                     
-                    Text(self.horaFormat)
-                        .foregroundColor(.black)
-                        .frame(maxWidth: .infinity, alignment: .leading)
                     
                 }
                 HStack{
@@ -173,16 +186,6 @@ struct TransactionDetailView: View {
                     dateStringFormatter.dateFormat = "HH:mm:ss"
                     let horaFromString = dateStringFormatter.date(from: self.fecha)
                     self.horaFormat = dateStringFormatter.string(from: horaFromString ?? date)
-                }else{
-                    print("fecharecibida\(self.fecha)")
-                     dateStringFormatter.dateFormat = "dd/MM/YYYY"
-                     let dateFromString = dateStringFormatter.date(from: self.fecha)
-                     self.fechaFormat = dateStringFormatter.string(from: dateFromString ?? date)
-                     print("la fechaFormat es \(dateFromString ?? date)")
-                    
-                    dateStringFormatter.dateFormat = "HH:mm:ss"
-                    let horaFromString = dateStringFormatter.date(from: self.fecha)
-                    self.horaFormat = dateStringFormatter.string(from: horaFromString ?? date)
                 }
                     self.userDataVM.DatosUser()
                 
@@ -191,7 +194,7 @@ struct TransactionDetailView: View {
             HStack{
                 if self.showBtn! {
                     Button(action: {
-                        self.exportToPDF(fecha_: self.fechaFormat, empresa_: self.empresa, phone_: self.phone, monto_: self.monto,fechaFormat_: self.fechaFormat, horaFormat_: self.horaFormat, showBtn_: false, nombreO_: self.userDataVM.user.nombres)
+                        self.exportToPDF(fecha_: self.fechaFormat, empresa_: self.empresa, phone_: self.phone, monto_: self.monto,fechaFormat_: self.fechaFormat, horaFormat_: self.horaFormat, showBtn_: false, nombreO_: self.userDataVM.user.nombres, hora_: self.hora)
                     }){
                         Text("Compartir")
                     }.buttonStyle(PrimaryButtonOutlineStyle())
@@ -211,7 +214,7 @@ struct TransactionDetailView: View {
     struct TransactionDetailView_Previews: PreviewProvider {
         static var previews: some View {
             Group {
-                TransactionDetailView(fecha: "", empresa: "", phone: "", monto: "", control: 0, fechaFormat: "", horaFormat: "")
+                TransactionDetailView(fecha: "", hora: "", empresa: "", phone: "", monto: "", control: 0, fechaFormat: "", horaFormat: "")
                     .previewDevice("iPhone 11")
                     .preferredColorScheme(.dark)
             }
@@ -220,7 +223,7 @@ struct TransactionDetailView: View {
 
 
 extension TransactionDetailView {
-    func exportToPDF(fecha_: String, empresa_: String, phone_: String, monto_: String,fechaFormat_: String,horaFormat_:String, showBtn_: Bool, nombreO_: String) {
+    func exportToPDF(fecha_: String, empresa_: String, phone_: String, monto_: String,fechaFormat_: String,horaFormat_:String, showBtn_: Bool, nombreO_: String, hora_: String) {
         
         print(fecha_)
         
@@ -231,7 +234,7 @@ extension TransactionDetailView {
         let width: CGFloat = 8.5 * 72.0
         //Estimate the height of your view
         let height: CGFloat = 1000
-        let charts = TransactionDetailView(fecha: fecha_, empresa: empresa_, phone: phone_, monto: monto_, control: 0,fechaFormat: fechaFormat_,horaFormat: horaFormat_, showBtn: showBtn_)
+        let charts = TransactionDetailView(fecha: fecha_, hora: hora_, empresa: empresa_, phone: phone_, monto: monto_, control: 0,fechaFormat: fechaFormat_,horaFormat: horaFormat_, showBtn: showBtn_)
         
         let pdfVC = UIHostingController(rootView: charts)
         pdfVC.view.frame = CGRect(x: 0, y: 0, width: width, height: height)

@@ -25,6 +25,9 @@ struct FormLoadCreditView: View {
     @State var showingSheet = false
     @State private  var nombreContact = ""
     
+    //alert
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    @State var alertState: Bool = false
     var home: some View {
         ScrollView{
             //botones de la empresa
@@ -49,16 +52,16 @@ struct FormLoadCreditView: View {
                             textField.inputAccessoryView = toolBar
                          }
                     Button(action: {
-                        if self.contactsVM.listContacts.count == 0{
-                            print("no hay contactos")
-                            print(self.contactsVM.listContacts.count)
-                            self.contacts.sendContacts()
-                            self.contactsVM.getContacts()
-                        }else if self.contactsVM.listContacts.count != 0{
-                            print("si hay contactos")
-                            print(self.contactsVM.listContacts.count)
-                            self.showingSheet.toggle()
-                        }
+                            if self.contactsVM.listContacts.count == 0{
+                                print("no hay contactos")
+                                print(self.contactsVM.listContacts.count)
+                                self.contacts.sendContacts()
+                                self.contactsVM.getContacts()
+                            }else{
+                                print("si hay contactos")
+                                print(self.contactsVM.listContacts.count)
+                                self.showingSheet.toggle()
+                            }
                     })
                     {
                         Image(systemName: "person.2")
@@ -90,6 +93,9 @@ struct FormLoadCreditView: View {
                 .padding(.horizontal)
             }
             // amounts select
+            if self.contactsVM.listComplete == false {
+                Loader()
+            }
             VStack{
                 ContentButtonsView(currentBtn: $montoRecarga1,text: "", montoRecarga:  $montoRecarga)
                 Button(action: {
@@ -97,15 +103,16 @@ struct FormLoadCreditView: View {
                     print(self.montoRecarga1)
                     print(self.montoRecarga)
                     print(self.telefono)
-                    if self.montoRecarga == ""{
-                        self.RecargaVM.SendRecarga(empresa: self.SelectEm, recarga: "30", telefono: self.telefono,  text: "")
+                    if  self.telefono == "" {
+                        self.alertState = true
                     }else{
-                        self.RecargaVM.SendRecarga(empresa: self.SelectEm, recarga: self.montoRecarga, telefono: self.telefono,  text: "")
+                        if self.montoRecarga == ""{
+                            self.RecargaVM.SendRecarga(empresa: self.SelectEm, recarga: "30", telefono: self.telefono,  text: "")
+                        }else{
+                            self.RecargaVM.SendRecarga(empresa: self.SelectEm, recarga: self.montoRecarga, telefono: self.telefono,  text: "")
+                        }
+                            self.action = 1
                     }
-                        
-                        self.action = 1
-                          //self.login.ruta = "recarga"
-                   
                 }){
                     Text("Aceptar")
                     .foregroundColor(Color.white)
@@ -117,10 +124,11 @@ struct FormLoadCreditView: View {
                     .padding()
                         
                 }
+                
             }
             //end
             if self.RecargaVM.control != ""{
-                NavigationLink(destination: TransactionDetailView(fecha: "", empresa:  self.RecargaVM.recargaData.empresa, phone: self.RecargaVM.recargaData.telefono, monto: self.RecargaVM.recargaData.recarga, control: 1, fechaFormat: "", horaFormat: ""), tag: 1, selection: self.$action) {
+                NavigationLink(destination: TransactionDetailView(fecha: "", hora: "", empresa:  self.RecargaVM.recargaData.empresa, phone: self.RecargaVM.recargaData.telefono, monto: self.RecargaVM.recargaData.recarga, control: 1, fechaFormat: "", horaFormat: ""), tag: 1, selection: self.$action) {
                         EmptyView()
                 }
                 
@@ -128,14 +136,27 @@ struct FormLoadCreditView: View {
         }
     }
     
+    var alerts:Alert{
+        Alert(title: Text("Fastgi"), message: Text("Ingrese todos los campos por favor."), dismissButton: .default(Text("Aceptar"), action: {
+            //self.presentationMode.wrappedValue.dismiss()
+        }))
+    }
+    
     var body: some View {
         VStack{
-            self.home
-                .padding(.leading)
-                .padding(.top,80)
-            
+            if self.contactsVM.listComplete == false{
+                self.home
+                    .padding(.leading)
+                    .padding(.top,80)
+                    .disabled(true)
+            }else{
+                self.home
+                    .padding(.leading)
+                    .padding(.top,80)
+            }
+        }.alert(isPresented:  self.$alertState){
+            self.alerts
         }
-       
         .edgesIgnoringSafeArea(.top)
         //llamado desde ContactsViewModel
         /* .onAppear{

@@ -50,7 +50,7 @@ struct TabsView: View {
                  trailing:
                     self.headerDerecha()
              )
-        }
+        }.navigationViewStyle(StackNavigationViewStyle())
     }
     
 }

@@ -114,9 +114,6 @@ class Contacts: ObservableObject {
                             self.getContactsResponse?.forEach({ (contact) in
                                 self.listNumbersApp.append(contact.telefono)
                             })
-                            // print(self.listNumbersApp)
-                            //print("Contacts list")
-                            //  print(decodedResponse )
                             return
                         }
                     case let .failure(error):
@@ -178,6 +175,7 @@ class Contacts: ObservableObject {
                                         if let decodedResponse = try? JSONDecoder().decode(CreateContactsResponse.self, from: data) {
                                             print(decodedResponse)
                                             self.ListContacts()
+                                            self.messageError = "Nada que actualizar"
                                             //debugPrint(decodedResponse.contacto.telefono)
                                             self.isloading = false
                                             return

@@ -81,9 +81,9 @@ struct ListContactsView: View {
               
             }.pullToRefresh(isShowing: $isShowingReferesh) {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                    self.isShowingReferesh = false
                     print("cargo")
                     self.contactsVM.updateContacts()
+                    self.isShowingReferesh = false
                 }
               /* if self.contactsVM.isloading == true{
                             Loader()

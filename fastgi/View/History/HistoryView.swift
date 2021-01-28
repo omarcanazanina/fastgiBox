@@ -16,12 +16,12 @@ struct HistoryView: View {
     //@ObservedObject var login = Login()
     //
     @State private var fecha :String = ""
+    @State private var hora :String = ""
     @State private var empresa :String = ""
     @State private var phone :String = ""
     @State private var monto :String = ""
     @State private var control : Int = 0
     @State private var action:Int? = 0
-    
     init() {
         UISegmentedControl.appearance().selectedSegmentTintColor = UIColorPrimary()
         UISegmentedControl.appearance().setTitleTextAttributes([.foregroundColor: UIColor.white], for: .selected)
@@ -44,7 +44,8 @@ struct HistoryView: View {
                     Button(action: {
                         print(self.RecargaVM.ListRecargas)
                         self.action = 1
-                        self.fecha = recarga.fecha
+                        self.fecha = recarga.fecha.toStringDateFormat()
+                        self.hora = recarga.fecha.toStringDateFormat1()
                         print("esta es la fecha\(self.fecha)")
                         self.empresa = recarga.empresa
                         self.phone = recarga.telefono
@@ -53,7 +54,7 @@ struct HistoryView: View {
                     {
                         HStack(){
                             VStack(){
-                                Text(recarga.telefono)
+                                Text(recarga.fecha)
                                     .opacity(0.8)
                                     .font(.caption)
                                     .frame(maxWidth:.infinity, alignment: .leading)
@@ -134,7 +135,7 @@ struct HistoryView: View {
                 .padding()
                 if(optionPicker==0){
                     self.list
-                    NavigationLink(destination: TransactionDetailView(fecha: self.fecha, empresa: self.empresa, phone: self.phone, monto: self.monto, control: 0, fechaFormat: "", horaFormat: ""), tag: 1, selection: self.$action) {
+                    NavigationLink(destination: TransactionDetailView(fecha: self.fecha, hora: self.hora, empresa: self.empresa, phone: self.phone, monto: self.monto, control: 0, fechaFormat: "", horaFormat: ""), tag: 1, selection: self.$action) {
                         EmptyView()
                     }
                 }
@@ -145,11 +146,79 @@ struct HistoryView: View {
             }
         }
     }
+    
 }
 
 struct HistoryView_Previews: PreviewProvider {
     static var previews: some View {
         HistoryView()
+    }
+}
+
+extension String{
+    func toStringDateFormat() -> String {
+        let olDateFormatter = DateFormatter()
+        olDateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+
+        let oldDate = olDateFormatter.date(from: self)
+
+        let convertDateFormatter = DateFormatter()
+        convertDateFormatter.dateFormat = "dd/MM/yyyy"
+
+        return convertDateFormatter.string(from: oldDate ?? Date())
+    }
+    func toStringDateFormat1() -> String {
+        let olDateFormatter = DateFormatter()
+        olDateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+
+        let oldDate = olDateFormatter.date(from: self)
+
+        let convertDateFormatter = DateFormatter()
+        convertDateFormatter.dateFormat = "HH:mm:ss"
+
+        return convertDateFormatter.string(from: oldDate ?? Date())
+    }
+    func dateDiff() -> String {
+        let olDateFormatter = DateFormatter()
+        olDateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+
+        let oldDate = olDateFormatter.date(from: self)
+        let units = Array<Calendar.Component>([.year, .month, .day, .hour, .minute, .second])
+        let components = Calendar.current.dateComponents(Set(units), from: oldDate!, to: Date())
+        var  text = ""
+        var  unidad = ""
+        for unit in units
+        {
+            guard let value = components.value(for: unit) else {
+                continue
+            }
+
+            if value > 0 {
+                switch unit {
+                case .day:
+                    unidad = value == 1 ? "dia" : "dias"
+                case .month:
+                    unidad = value == 1 ? "mes" : "meses"
+                case .year:
+                    unidad = value == 1 ? "año" : "años"
+                case .hour:
+                    unidad = value == 1 ? "hora" : "horas"
+                case .minute:
+                    unidad =  value == 1 ? "minuto" : "minutos"
+                case .second:
+                    unidad = value == 1 ? "segundo" : "segundos"
+                case .weekday:
+                    unidad = value == 1 ? "semana" : "semanas"
+                default:
+                        unidad = ""
+                }
+                text =  "hace \(value) \(unidad) "
+                break
+            }else{
+                text =  "ahora"
+            }
+        }
+        return text;
     }
 }
 

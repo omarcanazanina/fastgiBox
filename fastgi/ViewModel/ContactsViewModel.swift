@@ -20,6 +20,8 @@ class ContactsViewModel: ObservableObject {
     //control update
     @Published var isloading: Bool = false
     @Published var messageError : String = ""
+    //carga de la lista
+    @Published var listComplete: Bool = false
     
     private var isListContactsPublisher: AnyPublisher<Bool, Never> {
         contactsResponse.$getContactsResponse
@@ -29,7 +31,7 @@ class ContactsViewModel: ObservableObject {
                     return false
                 }
                 self.listContacts = response
-                //print(self.listContacts)
+                self.listComplete = true
                 return true
             }
             .eraseToAnyPublisher()
