@@ -20,7 +20,7 @@ struct LoginView: View {
     @ObservedObject var login = Login()
     @State var telefono: String = ""
     
-    
+    var image = UIImage()
     
     init(){
         UITableView.appearance().backgroundColor = .clear
@@ -30,7 +30,7 @@ struct LoginView: View {
     var body: some View {
         NavigationView{
             VStack(spacing:10) {
-                
+               
                 Text("Fastgi")
                     .font(.largeTitle)
                     .foregroundColor(.white)
@@ -82,7 +82,6 @@ struct LoginView: View {
                 }
             
                 BrokenRulesView(brokenRules: self.loginVM.brokenRules)
-                
                 Button(action: {
                     self.loginVM.validationInput()
                     //self.login.loginDetail(telefono: self.loginVM.telefono.bound)
@@ -93,7 +92,7 @@ struct LoginView: View {
                         .textStyle(TextButtonLoginStyle())
                 }
                 Spacer()
-                   
+               
                /* NavigationLink(destination: CodeView(number: self.loginVM.telefono.bound, smstext: self.loginVM.smstext), tag: "idlogin", selection: self.$login.ruta) {
                     EmptyView()
                 }*/
@@ -110,7 +109,6 @@ struct LoginView: View {
         
     }
     
- 
 }
 
 struct LoginView_Previews: PreviewProvider {

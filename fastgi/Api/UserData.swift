@@ -18,13 +18,16 @@ class UserData: ObservableObject {
     private let tokenKey = "token"
     private let idKey = "usuario._id"
     //datauser
-    @Published var userResponse:UpdateUserModel?
+   // @Published var userResponse:UpdateUserModel?
+    @Published var user:UpdateUserModel?
     @Published var userResponsePago:UpdateUserPagoModel?
     @Published var messageError :String = ""
     
     //rutas
     var navigationRoot = NavigationRoot()
     
+    //loading
+    @Published var isloading = false
     func DataUser(){
         // creando headers
         var headers: HTTPHeaders = [
@@ -50,7 +53,7 @@ class UserData: ObservableObject {
                             //Cast respuesta a MeResponce
                             if let decodedResponse = try? JSONDecoder().decode(DataUserResponse.self, from: data) {
                                 print(decodedResponse.usuario)
-                                self.userResponse=decodedResponse.usuario
+                                self.user=decodedResponse.usuario
                                 return
                             }
                             //Cast respuesta a ErrorResponce
@@ -75,6 +78,7 @@ class UserData: ObservableObject {
     
     
     func DataUserPago(id_usuario: String){
+        self.isloading = true
         // creando headers
         var headers: HTTPHeaders = [
             "Accept": "application/json"
@@ -97,18 +101,21 @@ class UserData: ObservableObject {
                             //print(decodedResponse1.usuario)
                             self.userResponsePago = decodedResponse.usuario
                             print("este es el user\(self.userResponsePago!)")
+                            self.isloading = false
                             return
                         }
                         //Cast respuesta a ErrorResponce
                         if let decodedResponse = try? JSONDecoder().decode(ErrorResponsePago.self, from: data) {
                             print(decodedResponse.err.kind)
                             self.messageError = decodedResponse.err.kind
+                            self.isloading = false
                             /*if decodedResponse1.err.name == "TokenExpiredError" || decodedResponse1.err.name == "JsonWebTokenError"{
                                // self.navigationRoot.changeRootClose()
                             }*/
                             return
                         }
                     case let .failure(error):
+                        self.isloading = false
                         print(error)
                     }
                 }

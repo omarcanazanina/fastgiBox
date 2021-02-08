@@ -175,6 +175,7 @@ struct TransactionDetailView: View {
 
             .onAppear{
                 print("el control q llego \(self.control)")
+                self.userDataVM.DatosUser()
                 if self.control == 1 {
                     //fechaformat
                     print("fecharecibidaaqui\(self.fecha)")
@@ -187,7 +188,7 @@ struct TransactionDetailView: View {
                     let horaFromString = dateStringFormatter.date(from: self.fecha)
                     self.horaFormat = dateStringFormatter.string(from: horaFromString ?? date)
                 }
-                    self.userDataVM.DatosUser()
+                    
                 
             }
             Spacer()

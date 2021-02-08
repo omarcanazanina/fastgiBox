@@ -24,6 +24,15 @@ struct ListContactsView: View {
     //search
     @State private var searchText : String = ""
     let contacts = ["Herlan Garzon", "Omar Canaza", "Elvin Mollinedo", "Agustin Ayaviri", "Daniel Jaimes", "Amilkar Dominguez"]
+    
+    init(showingSheet: Binding<Bool>, telefono: Binding<String>, nombre :Binding<String>, modal: Binding<Bool>){
+        self._showingSheet = showingSheet
+        self._telefono = telefono
+        self._nombre = nombre
+        self._modal = modal
+        self.contactsVM.getContacts()
+    }
+    
     var list:some View{
         VStack{
             SearchBar(text: $searchText, placeholder: "Buscar")
@@ -122,7 +131,8 @@ struct ListContactsView: View {
                     })
             }
         .onAppear{
-                self.contactsVM.getContacts()
+           // print("entro al onappear listcontactsView")
+             //   self.contactsVM.getContacts()
           
             }
     }

@@ -11,6 +11,7 @@ struct TestpayDetail: View {
     var monto : String
     var nombreCobrador: String
     var fecha: String
+    var nombreUser: String
     //datos user
     @ObservedObject var userDataVM = UserDataViewModel()
     var navigationRoot = NavigationRoot()
@@ -97,7 +98,7 @@ struct TestpayDetail: View {
                         .textStyle(TitleStyle())
                         .frame(maxWidth: .infinity, alignment: .trailing)
                     
-                    Text("\(self.userDataVM.user.nombres) \(self.userDataVM.user.apellidos)")
+                    Text(self.nombreUser)
                         .foregroundColor(.black)
                         .frame(maxWidth: .infinity, alignment: .leading)
                     
@@ -132,7 +133,7 @@ struct TestpayDetail: View {
             HStack{
                 if self.showBtn! {
                     Button(action: {
-                        self.exportToPDF(fecha_: self.fechaFormat, fechaFormat_: self.fechaFormat, horaFormat_: self.horaFormat, showBtn_: false, servicio_: "Pago transporte", nombreO_: "\(self.userDataVM.user.nombres) \(self.userDataVM.user.apellidos)", nombreA_: self.nombreCobrador, monto_: self.monto)
+                        self.exportToPDF(fecha_: self.fechaFormat, fechaFormat_: self.fechaFormat, horaFormat_: self.horaFormat, showBtn_: false, servicio_: "Pago transporte", nombreUser_: self.nombreUser, nombreO_: "\(self.userDataVM.user.nombres) \(self.userDataVM.user.apellidos)", nombreA_: self.nombreCobrador, monto_: self.monto)
                     }){
                         Text("Compartir")
                     }.buttonStyle(PrimaryButtonOutlineStyle())
@@ -158,6 +159,7 @@ struct TestpayDetail: View {
             dateStringFormatter.dateFormat = "HH:mm:ss"
             let horaFromString = dateStringFormatter.date(from: self.fecha)
             self.horaFormat = dateStringFormatter.string(from: horaFromString ?? date)
+            self.userDataVM.DatosUser()
         }
        .background(Color.white)
     }
@@ -167,7 +169,7 @@ struct TestpayDetail: View {
 struct TestpayDetail_Previews: PreviewProvider {
     static var previews: some View {
         Group{
-            TestpayDetail(monto: "", nombreCobrador: "", fecha: "", fechaFormat: "", horaFormat: "")
+            TestpayDetail(monto: "", nombreCobrador: "", fecha: "", nombreUser: "", fechaFormat: "", horaFormat: "")
                 .previewDevice("iPhone 11")
                 .preferredColorScheme(.dark)
         }
@@ -176,7 +178,7 @@ struct TestpayDetail_Previews: PreviewProvider {
 
 
 extension TestpayDetail{
-    func exportToPDF(fecha_: String,fechaFormat_: String,horaFormat_:String, showBtn_: Bool,servicio_: String, nombreO_: String,nombreA_: String,monto_: String) {
+    func exportToPDF(fecha_: String,fechaFormat_: String,horaFormat_:String, showBtn_: Bool,servicio_: String, nombreUser_:String, nombreO_: String,nombreA_: String,monto_: String) {
         
         print(fecha_)
         
@@ -187,7 +189,7 @@ extension TestpayDetail{
         let width: CGFloat = 8.5 * 72.0
         //Estimate the height of your view
         let height: CGFloat = 1000
-        let charts = TestpayDetail(monto: monto_, nombreCobrador: nombreA_, fecha: fecha_, fechaFormat: fechaFormat_, horaFormat: horaFormat_)
+        let charts = TestpayDetail(monto: monto_, nombreCobrador: nombreA_, fecha: fecha_, nombreUser: nombreUser_, fechaFormat: fechaFormat_, horaFormat: horaFormat_)
         
         let pdfVC = UIHostingController(rootView: charts)
         pdfVC.view.frame = CGRect(x: 0, y: 0, width: width, height: height)

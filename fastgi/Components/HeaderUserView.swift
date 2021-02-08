@@ -12,7 +12,12 @@ struct HeaderUserView: View {
     var text: String
     var _id: String
     
+    @ObservedObject var userDataVM = UserDataViewModel()
     @State var controlMenu = 1
+    //
+    //@Binding var selectedMenuItem: MenuItem
+  
+    
     var imgProfile:some View{
         HStack{
             WebImage(url: URL(string: "https://i.postimg.cc/8kJ4bSVQ/image.jpg" ))
@@ -22,9 +27,11 @@ struct HeaderUserView: View {
                     .frame(width:35, height: 35)
                     .clipShape(Circle())
         }
+        
     }
     
     var textHeader: some View{
+        
         Text(text)
     }
     
@@ -35,12 +42,14 @@ struct HeaderUserView: View {
                 textHeader
                 Spacer()
             }
+            
         }
     }
 }
 
-struct HeaderUserView_Previews: PreviewProvider {
+/*struct HeaderUserView_Previews: PreviewProvider {
     static var previews: some View {
-        HeaderUserView( text: "user name", _id: "")
+        //HeaderUserView( text: "user name", _id: "")
+        HeaderUserView( text: "user name", _id: "", selectedMenuItem: .constant(.TEST))
     }
-}
+}*/

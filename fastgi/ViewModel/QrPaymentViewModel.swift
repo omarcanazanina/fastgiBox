@@ -14,18 +14,16 @@ class QrPaymentViewModel: ObservableObject {
     var qrPayResponse=QrPayment()
     private var disposables: Set<AnyCancellable> = []
     @Published var qrPayData = QrPaymentModel(_id: "", monto: "", id_cobrador: "", id_usuario: "", fecha: "")
-    //user inextente
-   // @Published var messageError: String = ""
-    @Published var userCorrecto: String = ""
     //nav userafiliacion
     @Published var afiliado : Bool = false
     @Published var noafiliado : String? = ""
     //testnoafiliado
     @Published var enespera : String = ""
-    @Published var noafiliadomessage : Bool = false
+    //@Published var noafiliadomessage : Bool = false
     //alert
-    @Published var testalert : Bool = false
+    @Published var alertNoAfiliado : Bool = false
     //@Published var noafiliadoAlert : String = ""
+    @Published var isloading: Bool = false
     private var PagoQrDataPublisher: AnyPublisher<QrPaymentModel, Never> {
         qrPayResponse.$pagoResponse
             .receive(on: RunLoop.main)
@@ -38,35 +36,12 @@ class QrPaymentViewModel: ObservableObject {
         }
         .eraseToAnyPublisher()
     }
-    //usuario inexistente
-   /* private var ErrorPublished: AnyPublisher<String, Never> {
-        qrPayResponse.$messageError
-            .receive(on: RunLoop.main)
-            .map { response in
-                return response
-        }
-        .eraseToAnyPublisher()
-    }*/
-    
-    //usuario inexistente
-    private var UserPublished: AnyPublisher<String, Never> {
-        qrPayResponse.$userCorrecto
-            .receive(on: RunLoop.main)
-            .map { response in
-                return response
-        }
-        .eraseToAnyPublisher()
-    }
     
     //afiliado existe
     private var UserAfiliacionPublished: AnyPublisher<Bool, Never> {
         qrPayResponse.$afiliado
             .receive(on: RunLoop.main)
             .map { response in
-                //if response == false {
-                    //self.noafiliadoAlert = "noafiliado"
-                //}
-                self.noafiliadomessage = true
                 return response
         }
         .eraseToAnyPublisher()
@@ -80,14 +55,21 @@ class QrPaymentViewModel: ObservableObject {
             .map { response in
                 //$0
                 if response == "false"{
-                    self.testalert = true
+                    self.alertNoAfiliado = true
                 }
                 return response
         }
         .eraseToAnyPublisher()
     }
     
-    
+    private var isLoadingPublished: AnyPublisher<Bool, Never> {
+        qrPayResponse.$isloading
+            .receive(on: RunLoop.main)
+            .map { response in
+                return response
+        }
+        .eraseToAnyPublisher()
+    }
   
     
     
@@ -97,7 +79,7 @@ class QrPaymentViewModel: ObservableObject {
             .receive(on: RunLoop.main)
             .map {
                 if $0 == nil {
-                    self.testalert = true
+                    self.alertNoAfiliado = true
                 }
                 return $0
         }
@@ -109,16 +91,6 @@ class QrPaymentViewModel: ObservableObject {
         PagoQrDataPublisher
             .receive(on: RunLoop.main)
             .assign(to: \.qrPayData, on: self)
-            .store(in: &disposables)
-        
-       /* ErrorPublished
-            .receive(on: RunLoop.main)
-            .assign(to: \.messageError, on: self)
-            .store(in: &disposables)
-        */
-        UserPublished
-            .receive(on: RunLoop.main)
-            .assign(to: \.userCorrecto, on: self)
             .store(in: &disposables)
         
         UserAfiliacionPublished
@@ -134,6 +106,11 @@ class QrPaymentViewModel: ObservableObject {
         UserNoAfiliacionPublished
             .receive(on: RunLoop.main)
             .assign(to: \.enespera, on: self)
+            .store(in: &disposables)
+        
+        isLoadingPublished
+            .receive(on: RunLoop.main)
+            .assign(to: \.isloading, on: self)
             .store(in: &disposables)
         //userVerifi(id_cobrador: self.userCorrecto)
     }

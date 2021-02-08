@@ -8,14 +8,24 @@
 import SwiftUI
 
 struct TabsView: View {
+    //test new navegation
+    @State var selected: MenuItem = .TEST
     @State private var selectedTab = 0
     @Binding var currentBtnEm: BtnEm
     //header
     //@ObservedObject var loginVM = LoginViewModel()
     @State var menu : Bool = false
-    
-    //new datauser
     @ObservedObject var userDataVM = UserDataViewModel()
+    
+    init(currentBtnEm: Binding<BtnEm>) {
+        self._currentBtnEm = currentBtnEm
+        //Config for NavigationBar Transparent
+        let appearance = UINavigationBarAppearance()
+        appearance.shadowColor = .clear
+        UINavigationBar.appearance().standardAppearance = appearance
+        self.userDataVM.DatosUser()
+    }
+   
     var body: some View {
         NavigationView{
             TabView(selection: $selectedTab) {
@@ -41,6 +51,12 @@ struct TabsView: View {
                         Image(systemName: self.selectedTab == 3 ? "person.circle.fill" : "person.circle")
                         Text("Ajustes")
                     }.tag(3)
+                /*TestView(selectedMenuItem: $selected, logo: "", isSelect: true)
+                    .navigationViewStyle(StackNavigationViewStyle())
+                    .tabItem {
+                        Image(systemName: self.selectedTab == 3  ? "person.circle.fill" : "person.circle")
+                        Text("test")
+                    }.tag(MenuItem.TEST)*/
             }
             .accentColor(Color("primary"))
             .navigationBarTitle(self.titulo(), displayMode: .inline)
@@ -53,6 +69,12 @@ struct TabsView: View {
         }.navigationViewStyle(StackNavigationViewStyle())
     }
     
+}
+
+enum MenuItem: Int, Codable {
+    case HOME
+    case TEST
+
 }
 
 
@@ -106,12 +128,49 @@ extension TabsView{
     }
     
     func headerIzquierda() -> AnyView{
-        if self.selectedTab == 0 || self.selectedTab == 1 || self.selectedTab == 2 {//} || self.selectedTab == 3{
+        if   self.selectedTab == 0 || self.selectedTab == 1 || self.selectedTab == 2 {//} || self.selectedTab == 3{
+            //return AnyView(HeaderUserView(text: "\(self.userDataVM.user.nombres) \(self.userDataVM.user.apellidos)", _id :self.userDataVM.user._id))
             return AnyView(HeaderUserView(text: "\(self.userDataVM.user.nombres) \(self.userDataVM.user.apellidos)", _id :self.userDataVM.user._id))
         }
         return AnyView(EmptyView())
         
     }
+    
 }
 
 
+/*
+
+ **/
+/**
+ NavigationView{
+     TabView(selection: $selected) {
+         NewHomeView(selectedMenuItem: $selected)
+             .navigationViewStyle(StackNavigationViewStyle())
+             .tabItem {
+                 Image(self.selected == MenuItem.HOME ? "home.fill" : "home")
+                 Text("Inicio \(self.userDataVM.user.nombres)")
+             }.tag(MenuItem.HOME)
+             
+    
+         TestView(selectedMenuItem: $selected, logo: "", isSelect: true)
+             .navigationViewStyle(StackNavigationViewStyle())
+             .tabItem {
+                 Image(systemName: self.selected == MenuItem.TEST   ? "person.circle.fill" : "person.circle")
+                 Text("test\(self.userDataVM.user.nombres)")
+             }.tag(MenuItem.TEST)
+     }
+     .accentColor(Color("primary"))
+     .navigationBarTitle(self.titulo(), displayMode: .inline)
+      /*.navigationBarItems(
+        leading:
+             self.headerIzquierda(),
+          trailing:
+             self.headerDerecha()
+      )*/
+ }
+ /*.onChange(of: selected) { newValue in
+     self.userDataVM.DatosUser()
+     print(newValue)
+ }*///.navigationViewStyle(StackNavigationViewStyle())
+ */

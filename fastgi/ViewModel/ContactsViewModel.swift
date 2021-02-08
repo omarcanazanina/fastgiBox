@@ -21,7 +21,7 @@ class ContactsViewModel: ObservableObject {
     @Published var isloading: Bool = false
     @Published var messageError : String = ""
     //carga de la lista
-    @Published var listComplete: Bool = false
+   // @Published var listComplete: Bool = false
     
     private var isListContactsPublisher: AnyPublisher<Bool, Never> {
         contactsResponse.$getContactsResponse
@@ -31,7 +31,7 @@ class ContactsViewModel: ObservableObject {
                     return false
                 }
                 self.listContacts = response
-                self.listComplete = true
+                //self.listComplete = true
                 return true
             }
             .eraseToAnyPublisher()
@@ -74,11 +74,12 @@ class ContactsViewModel: ObservableObject {
             .assign(to: \.messageError, on: self)
             .store(in: &disposables)
         
-        getContacts()
+        //getContacts()
     }
     
     
     func getContacts() {
+        print("repite contacts")
         self.contactsResponse.ListContacts()
         
        }

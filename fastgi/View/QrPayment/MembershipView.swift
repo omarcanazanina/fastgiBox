@@ -23,6 +23,14 @@ struct MembershipView: View {
     
     var showBtn: Bool? = true
     //
+    init() {
+        UISegmentedControl.appearance().selectedSegmentTintColor = UIColorPrimary()
+        UISegmentedControl.appearance().setTitleTextAttributes([.foregroundColor: UIColor.white], for: .selected)
+        UISegmentedControl.appearance().setTitleTextAttributes([.foregroundColor: UIColorPrimary()], for: .normal)
+        self.userDataVM.DatosUser()
+        self.afiliacionVM.verifiAffiliate(id_cobrador: self.userDataVM.user._id)
+    }
+    
     func generarQR(text: String) -> UIImage{
         let data = Data(text.utf8)
         filter.setValue(data, forKey: "inputMessage")

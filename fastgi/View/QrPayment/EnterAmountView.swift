@@ -12,7 +12,7 @@ struct EnterAmountView: View {
     //modal
     @Binding var modal:Bool
     @Binding var monto : String
-    
+    //@State private var dataUserlog = UpdateUserModel(from: <#Decoder#>)
     var buttonSuccess:some View {
         VStack(){
             Button(action: {
@@ -50,9 +50,9 @@ struct EnterAmountView: View {
                      }
             }
             self.buttonSuccess
-            NavigationLink(destination: QrGeneratorView(monto: self.monto), tag: 1, selection: self.$action) {
+            /*NavigationLink(destination: QrGeneratorView(dataUserlog: self.dataUserlog, monto: self.monto), tag: 1, selection: self.$action) {
                     EmptyView()
-            }
+            }*/
         }.padding()
     }
     var body: some View {

@@ -9,11 +9,12 @@ import SwiftUI
 import Introspect
 
 struct FormLoadCreditView: View {
-    var Empresa: String
+    var contContacts : Int
+    var empresa: String
     @State  var SelectEm :BtnEm
     @State private  var telefono = ""
-    @State var montoRecarga1: BtnCA
-    @State  var montoRecarga :String
+    @State var MontoRecarga1: BtnCA
+    @State  var MontoRecarga = ""
     @ObservedObject var RecargaVM = RecargaViewModel()
     //contacts
     @ObservedObject var contactsVM1 = ImportContactsViewModel()
@@ -28,6 +29,17 @@ struct FormLoadCreditView: View {
     //alert
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @State var alertState: Bool = false
+    
+    /*init(SelectEm: BtnEm, Empresa: String, MontoRecarga1: BtnCA, montorecarga: String) {
+        self.SelectEm = SelectEm
+        self.empresa = Empresa
+        self.MontoRecarga1 = MontoRecarga1
+        self.MontoRecarga = montorecarga
+       /* self.SelectEm = SelectEm
+        self.MontoRecarga1 = montoRecarga1
+        self.MontoRecarga = montoRecarga*/
+        self.contactsVM.getContacts()
+    }*/
     var home: some View {
         ScrollView{
             //botones de la empresa
@@ -52,14 +64,14 @@ struct FormLoadCreditView: View {
                             textField.inputAccessoryView = toolBar
                          }
                     Button(action: {
-                            if self.contactsVM.listContacts.count == 0{
+                            if self.contContacts == 0{
                                 print("no hay contactos")
-                                print(self.contactsVM.listContacts.count)
+                                print(self.contContacts)
                                 self.contacts.sendContacts()
                                 self.contactsVM.getContacts()
                             }else{
                                 print("si hay contactos")
-                                print(self.contactsVM.listContacts.count)
+                                print(self.contContacts)
                                 self.showingSheet.toggle()
                             }
                     })
@@ -93,23 +105,24 @@ struct FormLoadCreditView: View {
                 .padding(.horizontal)
             }
             // amounts select
-            if self.contactsVM.listComplete == false {
-                Loader()
-            }
+           //lista de contactos
+            //if self.contactsVM.listComplete == false {
+              //  Loader()
+            //}
             VStack{
-                ContentButtonsView(currentBtn: $montoRecarga1,text: "", montoRecarga:  $montoRecarga)
+                ContentButtonsView(currentBtn: $MontoRecarga1, text: "", montoRecarga: $MontoRecarga)
                 Button(action: {
                     print(self.SelectEm)
-                    print(self.montoRecarga1)
-                    print(self.montoRecarga)
+                    print(self.MontoRecarga1)
+                    print(self.MontoRecarga)
                     print(self.telefono)
                     if  self.telefono == "" {
                         self.alertState = true
                     }else{
-                        if self.montoRecarga == ""{
+                        if self.MontoRecarga == ""{
                             self.RecargaVM.SendRecarga(empresa: self.SelectEm, recarga: "30", telefono: self.telefono,  text: "")
                         }else{
-                            self.RecargaVM.SendRecarga(empresa: self.SelectEm, recarga: self.montoRecarga, telefono: self.telefono,  text: "")
+                            self.RecargaVM.SendRecarga(empresa: self.SelectEm, recarga: self.MontoRecarga, telefono: self.telefono,  text: "")
                         }
                             self.action = 1
                     }
@@ -144,30 +157,31 @@ struct FormLoadCreditView: View {
     
     var body: some View {
         VStack{
-            if self.contactsVM.listComplete == false{
+            /*if self.contactsVM.listComplete == false{
                 self.home
                     .padding(.leading)
                     .padding(.top,80)
                     .disabled(true)
-            }else{
+            }else{*/
                 self.home
                     .padding(.leading)
                     .padding(.top,80)
-            }
+            //}
         }.alert(isPresented:  self.$alertState){
             self.alerts
         }
         .edgesIgnoringSafeArea(.top)
         //llamado desde ContactsViewModel
-        /* .onAppear{
-            self.contactsVM.getContacts()
-        }*/
+         .onAppear{
+            //self.userDataVM.DatosUser()
+          //  self.contactsVM.getContacts()
+        }
     }
 }
 
 struct FormLoadCreditView_Previews: PreviewProvider {
     static var previews: some View {
        // FormLoadCreditView(SelectEm: .Entel, montoRecarga1: .Btn10, montoRecarga: "")
-        FormLoadCreditView(Empresa: "", SelectEm: .Tigo, montoRecarga1: .Btn30, montoRecarga: "")
+        FormLoadCreditView(contContacts: 0, empresa: "", SelectEm: .Tigo, MontoRecarga1: .Btn30, MontoRecarga: "")
     }
 }

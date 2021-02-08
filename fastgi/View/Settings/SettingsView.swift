@@ -239,6 +239,8 @@ struct SettingsView: View {
         UISegmentedControl.appearance().selectedSegmentTintColor = UIColorPrimary()
         UISegmentedControl.appearance().setTitleTextAttributes([.foregroundColor: UIColor.white], for: .selected)
         UISegmentedControl.appearance().setTitleTextAttributes([.foregroundColor: UIColorPrimary()], for: .normal)
+        self.userDataVM.DatosUser()
+        self.afiliacionVM.verifiAffiliate(id_cobrador: self.userDataVM.user._id)
     }
     
 
@@ -319,69 +321,81 @@ struct SettingsView: View {
                 VStack(alignment: .leading, spacing: 8){
                     Text("DATOS PERSONALES")
                         .textStyle(TitleStyle())
-                    HStack{
-                        Text("DOCUMENTO DE IDENTIDAD")
-                            .textStyle(TitleStyle())
-                        Text(self.userDataVM.user.ci)
-                        //Text(self.loginVM.user.ci)
-                            .padding(.trailing)
-                            .frame(maxWidth:.infinity, alignment: .trailing)
+                    VStack{
+                        HStack{
+                            Text("NUMERO CELULAR")
+                                .textStyle(TitleStyle())
+                            Text(self.userDataVM.user.telefono)
+                                .padding(.trailing)
+                                .frame(maxWidth:.infinity, alignment: .trailing)
+                        }
+                        HStack{
+                            Text("DOCUMENTO DE IDENTIDAD")
+                                .textStyle(TitleStyle())
+                            Text(self.userDataVM.user.ci)
+                                //Text(self.loginVM.user.ci)
+                                .padding(.trailing)
+                                .frame(maxWidth:.infinity, alignment: .trailing)
+                        }
+                        HStack{
+                            Text("CORREO ELECTRÓNICO")
+                                .textStyle(TitleStyle())
+                            Text(self.userDataVM.user.correo)
+                                //Text(self.loginVM.user.correo)
+                                .padding(.trailing)
+                                .frame(maxWidth:.infinity, alignment: .trailing)
+                        }
+                        HStack{
+                            Text("NOMBRES")
+                                .textStyle(TitleStyle())
+                            Text(self.userDataVM.user.nombres)
+                                //Text(self.loginVM.user.nombres)
+                                .padding(.trailing)
+                                .frame(maxWidth:.infinity, alignment: .trailing)
+                        }
+                        HStack{
+                            Text("APELLIDOS")
+                                .textStyle(TitleStyle())
+                            Text(self.userDataVM.user.apellidos)
+                                //Text(self.loginVM.user.apellidos)
+                                .padding(.trailing)
+                                .frame(maxWidth:.infinity, alignment: .trailing)
+                        }
+                        HStack{
+                            Text("DIRECCIÓN")
+                                .textStyle(TitleStyle())
+                            Text(self.userDataVM.user.direccion)
+                                //Text(self.loginVM.user.direccion)
+                                .padding(.trailing)
+                                .frame(maxWidth:.infinity, alignment: .trailing)
+                        }
+                        Divider()
                     }
-                    HStack{
-                        Text("CORREO ELECTRÓNICO")
-                            .textStyle(TitleStyle())
-                        Text(self.userDataVM.user.correo)
-                        //Text(self.loginVM.user.correo)
-                            .padding(.trailing)
-                            .frame(maxWidth:.infinity, alignment: .trailing)
-                    }
-                    HStack{
-                        Text("NOMBRES")
-                            .textStyle(TitleStyle())
-                        Text(self.userDataVM.user.nombres)
-                        //Text(self.loginVM.user.nombres)
-                            .padding(.trailing)
-                            .frame(maxWidth:.infinity, alignment: .trailing)
-                    }
-                    HStack{
-                        Text("APELLIDOS")
-                            .textStyle(TitleStyle())
-                        Text(self.userDataVM.user.apellidos)
-                        //Text(self.loginVM.user.apellidos)
-                            .padding(.trailing)
-                            .frame(maxWidth:.infinity, alignment: .trailing)
-                    }
-                    HStack{
-                        Text("DIRECCIÓN")
-                            .textStyle(TitleStyle())
-                        Text(self.userDataVM.user.direccion)
-                        //Text(self.loginVM.user.direccion)
-                            .padding(.trailing)
-                            .frame(maxWidth:.infinity, alignment: .trailing)
-                    }
-                    Divider()
-                    
                     Text("DATOS DE FACTURACIÓN")
                         .textStyle(TitleStyle())
-                    HStack{
-                        Text("NOMBRE")
-                            .textStyle(TitleStyle())
-                        Text(self.userDataVM.user.nombrenit)
-                            //Text(self.loginVM.user.nombrenit)
-                            .padding(.trailing)
-                            .frame(maxWidth:.infinity, alignment: .trailing)
-                    }
-                    HStack{
+                    VStack{
                         
-                        Text("NIT")
-                            .textStyle(TitleStyle())
-                        Text(self.userDataVM.user.nit)
-                            //Text(self.loginVM.user.nit)
-                            .padding(.trailing)
-                            .frame(maxWidth:.infinity, alignment: .trailing)
+                        HStack{
+                            Text("NOMBRE")
+                                .textStyle(TitleStyle())
+                            Text(self.userDataVM.user.nombrenit)
+                                //Text(self.loginVM.user.nombrenit)
+                                .padding(.trailing)
+                                .frame(maxWidth:.infinity, alignment: .trailing)
+                        }
+                        HStack{
+                            
+                            Text("NIT")
+                                .textStyle(TitleStyle())
+                            Text(self.userDataVM.user.nit)
+                                //Text(self.loginVM.user.nit)
+                                .padding(.trailing)
+                                .frame(maxWidth:.infinity, alignment: .trailing)
+                        }
                     }
                 }
                 VStack(alignment: .leading, spacing: 8){
+                    
                     Divider()
                     NavigationLink(destination: ListCreditCardView()) {
                         HStack{
@@ -396,7 +410,7 @@ struct SettingsView: View {
                     if self.afiliacionVM.afiliacionHabilitacion._id == "" {
                         
                     }else if self.afiliacionVM.afiliacionHabilitacion.habilitado == true{
-                        NavigationLink(destination: QrGeneratorView(monto: "")) {
+                        NavigationLink(destination: QrGeneratorView(dataUserlog: self.userDataVM.user, monto: "")) {
                             HStack{
                                 Image(systemName: "qrcode")
                                 Text("MI QR")

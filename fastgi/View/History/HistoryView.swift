@@ -26,6 +26,7 @@ struct HistoryView: View {
         UISegmentedControl.appearance().selectedSegmentTintColor = UIColorPrimary()
         UISegmentedControl.appearance().setTitleTextAttributes([.foregroundColor: UIColor.white], for: .selected)
         //UISegmentedControl.appearance().setTitleTextAttributes([.foregroundColor: UIColorPrimary()], for: .normal)
+        self.RecargaVM.listRecargas()
     }
     let contacts = ["Herlan Garzon", "Omar Canaza", "Elvin Mollinedo", "Agustin Ayaviri", "Daniel Jaimes", "Amilkar Dominguez"]
     @State private var searchText : String = ""

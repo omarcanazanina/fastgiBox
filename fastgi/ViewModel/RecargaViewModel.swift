@@ -69,10 +69,11 @@ class RecargaViewModel: ObservableObject {
                  .assign(to: \.ListRecargas, on: self)
                  .store(in: &disposables)
             
-            listRecargas()
+            //listRecargas()
         }
         
     func listRecargas() {
+        print("repite listrecargas")
            self.RecargaResponse.ListRecargas()
        }
        

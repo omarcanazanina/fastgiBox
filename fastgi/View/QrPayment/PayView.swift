@@ -11,19 +11,23 @@ import SDWebImageSwiftUI
 struct PayView: View {
     @State private var monto: String = ""
     var user: UpdateUserPagoModel
+    //var dataUser: String
     @Binding var montoQR : String
-    //@State private var otromonto: String = "otromonto"
-    //datos user
-    @ObservedObject var userDataVM = UserDataViewModel()
     //test
     @ObservedObject var qrPayment = QrPayment()
     @ObservedObject var qrPaymentVM = QrPaymentViewModel()
-    
+    @ObservedObject var userDataVM = UserDataViewModel()
     //alert
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @State var alertState: Bool = false
     
     @State private var action:Int? = 0
+    
+    init(User:UpdateUserPagoModel  ,montoQR: Binding<String>) {
+        self.user = User
+        self._montoQR = montoQR
+        self.userDataVM.DatosUser()
+    }
     var imageProfile:some View {
         HStack(alignment: .center){
                 WebImage(url: URL(string: "https://i.postimg.cc/8kJ4bSVQ/image.jpg" ))
@@ -74,11 +78,11 @@ struct PayView: View {
                 EmptyView()
         }*/
             if self.montoQR == "" {
-                NavigationLink(destination: TestpayDetail(monto: self.monto, nombreCobrador: "\(self.user.nombres) \(self.user.apellidos)", fecha: "",fechaFormat: "", horaFormat: ""), tag: 1, selection: self.$action) {
+                NavigationLink(destination: TestpayDetail(monto: self.monto, nombreCobrador: "\(self.user.nombres) \(self.user.apellidos)", fecha: "", nombreUser: "\(self.userDataVM.user.nombres) \(self.userDataVM.user.apellidos)",fechaFormat: "", horaFormat: ""), tag: 1, selection: self.$action) {
                      EmptyView()
              }
             }else{
-                NavigationLink(destination: TestpayDetail(monto: self.montoQR, nombreCobrador: "\(self.user.nombres) \(self.user.apellidos)", fecha: "",fechaFormat: "", horaFormat: ""), tag: 1, selection: self.$action) {
+                NavigationLink(destination: TestpayDetail(monto: self.montoQR, nombreCobrador: "\(self.user.nombres) \(self.user.apellidos)", fecha: "", nombreUser: "\(self.userDataVM.user.nombres) \(self.userDataVM.user.apellidos)",fechaFormat: "", horaFormat: ""), tag: 1, selection: self.$action) {
                      EmptyView()
              }
             }
@@ -176,10 +180,3 @@ struct PayView: View {
         PayView(user: UpdateUserPagoModel, resultado: "")
     }
 }*/
-
-extension PayView{
-    func recuperarUser() -> String {
-        //self.qrPaymentVM.userVerifi(id_cobrador: self.user)
-        return "SE EJECUTO EXITOSAMENTE"
-    }
-}

@@ -51,7 +51,7 @@ class AfiliacionViewModel: ObservableObject {
             .assign(to: \.afiliacionHabilitacion, on: self)
             .store(in: &disposables)
         
-        verifiAffiliate(id_cobrador: "1231231")
+       // verifiAffiliate(id_cobrador: "1231231")
     }
     
     func registerAffiliate(nombrebanco:String, numerocuenta:String, tiposervicio: String, placa: String){
@@ -59,6 +59,7 @@ class AfiliacionViewModel: ObservableObject {
     }
     
     func verifiAffiliate(id_cobrador:String){
+        print("repite afiliacion")
         self.afiliacionResponse.verificaAfiliacion(id_cobrador: id_cobrador)
     }
 }

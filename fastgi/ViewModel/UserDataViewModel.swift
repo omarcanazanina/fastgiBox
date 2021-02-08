@@ -19,11 +19,14 @@ class UserDataViewModel: ObservableObject {
     
     private var disposables: Set<AnyCancellable> = []
     @Published var messageError: String = ""
-    
+    //navegacion si QR es correcto
     @Published var nextPayview: Bool = false
-    //DataUser
+    //load de espera
+    //@Published var enEsperaQR : String = ""
+    @Published var isloading: Bool = false
+    
     private var DataUserPublisher: AnyPublisher<UpdateUserModel, Never> {
-          userDataResponse.$userResponse
+          userDataResponse.$user
               .receive(on: RunLoop.main)
               .map { response in
                   guard let response = response else {
@@ -42,6 +45,7 @@ class UserDataViewModel: ObservableObject {
                   guard let response = response else {
                     return self.userResponsePago
                   }
+                print("se ejecuto el nextPayview VM")
                 self.nextPayview = true
                   return response
               }
@@ -57,6 +61,14 @@ class UserDataViewModel: ObservableObject {
         .eraseToAnyPublisher()
     }
     
+    private var isLoadingPublished: AnyPublisher<Bool, Never> {
+        userDataResponse.$isloading
+            .receive(on: RunLoop.main)
+            .map { response in
+                return response
+        }
+        .eraseToAnyPublisher()
+    }
     
     init(){
         //DataUser
@@ -76,13 +88,18 @@ class UserDataViewModel: ObservableObject {
               .assign(to: \.userResponsePago, on: self)
               .store(in: &disposables)
         
+        isLoadingPublished
+            .receive(on: RunLoop.main)
+            .assign(to: \.isloading, on: self)
+            .store(in: &disposables)
         
-       DatosUser()
+      // DatosUser()
        // DatosUserPago(id_usuario: userResponsePago._id)
     }
     
     func DatosUser() {
-            userDataResponse.DataUser()
+        userDataResponse.DataUser()
+        print("veces q se repite datauser")
       }
     
     func DatosUserPago(id_usuario: String) {

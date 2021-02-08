@@ -110,7 +110,7 @@ class Contacts: ObservableObject {
                         if let decodedResponse = try? JSONDecoder().decode(ContactsResponse.self, from: data) {
                             // print("get")
                             self.getContactsResponse = decodedResponse.contacto
-                            
+                            print(self.getContactsResponse)
                             self.getContactsResponse?.forEach({ (contact) in
                                 self.listNumbersApp.append(contact.telefono)
                             })
