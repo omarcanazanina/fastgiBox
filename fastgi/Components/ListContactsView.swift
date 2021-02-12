@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+//import SwiftUIPullToRefresh
 
 struct ListContactsView: View {
     
@@ -34,8 +35,16 @@ struct ListContactsView: View {
     }
     
     var list:some View{
+      
         VStack{
+            /*RefreshableNavigationView(title: "", action:{
+                print("se actualizo")
+               // self.numbers = self.generateRandomNumbers()
+                 }){
+                     //Text("datos")
+                 }*/
             SearchBar(text: $searchText, placeholder: "Buscar")
+           
             List {
                 ForEach(self.contactsVM.listContacts.filter({searchText.isEmpty ? true : $0.nombre.lowercased().contains(searchText.lowercased())}), id: \.self._id){ (contact:ContactModel) in
               
@@ -88,7 +97,8 @@ struct ListContactsView: View {
                     //self.alert = true
                 }*/
               
-            }.pullToRefresh(isShowing: $isShowingReferesh) {
+            }
+         /*  .pullToRefresh(isShowing: $isShowingReferesh) {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                     print("cargo")
                     self.contactsVM.updateContacts()
@@ -101,18 +111,20 @@ struct ListContactsView: View {
                         .foregroundColor(.red)
                     //self.alert = true
                 }*/
-            }
+            }*/
             
        
             .alert(item: $contactsVM1.permissionsError) {_ in
                 Alert(title: Text("Permiso denegado"), message: Text(contactsVM1.permissionsError?.description ?? "error no conocido"), dismissButton: .default(Text("Ok"),action: { self.contactsVM1.openSettings()}))
             }
         }
+        
     }
     
     
     var body: some View {
         NavigationView {
+            
                 self.list
                     .navigationBarItems(trailing: Button(action: {
                         print("Dismissing sheet view...")
@@ -144,6 +156,5 @@ struct ListContactsView_Previews: PreviewProvider {
         ListContactsView(showingSheet: $showingSheet, telefono: .constant(""), nombre: .constant(""), modal: .constant(false))
     }
 }
-
 
 

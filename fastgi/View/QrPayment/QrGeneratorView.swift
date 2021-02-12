@@ -11,6 +11,7 @@ import UIKit
 
 import SDWebImageSwiftUI
 
+
 struct QrGeneratorView: View {
     //datos user
     @ObservedObject var userDataVM = UserDataViewModel()
@@ -25,7 +26,6 @@ struct QrGeneratorView: View {
     //modal
     @State var modal = false
     @State var monto = ""
-    
     //funcion generar QR
     func generarQR(text: String) -> UIImage{
         let data = Data(text.utf8)
@@ -75,6 +75,12 @@ struct QrGeneratorView: View {
     }
     
     var body: some View {
+        /*RefreshableNavigationView(title: "", action:{
+            print("se actualizo")
+           // self.numbers = self.generateRandomNumbers()
+             }){
+                 //Text("datos")
+             }*/
         VStack{
             self.imageProfile
             Text("\(self.dataUserlog.nombres) \(self.dataUserlog.apellidos)")
@@ -211,3 +217,5 @@ extension UIImage {
         return r
     }
 }
+
+

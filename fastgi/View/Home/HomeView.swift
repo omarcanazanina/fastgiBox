@@ -264,7 +264,17 @@ struct HomeView: View {
                 }.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
             
             }.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
-  
+            VStack{
+                Button(action: {
+                    self.action = 6
+                }){
+                    Text("prueba")
+                }
+                NavigationLink(destination: QrGeneratorView( dataUserlog: self.userDataVM.user), tag: 6, selection: self.$action) {
+                    EmptyView()
+                }
+                
+            }
         }
         .padding()
         

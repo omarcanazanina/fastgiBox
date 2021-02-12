@@ -18,6 +18,7 @@
 		9256A32D25C4B6E200DEC3AD /* TestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9256A32C25C4B6E200DEC3AD /* TestView.swift */; };
 		925F07282580323000153B5A /* Afiliacion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 925F07272580323000153B5A /* Afiliacion.swift */; };
 		925F072B2580372B00153B5A /* AfiliacionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 925F072A2580372B00153B5A /* AfiliacionViewModel.swift */; };
+		927139F925D71F8400B5A3CA /* SwiftUIPullToRefresh in Frameworks */ = {isa = PBXBuildFile; productRef = 927139F825D71F8400B5A3CA /* SwiftUIPullToRefresh */; };
 		9271EF1A258D4D2E009659F4 /* AffiliateModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9271EF19258D4D2E009659F4 /* AffiliateModel.swift */; };
 		9271EF1D258D4DC8009659F4 /* AffiliateResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9271EF1C258D4DC8009659F4 /* AffiliateResponse.swift */; };
 		9279D548256F0C6500890C84 /* QrReaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9279D547256F0C6500890C84 /* QrReaderView.swift */; };
@@ -226,6 +227,7 @@
 			files = (
 				9279D54C256F0D5400890C84 /* CodeScanner in Frameworks */,
 				92DBE2A225537827001B791B /* SwiftUIRefresh in Frameworks */,
+				927139F925D71F8400B5A3CA /* SwiftUIPullToRefresh in Frameworks */,
 				573DD5AA824DD586829F7E7E /* Pods_fastgi.framework in Frameworks */,
 				92A3BAFF25536D7A00DF3707 /* ValidatedPropertyKit in Frameworks */,
 			);
@@ -558,6 +560,7 @@
 				92A3BAFE25536D7A00DF3707 /* ValidatedPropertyKit */,
 				92DBE2A125537827001B791B /* SwiftUIRefresh */,
 				9279D54B256F0D5400890C84 /* CodeScanner */,
+				927139F825D71F8400B5A3CA /* SwiftUIPullToRefresh */,
 			);
 			productName = fastgi;
 			productReference = 92A3BA212553616F00DF3707 /* fastgi.app */;
@@ -590,6 +593,7 @@
 				92A3BAFD25536D7A00DF3707 /* XCRemoteSwiftPackageReference "ValidatedPropertyKit" */,
 				92DBE2A025537827001B791B /* XCRemoteSwiftPackageReference "SwiftUIRefresh" */,
 				9279D54A256F0D5400890C84 /* XCRemoteSwiftPackageReference "CodeScanner" */,
+				927139F725D71F8400B5A3CA /* XCRemoteSwiftPackageReference "SwiftUI-PullToRefresh" */,
 			);
 			productRefGroup = 92A3BA222553616F00DF3707 /* Products */;
 			projectDirPath = "";
@@ -961,6 +965,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		927139F725D71F8400B5A3CA /* XCRemoteSwiftPackageReference "SwiftUI-PullToRefresh" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/AppPear/SwiftUI-PullToRefresh";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 		9279D54A256F0D5400890C84 /* XCRemoteSwiftPackageReference "CodeScanner" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "http://github.com/twostraws/CodeScanner";
@@ -988,6 +1000,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		927139F825D71F8400B5A3CA /* SwiftUIPullToRefresh */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 927139F725D71F8400B5A3CA /* XCRemoteSwiftPackageReference "SwiftUI-PullToRefresh" */;
+			productName = SwiftUIPullToRefresh;
+		};
 		9279D54B256F0D5400890C84 /* CodeScanner */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 9279D54A256F0D5400890C84 /* XCRemoteSwiftPackageReference "CodeScanner" */;
