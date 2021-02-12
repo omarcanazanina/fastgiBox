@@ -26,6 +26,7 @@ class UserDataViewModel: ObservableObject {
     //load de espera
     //@Published var enEsperaQR : String = ""
     @Published var isloading: Bool = false
+    @Published var alertInexistente : Bool = false
     
     private var DataUserPublisher: AnyPublisher<UpdateUserModel, Never> {
           userDataResponse.$user
@@ -86,6 +87,20 @@ class UserDataViewModel: ObservableObject {
         }
         .eraseToAnyPublisher()
     }
+    //afiliado existe
+    private var UserInexistentePayPublished: AnyPublisher<Bool, Never> {
+        userDataResponse.$alertInexistente
+            .receive(on: RunLoop.main)
+            .map { response in
+                //$0
+                if response == true{
+                    self.alertInexistente = true
+                }
+                return response
+        }
+        .eraseToAnyPublisher()
+    }
+    
     
     init(){
         //DataUser
@@ -115,6 +130,10 @@ class UserDataViewModel: ObservableObject {
             .assign(to: \.isloading, on: self)
             .store(in: &disposables)
         
+        UserInexistentePayPublished
+            .receive(on: RunLoop.main)
+            .assign(to: \.alertInexistente, on: self)
+            .store(in: &disposables)
        
       // DatosUser()
        // DatosUserPago(id_usuario: userResponsePago._id)

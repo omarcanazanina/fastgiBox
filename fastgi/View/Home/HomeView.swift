@@ -148,7 +148,7 @@ struct HomeView: View {
         HStack{
             Button(action: {
                 self.showScannerScan = true
-                self.action = 2
+                //self.action = 2
                
             }){
                 HStack{
@@ -169,14 +169,24 @@ struct HomeView: View {
                     case .success(let codigo):
                         self.resultadosScan = codigo
                         self.userDataVM.DatosUserPay(id_usuario: self.resultadosScan)
+                        print("aki \(self.userDataVM.userResponsePay)")
                         //print(<#T##items: Any...##Any#>)
                         self.showScannerScan = false
                     case .failure(let error):
                         print(error.localizedDescription)
                     }
                 }
+            }.onReceive(self.userDataVM.$userResponsePay) { (userPay) in
+                if userPay._id == "ObjectId"{
+                    print("no hay user")
+                    self.alertState = true
+                }else{
+                    print("usuario existe")
+                  
+                }
+              
             }
-            NavigationLink(destination: ChargeView(dataUserPay: self.userDataVM.userResponsePay), tag: 2, selection: self.$action) {
+            NavigationLink(destination: ChargeView(dataUserPay: self.userDataVM.userResponsePay), isActive: self.$userDataVM.nextPayview) {
                 EmptyView()
             }
         }
@@ -252,21 +262,6 @@ struct HomeView: View {
                         Spacer()
                             .frame(maxWidth:.infinity)
                 }.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
-                //pruebas
-                HStack{
-                    if self.userDataVM.isloading == true || self.qrPaymentVM.isloading == true{
-                        Loader()
-                    }
-                    Button(action: {
-                        self.action = 3
-                    }){
-                        //Text("Aceptar")
-                    }
-                    //NavigationLink(destination: testView(), tag: 3, selection: self.$action) {
-                    //    EmptyView()
-                   // }
-                   // Text(self.resultadosScan)
-                }
             
             }.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
   
@@ -276,7 +271,7 @@ struct HomeView: View {
     }
     
     var alerts:Alert{
-        Alert(title: Text("Fastgi"), message: Text("Usuario no afiliado."), dismissButton: .default(Text("Aceptar"), action: {
+        Alert(title: Text("Fastgi"), message: Text("Usuario no afiliado o inexistente."), dismissButton: .default(Text("Aceptar"), action: {
             self.presentationMode.wrappedValue.dismiss()
         }))
     }
@@ -286,6 +281,9 @@ struct HomeView: View {
             self.home
         }
         .alert(isPresented:  self.$qrPaymentVM.alertNoAfiliado){
+            self.alerts
+        }
+        .alert(isPresented:  self.$userDataVM.alertInexistente){
             self.alerts
         }
         }
@@ -298,14 +296,3 @@ struct HomeView_Previews: PreviewProvider {
             
     }
 }
-//retorno de cambio de variables ViewModel
-/*  .onReceive(self.qrPaymentVM.$noafiliado) {
-      if $0 == nil{
-          self.alertState = true
-      }
-  }
-  .onReceive(self.qrPaymentVM.$enespera) {
-      if $0 == "false"{
-          self.alertState = true
-      }
-  }*/

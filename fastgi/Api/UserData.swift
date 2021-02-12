@@ -23,7 +23,7 @@ class UserData: ObservableObject {
     @Published var userResponsePago:UpdateUserPagoModel?
     @Published var userResponsePay:UpdateUserPagoModel?
     @Published var messageError :String = ""
-    
+    @Published var alertInexistente :Bool = false
     //rutas
     var navigationRoot = NavigationRoot()
     
@@ -154,6 +154,7 @@ class UserData: ObservableObject {
                         if let decodedResponse = try? JSONDecoder().decode(ErrorResponsePago.self, from: data) {
                             print(decodedResponse.err.kind)
                             self.messageError = decodedResponse.err.kind
+                            self.alertInexistente = true
                             self.isloading = false
                             /*if decodedResponse1.err.name == "TokenExpiredError" || decodedResponse1.err.name == "JsonWebTokenError"{
                                // self.navigationRoot.changeRootClose()
