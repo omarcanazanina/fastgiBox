@@ -16,6 +16,7 @@ struct QrChargeView: View {
     let filter = CIFilter.qrCodeGenerator()
     var showBtn: Bool? = true
     
+    var dataUserlog: UpdateUserModel
     func generarQR(text: String) -> UIImage{
         let data = Data(text.utf8)
         filter.setValue(data, forKey: "inputMessage")
@@ -50,11 +51,11 @@ struct QrChargeView: View {
     var body: some View {
         VStack{
             self.imageProfile
-            Text("\(self.userDataVM.user.nombres) \(self.userDataVM.user.apellidos)")
+            Text("\(self.dataUserlog.nombres) \(self.dataUserlog.apellidos)")
                 .font(.title)
                 .bold()
             
-            Image(uiImage: generarQR(text: self.userDataVM.user._id))
+            Image(uiImage: generarQR(text: self.dataUserlog._id))
                 .interpolation(.none)
                 .resizable()
                 .scaledToFit()
@@ -72,11 +73,11 @@ struct QrChargeView: View {
     }
 }
 
-struct QrChargeView_Previews: PreviewProvider {
+/*struct QrChargeView_Previews: PreviewProvider {
     static var previews: some View {
-        QrChargeView()
+        QrChargeView(, dataUserlog: <#UpdateUserModel#>)
     }
-}
+}*/
 
 /*extension QrChargeView {
     func exportToPDF(nombreUser_: String, showBtn_: Bool) {

@@ -98,6 +98,7 @@
 		92AB8CF82579B7F4006F0FA7 /* QrPaymentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92AB8CF72579B7F4006F0FA7 /* QrPaymentModel.swift */; };
 		92AB8CFB2579B9E1006F0FA7 /* QrPaymentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92AB8CFA2579B9E1006F0FA7 /* QrPaymentViewModel.swift */; };
 		92B75E4A25B795C3005A2DCC /* EnterAmountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92B75E4925B795C3005A2DCC /* EnterAmountView.swift */; };
+		92CA837C25D5C4EF00727F89 /* ChargeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92CA837B25D5C4EF00727F89 /* ChargeView.swift */; };
 		92DBE2A225537827001B791B /* SwiftUIRefresh in Frameworks */ = {isa = PBXBuildFile; productRef = 92DBE2A125537827001B791B /* SwiftUIRefresh */; };
 		92E3FE2425C0AA4A00320396 /* testView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E3FE2325C0AA4A00320396 /* testView.swift */; };
 		C0100033257ACF3B00945FCA /* SlideFormJoinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0100032257ACF3B00945FCA /* SlideFormJoinView.swift */; };
@@ -205,6 +206,7 @@
 		92AB8CF72579B7F4006F0FA7 /* QrPaymentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QrPaymentModel.swift; sourceTree = "<group>"; };
 		92AB8CFA2579B9E1006F0FA7 /* QrPaymentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QrPaymentViewModel.swift; sourceTree = "<group>"; };
 		92B75E4925B795C3005A2DCC /* EnterAmountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterAmountView.swift; sourceTree = "<group>"; };
+		92CA837B25D5C4EF00727F89 /* ChargeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChargeView.swift; sourceTree = "<group>"; };
 		92E3FE2325C0AA4A00320396 /* testView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = testView.swift; sourceTree = "<group>"; };
 		C0100032257ACF3B00945FCA /* SlideFormJoinView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideFormJoinView.swift; sourceTree = "<group>"; };
 		C05413E425783C2F000343EB /* TestWizardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestWizardView.swift; sourceTree = "<group>"; };
@@ -253,6 +255,7 @@
 				92B75E4925B795C3005A2DCC /* EnterAmountView.swift */,
 				92E3FE2325C0AA4A00320396 /* testView.swift */,
 				923AE28725CAF3A30015ECA8 /* QrChargeView.swift */,
+				92CA837B25D5C4EF00727F89 /* ChargeView.swift */,
 			);
 			path = QrPayment;
 			sourceTree = "<group>";
@@ -673,6 +676,7 @@
 				92AB8CF52579B779006F0FA7 /* QrPaymentResponse.swift in Sources */,
 				92A3BA9B2553673200DF3707 /* DataUserResponse.swift in Sources */,
 				92A3BA65255364AE00DF3707 /* UpdateUserViewModel.swift in Sources */,
+				92CA837C25D5C4EF00727F89 /* ChargeView.swift in Sources */,
 				92A3BA68255364CF00DF3707 /* ContactsViewModel.swift in Sources */,
 				9202E997255DF485009115ED /* test.swift in Sources */,
 				92900DDD25C9A9280009B8F6 /* NewHomeView.swift in Sources */,

@@ -27,12 +27,13 @@ struct HomeView: View {
     @State private var showScannerTransporte = false
     @State private var showScannerScan = false
     @State private var resultado = ""
+    @State private var resultadosScan = ""
     //lector con monto
     @State private var idconmonto = ""
     @State private var montoQR = ""
     
     @State private var action:Int? = 0
-    @State private var dataUserLog = UpdateUserModel(role: "", estado: true, _id: "", telefono: "", pin: "", fecha: "", apellidos: "", correo: "", direccion: "", nit: "", nombrenit: "", nombres: "", ci: "")
+   // @State private var dataUserLog = UpdateUserModel(role: "", estado: true, _id: "", telefono: "", pin: "", fecha: "", apellidos: "", correo: "", direccion: "", nit: "", nombrenit: "", nombres: "", ci: "")
     //alert
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @State var alertState: Bool = false
@@ -44,6 +45,7 @@ struct HomeView: View {
         appearance.shadowColor = .clear
         UINavigationBar.appearance().standardAppearance = appearance
         self.contactsVM.getContacts()
+        self.userDataVM.DatosUser()
     }
     
     var btnTeleferic:some View{
@@ -135,7 +137,7 @@ struct HomeView: View {
                 }
             }
           
-            NavigationLink(destination: PayView(User: self.userDataVM.userResponsePago, montoQR: self.$montoQR), isActive: self.$userDataVM.nextPayview) {
+            NavigationLink(destination: PayView(User: self.userDataVM.userResponsePago, montoQR: self.$montoQR), isActive: self.$userDataVM.nextPagoview) {
                 EmptyView()
             }
         }
@@ -161,40 +163,20 @@ struct HomeView: View {
                 
             }
             //.background(Color.blue.opacity(0.5))
-            .sheet(isPresented: self.$showScannerTransporte) {
+            .sheet(isPresented: self.$showScannerScan) {
                 CodeScannerView(codeTypes: [.qr]){ result in
                     switch result {
                     case .success(let codigo):
-                        self.resultado = codigo
-                        if self.resultado.count > 24 {
-                            self.idconmonto = String(self.resultado.prefix(24))
-                            print("tiene monto \(self.idconmonto)")
-                            self.montoQR = String(self.resultado.dropFirst(24))
-                            print("el monto \(self.montoQR)")
-                            self.qrPaymentVM.userAfiliacion(id_afiliado: self.idconmonto)
-                            self.showScannerTransporte = false
-                        }else{
-                            print("no tiene monto")
-                            self.qrPaymentVM.userAfiliacion(id_afiliado: self.resultado)
-                            self.showScannerTransporte = false
-                        }
+                        self.resultadosScan = codigo
+                        self.userDataVM.DatosUserPay(id_usuario: self.resultadosScan)
+                        //print(<#T##items: Any...##Any#>)
+                        self.showScannerScan = false
                     case .failure(let error):
                         print(error.localizedDescription)
                     }
                 }
             }
-            .onReceive(self.qrPaymentVM.$afiliado) { (afiliado) in
-                if afiliado == true {
-                    if self.idconmonto == ""{
-                        self.userDataVM.DatosUserPago(id_usuario: self.resultado)
-                    }else{
-                        self.userDataVM.DatosUserPago(id_usuario: self.idconmonto)
-                    }
-                  
-                }
-            }
-          
-            NavigationLink(destination: PayView(User: self.userDataVM.userResponsePago, montoQR: self.$montoQR), isActive: self.$userDataVM.nextPayview) {
+            NavigationLink(destination: ChargeView(dataUserPay: self.userDataVM.userResponsePay), tag: 2, selection: self.$action) {
                 EmptyView()
             }
         }
@@ -215,7 +197,7 @@ struct HomeView: View {
                 .cornerRadius(10)
                 .frame(maxWidth:.infinity)
             }
-            NavigationLink(destination: QrChargeView(), tag: 4, selection: self.$action) {
+            NavigationLink(destination: QrChargeView(dataUserlog: self.userDataVM.user), tag: 4, selection: self.$action) {
                 EmptyView()
             }
         }
@@ -236,7 +218,7 @@ struct HomeView: View {
                 .cornerRadius(10)
                 .frame(maxWidth:.infinity)
             }
-            NavigationLink(destination: QrGeneratorView( dataUserlog: self.dataUserLog), tag: 3, selection: self.$action) {
+            NavigationLink(destination: QrGeneratorView( dataUserlog: self.userDataVM.user), tag: 3, selection: self.$action) {
                 EmptyView()
             }
         }
@@ -244,7 +226,7 @@ struct HomeView: View {
     var home:some View{
         ScrollView{
             HStack(spacing:10){
-                //self.btnScan
+                self.btnScan
                 self.btnPay
                 self.btnIngresar
                 }.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
@@ -283,7 +265,7 @@ struct HomeView: View {
                     //NavigationLink(destination: testView(), tag: 3, selection: self.$action) {
                     //    EmptyView()
                    // }
-                   // Text(self.resultado)
+                   // Text(self.resultadosScan)
                 }
             
             }.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)

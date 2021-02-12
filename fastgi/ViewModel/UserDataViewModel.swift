@@ -16,10 +16,12 @@ class UserDataViewModel: ObservableObject {
     @Published var user = UpdateUserModel(role: "", estado: true, _id: "", telefono: "", pin: "", fecha: "", apellidos: "", correo: "", direccion: "", nit: "", nombrenit: "", nombres: "", ci: "")
     //datos del usuario pago
     @Published var userResponsePago = UpdateUserPagoModel(img: "", role: "", estado: true, _id: "", telefono: "", pin: "", fecha: "", apellidos: "", correo: "", direccion: "", nit: "", nombrenit: "", nombres: "")
+    @Published var userResponsePay = UpdateUserPagoModel(img: "", role: "", estado: true, _id: "", telefono: "", pin: "", fecha: "", apellidos: "", correo: "", direccion: "", nit: "", nombrenit: "", nombres: "")
     
     private var disposables: Set<AnyCancellable> = []
     @Published var messageError: String = ""
     //navegacion si QR es correcto
+    @Published var nextPagoview: Bool = false
     @Published var nextPayview: Bool = false
     //load de espera
     //@Published var enEsperaQR : String = ""
@@ -46,11 +48,26 @@ class UserDataViewModel: ObservableObject {
                     return self.userResponsePago
                   }
                 print("se ejecuto el nextPayview VM")
+                self.nextPagoview = true
+                  return response
+              }
+              .eraseToAnyPublisher()
+      }
+    //DataUserPay
+    private var DataUserPayPublisher: AnyPublisher<UpdateUserPagoModel, Never> {
+          userDataResponse.$userResponsePay
+              .receive(on: RunLoop.main)
+              .map { response in
+                  guard let response = response else {
+                    return self.userResponsePay
+                  }
+                print("se ejecuto el nextPayview VM")
                 self.nextPayview = true
                   return response
               }
               .eraseToAnyPublisher()
       }
+    
     //recuperar usuario no en bd
     private var ErrorPublished: AnyPublisher<String, Never> {
         userDataResponse.$messageError
@@ -77,6 +94,11 @@ class UserDataViewModel: ObservableObject {
               .assign(to: \.user, on: self)
               .store(in: &disposables)
         
+        DataUserPayPublisher
+            .receive(on: RunLoop.main)
+            .assign(to: \.userResponsePay, on: self)
+            .store(in: &disposables)
+        
         ErrorPublished
             .receive(on: RunLoop.main)
             .assign(to: \.messageError, on: self)
@@ -93,6 +115,7 @@ class UserDataViewModel: ObservableObject {
             .assign(to: \.isloading, on: self)
             .store(in: &disposables)
         
+       
       // DatosUser()
        // DatosUserPago(id_usuario: userResponsePago._id)
     }
@@ -105,4 +128,9 @@ class UserDataViewModel: ObservableObject {
     func DatosUserPago(id_usuario: String) {
             userDataResponse.DataUserPago(id_usuario: id_usuario)
       }
+    
+    func DatosUserPay(id_usuario: String) {
+            userDataResponse.DataUserPay(id_usuario: id_usuario)
+      }
+    
 }
