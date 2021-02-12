@@ -225,11 +225,11 @@ struct HomeView: View {
     }
     var home:some View{
         ScrollView{
-            HStack(spacing:10){
+           /* HStack(spacing:10){
                 self.btnScan
                 self.btnPay
                 self.btnIngresar
-                }.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
+                }.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)*/
             VStack{
                 Text("Recarga de línea pre pago")
                     .font(.caption)
