@@ -170,7 +170,6 @@ struct HomeView: View {
                         self.resultadosScan = codigo
                         self.userDataVM.DatosUserPay(id_usuario: self.resultadosScan)
                         print("aki \(self.userDataVM.userResponsePay)")
-                        //print(<#T##items: Any...##Any#>)
                         self.showScannerScan = false
                     case .failure(let error):
                         print(error.localizedDescription)
@@ -264,24 +263,29 @@ struct HomeView: View {
                 }.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
             
             }.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
-            /*VStack{
+            VStack{
                 Button(action: {
                     self.action = 6
                 }){
-                  //  Text("prueba")
+                    Text("prueba")
                 }
-                NavigationLink(destination: QrGeneratorView( dataUserlog: self.userDataVM.user), tag: 6, selection: self.$action) {
+                NavigationLink(destination: TestView(), tag: 6, selection: self.$action) {
                     EmptyView()
                 }
              
-            }*/
+            }
         }
         .padding()
-        
+       
     }
     
     var alerts:Alert{
-        Alert(title: Text("Fastgi"), message: Text("Usuario no afiliado o inexistente."), dismissButton: .default(Text("Aceptar"), action: {
+        Alert(title: Text("Fastgi"), message: Text("Usuario no afiliado."), dismissButton: .default(Text("Aceptar"), action: {
+            self.presentationMode.wrappedValue.dismiss()
+        }))
+    }
+    var alertsPay:Alert{
+        Alert(title: Text("Fastgi"), message: Text("Usuario inexistente."), dismissButton: .default(Text("Aceptar"), action: {
             self.presentationMode.wrappedValue.dismiss()
         }))
     }
@@ -289,13 +293,15 @@ struct HomeView: View {
     var body: some View {
         HStack{
             self.home
+                .alert(isPresented:  self.$qrPaymentVM.alertNoAfiliado){
+                    self.alerts
+                }
+            
+           
+        }    .alert(isPresented:  self.$userDataVM.alertInexistente){
+            self.alertsPay
         }
-        .alert(isPresented:  self.$qrPaymentVM.alertNoAfiliado){
-            self.alerts
-        }
-        .alert(isPresented:  self.$userDataVM.alertInexistente){
-            self.alerts
-        }
+      
         }
     
 }
