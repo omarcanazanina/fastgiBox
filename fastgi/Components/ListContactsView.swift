@@ -25,6 +25,9 @@ struct ListContactsView: View {
     //search
     @State private var searchText : String = ""
     let contacts = ["Herlan Garzon", "Omar Canaza", "Elvin Mollinedo", "Agustin Ayaviri", "Daniel Jaimes", "Amilkar Dominguez"]
+    //alert
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    @State var alertState: Bool = false
     
     init(showingSheet: Binding<Bool>, telefono: Binding<String>, nombre :Binding<String>, modal: Binding<Bool>){
         self._showingSheet = showingSheet
@@ -121,31 +124,33 @@ struct ListContactsView: View {
         
     }
     
+    var alerts:Alert{
+        Alert(title: Text("Fastgi"), message: Text("Actualización exitosa."), dismissButton: .default(Text("Aceptar"), action: {
+          //  self.presentationMode.wrappedValue.dismiss()
+        }))
+    }
     
     var body: some View {
         NavigationView {
-            
                 self.list
-                    .navigationBarItems(trailing: Button(action: {
-                        print("Dismissing sheet view...")
-                        self.showingSheet = false
-                    }) {
-                        Text("Cerrar").bold()
-                            .foregroundColor(Color("primary"))
-                    })
                     .navigationBarTitle(Text("Elige un contacto"), displayMode: .inline)
-                    .navigationBarItems(trailing: Button(action: {
-                        print("Dismissing sheet view...")
-                        self.showingSheet = false
-                    }) {
-                        Text("Cerrar").bold()
-                            .foregroundColor(Color("primary"))
-                    })
-            }
-        .onAppear{
-           // print("entro al onappear listcontactsView")
-             //   self.contactsVM.getContacts()
-          
+                    .navigationBarItems(leading:
+                                  HStack {
+                                      Button("Actualizar") {
+                                          print("actualizar!")
+                                        print("cargo")
+                                        self.contactsVM.updateContacts()
+                                        self.alertState = true
+                                      }
+                                  }, trailing:
+                                  HStack {
+                                      Button("Cerrar") {
+                                        self.showingSheet = false
+                                      }
+                                  }
+                              )
+            } .alert(isPresented:  self.$alertState){
+                self.alerts
             }
     }
 }
