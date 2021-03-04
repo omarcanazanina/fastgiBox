@@ -19,7 +19,8 @@ struct SlideFormJoinView: View {
     //datos
     @State private  var numeroCta = ""
     @State private  var placa = ""
-    
+    @State  var user : UpdateUserModel
+    @State  var nombreCompleto : String
     //alerta
     @State var alertState: Bool = false
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
@@ -65,7 +66,8 @@ struct SlideFormJoinView: View {
                     .textStyle(TitleStyle())
                 Text("TITULAR")
                     .textStyle(TitleStyle())
-                TextField("Titular", text: self.$userDataVM.user.nombres)
+                //comentado
+                TextField("Titular", text: self.$nombreCompleto)//self.$userDataVM.user.nombres)
                     .textFieldStyle(Input())
                 Text("BANCO")
                     .textStyle(TitleStyle())
@@ -116,12 +118,12 @@ struct SlideFormJoinView: View {
                     .textStyle(TitleStyle())
                 Text("NOMBRE COMPLETO")
                     .textStyle(TitleStyle())
-                TextField("Nombre completo", text: self.$userDataVM.user.nombres)
+                TextField("Nombre completo", text: self.$nombreCompleto)//self.$userDataVM.user.nombres)
                     .textFieldStyle(Input())
                 Text("DOCUMENTO DE IDENTIDAD")
                     .textStyle(TitleStyle())
                 HStack{
-                    TextField("Nro. Documento", text: self.$userDataVM.user.ci)
+                    TextField("Nro. Documento", text: self.$user.ci)//self.$userDataVM.user.ci)
                         .textFieldStyle(Input())
                         .keyboardType(.numberPad)
                         .introspectTextField { (textField) in
@@ -137,7 +139,7 @@ struct SlideFormJoinView: View {
                 }
                 Text("CORREO ELECTRÓNICO")
                     .textStyle(TitleStyle())
-                TextField("Correo electrónico", text: self.$userDataVM.user.correo)
+                TextField("Correo electrónico", text: self.$user.correo)//self.$userDataVM.user.correo)
                     .textFieldStyle(Input())
             }.padding()
             Spacer()
@@ -421,8 +423,8 @@ struct SlideFormJoinView: View {
     }
 }
 
-struct SlideFormJoinView_Previews: PreviewProvider {
+/*struct SlideFormJoinView_Previews: PreviewProvider {
     static var previews: some View {
         SlideFormJoinView()
     }
-}
+}*/

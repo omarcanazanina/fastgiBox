@@ -25,6 +25,11 @@ struct FormUserDataView: View {
     @State var ci: String = ""
     //datos user
     @ObservedObject var userDataVM = UserDataViewModel()
+    init() {
+        self.userDataVM.DatosUser1()
+        //  self.afiliacionVM.verifiAffiliate(id_cobrador: self.userDataVM.user._id)
+    }
+    
     var infoUser:some View{
         ScrollView(){
             VStack(alignment: .leading, spacing: 8){
@@ -35,7 +40,7 @@ struct FormUserDataView: View {
                     
                     Text("DOCUMENTO DE IDENTIDAD")
                         .textStyle(TitleStyle())
-                    TextField("C.I.", text:  self.$userDataVM.user.ci, onEditingChanged: { changed in self.AddSpace = false})
+                    TextField("C.I.", text:  self.$userDataVM.user1.ci, onEditingChanged: { changed in self.AddSpace = false})
                     .textFieldStyle(Input())
                         .keyboardType(.numberPad)
                         .introspectTextField { (textField) in
@@ -49,24 +54,24 @@ struct FormUserDataView: View {
                          }
                     Text("CORREO ELECTRÓNICO")
                         .textStyle(TitleStyle())
-                    TextField("user@email.com", text: self.$userDataVM.user.correo, onEditingChanged: { changed in self.AddSpace = false})
+                    TextField("user@email.com", text: self.$userDataVM.user1.correo, onEditingChanged: { changed in self.AddSpace = false})
                     .textFieldStyle(Input())
                         .keyboardType(.emailAddress)
                     Text("NOMBRES")
                         .textStyle(TitleStyle())
-                    TextField("user name", text: self.$userDataVM.user.nombres, onEditingChanged: { changed in self.AddSpace = false})
+                    TextField("user name", text: self.$userDataVM.user1.nombres, onEditingChanged: { changed in self.AddSpace = false})
                     .textFieldStyle(Input())
                         .keyboardType(.alphabet)
                     Text("APELLIDOS")
                         .textStyle(TitleStyle())
-                    TextField("user lastname", text: self.$userDataVM.user.apellidos, onEditingChanged: { changed in self.AddSpace = false})
+                    TextField("user lastname", text: self.$userDataVM.user1.apellidos, onEditingChanged: { changed in self.AddSpace = false})
                     .textFieldStyle(Input())
                         .keyboardType(.alphabet)
                 }
                 VStack(alignment: .leading, spacing: 8){
                     Text("DIRECCIÓN")
                         .textStyle(TitleStyle())
-                    TextField("user address", text: self.$userDataVM.user.direccion, onEditingChanged: { changed in self.AddSpace = false})
+                    TextField("user address", text: self.$userDataVM.user1.direccion, onEditingChanged: { changed in self.AddSpace = false})
                     .textFieldStyle(Input())
                         .keyboardType(.alphabet)
                     Divider()
@@ -75,14 +80,14 @@ struct FormUserDataView: View {
                         .textStyle(TitleStyle())
                     Text("NOMBRE")
                         .textStyle(TitleStyle())
-                    TextField("Nombre", text: self.$userDataVM.user.nombrenit, onEditingChanged: { changed in self.AddSpace = false})
+                    TextField("Nombre", text: self.$userDataVM.user1.nombrenit, onEditingChanged: { changed in self.AddSpace = false})
                         .textFieldStyle(Input())
                         .keyboardType(.alphabet)
                     //.onAppear(perform: {self.IsKeyboardUp(Is: false)})
                     
                     Text("NIT")
                         .textStyle(TitleStyle())
-                    TextField("nit", text: self.$userDataVM.user.nit, onEditingChanged: { changed in self.AddSpace = false})
+                    TextField("nit", text: self.$userDataVM.user1.nit, onEditingChanged: { changed in self.AddSpace = false})
                         .textFieldStyle(Input())
                         .keyboardType(.numberPad)
                         .introspectTextField { (textField) in
@@ -111,7 +116,7 @@ struct FormUserDataView: View {
     var buttonSuccess:some View {
         VStack(){
             Button(action: {
-                self.updateVM.updateUser(ci: self.userDataVM.user.ci, correo: self.userDataVM.user.correo, nombres: self.userDataVM.user.nombres, apellidos: self.userDataVM.user.apellidos, direccion: self.userDataVM.user.direccion, nombrenit: self.userDataVM.user.nombrenit, nit: self.userDataVM.user.nit)
+                self.updateVM.updateUser(ci: self.userDataVM.user1.ci, correo: self.userDataVM.user1.correo, nombres: self.userDataVM.user1.nombres, apellidos: self.userDataVM.user1.apellidos, direccion: self.userDataVM.user1.direccion, nombrenit: self.userDataVM.user1.nombrenit, nit: self.userDataVM.user1.nit)
                 //self.authState.navigateBack = true
                 self.alertState = true
             }){

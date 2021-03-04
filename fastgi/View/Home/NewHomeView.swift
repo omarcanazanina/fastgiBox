@@ -11,7 +11,7 @@ struct NewHomeView: View {
     @Binding var selectedMenuItem: MenuItem
     @ObservedObject var userDataVM = UserDataViewModel()
     var dataq: some View {
-        Text("Hello, newhome! \(self.userDataVM.user.nombres) \(self.userDataVM.user.apellidos)")
+        Text("Hello, newhome! ")
     }
     
     var body: some View{

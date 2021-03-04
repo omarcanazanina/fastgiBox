@@ -13,7 +13,9 @@ import SwiftUI
 class UserDataViewModel: ObservableObject {
     var userDataResponse=UserData()
     //datos del usuario
-    @Published var user = UpdateUserModel(role: "", estado: true, _id: "", telefono: "", pin: "", fecha: "", apellidos: "", correo: "", direccion: "", nit: "", nombrenit: "", nombres: "", ci: "")
+    @Published var user = UserModel(img: "", role: "", estado: true, _id: "", telefono: "", pin: "", fecha: "", apellidos: "", correo: "", direccion: "", nit: "", nombrenit: "", nombres: "", ci: "")
+    @Published var user1 = UpdateUserModel(role: "", estado: true, _id: "", telefono: "", pin: "", fecha: "", apellidos: "", correo: "", direccion: "", nit: "", nombrenit: "", nombres: "", ci: "")
+       
     //datos del usuario pago
     @Published var userResponsePago = UpdateUserPagoModel(img: "", role: "", estado: true, _id: "", telefono: "", pin: "", fecha: "", apellidos: "", correo: "", direccion: "", nit: "", nombrenit: "", nombres: "")
     @Published var userResponsePay = UpdateUserPagoModel(img: "", role: "", estado: true, _id: "", telefono: "", pin: "", fecha: "", apellidos: "", correo: "", direccion: "", nit: "", nombrenit: "", nombres: "")
@@ -28,7 +30,7 @@ class UserDataViewModel: ObservableObject {
     @Published var isloading: Bool = false
     @Published var alertInexistente : Bool = false
     
-    private var DataUserPublisher: AnyPublisher<UpdateUserModel, Never> {
+    private var DataUserPublisher: AnyPublisher<UserModel, Never> {
           userDataResponse.$user
               .receive(on: RunLoop.main)
               .map { response in
@@ -39,6 +41,18 @@ class UserDataViewModel: ObservableObject {
               }
               .eraseToAnyPublisher()
       }
+    
+    private var DataUserPublisher1: AnyPublisher<UpdateUserModel, Never> {
+             userDataResponse.$user1
+                 .receive(on: RunLoop.main)
+                 .map { response in
+                     guard let response = response else {
+                       return self.user1
+                     }
+                     return response
+                 }
+                 .eraseToAnyPublisher()
+         }
     
     //DataUser
     private var DataUserPagoPublisher: AnyPublisher<UpdateUserPagoModel, Never> {
@@ -109,6 +123,11 @@ class UserDataViewModel: ObservableObject {
               .assign(to: \.user, on: self)
               .store(in: &disposables)
         
+        DataUserPublisher1
+                   .receive(on: RunLoop.main)
+                   .assign(to: \.user1, on: self)
+                   .store(in: &disposables)
+        
         DataUserPayPublisher
             .receive(on: RunLoop.main)
             .assign(to: \.userResponsePay, on: self)
@@ -143,6 +162,10 @@ class UserDataViewModel: ObservableObject {
         userDataResponse.DataUser()
         print("veces q se repite datauser")
       }
+    func DatosUser1() {
+        userDataResponse.DataUser1()
+       // print("veces q se repite datauser1 \(self.user1tel)")
+    }
     
     func DatosUserPago(id_usuario: String) {
             userDataResponse.DataUserPago(id_usuario: id_usuario)

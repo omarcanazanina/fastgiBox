@@ -33,10 +33,7 @@ struct HomeView: View {
     @State private var montoQR = ""
     
     @State private var action:Int? = 0
-   // @State private var dataUserLog = UpdateUserModel(role: "", estado: true, _id: "", telefono: "", pin: "", fecha: "", apellidos: "", correo: "", direccion: "", nit: "", nombrenit: "", nombres: "", ci: "")
-    //alert
-    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
-    @State var alertState: Bool = false
+
     
     init(currentBtnEm: Binding<BtnEm>) {
         self._currentBtnEm = currentBtnEm
@@ -75,9 +72,9 @@ struct HomeView: View {
                 case .failure(let error):
                     print(error.localizedDescription)
                 }
-               /* NavigationLink(destination: QrGeneratorView( dataUserlog: self.dataUserLog), tag: 1, selection: self.$action) {
+                NavigationLink(destination: QrGeneratorView( dataUserlog: self.userDataVM.user), tag: 1, selection: self.$action) {
                     EmptyView()
-            }*/
+            }
             }
         }
     }
@@ -178,7 +175,6 @@ struct HomeView: View {
             }.onReceive(self.userDataVM.$userResponsePay) { (userPay) in
                 if userPay._id == "ObjectId"{
                     print("no hay user")
-                    self.alertState = true
                 }else{
                     print("usuario existe")
                   
@@ -234,75 +230,73 @@ struct HomeView: View {
     }
     var home:some View{
         ScrollView{
-            HStack(spacing:10){
-                self.btnScan
-                self.btnPay
-                self.btnIngresar
-                }.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
             VStack{
-                Text("Recarga de línea pre pago")
-                    .font(.caption)
-                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
-                    .padding(.vertical,10)
-                HStack{
-                    CardServiceHomeView(contContacts: self.contactsVM.listContacts.count, logo: "Entel", isSelect: false, currentBtnEm: self.$currentBtnEm, btn: .Entel)
-                    CardServiceHomeView(contContacts: self.contactsVM.listContacts.count, logo: "Viva", isSelect: false, currentBtnEm: self.$currentBtnEm, btn: .Viva)
-                    CardServiceHomeView(contContacts: self.contactsVM.listContacts.count, logo: "Tigo", isSelect: false, currentBtnEm: self.$currentBtnEm, btn: .Tigo)
-                }
-            }.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
-            VStack{
-                Text("Transportes")
-                    .font(.caption)
-                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
-                    .padding(.vertical,10)
                 HStack(spacing:10){
-                    self.btnTeleferic
-                    self.btnTransport
+                    self.btnScan
+                    self.btnPay
+                    self.btnIngresar
+                }.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
+                VStack{
+                    Text("Recarga de línea pre pago")
+                        .font(.caption)
+                        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
+                        .padding(.vertical,10)
+                    HStack{
+                        CardServiceHomeView(contContacts: self.contactsVM.listContacts.count, logo: "Entel", isSelect: false, currentBtnEm: self.$currentBtnEm, btn: .Entel)
+                        CardServiceHomeView(contContacts: self.contactsVM.listContacts.count, logo: "Viva", isSelect: false, currentBtnEm: self.$currentBtnEm, btn: .Viva)
+                        CardServiceHomeView(contContacts: self.contactsVM.listContacts.count, logo: "Tigo", isSelect: false, currentBtnEm: self.$currentBtnEm, btn: .Tigo)
+                    }
+                }.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
+                VStack{
+                    Text("Transportes")
+                        .font(.caption)
+                        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
+                        .padding(.vertical,10)
+                    HStack(spacing:10){
+                        self.btnTeleferic
+                        self.btnTransport
                         Spacer()
                             .frame(maxWidth:.infinity)
+                    }.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
+                    
                 }.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
-            
-            }.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
-            VStack{
-                Button(action: {
-                    self.action = 6
-                }){
-                    Text("prueba")
+                /*VStack{
+                 Button(action: {
+                 self.action = 6
+                 }){
+                 Text("prueba")
+                 }
+                 NavigationLink(destination: TestView(), tag: 6, selection: self.$action) {
+                 EmptyView()
+                 }
+                 
+                 }*/
+                Button("") {
+                    //showingAlert1 = true
                 }
-                NavigationLink(destination: TestView(), tag: 6, selection: self.$action) {
-                    EmptyView()
+                .alert(isPresented: self.$qrPaymentVM.alertNoAfiliado) {
+                    Alert(title: Text("Fastgi"), message: Text("Usuario no afiliado."), dismissButton: .cancel())
                 }
-             
+                
+                Button("") {
+                    // showingAlert2 = true
+                }
+                .alert(isPresented: self.$userDataVM.alertInexistente) {
+                    Alert(title: Text("Fastgi"), message: Text("Usuario inexistente."), dismissButton: .cancel())
+                }
             }
         }
+           
         .padding()
        
     }
     
-    var alerts:Alert{
-        Alert(title: Text("Fastgi"), message: Text("Usuario no afiliado."), dismissButton: .default(Text("Aceptar"), action: {
-            self.presentationMode.wrappedValue.dismiss()
-        }))
-    }
-    var alertsPay:Alert{
-        Alert(title: Text("Fastgi"), message: Text("Usuario inexistente."), dismissButton: .default(Text("Aceptar"), action: {
-            self.presentationMode.wrappedValue.dismiss()
-        }))
-    }
     
     var body: some View {
-        HStack{
+        VStack{
             self.home
-                .alert(isPresented:  self.$qrPaymentVM.alertNoAfiliado){
-                    self.alerts
-                }
-            
-           
-        }    .alert(isPresented:  self.$userDataVM.alertInexistente){
-            self.alertsPay
         }
-      
-        }
+    }
     
 }
 

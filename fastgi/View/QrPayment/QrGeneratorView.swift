@@ -21,7 +21,7 @@ struct QrGeneratorView: View {
     
     var showBtn: Bool? = true
     var nombreUser : String = ""
-    var dataUserlog: UpdateUserModel
+    var dataUserlog: UserModel
     @State private var action:Int? = 0
     //modal
     @State var modal = false
@@ -83,7 +83,7 @@ struct QrGeneratorView: View {
              }*/
         VStack{
             self.imageProfile
-            Text("\(self.dataUserlog.nombres) \(self.dataUserlog.apellidos)")
+            Text("\(self.dataUserlog.nombres ?? "") \(self.dataUserlog.apellidos ?? "")")
                 .font(.title)
                 .bold()
             Text(nombreUser)

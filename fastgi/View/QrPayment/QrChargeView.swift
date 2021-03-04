@@ -16,7 +16,7 @@ struct QrChargeView: View {
     let filter = CIFilter.qrCodeGenerator()
     var showBtn: Bool? = true
     
-    var dataUserlog: UpdateUserModel
+    var dataUserlog: UserModel
     func generarQR(text: String) -> UIImage{
         let data = Data(text.utf8)
         filter.setValue(data, forKey: "inputMessage")
@@ -51,7 +51,7 @@ struct QrChargeView: View {
     var body: some View {
         VStack{
             self.imageProfile
-            Text("\(self.dataUserlog.nombres) \(self.dataUserlog.apellidos)")
+            Text("\(self.dataUserlog.nombres ?? "") \(self.dataUserlog.apellidos ?? "")")
                 .font(.title)
                 .bold()
             

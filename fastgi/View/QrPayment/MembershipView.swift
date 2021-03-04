@@ -27,8 +27,9 @@ struct MembershipView: View {
         UISegmentedControl.appearance().selectedSegmentTintColor = UIColorPrimary()
         UISegmentedControl.appearance().setTitleTextAttributes([.foregroundColor: UIColor.white], for: .selected)
         UISegmentedControl.appearance().setTitleTextAttributes([.foregroundColor: UIColorPrimary()], for: .normal)
-        self.userDataVM.DatosUser()
-        self.afiliacionVM.verifiAffiliate(id_cobrador: self.userDataVM.user._id)
+        self.userDataVM.DatosUser1()
+        self.afiliacionVM.verifiAffiliate(id_cobrador: self.userDataVM.user1._id)
+        
     }
     
     func generarQR(text: String) -> UIImage{
@@ -88,7 +89,7 @@ struct MembershipView: View {
                         .shadow(color: Color.black.opacity(0.1), radius: 4, x: 2, y: 3)
                         
                     }
-                    NavigationLink(destination: SlideFormJoinView(), tag: 1, selection: self.$action) {
+                    NavigationLink(destination: SlideFormJoinView(user: self.userDataVM.user1, nombreCompleto: "\(self.userDataVM.user1.nombres) \(self.userDataVM.user1.apellidos)" ), tag: 1, selection: self.$action) {
                         EmptyView()
                     }
                 }
@@ -105,7 +106,7 @@ struct MembershipView: View {
                     }else if self.afiliacionVM.afiliacionHabilitacion.habilitado == true{
                         VStack{
                             self.imageProfile
-                            Text("\(self.userDataVM.user.nombres) \(self.userDataVM.user.apellidos)")
+                            Text("\(self.userDataVM.user1.nombres) \(self.userDataVM.user1.apellidos)")
                                 .bold()
                             Image(uiImage: generarQR(text: self.userDataVM.user._id))
                                 .interpolation(.none)

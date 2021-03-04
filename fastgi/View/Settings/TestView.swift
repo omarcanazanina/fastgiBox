@@ -6,17 +6,27 @@
 //
 
 import SwiftUI
-import SwiftUIPullToRefresh
+//import SwiftUIPullToRefresh
 struct TestView: View {
 
-    
+    @State private var showingAlert1 = false
+        @State private var showingAlert2 = false
     
     var body: some View {
-        RefreshableNavigationView(title: "", action:{
-            print("test finish")
-        }){
-            Text("test")
-            Divider()
+        VStack {
+                    Button("Show 1") {
+                        showingAlert1 = true
+                    }
+                    .alert(isPresented: $showingAlert1) {
+                        Alert(title: Text("One"), message: nil, dismissButton: .cancel())
+                    }
+
+                    Button("Show 2") {
+                        showingAlert2 = true
+                    }
+                    .alert(isPresented: $showingAlert2) {
+                        Alert(title: Text("Two"), message: nil, dismissButton: .cancel())
+                    }
         }
     }
 }
