@@ -9,11 +9,11 @@ import SwiftUI
 import Introspect
 
 struct FormLoadCreditView: View {
-    var contContacts : Int
+//    var contContacts : Int
     var empresa: String
-    @State  var SelectEm :BtnEm
+    @Binding  var selectEm :BtnEm
     @State private  var telefono = ""
-    @State var MontoRecarga1: BtnCA
+    @Binding var MontoRecarga1: BtnCA
     @State  var MontoRecarga = ""
     @ObservedObject var RecargaVM = RecargaViewModel()
     //contacts
@@ -30,21 +30,19 @@ struct FormLoadCreditView: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @State var alertState: Bool = false
     
-    /*init(SelectEm: BtnEm, Empresa: String, MontoRecarga1: BtnCA, montorecarga: String) {
-        self.SelectEm = SelectEm
+    init(SelectEm: Binding<BtnEm>, Empresa: String, MontoRecarga1: Binding<BtnCA>, montorecarga: String) {
+        self._selectEm = SelectEm
         self.empresa = Empresa
-        self.MontoRecarga1 = MontoRecarga1
+        self._MontoRecarga1 = MontoRecarga1
         self.MontoRecarga = montorecarga
-       /* self.SelectEm = SelectEm
-        self.MontoRecarga1 = montoRecarga1
-        self.MontoRecarga = montoRecarga*/
         self.contactsVM.getContacts()
-    }*/
+        print("INIT DEL FORMLOADCREDIT \(self.contactsVM.listContacts.count)")
+    }
     var home: some View {
         ScrollView{
             //botones de la empresa
             HStack{
-                BtnsEmView(currentBtnEm: $SelectEm)
+                BtnsEmView(currentBtnEm: $selectEm)
             }.padding()
             VStack{
                 //campo para ingresar numero de contacto
@@ -64,14 +62,14 @@ struct FormLoadCreditView: View {
                             textField.inputAccessoryView = toolBar
                          }
                     Button(action: {
-                            if self.contContacts == 0{
+                        if self.contactsVM.listContacts.count == 0{
                                 print("no hay contactos")
-                                print(self.contContacts)
+                                //print(self.contContacts)
                                 self.contacts.sendContacts()
                                 self.contactsVM.getContacts()
                             }else{
                                 print("si hay contactos")
-                                print(self.contContacts)
+                                //print(self.contContacts)
                                 self.showingSheet.toggle()
                             }
                     })
@@ -93,7 +91,7 @@ struct FormLoadCreditView: View {
             //Card select
             NavigationLink(destination: SelectCreditCardView()) {
                 HStack{
-                    Text("Seleccionar tarjeta")
+                    Text("Seleccionar tarjeta \(self.contactsVM.listContacts.count)")
                         .foregroundColor(Color.primary)
                         .padding(.horizontal,12)
                         .padding(.vertical,8)
@@ -112,7 +110,7 @@ struct FormLoadCreditView: View {
             VStack{
                 ContentButtonsView(currentBtn: $MontoRecarga1, text: "", montoRecarga: $MontoRecarga)
                 Button(action: {
-                    print(self.SelectEm)
+                    print(self.selectEm)
                     print(self.MontoRecarga1)
                     print(self.MontoRecarga)
                     print(self.telefono)
@@ -120,9 +118,9 @@ struct FormLoadCreditView: View {
                         self.alertState = true
                     }else{
                         if self.MontoRecarga == ""{
-                            self.RecargaVM.SendRecarga(empresa: self.SelectEm, recarga: "30", telefono: self.telefono,  text: "")
+                            self.RecargaVM.SendRecarga(empresa: self.selectEm, recarga: "30", telefono: self.telefono,  text: "")
                         }else{
-                            self.RecargaVM.SendRecarga(empresa: self.SelectEm, recarga: self.MontoRecarga, telefono: self.telefono,  text: "")
+                            self.RecargaVM.SendRecarga(empresa: self.selectEm, recarga: self.MontoRecarga, telefono: self.telefono,  text: "")
                         }
                             self.action = 1
                     }
@@ -179,9 +177,9 @@ struct FormLoadCreditView: View {
     }
 }
 
-struct FormLoadCreditView_Previews: PreviewProvider {
+/*struct FormLoadCreditView_Previews: PreviewProvider {
     static var previews: some View {
        // FormLoadCreditView(SelectEm: .Entel, montoRecarga1: .Btn10, montoRecarga: "")
         FormLoadCreditView(contContacts: 0, empresa: "", SelectEm: .Tigo, MontoRecarga1: .Btn30, MontoRecarga: "")
     }
-}
+}*/

@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct CardServiceHomeView: View {
-    var contContacts : Int
+   // var contContacts : Int
     var logo : String
     @State var isSelect:Bool
     @ObservedObject var login = Login()
@@ -37,15 +37,15 @@ struct CardServiceHomeView: View {
                 )
             }.buttonStyle(PlainButtonStyle())
             if self.logo == "Entel"{
-                NavigationLink(destination: FormLoadCreditView(contContacts: self.contContacts, empresa: self.logo, SelectEm: .Entel, MontoRecarga1: .Btn30, MontoRecarga: ""), tag: 1, selection: self.$action) {
+                NavigationLink(destination: FormLoadCreditView(SelectEm: .constant(.Entel), Empresa: "Entel", MontoRecarga1: .constant(.Btn30), montorecarga: ""), tag: 1, selection: self.$action) {
                     EmptyView()
                 }
             }else if self.logo == "Viva"{
-                NavigationLink(destination: FormLoadCreditView(contContacts: self.contContacts, empresa: self.logo, SelectEm: .Viva, MontoRecarga1: .Btn30, MontoRecarga: ""), tag: 1, selection: self.$action) {
+                NavigationLink(destination: FormLoadCreditView(SelectEm: .constant(.Viva), Empresa: "Viva", MontoRecarga1: .constant(.Btn30), montorecarga: ""), tag: 1, selection: self.$action) {
                     EmptyView()
                 }
             }else{
-                NavigationLink(destination: FormLoadCreditView(contContacts: self.contContacts, empresa: self.logo, SelectEm: .Tigo, MontoRecarga1: .Btn30, MontoRecarga: ""), tag: 1, selection: self.$action) {
+                NavigationLink(destination: FormLoadCreditView(SelectEm: .constant(.Tigo), Empresa: "Tigo", MontoRecarga1: .constant(.Btn30), montorecarga: ""), tag: 1, selection: self.$action) {
                     EmptyView()
                 }
             }
