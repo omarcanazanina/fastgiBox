@@ -11,9 +11,9 @@ import Introspect
 struct FormLoadCreditView: View {
 //    var contContacts : Int
     var empresa: String
-    @Binding  var selectEm :BtnEm
+    @State  var selectEm :BtnEm
     @State private  var telefono = ""
-    @Binding var MontoRecarga1: BtnCA
+    @State var MontoRecarga1: BtnCA
     @State  var MontoRecarga = ""
     @ObservedObject var RecargaVM = RecargaViewModel()
     //contacts
@@ -30,14 +30,14 @@ struct FormLoadCreditView: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @State var alertState: Bool = false
     
-    init(SelectEm: Binding<BtnEm>, Empresa: String, MontoRecarga1: Binding<BtnCA>, montorecarga: String) {
+   /* init(SelectEm: Binding<BtnEm>, Empresa: String, MontoRecarga1: Binding<BtnCA>, montorecarga: String) {
         self._selectEm = SelectEm
         self.empresa = Empresa
         self._MontoRecarga1 = MontoRecarga1
         self.MontoRecarga = montorecarga
         self.contactsVM.getContacts()
         print("INIT DEL FORMLOADCREDIT \(self.contactsVM.listContacts.count)")
-    }
+    }*/
     var home: some View {
         ScrollView{
             //botones de la empresa
@@ -80,7 +80,7 @@ struct FormLoadCreditView: View {
                     }
                     //ListcontactsView
                     .sheet(isPresented: $showingSheet) {
-                        ListContactsView(showingSheet: self.$showingSheet, telefono: self.$telefono, nombre: self.$nombreContact, modal: self.$showingSheet)
+                        ListContactsView(showingSheet: self.$showingSheet, telefono: self.$telefono, nombre: self.$nombreContact, modal: self.$showingSheet, listAllContacts: self.$contactsVM.listContacts )
                     }
                     //end
                 }.background(Color("input"))
@@ -172,14 +172,14 @@ struct FormLoadCreditView: View {
         //llamado desde ContactsViewModel
          .onAppear{
             //self.userDataVM.DatosUser()
-          //  self.contactsVM.getContacts()
+            self.contactsVM.getContacts()
         }
     }
 }
 
-/*struct FormLoadCreditView_Previews: PreviewProvider {
+struct FormLoadCreditView_Previews: PreviewProvider {
     static var previews: some View {
        // FormLoadCreditView(SelectEm: .Entel, montoRecarga1: .Btn10, montoRecarga: "")
-        FormLoadCreditView(contContacts: 0, empresa: "", SelectEm: .Tigo, MontoRecarga1: .Btn30, MontoRecarga: "")
+        FormLoadCreditView( empresa: "", selectEm: .Tigo, MontoRecarga1: .Btn30, MontoRecarga: "")
     }
-}*/
+}

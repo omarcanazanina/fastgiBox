@@ -55,10 +55,10 @@ struct HistoryView: View {
                     {
                         HStack(){
                             VStack(){
-                                Text(recarga.fecha)
+                               /* Text(recarga.fecha)
                                     .opacity(0.8)
                                     .font(.caption)
-                                    .frame(maxWidth:.infinity, alignment: .leading)
+                                    .frame(maxWidth:.infinity, alignment: .leading)*/
                                 Text("Tipo")// \(recarga.fecha)")
                                     .font(.caption)
                                     .frame(maxWidth:.infinity, alignment: .leading)

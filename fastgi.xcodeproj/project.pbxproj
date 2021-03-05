@@ -135,7 +135,7 @@
 		927D1DA325785DF700A97455 /* UserDataViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataViewModel.swift; sourceTree = "<group>"; };
 		92900DDC25C9A9280009B8F6 /* NewHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewHomeView.swift; sourceTree = "<group>"; };
 		9290C1BA257AFFB000504158 /* TestpayDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestpayDetail.swift; sourceTree = "<group>"; };
-		92A3BA212553616F00DF3707 /* fastgi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = fastgi.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		92A3BA212553616F00DF3707 /* fastgi wallet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "fastgi wallet.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		92A3BA242553616F00DF3707 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		92A3BA262553616F00DF3707 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		92A3BA282553616F00DF3707 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -275,7 +275,7 @@
 		92A3BA222553616F00DF3707 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				92A3BA212553616F00DF3707 /* fastgi.app */,
+				92A3BA212553616F00DF3707 /* fastgi wallet.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -541,9 +541,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		92A3BA202553616F00DF3707 /* fastgi */ = {
+		92A3BA202553616F00DF3707 /* fastgi wallet */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 92A3BA352553617400DF3707 /* Build configuration list for PBXNativeTarget "fastgi" */;
+			buildConfigurationList = 92A3BA352553617400DF3707 /* Build configuration list for PBXNativeTarget "fastgi wallet" */;
 			buildPhases = (
 				974B1E4A235B59D7E00209E0 /* [CP] Check Pods Manifest.lock */,
 				92A3BA1D2553616F00DF3707 /* Sources */,
@@ -555,7 +555,7 @@
 			);
 			dependencies = (
 			);
-			name = fastgi;
+			name = "fastgi wallet";
 			packageProductDependencies = (
 				92A3BAFE25536D7A00DF3707 /* ValidatedPropertyKit */,
 				92DBE2A125537827001B791B /* SwiftUIRefresh */,
@@ -563,7 +563,7 @@
 				927139F825D71F8400B5A3CA /* SwiftUIPullToRefresh */,
 			);
 			productName = fastgi;
-			productReference = 92A3BA212553616F00DF3707 /* fastgi.app */;
+			productReference = 92A3BA212553616F00DF3707 /* fastgi wallet.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -599,7 +599,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				92A3BA202553616F00DF3707 /* fastgi */,
+				92A3BA202553616F00DF3707 /* fastgi wallet */,
 			);
 		};
 /* End PBXProject section */
@@ -953,7 +953,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		92A3BA352553617400DF3707 /* Build configuration list for PBXNativeTarget "fastgi" */ = {
+		92A3BA352553617400DF3707 /* Build configuration list for PBXNativeTarget "fastgi wallet" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				92A3BA362553617400DF3707 /* Debug */,

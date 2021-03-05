@@ -28,14 +28,15 @@ struct ListContactsView: View {
     //alert
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @State var alertState: Bool = false
-    
-    init(showingSheet: Binding<Bool>, telefono: Binding<String>, nombre :Binding<String>, modal: Binding<Bool>){
-        self._showingSheet = showingSheet
-        self._telefono = telefono
-        self._nombre = nombre
-        self._modal = modal
-        self.contactsVM.getContacts()
-    }
+    @Binding var listAllContacts : [ContactModel]
+    init(showingSheet: Binding<Bool>, telefono: Binding<String>, nombre :Binding<String>, modal: Binding<Bool>, listAllContacts :Binding<[ContactModel]>){
+           self._showingSheet = showingSheet
+           self._telefono = telefono
+           self._nombre = nombre
+           self._modal = modal
+           self._listAllContacts = listAllContacts
+           //self.contactsVM.getContacts()
+       }
     
     var list:some View{
       
@@ -49,7 +50,7 @@ struct ListContactsView: View {
             SearchBar(text: $searchText, placeholder: "Buscar")
            
             List {
-                ForEach(self.contactsVM.listContacts.filter({searchText.isEmpty ? true : $0.nombre.lowercased().contains(searchText.lowercased())}), id: \.self._id){ (contact:ContactModel) in
+                ForEach(self.listAllContacts.filter({searchText.isEmpty ? true : $0.nombre.lowercased().contains(searchText.lowercased())}), id: \.self._id){ (contact:ContactModel) in
               
                     Button(action: {
                         self.telefono = contact.telefono
@@ -155,11 +156,11 @@ struct ListContactsView: View {
     }
 }
 
-struct ListContactsView_Previews: PreviewProvider {
+/*struct ListContactsView_Previews: PreviewProvider {
     @State static var showingSheet = true
     static var previews: some View {
         ListContactsView(showingSheet: $showingSheet, telefono: .constant(""), nombre: .constant(""), modal: .constant(false))
     }
-}
+}*/
 
 

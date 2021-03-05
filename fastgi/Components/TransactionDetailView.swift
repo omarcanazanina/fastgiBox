@@ -132,9 +132,9 @@ struct TransactionDetailView: View {
                         .textStyle(TitleStyle())
                         .frame(maxWidth: .infinity, alignment: .trailing)
                     //comentado
-                    /*Text("\(self.userDataVM.user.nombres) \(self.userDataVM.user.apellidos)")
+                    Text ("Omar Canaza")//("\(self.userDataVM.user.nombres) \(self.userDataVM.user.apellidos)")
                         .foregroundColor(.black)
-                        .frame(maxWidth: .infinity, alignment: .leading)*/
+                        .frame(maxWidth: .infinity, alignment: .leading)
                     
                 }
                 HStack{
