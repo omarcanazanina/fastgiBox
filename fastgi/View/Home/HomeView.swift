@@ -149,15 +149,21 @@ struct HomeView: View {
                
             }){
                 HStack{
-                    Text("Scan")
-                        .frame(width:80, height: 80)
-                        .padding(10)
-                        .foregroundColor(Color.white)
+                    VStack{
+                        Image("Scan")
+                            .resizable()
+                            .frame(width:50, height: 50)
+                            .padding(5)
+                            .foregroundColor(Color.white)
+                        Text("Scan")
+                            .foregroundColor(Color.white)
+                    }
+                    
                 }
+                .frame(width:100, height: 100)
                 .background(Color("primary"))
                 .cornerRadius(10)
-                .frame(maxWidth:.infinity)
-                
+                .padding(5)
             }
             //.background(Color.blue.opacity(0.5))
             .sheet(isPresented: self.$showScannerScan) {
@@ -193,14 +199,21 @@ struct HomeView: View {
                 self.action = 4
             }){
                 HStack{
-                    Text("Pay")
-                        .frame(width:80, height: 80)
-                        .padding(10)
-                        .foregroundColor(Color.white)
+                    VStack{
+                        Image("Up")
+                            .resizable()
+                            .frame(width:50, height: 50)
+                            .padding(5)
+                            .foregroundColor(Color.white)
+                        Text("Pagar")
+                            .foregroundColor(Color.white)
+                    }
+                    
                 }
+                .frame(width:100, height: 100)
                 .background(Color("primary"))
                 .cornerRadius(10)
-                .frame(maxWidth:.infinity)
+                .padding(5)
             }
             NavigationLink(destination: QrChargeView(dataUserlog: self.userDataVM.user), tag: 4, selection: self.$action) {
                 EmptyView()
@@ -214,14 +227,21 @@ struct HomeView: View {
                 self.action = 3
             }){
                 HStack{
-                    Text("Cobrar")
-                        .frame(width:80, height: 80)
-                        .padding(10)
-                        .foregroundColor(Color.white)
+                    VStack{
+                        Image("Down")
+                            .resizable()
+                            .frame(width:50, height: 50)
+                            .padding(5)
+                            .foregroundColor(Color.white)
+                        Text("Cobrar")
+                            .foregroundColor(Color.white)
+                    }
+                    
                 }
+                .frame(width:100, height: 100)
                 .background(Color("primary"))
                 .cornerRadius(10)
-                .frame(maxWidth:.infinity)
+                .padding(5)
             }
             NavigationLink(destination: QrGeneratorView( dataUserlog: self.userDataVM.user), tag: 3, selection: self.$action) {
                 EmptyView()
