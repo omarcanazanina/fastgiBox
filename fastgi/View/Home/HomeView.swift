@@ -150,9 +150,9 @@ struct HomeView: View {
             }){
                 HStack{
                     VStack{
-                        Image("Scan")
+                        Image(systemName: "viewfinder")
                             .resizable()
-                            .frame(width:50, height: 50)
+                            .frame(width:40, height: 40)
                             .padding(5)
                             .foregroundColor(Color.white)
                         Text("Scan")
@@ -200,9 +200,9 @@ struct HomeView: View {
             }){
                 HStack{
                     VStack{
-                        Image("Up")
+                        Image(systemName: "barcode.viewfinder")
                             .resizable()
-                            .frame(width:50, height: 50)
+                            .frame(width:40, height: 40)
                             .padding(5)
                             .foregroundColor(Color.white)
                         Text("Pagar")
@@ -228,12 +228,12 @@ struct HomeView: View {
             }){
                 HStack{
                     VStack{
-                        Image("Down")
+                        Image(systemName: "qrcode")
                             .resizable()
-                            .frame(width:50, height: 50)
+                            .frame(width:40, height: 40)
                             .padding(5)
                             .foregroundColor(Color.white)
-                        Text("Cobrar")
+                        Text("Recibir")
                             .foregroundColor(Color.white)
                     }
                     
