@@ -10,7 +10,7 @@ import CoreImage.CIFilterBuiltins
 import UIKit
 
 import SDWebImageSwiftUI
-
+import CarBode
 
 struct QrGeneratorView: View {
     //datos user
@@ -26,6 +26,12 @@ struct QrGeneratorView: View {
     //modal
     @State var modal = false
     @State var monto = ""
+    //barcode generator
+    @State var dataString : String = ""
+    @State var barcodeType = CBBarcodeView.BarcodeType.barcode128
+    @State var rotate = CBBarcodeView.Orientation.up
+    @State var barcodeImage: UIImage?
+    
     //funcion generar QR
     func generarQR(text: String) -> UIImage{
         let data = Data(text.utf8)
@@ -39,21 +45,7 @@ struct QrGeneratorView: View {
         return UIImage(systemName: "xmark.circle") ?? UIImage()
     }
     
-    //funcion generar barcode
-    func generateBarcode(from string: String) -> UIImage? {
-        let data = string.data(using: String.Encoding.ascii)
-
-        if let filter = CIFilter(name: "CICode128BarcodeGenerator") {
-            filter.setValue(data, forKey: "inputMessage")
-            let transform = CGAffineTransform(scaleX: 3, y: 3)
-
-            if let output = filter.outputImage?.transformed(by: transform) {
-                return UIImage(ciImage: output)
-            }
-        }
-
-        return nil
-    }
+   
     
     var imageProfile:some View {
         HStack(alignment: .center){
@@ -81,60 +73,85 @@ struct QrGeneratorView: View {
              }){
                  //Text("datos")
              }*/
-        VStack{
-            self.imageProfile
-            Text("\(self.dataUserlog.nombres ?? "") \(self.dataUserlog.apellidos ?? "")")
-                .font(.title)
-                .bold()
-            Text(nombreUser)
-                .font(.title)
-                .bold()
-            
-           // if self.user.score == 0 {
-                if self.monto == "" {
-                Image(uiImage: generarQR(text: self.dataUserlog._id))
-                    .interpolation(.none)
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 300, height: 300)
-            }else {
-                Image(uiImage: generarQR(text: "\(self.dataUserlog._id)\(self.monto)"))//self.user.score
-                    .interpolation(.none)
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 300, height: 300)
-            }
-            if self.monto != ""{
-                Text("\(self.monto) Bs.")
-                    .font(.title)
-            }
-     
-            HStack {
-                Button(action: {
-                    self.modal.toggle()
-                })
-                {
-                    Text("Monto")
-                }.buttonStyle(PrimaryButtonOutlineStyle())
-                .sheet(isPresented: $modal) {
-                    EnterAmountView(modal: self.$modal, monto: self.$monto)
+        ScrollView{
+            VStack{
+                self.imageProfile
+                if self.dataUserlog.nombres == Optional(""){
+                    Text("+591 \(self.dataUserlog.telefono)")
+                        .font(.title)
+                        .bold()
+                }else{
+                    Text("\(self.dataUserlog.nombres ?? "") \(self.dataUserlog.apellidos ?? "")")
+                        .font(.title)
+                        .bold()
+                    Text(nombreUser)
+                        .font(.title)
+                        .bold()
                 }
-                
-                if self.showBtn! {
+                    
+               // if self.user.score == 0 {
+                    if self.monto == "" {
+                        //barcode
+                        CBBarcodeView(data: .constant(self.dataUserlog._id) ,// self.dataUserlog._id,//$dataString,
+                                      barcodeType: $barcodeType,
+                                      orientation: $rotate)
+                        { image in
+                            self.barcodeImage = image
+                        }.frame(minWidth: 0, maxWidth: .infinity, minHeight: 100, maxHeight: 100, alignment: .topLeading)
+                        
+                    Image(uiImage: generarQR(text: self.dataUserlog._id))
+                        .interpolation(.none)
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 300, height: 300)
+                }else {
+                    //barcode"
+                    CBBarcodeView(data: .constant("\(self.dataUserlog._id) \(self.monto)") ,// self.dataUserlog._id,//$dataString,
+                        barcodeType: $barcodeType,
+                        orientation: $rotate)
+                        { image in
+                            self.barcodeImage = image
+                        }.frame(minWidth: 0, maxWidth: .infinity, minHeight: 100, maxHeight: 100, alignment: .topLeading)
+                    //qr
+                    Image(uiImage: generarQR(text: "\(self.dataUserlog._id)\(self.monto)"))//self.user.score
+                        .interpolation(.none)
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 300, height: 300)
+                }
+                if self.monto != ""{
+                    Text("\(self.monto) Bs.")
+                        .font(.title)
+                }
+         
+                HStack {
                     Button(action: {
-                        self.exportToPDF(nombreUser_: "\(self.dataUserlog.nombres) \(self.dataUserlog.apellidos)", showBtn_: false)
-                    }){
-                        Text("Compartir")
+                        self.modal.toggle()
+                    })
+                    {
+                        Text("Monto")
+                    }.buttonStyle(PrimaryButtonOutlineStyle())
+                    .sheet(isPresented: $modal) {
+                        EnterAmountView(modal: self.$modal, monto: self.$monto)
+                    }
+                    
+                    if self.showBtn! {
+                        Button(action: {
+                            self.exportToPDF(nombreUser_: "\(self.dataUserlog.nombres) \(self.dataUserlog.apellidos)", showBtn_: false)
+                        }){
+                            Text("Compartir")
+                        }.buttonStyle(PrimaryButtonOutlineStyle())
+                    }
+                    Button(action: {
+                        self.shareLink()
+                    })
+                    {
+                        Text("Link")
                     }.buttonStyle(PrimaryButtonOutlineStyle())
                 }
-                Button(action: {
-                    self.shareLink()
-                })
-                {
-                    Text("Link")
-                }.buttonStyle(PrimaryButtonOutlineStyle())
             }
         }
+        
     }
 }
 

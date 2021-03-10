@@ -8,25 +8,34 @@
 import SwiftUI
 //import SwiftUIPullToRefresh
 struct TestView: View {
-
-    @State private var showingAlert1 = false
-        @State private var showingAlert2 = false
+    
+    @State private var email = ""
     
     var body: some View {
         VStack {
-                    Button("Show 1") {
-                        showingAlert1 = true
-                    }
-                    .alert(isPresented: $showingAlert1) {
-                        Alert(title: Text("One"), message: nil, dismissButton: .cancel())
-                    }
-
-                    Button("Show 2") {
-                        showingAlert2 = true
-                    }
-                    .alert(isPresented: $showingAlert2) {
-                        Alert(title: Text("Two"), message: nil, dismissButton: .cancel())
-                    }
+                   TextField("email", text: $email)
+                 
+              
+        }
         }
     }
-}
+
+
+func generateBarCode(_ string: String) -> UIImage {
+        
+        if !string.isEmpty {
+            
+            let data = string.data(using: String.Encoding.ascii)
+            
+            let filter = CIFilter(name: "CICode128BarcodeGenerator")
+            // Check the KVC for the selected code generator
+            filter?.setValue(data, forKey: "inputMessage")
+            
+            let transform = CGAffineTransform(scaleX: 10, y: 10)
+            let output = filter?.outputImage?.transformed(by: transform)
+            
+            return UIImage(ciImage: output!)
+        } else {
+            return UIImage()
+        }
+  }

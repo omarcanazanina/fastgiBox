@@ -7,7 +7,7 @@
 
 import SwiftUI
 import SDWebImageSwiftUI
-
+import CarBode
 struct QrChargeView: View {
     //datos user
     @ObservedObject var userDataVM = UserDataViewModel()
@@ -17,6 +17,13 @@ struct QrChargeView: View {
     var showBtn: Bool? = true
     
     var dataUserlog: UserModel
+    
+    //barcode generator
+    //@State var id = Strin
+    @State var dataString : String = ""
+    @State var barcodeType = CBBarcodeView.BarcodeType.barcode128
+    @State var rotate = CBBarcodeView.Orientation.up
+    @State var barcodeImage: UIImage?
     func generarQR(text: String) -> UIImage{
         let data = Data(text.utf8)
         filter.setValue(data, forKey: "inputMessage")
@@ -49,27 +56,44 @@ struct QrChargeView: View {
     }
     
     var body: some View {
-        VStack{
-            self.imageProfile
-            Text("\(self.dataUserlog.nombres ?? "") \(self.dataUserlog.apellidos ?? "")")
-                .font(.title)
-                .bold()
-            
-            Image(uiImage: generarQR(text: self.dataUserlog._id))
-                .interpolation(.none)
-                .resizable()
-                .scaledToFit()
-                .frame(width: 300, height: 300)
-            
-            if self.showBtn! {
-                Button(action: {
-                   // self.exportToPDF(nombreUser_: "\(self.userDataVM.user.nombres) \(self.userDataVM.user.apellidos)", showBtn_: false)
-                }){
-                    Text("Compartir")
-                }.buttonStyle(PrimaryButtonOutlineStyle())
+        ScrollView{
+            VStack{
+                self.imageProfile
+                if self.dataUserlog.nombres == Optional(""){
+                    Text("+591 \(self.dataUserlog.telefono)")
+                        .font(.title)
+                        .bold()
+                }else{
+                    Text("\(self.dataUserlog.nombres ?? "") \(self.dataUserlog.apellidos ?? "")")
+                        .font(.title)
+                        .bold()
+                }
+                //barcode
+                CBBarcodeView(data: .constant(self.dataUserlog._id) ,// self.dataUserlog._id,//$dataString,
+                    barcodeType: $barcodeType,
+                    orientation: $rotate)
+                    { image in
+                        self.barcodeImage = image
+                    }.frame(minWidth: 0, maxWidth: .infinity, minHeight: 100, maxHeight: 100, alignment: .topLeading)
+                
+                //qr
+                Image(uiImage: generarQR(text: self.dataUserlog._id))
+                    .interpolation(.none)
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 290, height: 290)
+                
+                if self.showBtn! {
+                    Button(action: {
+                       // self.exportToPDF(nombreUser_: "\(self.userDataVM.user.nombres) \(self.userDataVM.user.apellidos)", showBtn_: false)
+                    }){
+                        Text("Compartir")
+                    }.buttonStyle(PrimaryButtonOutlineStyle())
+                }
+                
             }
-            
         }
+    
     }
 }
 

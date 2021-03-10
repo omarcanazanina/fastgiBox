@@ -53,7 +53,11 @@ struct ChargeView: View {
             Text("Cobrar")
                 .font(.title)
             self.imageProfile
-            Text("\(self.dataUserPay.nombres) \(self.dataUserPay.apellidos)")
+            if self.dataUserPay.nombres == Optional(""){
+                Text("+591 \(self.dataUserPay.telefono)")
+            }else{
+                Text("\(self.dataUserPay.nombres) \(self.dataUserPay.apellidos)")
+            }
             VStack(alignment: .leading, spacing: 8){
                 Text("MONTO BS.")
                     .textStyle(TitleStyle())
@@ -69,7 +73,7 @@ struct ChargeView: View {
                         toolBar.items = [flexButton, doneButton]
                         toolBar.setItems([flexButton, doneButton], animated: true)
                         textField.inputAccessoryView = toolBar
-                        textField.becomeFirstResponder()
+                        //textField.becomeFirstResponder()
                     }
             }
             self.buttonSuccess

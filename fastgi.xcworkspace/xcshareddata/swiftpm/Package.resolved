@@ -2,39 +2,21 @@
   "object": {
     "pins": [
       {
+        "package": "CarBode",
+        "repositoryURL": "https://github.com/heart/CarBode-Barcode-Scanner-For-SwiftUI",
+        "state": {
+          "branch": null,
+          "revision": "b4e39ab4d65e2795fb0f0a48940ac8bfd799c5f5",
+          "version": "2.2.2"
+        }
+      },
+      {
         "package": "CodeScanner",
         "repositoryURL": "http://github.com/twostraws/CodeScanner",
         "state": {
           "branch": null,
           "revision": "a2144ddaa7c43a6ee00873edd4cc7815ad97942f",
           "version": "1.0.7"
-        }
-      },
-      {
-        "package": "Introspect",
-        "repositoryURL": "https://github.com/siteline/SwiftUI-Introspect.git",
-        "state": {
-          "branch": null,
-          "revision": "f1ec9da347a7fbe53c520d35434f6c2295650bd5",
-          "version": "0.1.1"
-        }
-      },
-      {
-        "package": "SwiftUIPullToRefresh",
-        "repositoryURL": "https://github.com/AppPear/SwiftUI-PullToRefresh",
-        "state": {
-          "branch": null,
-          "revision": "5850f1ead6c4931015231bde26f38b9f543342aa",
-          "version": "1.0.0"
-        }
-      },
-      {
-        "package": "SwiftUIRefresh",
-        "repositoryURL": "https://github.com/timbersoftware/SwiftUIRefresh.git",
-        "state": {
-          "branch": null,
-          "revision": "fa8fac7b5eb5c729983a8bef65f094b5e0d12014",
-          "version": "0.0.3"
         }
       },
       {

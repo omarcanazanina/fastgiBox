@@ -33,7 +33,7 @@ struct HomeView: View {
     @State private var montoQR = ""
     
     @State private var action:Int? = 0
-
+    
     
     init(currentBtnEm: Binding<BtnEm>) {
         self._currentBtnEm = currentBtnEm
@@ -215,7 +215,7 @@ struct HomeView: View {
                 .cornerRadius(10)
                 .padding(5)
             }
-            NavigationLink(destination: QrChargeView(dataUserlog: self.userDataVM.user), tag: 4, selection: self.$action) {
+            NavigationLink(destination: QrChargeView(dataUserlog: self.userDataVM.user, dataString: ""), tag: 4, selection: self.$action) {
                 EmptyView()
             }
         }
@@ -248,6 +248,8 @@ struct HomeView: View {
             }
         }
     }
+    
+    
     var home:some View{
         ScrollView{
             VStack{
@@ -280,17 +282,18 @@ struct HomeView: View {
                     }.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
                     
                 }.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
-                /*VStack{
+                VStack{
                  Button(action: {
                  self.action = 6
                  }){
-                 Text("prueba")
+                 //Text("prueba")
                  }
                  NavigationLink(destination: TestView(), tag: 6, selection: self.$action) {
                  EmptyView()
                  }
-                 
-                 }*/
+                    
+                 }
+                
                 Button("") {
                     //showingAlert1 = true
                 }

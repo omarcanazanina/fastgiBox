@@ -78,11 +78,11 @@ struct PayView: View {
                 EmptyView()
         }*/
             if self.montoQR == "" {
-                NavigationLink(destination: TestpayDetail(monto: self.monto, nombreCobrador: "\(self.user.nombres) \(self.user.apellidos)", fecha: "", nombreUser: "\(self.userDataVM.user.nombres) \(self.userDataVM.user.apellidos)",fechaFormat: "", horaFormat: ""), tag: 1, selection: self.$action) {
+                NavigationLink(destination: TestpayDetail(monto: self.monto, nombreCobrador: "\(self.user.nombres) \(self.user.apellidos)", fecha: "", nombreUser: "\(self.userDataVM.user.nombres ?? "") \(self.userDataVM.user.apellidos ?? "")",fechaFormat: "", horaFormat: ""), tag: 1, selection: self.$action) {
                      EmptyView()
              }
             }else{
-                NavigationLink(destination: TestpayDetail(monto: self.montoQR, nombreCobrador: "\(self.user.nombres) \(self.user.apellidos)", fecha: "", nombreUser: "\(self.userDataVM.user.nombres) \(self.userDataVM.user.apellidos)",fechaFormat: "", horaFormat: ""), tag: 1, selection: self.$action) {
+                NavigationLink(destination: TestpayDetail(monto: self.montoQR, nombreCobrador: "\(self.user.nombres) \(self.user.apellidos)", fecha: "", nombreUser: "\(self.userDataVM.user.nombres ?? "") \(self.userDataVM.user.apellidos ?? "")",fechaFormat: "", horaFormat: ""), tag: 1, selection: self.$action) {
                      EmptyView()
              }
             }
@@ -98,7 +98,11 @@ struct PayView: View {
                 Text("Pagar transporte")
                     .font(.title)
                 self.imageProfile
-                Text("\(self.user.nombres) \(self.user.apellidos)")
+                if self.user.nombres == Optional(""){
+                    Text("+591 \(self.user.telefono)")
+                }else{
+                    Text("\(self.user.nombres) \(self.user.apellidos)")
+                }
                 VStack(alignment: .leading, spacing: 8){
                     Text("MONTO BS.")
                         .textStyle(TitleStyle())
@@ -114,7 +118,7 @@ struct PayView: View {
                                 toolBar.items = [flexButton, doneButton]
                                 toolBar.setItems([flexButton, doneButton], animated: true)
                                 textField.inputAccessoryView = toolBar
-                                textField.becomeFirstResponder()
+                                //textField.becomeFirstResponder()
                              }
                     }else{
                         TextField("Ingrese monto", text: $montoQR )
@@ -128,7 +132,7 @@ struct PayView: View {
                                 toolBar.items = [flexButton, doneButton]
                                 toolBar.setItems([flexButton, doneButton], animated: true)
                                 textField.inputAccessoryView = toolBar
-                                textField.becomeFirstResponder()
+                               // textField.becomeFirstResponder()
                              }
                     }
                     
