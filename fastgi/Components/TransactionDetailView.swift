@@ -132,10 +132,15 @@ struct TransactionDetailView: View {
                         .textStyle(TitleStyle())
                         .frame(maxWidth: .infinity, alignment: .trailing)
                     //comentado
-                    Text ("Omar Canaza")//("\(self.userDataVM.user.nombres) \(self.userDataVM.user.apellidos)")
-                        .foregroundColor(.black)
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                    
+                    if self.userDataVM.user.nombres == Optional(""){
+                        Text ("+591 \(self.userDataVM.user.telefono)")//("\(self.userDataVM.user.nombres) \(self.userDataVM.user.apellidos)")
+                            .foregroundColor(.black)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                    }else{
+                        Text ("\(self.userDataVM.user.nombres ?? "") \(self.userDataVM.user.apellidos ?? "")")
+                            .foregroundColor(.black)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                    }
                 }
                 HStack{
                     Text("ABONADO")

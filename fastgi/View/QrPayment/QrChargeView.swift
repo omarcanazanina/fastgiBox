@@ -74,7 +74,7 @@ struct QrChargeView: View {
                     orientation: $rotate)
                     { image in
                         self.barcodeImage = image
-                    }.frame(minWidth: 0, maxWidth: .infinity, minHeight: 100, maxHeight: 100, alignment: .topLeading)
+                    }.frame(minWidth: 0, maxWidth: .infinity, minHeight: 100, maxHeight: 100, alignment: .topLeading)//400
                 
                 //qr
                 Image(uiImage: generarQR(text: self.dataUserlog._id))
@@ -85,7 +85,7 @@ struct QrChargeView: View {
                 
                 if self.showBtn! {
                     Button(action: {
-                       // self.exportToPDF(nombreUser_: "\(self.userDataVM.user.nombres) \(self.userDataVM.user.apellidos)", showBtn_: false)
+                        self.exportToPDF(nombreUser_: "\(self.dataUserlog.nombres ?? "") \(self.dataUserlog.apellidos ?? "")", showBtn_: false)
                     }){
                         Text("Compartir")
                     }.buttonStyle(PrimaryButtonOutlineStyle())
@@ -103,7 +103,7 @@ struct QrChargeView: View {
     }
 }*/
 
-/*extension QrChargeView {
+extension QrChargeView {
     func exportToPDF(nombreUser_: String, showBtn_: Bool) {
         print(nombreUser_)
         let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
@@ -113,8 +113,8 @@ struct QrChargeView: View {
         let width: CGFloat = 8.5 * 72.0
         //Estimate the height of your view
         let height: CGFloat = 1000
-        let charts = QrGeneratorView(showBtn: showBtn_, nombreUser: nombreUser_, monto: "")
-        
+        //let charts = QrGeneratorView(showBtn: showBtn_, nombreUser: nombreUser_, dataUserlog: self.dataUserlog)
+        let charts = QrChargeView(showBtn: showBtn_, dataUserlog: self.dataUserlog)
         let pdfVC = UIHostingController(rootView: charts)
         pdfVC.view.frame = CGRect(x: 0, y: 0, width: width, height: height)
         
@@ -147,6 +147,6 @@ struct QrChargeView: View {
         pdfVC.view.removeFromSuperview()
     }
     
-}*/
+}
 
 

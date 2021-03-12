@@ -11,6 +11,7 @@ import Combine
 import SwiftUI
 
 class UserDataViewModel: ObservableObject {
+    
     var userDataResponse=UserData()
     //datos del usuario
     @Published var user = UserModel(img: "", role: "", estado: true, _id: "", telefono: "", pin: "", fecha: "", apellidos: "", correo: "", direccion: "", nit: "", nombrenit: "", nombres: "", ci: "")
@@ -29,7 +30,6 @@ class UserDataViewModel: ObservableObject {
     //@Published var enEsperaQR : String = ""
     @Published var isloading: Bool = false
     @Published var alertInexistente : Bool = false
-    
     private var DataUserPublisher: AnyPublisher<UserModel, Never> {
           userDataResponse.$user
               .receive(on: RunLoop.main)
@@ -64,6 +64,7 @@ class UserDataViewModel: ObservableObject {
                   }
                 print("se ejecuto el nextPayview VM")
                 self.nextPagoview = true
+                //navroot
                   return response
               }
               .eraseToAnyPublisher()

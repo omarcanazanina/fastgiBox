@@ -104,49 +104,50 @@ struct MembershipView: View {
         .padding()
     }
     var body: some View {
-                HStack{
-                    if self.afiliacionVM.afiliacionHabilitacion._id == "" {
-                        self.afiliacion
-                    }else if self.afiliacionVM.afiliacionHabilitacion.habilitado == false{
-                        Text("afiliación en progreso")
-                    }else if self.afiliacionVM.afiliacionHabilitacion.habilitado == true{
-                        VStack{
-                            self.imageProfile
-                            if self.userDataVM.user1.nombres == Optional(""){
-                                Text("+591 \(self.userDataVM.user1.telefono)")
-                                    .bold()
-                            }else{
-                                Text("\(self.userDataVM.user1.nombres) \(self.userDataVM.user1.apellidos)")
-                                    .bold()
-                            }
-                            //barcode
-                            CBBarcodeView(data: .constant(self.userDataVM.user1._id) ,
-                                barcodeType: $barcodeType,
-                                orientation: $rotate)
-                                { image in
-                                    self.barcodeImage = image
-                                }.frame(minWidth: 0, maxWidth: .infinity, minHeight: 100, maxHeight: 100, alignment: .topLeading)
-                            
-                            Image(uiImage: generarQR(text: self.userDataVM.user._id))
-                                .interpolation(.none)
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width: 300, height: 300)
-                        Text("su afiliación ya fue aprobada")
-                            
-                            if self.showBtn! {
-                                Button(action: {
-                                    self.exportToPDF()
-                                }){
-                                    Text("Compartir")
-                                }.buttonStyle(PrimaryButtonOutlineStyle())
-                                
-                            }
+        ScrollView{
+            HStack{
+                if self.afiliacionVM.afiliacionHabilitacion._id == "" {
+                    self.afiliacion
+                }else if self.afiliacionVM.afiliacionHabilitacion.habilitado == false{
+                    Text("afiliación en progreso")
+                }else if self.afiliacionVM.afiliacionHabilitacion.habilitado == true{
+                    VStack{
+                        self.imageProfile
+                        if self.userDataVM.user1.nombres == Optional(""){
+                            Text("+591 \(self.userDataVM.user1.telefono)")
+                                .bold()
+                        }else{
+                            Text("\(self.userDataVM.user1.nombres) \(self.userDataVM.user1.apellidos)")
+                                .bold()
                         }
+                        //barcode
+                        CBBarcodeView(data: .constant(self.userDataVM.user1._id) ,
+                                      barcodeType: $barcodeType,
+                                      orientation: $rotate)
+                        { image in
+                            self.barcodeImage = image
+                        }.frame(minWidth: 0, maxWidth: .infinity, minHeight: 100, maxHeight: 100, alignment: .topLeading)
+                        
+                        Image(uiImage: generarQR(text: self.userDataVM.user1._id))
+                            .interpolation(.none)
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 300, height: 300)
+                        Text("su afiliación ya fue aprobada")
+                        
+                        /*if self.showBtn! {
+                            Button(action: {
+                                self.exportToPDF(nombreUser_: "\(self.userDataVM.user1.nombres) \(self.userDataVM.user1.apellidos)", showBtn_: false)
+                            }){
+                                Text("Compartir")
+                            }.buttonStyle(PrimaryButtonOutlineStyle())
+                            
+                        }*/
                     }
-                    
                 }
-            
+                
+            }
+        }
        /* .alert(isPresented:  self.$alertState){
             self.alerts
         }*/
@@ -160,15 +161,15 @@ struct MembershipView: View {
     
 }
 
-struct MembershipView_Previews: PreviewProvider {
+/*struct MembershipView_Previews: PreviewProvider {
     static var previews: some View {
         MembershipView()
     }
-}
+}*/
 
 
 extension MembershipView {
-    func exportToPDF() {
+    func exportToPDF(nombreUser_: String, showBtn_: Bool) {
         
         let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
         let outputFileURL = documentDirectory.appendingPathComponent("Fastgi.pdf")

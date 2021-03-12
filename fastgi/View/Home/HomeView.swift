@@ -11,7 +11,7 @@ import Introspect
 import CodeScanner
 
 struct HomeView: View {
-    
+    var navigationRoot = NavigationRoot()
     
     @ObservedObject var login = Login()
     @ObservedObject var loginVM = LoginViewModel()
@@ -100,7 +100,7 @@ struct HomeView: View {
             }
             //.background(Color.blue.opacity(0.5))
             .sheet(isPresented: self.$showScannerTransporte) {
-                CodeScannerView(codeTypes: [.qr]){ result in
+                CodeScannerView(codeTypes: [.qr,.code128]){ result in
                     switch result {
                     case .success(let codigo):
                         self.resultado = codigo
@@ -127,8 +127,10 @@ struct HomeView: View {
                     self.userDataVM.DatosUserPago(id_usuario: self.resultado)
                     if self.idconmonto == ""{
                         self.userDataVM.DatosUserPago(id_usuario: self.resultado)
+                       // self.navigationRoot.testFocusNav(user: self.userDataVM.userResponsePago, montoqr: self.$montoQR)
                     }else{
                         self.userDataVM.DatosUserPago(id_usuario: self.idconmonto)
+                       //self.navigationRoot.testFocusNav(user: self.userDataVM.userResponsePago, montoqr: self.$montoQR)
                     }
                   
                 }
@@ -167,7 +169,7 @@ struct HomeView: View {
             }
             //.background(Color.blue.opacity(0.5))
             .sheet(isPresented: self.$showScannerScan) {
-                CodeScannerView(codeTypes: [.qr]){ result in
+                CodeScannerView(codeTypes: [.qr,.code128]){ result in
                     switch result {
                     case .success(let codigo):
                         self.resultadosScan = codigo
@@ -200,7 +202,7 @@ struct HomeView: View {
             }){
                 HStack{
                     VStack{
-                        Image(systemName: "barcode.viewfinder")
+                        Image(systemName: "barcode")
                             .resizable()
                             .frame(width:40, height: 40)
                             .padding(5)
@@ -284,13 +286,23 @@ struct HomeView: View {
                 }.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
                 VStack{
                  Button(action: {
-                 self.action = 6
+                   self.navigationRoot.testFocusNav()
                  }){
-                 //Text("prueba")
+                 Text("test1")
                  }
-                 NavigationLink(destination: TestView(), tag: 6, selection: self.$action) {
+                    Button(action: {
+                        self.action = 6
+                    }){
+                        Text("test2")
+                    }
+                    
+                    NavigationLink(destination: TestView(), tag: 6, selection: self.$action) {
                  EmptyView()
                  }
+                 
+                    
+                
+                    
                     
                  }
                 
@@ -308,8 +320,9 @@ struct HomeView: View {
                     Alert(title: Text("Fastgi"), message: Text("Usuario inexistente."), dismissButton: .cancel())
                 }
             }
+         
         }
-           
+    
         .padding()
        
     }
@@ -318,6 +331,16 @@ struct HomeView: View {
     var body: some View {
         VStack{
             self.home
+            Text(resultado)
+            Button(action: {
+                self.action = 7
+            }){
+                Text("test3")
+            }
+            
+            NavigationLink(destination: TestView(), tag: 7, selection: self.$action) {
+         EmptyView()
+         }
         }
     }
     

@@ -11,6 +11,18 @@ import SwiftUI
 class NavigationRoot{
     private let storage = UserDefaults.standard
     
+    //test
+    func testFocusNav (){//user: UpdateUserPagoModel, montoqr: Binding<String>){
+        let scene = UIApplication.shared.connectedScenes.first as? UIWindowScene
+        
+        if let windowScenedelegate = scene?.delegate as? SceneDelegate {
+            let window = UIWindow(windowScene: scene!)
+            window.rootViewController = UIHostingController(rootView: TestView()/* PayView(User: user, montoQR: montoqr)*/       )
+            windowScenedelegate.window = window
+            window.makeKeyAndVisible()
+        }
+    }
+    
     //nav
     func setRootViewNav (number: String, smstext: String){
         let scene = UIApplication.shared.connectedScenes.first as? UIWindowScene

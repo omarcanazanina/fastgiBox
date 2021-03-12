@@ -98,6 +98,7 @@
 		92AB8CF82579B7F4006F0FA7 /* QrPaymentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92AB8CF72579B7F4006F0FA7 /* QrPaymentModel.swift */; };
 		92AB8CFB2579B9E1006F0FA7 /* QrPaymentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92AB8CFA2579B9E1006F0FA7 /* QrPaymentViewModel.swift */; };
 		92B75E4A25B795C3005A2DCC /* EnterAmountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92B75E4925B795C3005A2DCC /* EnterAmountView.swift */; };
+		92C9723425F9573D005D2DBB /* SwiftUIX in Frameworks */ = {isa = PBXBuildFile; productRef = 92C9723325F9573D005D2DBB /* SwiftUIX */; };
 		92CA837C25D5C4EF00727F89 /* ChargeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92CA837B25D5C4EF00727F89 /* ChargeView.swift */; };
 		92DA82FC25F7B9D100E4834B /* CarBode in Frameworks */ = {isa = PBXBuildFile; productRef = 92DA82FB25F7B9D100E4834B /* CarBode */; };
 		92E3FE2425C0AA4A00320396 /* testView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E3FE2325C0AA4A00320396 /* testView.swift */; };
@@ -227,6 +228,7 @@
 				9279D54C256F0D5400890C84 /* CodeScanner in Frameworks */,
 				92DA82FC25F7B9D100E4834B /* CarBode in Frameworks */,
 				573DD5AA824DD586829F7E7E /* Pods_fastgi.framework in Frameworks */,
+				92C9723425F9573D005D2DBB /* SwiftUIX in Frameworks */,
 				92A3BAFF25536D7A00DF3707 /* ValidatedPropertyKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -558,6 +560,7 @@
 				92A3BAFE25536D7A00DF3707 /* ValidatedPropertyKit */,
 				9279D54B256F0D5400890C84 /* CodeScanner */,
 				92DA82FB25F7B9D100E4834B /* CarBode */,
+				92C9723325F9573D005D2DBB /* SwiftUIX */,
 			);
 			productName = fastgi;
 			productReference = 92A3BA212553616F00DF3707 /* fastgi wallet.app */;
@@ -590,6 +593,7 @@
 				92A3BAFD25536D7A00DF3707 /* XCRemoteSwiftPackageReference "ValidatedPropertyKit" */,
 				9279D54A256F0D5400890C84 /* XCRemoteSwiftPackageReference "CodeScanner" */,
 				92DA82FA25F7B9D100E4834B /* XCRemoteSwiftPackageReference "CarBode-Barcode-Scanner-For-SwiftUI" */,
+				92C9723225F9573D005D2DBB /* XCRemoteSwiftPackageReference "SwiftUIX" */,
 			);
 			productRefGroup = 92A3BA222553616F00DF3707 /* Products */;
 			projectDirPath = "";
@@ -906,7 +910,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.9;
+				MARKETING_VERSION = 1.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.hegaro.fastgi;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -932,7 +936,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.9;
+				MARKETING_VERSION = 1.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.hegaro.fastgi;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -981,6 +985,14 @@
 				minimumVersion = 0.0.4;
 			};
 		};
+		92C9723225F9573D005D2DBB /* XCRemoteSwiftPackageReference "SwiftUIX" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SwiftUIX/SwiftUIX";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 		92DA82FA25F7B9D100E4834B /* XCRemoteSwiftPackageReference "CarBode-Barcode-Scanner-For-SwiftUI" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/heart/CarBode-Barcode-Scanner-For-SwiftUI";
@@ -1001,6 +1013,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 92A3BAFD25536D7A00DF3707 /* XCRemoteSwiftPackageReference "ValidatedPropertyKit" */;
 			productName = ValidatedPropertyKit;
+		};
+		92C9723325F9573D005D2DBB /* SwiftUIX */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 92C9723225F9573D005D2DBB /* XCRemoteSwiftPackageReference "SwiftUIX" */;
+			productName = SwiftUIX;
 		};
 		92DA82FB25F7B9D100E4834B /* CarBode */ = {
 			isa = XCSwiftPackageProductDependency;

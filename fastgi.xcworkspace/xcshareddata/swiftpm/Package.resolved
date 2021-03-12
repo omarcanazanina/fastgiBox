@@ -20,6 +20,15 @@
         }
       },
       {
+        "package": "SwiftUIX",
+        "repositoryURL": "https://github.com/SwiftUIX/SwiftUIX",
+        "state": {
+          "branch": "master",
+          "revision": "004bee5f6b1bb0cd7b04e0d70bac18ca3736b032",
+          "version": null
+        }
+      },
+      {
         "package": "ValidatedPropertyKit",
         "repositoryURL": "https://github.com/SvenTiigi/ValidatedPropertyKit.git",
         "state": {

@@ -84,9 +84,9 @@ struct QrGeneratorView: View {
                     Text("\(self.dataUserlog.nombres ?? "") \(self.dataUserlog.apellidos ?? "")")
                         .font(.title)
                         .bold()
-                    Text(nombreUser)
+                   /* Text(nombreUser)
                         .font(.title)
-                        .bold()
+                        .bold()*/
                 }
                     
                // if self.user.score == 0 {
@@ -125,29 +125,33 @@ struct QrGeneratorView: View {
                 }
          
                 HStack {
-                    Button(action: {
-                        self.modal.toggle()
-                    })
-                    {
-                        Text("Monto")
-                    }.buttonStyle(PrimaryButtonOutlineStyle())
-                    .sheet(isPresented: $modal) {
-                        EnterAmountView(modal: self.$modal, monto: self.$monto)
-                    }
-                    
                     if self.showBtn! {
                         Button(action: {
-                            self.exportToPDF(nombreUser_: "\(self.dataUserlog.nombres) \(self.dataUserlog.apellidos)", showBtn_: false)
+                            self.modal.toggle()
+                        })
+                        {
+                            Text("Monto")
+                        }.buttonStyle(PrimaryButtonOutlineStyle())
+                        .sheet(isPresented: $modal) {
+                            EnterAmountView(modal: self.$modal, monto: self.$monto)
+                        }
+                        
+                        
+                        Button(action: {
+                            self.exportToPDF(nombreUser_: "\(self.dataUserlog.nombres ?? "") \(self.dataUserlog.apellidos ?? "")", showBtn_: false, monto_: self.monto)
                         }){
                             Text("Compartir")
                         }.buttonStyle(PrimaryButtonOutlineStyle())
+                        
+                        Button(action: {
+                            self.shareLink()
+                        })
+                        {
+                            Text("Link")
+                        }.buttonStyle(PrimaryButtonOutlineStyle())
+                        
                     }
-                    Button(action: {
-                        self.shareLink()
-                    })
-                    {
-                        Text("Link")
-                    }.buttonStyle(PrimaryButtonOutlineStyle())
+                   
                 }
             }
         }
@@ -168,7 +172,7 @@ struct QrGeneratorView: View {
 
 
 extension QrGeneratorView {
-    func exportToPDF(nombreUser_: String, showBtn_: Bool) {
+    func exportToPDF(nombreUser_: String, showBtn_: Bool, monto_:String) {
         print(nombreUser_)
         let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
         let outputFileURL = documentDirectory.appendingPathComponent("Fastgi.pdf")
@@ -177,7 +181,7 @@ extension QrGeneratorView {
         let width: CGFloat = 8.5 * 72.0
         //Estimate the height of your view
         let height: CGFloat = 1000
-        let charts = QrGeneratorView(showBtn: showBtn_, nombreUser: nombreUser_, dataUserlog: self.dataUserlog, monto: "")
+        let charts = QrGeneratorView(showBtn: showBtn_, nombreUser: nombreUser_, dataUserlog: self.dataUserlog, monto: monto_)
         
         let pdfVC = UIHostingController(rootView: charts)
         pdfVC.view.frame = CGRect(x: 0, y: 0, width: width, height: height)

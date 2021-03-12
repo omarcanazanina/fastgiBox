@@ -7,8 +7,10 @@
 
 import SwiftUI
 import SDWebImageSwiftUI
-
+import SwiftUIX
 struct PayView: View {
+    var navigationRoot = NavigationRoot()
+    
     @State private var monto: String = ""
     var user: UpdateUserPagoModel
     //var dataUser: String
@@ -78,13 +80,25 @@ struct PayView: View {
                 EmptyView()
         }*/
             if self.montoQR == "" {
-                NavigationLink(destination: TestpayDetail(monto: self.monto, nombreCobrador: "\(self.user.nombres) \(self.user.apellidos)", fecha: "", nombreUser: "\(self.userDataVM.user.nombres ?? "") \(self.userDataVM.user.apellidos ?? "")",fechaFormat: "", horaFormat: ""), tag: 1, selection: self.$action) {
-                     EmptyView()
-             }
+                if self.userDataVM.user.nombres == Optional(""){
+                    NavigationLink(destination: TestpayDetail(monto: self.monto, nombreCobrador: "\(self.user.nombres) \(self.user.apellidos)", fecha: "", nombreUser: "+591 \(self.userDataVM.user.telefono)",fechaFormat: "", horaFormat: ""), tag: 1, selection: self.$action) {
+                        EmptyView()
+                    }
+                }else{
+                    NavigationLink(destination: TestpayDetail(monto: self.monto, nombreCobrador: "\(self.user.nombres) \(self.user.apellidos)", fecha: "", nombreUser: "\(self.userDataVM.user.nombres ?? "") \(self.userDataVM.user.apellidos ?? "")",fechaFormat: "", horaFormat: ""), tag: 1, selection: self.$action) {
+                        EmptyView()
+                    }
+                }
             }else{
-                NavigationLink(destination: TestpayDetail(monto: self.montoQR, nombreCobrador: "\(self.user.nombres) \(self.user.apellidos)", fecha: "", nombreUser: "\(self.userDataVM.user.nombres ?? "") \(self.userDataVM.user.apellidos ?? "")",fechaFormat: "", horaFormat: ""), tag: 1, selection: self.$action) {
-                     EmptyView()
-             }
+                if self.userDataVM.user.nombres == Optional(""){
+                    NavigationLink(destination: TestpayDetail(monto: self.monto, nombreCobrador: "\(self.user.nombres) \(self.user.apellidos)", fecha: "", nombreUser: "+591 \(self.userDataVM.user.telefono)",fechaFormat: "", horaFormat: ""), tag: 1, selection: self.$action) {
+                        EmptyView()
+                    }
+                }else{
+                    NavigationLink(destination: TestpayDetail(monto: self.monto, nombreCobrador: "\(self.user.nombres) \(self.user.apellidos)", fecha: "", nombreUser: "\(self.userDataVM.user.nombres ?? "") \(self.userDataVM.user.apellidos ?? "")",fechaFormat: "", horaFormat: ""), tag: 1, selection: self.$action) {
+                        EmptyView()
+                    }
+                }
             }
          
         }
@@ -106,6 +120,10 @@ struct PayView: View {
                 VStack(alignment: .leading, spacing: 8){
                     Text("MONTO BS.")
                         .textStyle(TitleStyle())
+                    //test focus
+                    /*CocoaTextField("Confirmation Code", text: $monto)
+                        .isFirstResponder(true)
+                    */
                     if self.montoQR == "" {
                         TextField("Ingrese monto", text: $monto)
                             .textFieldStyle(Input())
@@ -138,6 +156,13 @@ struct PayView: View {
                     
                 }
                 self.buttonSuccess
+                VStack{
+                    Button(action: {
+                      self.navigationRoot.setRootView()
+                    }){
+                    Text("Volver")
+                    }
+                }
                 HStack{
                    /* Button(action: {
                         if self.user != "" {

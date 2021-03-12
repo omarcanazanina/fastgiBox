@@ -6,36 +6,40 @@
 //
 
 import SwiftUI
-//import SwiftUIPullToRefresh
+import SwiftUIX
 struct TestView: View {
-    
+    var navigationRoot = NavigationRoot()
     @State private var email = ""
     
     var body: some View {
         VStack {
-                   TextField("email", text: $email)
-                 
-              
+            CocoaTextField("Confirmation Code", text: $email)
+              //  .isFirstResponder(true)
+            
+            Button(action: {
+                self.navigationRoot.setRootView()
+            }){
+            Text("prueba")
+            }
+            
+            VStack {
+                TextField("Ingrese monto", text: $email)
+                    .textFieldStyle(Input())
+                    .keyboardType(.decimalPad)
+                    .introspectTextField { (textField) in
+                        let toolBar = UIToolbar(frame: CGRect(x: 0, y: 0, width: textField.frame.size.width, height: 44))
+                        let flexButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil)
+                        let doneButton = UIBarButtonItem(title: "Cerrar", style: .done, target: self, action: #selector(textField.doneButtonTapped(button:)))
+                     doneButton.tintColor = .darkGray
+                        toolBar.items = [flexButton, doneButton]
+                        toolBar.setItems([flexButton, doneButton], animated: true)
+                        textField.inputAccessoryView = toolBar
+                        textField.becomeFirstResponder()
+                        
+            }
+            
         }
         }
     }
 
-
-func generateBarCode(_ string: String) -> UIImage {
-        
-        if !string.isEmpty {
-            
-            let data = string.data(using: String.Encoding.ascii)
-            
-            let filter = CIFilter(name: "CICode128BarcodeGenerator")
-            // Check the KVC for the selected code generator
-            filter?.setValue(data, forKey: "inputMessage")
-            
-            let transform = CGAffineTransform(scaleX: 10, y: 10)
-            let output = filter?.outputImage?.transformed(by: transform)
-            
-            return UIImage(ciImage: output!)
-        } else {
-            return UIImage()
-        }
-  }
+}
