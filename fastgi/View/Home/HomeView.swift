@@ -9,7 +9,7 @@ import SwiftUI
 import Introspect
 //lectorqr
 import CodeScanner
-
+import Foundation
 struct HomeView: View {
     var navigationRoot = NavigationRoot()
     
@@ -33,8 +33,17 @@ struct HomeView: View {
     @State private var montoQR = ""
     
     @State private var action:Int? = 0
-    
-    
+  //lector modulo PAGO con monto
+    @State private var montoPagoQR = ""
+    @State private var montoCobroQR = ""
+    //modal test
+    @State private var showScannerTransporte1 = false
+    @State var modal = false
+  
+    //calendar
+    //@State private var birthdate = Date()
+ 
+ 
     init(currentBtnEm: Binding<BtnEm>) {
         self._currentBtnEm = currentBtnEm
         //Config for NavigationBar Transparent
@@ -154,18 +163,23 @@ struct HomeView: View {
                     VStack{
                         Image(systemName: "viewfinder")
                             .resizable()
-                            .frame(width:40, height: 40)
-                            .padding(5)
+                            .frame(width:50, height: 50)
+                            .padding(25)
                             .foregroundColor(Color.white)
                         Text("Scan")
                             .foregroundColor(Color.white)
+                            .font(.headline)
                     }
                     
                 }
-                .frame(width:100, height: 100)
-                .background(Color("primary"))
-                .cornerRadius(10)
-                .padding(5)
+                // .frame(width:100, height: 100)
+                 .background(Color("primary"))
+                 .cornerRadius(10)
+                 .padding(5)
+                 //
+                
+                 .frame(maxWidth:.infinity)
+                 //.shadow(color: Color.black.opacity(0.1), radius: 4, x: 2, y: 3)
             }
             //.background(Color.blue.opacity(0.5))
             .sheet(isPresented: self.$showScannerScan) {
@@ -173,14 +187,47 @@ struct HomeView: View {
                     switch result {
                     case .success(let codigo):
                         self.resultadosScan = codigo
-                        self.userDataVM.DatosUserPay(id_usuario: self.resultadosScan)
-                        print("aki \(self.userDataVM.userResponsePay)")
+                        //aqui
+                        if self.resultadosScan.hasPrefix("pagar"){
+                            let scanDividido: [Substring] = self.resultadosScan.split(separator: ",")
+                            if scanDividido.count == 2 {
+                                self.userDataVM.DatosUserPay(id_usuario: String(scanDividido[1]))
+                                 self.showScannerScan = false
+                                 self.action = 10
+                            }else{
+                                self.userDataVM.DatosUserPay(id_usuario: String(scanDividido[1]))
+                                 self.showScannerScan = false
+                                 self.action = 10
+                                self.montoPagoQR = String(scanDividido[2])
+                                print("el primero \(scanDividido[0])")
+                                print("el segundo \(scanDividido[1])")
+                                print("el tercero \(scanDividido[2])")
+                            }
+                            
+                        }else{
+                            let scanDivididoCobrar: [Substring] = self.resultadosScan.split(separator: ",")
+                            if scanDivididoCobrar.count == 1{
+                                print("no tiene pagar \(self.resultadosScan)")
+                                self.userDataVM.DatosUserPay(id_usuario: String(scanDivididoCobrar[0]))
+                                self.showScannerScan = false
+                                self.action = 11
+                            }else{
+                                self.userDataVM.DatosUserPay(id_usuario: String(scanDivididoCobrar[0]))
+                                self.showScannerScan = false
+                                self.action = 11
+                                self.montoCobroQR = String(scanDivididoCobrar[1])
+                            }
+                            
+                        }
+                       // self.userDataVM.DatosUserPay(id_usuario: self.resultadosScan)
+                       // print("aki \(self.userDataVM.userResponsePay)")
                         self.showScannerScan = false
                     case .failure(let error):
                         print(error.localizedDescription)
                     }
                 }
-            }.onReceive(self.userDataVM.$userResponsePay) { (userPay) in
+            }
+            .onReceive(self.userDataVM.$userResponsePay) { (userPay) in
                 if userPay._id == "ObjectId"{
                     print("no hay user")
                 }else{
@@ -189,9 +236,15 @@ struct HomeView: View {
                 }
               
             }
-            NavigationLink(destination: ChargeView(dataUserPay: self.userDataVM.userResponsePay), isActive: self.$userDataVM.nextPayview) {
+            NavigationLink(destination: ChargeView(dataUserPay: self.userDataVM.userResponsePay, montoCobroQR: self.$montoCobroQR), tag: 11, selection: self.$action) {
                 EmptyView()
             }
+            NavigationLink(destination: PayScanView(dataUserPay: self.userDataVM.userResponsePay, montoPagoQR: self.$montoPagoQR), tag: 10, selection: self.$action) {
+                EmptyView()
+            }
+           /* NavigationLink(destination: ChargeView(dataUserPay: self.userDataVM.userResponsePay), isActive: self.$userDataVM.nextPayview) {
+                EmptyView()
+            }*/
         }
     }
     
@@ -204,18 +257,23 @@ struct HomeView: View {
                     VStack{
                         Image(systemName: "barcode")
                             .resizable()
-                            .frame(width:40, height: 40)
-                            .padding(5)
+                            .frame(width:50, height: 50)
+                            .padding(25)
                             .foregroundColor(Color.white)
                         Text("Pagar")
                             .foregroundColor(Color.white)
+                            .font(.headline)
                     }
                     
                 }
-                .frame(width:100, height: 100)
-                .background(Color("primary"))
-                .cornerRadius(10)
-                .padding(5)
+                // .frame(width:100, height: 100)
+                 .background(Color("primary"))
+                 .cornerRadius(10)
+                 .padding(5)
+                 //
+                
+                 .frame(maxWidth:.infinity)
+                 .shadow(color: Color.black.opacity(0.1), radius: 4, x: 2, y: 3)
             }
             NavigationLink(destination: QrChargeView(dataUserlog: self.userDataVM.user, dataString: ""), tag: 4, selection: self.$action) {
                 EmptyView()
@@ -232,25 +290,29 @@ struct HomeView: View {
                     VStack{
                         Image(systemName: "qrcode")
                             .resizable()
-                            .frame(width:40, height: 40)
-                            .padding(5)
+                            .frame(width:50, height: 50)
+                            .padding(25)
                             .foregroundColor(Color.white)
                         Text("Recibir")
                             .foregroundColor(Color.white)
+                            .font(.headline)
                     }
                     
                 }
-                .frame(width:100, height: 100)
+               // .frame(width:100, height: 100)
                 .background(Color("primary"))
                 .cornerRadius(10)
                 .padding(5)
+                //
+               
+                .frame(maxWidth:.infinity)
+                .shadow(color: Color.black.opacity(0.1), radius: 4, x: 2, y: 3)
             }
-            NavigationLink(destination: QrGeneratorView( dataUserlog: self.userDataVM.user), tag: 3, selection: self.$action) {
+            NavigationLink(destination: QrPayView( dataUserlog: self.userDataVM.user), tag: 3, selection: self.$action) {
                 EmptyView()
             }
         }
     }
-    
     
     var home:some View{
         ScrollView{
@@ -260,6 +322,7 @@ struct HomeView: View {
                     self.btnPay
                     self.btnIngresar
                 }.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
+                
                 VStack{
                     Text("Recarga de línea pre pago")
                         .font(.caption)
@@ -279,28 +342,31 @@ struct HomeView: View {
                     HStack(spacing:10){
                         self.btnTeleferic
                         self.btnTransport
+                        //self.btnTransport1
                         Spacer()
                             .frame(maxWidth:.infinity)
                     }.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
                     
                 }.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
                 VStack{
-                 Button(action: {
-                   self.navigationRoot.testFocusNav()
-                 }){
+               Button(action: {
+                   self.action = 44
+               }){
                  Text("test1")
                  }
-                    Button(action: {
-                        self.action = 6
-                    }){
-                        Text("test2")
-                    }
                     
-                    NavigationLink(destination: TestView(), tag: 6, selection: self.$action) {
+                    NavigationLink(destination: TestView(), tag: 44, selection: self.$action) {
                  EmptyView()
                  }
-                 
-                    
+                    /* //modal test
+                    Button(action: {
+                        self.modal.toggle()
+                    }){
+                        Text("testModal")
+                    }    .sheet(isPresented: $modal) {
+                        TestModalView(modal: $modal)
+                    }
+                    */
                 
                     
                     
@@ -331,16 +397,19 @@ struct HomeView: View {
     var body: some View {
         VStack{
             self.home
-            Text(resultado)
-            Button(action: {
-                self.action = 7
+           // DatePicker("calendar", selection: $birthdate, in: ...Date(), displayedComponents: .date)
+           
+            
+           // Text(self.resultadosScan)
+           /* Button(action: {
+                self.action = 15
             }){
                 Text("test3")
             }
             
-            NavigationLink(destination: TestView(), tag: 7, selection: self.$action) {
+            NavigationLink(destination: TransactionDetailChargePayView(fecha: "", hora: "", empresa: "", phone: "", monto: "", control: 1, fechaFormat: "", horaFormat: "") , tag: 15, selection: self.$action) {
          EmptyView()
-         }
+         }*/
         }
     }
     
@@ -352,3 +421,4 @@ struct HomeView_Previews: PreviewProvider {
             
     }
 }
+

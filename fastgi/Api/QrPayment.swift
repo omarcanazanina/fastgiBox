@@ -15,7 +15,7 @@ class QrPayment: ObservableObject {
     private let tokenKey = "token"
     private let idKey = "usuario._id"
     @Published var pagoResponse: QrPaymentModel?
-    
+    @Published var getPagosResponse:GetPagosResponse?
     //nav userafiliacion
     @Published var afiliado : Bool = false
     @Published var noafiliado : String? = ""
@@ -161,5 +161,40 @@ class QrPayment: ObservableObject {
         }
         
     }
+    
+    
+    func ListPagos(){
+          // creando headers
+          var headers: HTTPHeaders = [
+              "Accept": "application/json"
+          ]
+          if let token = storage.string(forKey: tokenKey){
+              headers.add(name: "token", value: token)
+          }
+          //"5f56de014e834e3bc4c02059"
+          let idusu = storage.string(forKey: idKey)!
+              guard let url = URL(string: "https://api.fastgi.com/PAGOS/\(idusu)") else { return }
+       //print("este es el idusuariolist recargas\(idusu)")
+              DispatchQueue.main.async {
+                  AF.request(url,method:.get,headers: headers )
+                      //.validate(contentType: ["application/json"])
+                      .responseData{response in
+                       //debugPrint(response)
+                          switch response.result {
+                          case let .success(data):
+                              //Cast respuesta a MeResponce
+                              if let decodedResponse = try? JSONDecoder().decode(GetPagosResponse.self, from: data) {
+                              // print(decodedResponse.recarga)
+                                self.getPagosResponse = decodedResponse
+                              // print(self.getPagosResponse?.recarga ?? "")
+                                  return
+                              }
+                          case let .failure(error):
+                              print(error)
+                          }
+                  }
+              }
+      }
+    
     
 }

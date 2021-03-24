@@ -46,6 +46,7 @@ struct QrGeneratorView: View {
     }
     
    
+   
     
     var imageProfile:some View {
         HStack(alignment: .center){
@@ -65,6 +66,7 @@ struct QrGeneratorView: View {
         }
         
     }
+    
     
     var body: some View {
         /*RefreshableNavigationView(title: "", action:{
@@ -104,6 +106,8 @@ struct QrGeneratorView: View {
                         .resizable()
                         .scaledToFit()
                         .frame(width: 300, height: 300)
+                        
+                       
                 }else {
                     //barcode"
                     CBBarcodeView(data: .constant("\(self.dataUserlog._id) \(self.monto)") ,// self.dataUserlog._id,//$dataString,
@@ -119,13 +123,15 @@ struct QrGeneratorView: View {
                         .scaledToFit()
                         .frame(width: 300, height: 300)
                 }
+              
+                
                 if self.monto != ""{
                     Text("\(self.monto) Bs.")
                         .font(.title)
                 }
          
                 HStack {
-                    if self.showBtn! {
+                   // if self.showBtn! {
                         Button(action: {
                             self.modal.toggle()
                         })
@@ -136,21 +142,22 @@ struct QrGeneratorView: View {
                             EnterAmountView(modal: self.$modal, monto: self.$monto)
                         }
                         
-                        
+                    
+                        //pdf
                         Button(action: {
                             self.exportToPDF(nombreUser_: "\(self.dataUserlog.nombres ?? "") \(self.dataUserlog.apellidos ?? "")", showBtn_: false, monto_: self.monto)
                         }){
-                            Text("Compartir")
+                            Text("Descargar")
                         }.buttonStyle(PrimaryButtonOutlineStyle())
                         
-                        Button(action: {
+                       /* Button(action: {
                             self.shareLink()
                         })
                         {
                             Text("Link")
-                        }.buttonStyle(PrimaryButtonOutlineStyle())
+                        }.buttonStyle(PrimaryButtonOutlineStyle())*/
                         
-                    }
+                    //}
                    
                 }
             }

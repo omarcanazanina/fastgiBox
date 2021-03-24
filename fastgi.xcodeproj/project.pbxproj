@@ -15,7 +15,10 @@
 		9224FE6A256DE45F00F79FA4 /* MembershipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9224FE69256DE45F00F79FA4 /* MembershipView.swift */; };
 		92278A5F2556186E00D746EA /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92278A5E2556186E00D746EA /* Helper.swift */; };
 		923AE28825CAF3A30015ECA8 /* QrChargeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 923AE28725CAF3A30015ECA8 /* QrChargeView.swift */; };
-		9256A32D25C4B6E200DEC3AD /* TestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9256A32C25C4B6E200DEC3AD /* TestView.swift */; };
+		9240081F26014DFE00B75AE3 /* PayScanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9240081E26014DFE00B75AE3 /* PayScanView.swift */; };
+		924008242601548A00B75AE3 /* QrPayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 924008232601548A00B75AE3 /* QrPayView.swift */; };
+		9240083326015B0400B75AE3 /* TransactionDetailChargePayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9240083226015B0400B75AE3 /* TransactionDetailChargePayView.swift */; };
+		92543454260A44A600AE5F40 /* HorizonCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = 92543453260A44A600AE5F40 /* HorizonCalendar */; };
 		925F07282580323000153B5A /* Afiliacion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 925F07272580323000153B5A /* Afiliacion.swift */; };
 		925F072B2580372B00153B5A /* AfiliacionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 925F072A2580372B00153B5A /* AfiliacionViewModel.swift */; };
 		9271EF1A258D4D2E009659F4 /* AffiliateModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9271EF19258D4D2E009659F4 /* AffiliateModel.swift */; };
@@ -25,8 +28,12 @@
 		9279D54F256F15A400890C84 /* QrGeneratorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9279D54E256F15A400890C84 /* QrGeneratorView.swift */; };
 		927D1DA125785C4200A97455 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 927D1DA025785C4200A97455 /* UserData.swift */; };
 		927D1DA425785DF700A97455 /* UserDataViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 927D1DA325785DF700A97455 /* UserDataViewModel.swift */; };
+		9284925C2603E7E2002CA258 /* DownloadQr.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9284925B2603E7E2002CA258 /* DownloadQr.swift */; };
 		92900DDD25C9A9280009B8F6 /* NewHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92900DDC25C9A9280009B8F6 /* NewHomeView.swift */; };
 		9290C1BB257AFFB000504158 /* TestpayDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9290C1BA257AFFB000504158 /* TestpayDetail.swift */; };
+		929B4F5B260B94D40048B766 /* DayRangeIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929B4F5A260B94D40048B766 /* DayRangeIndicatorView.swift */; };
+		929B4F5F260BD6430048B766 /* TestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929B4F5E260BD6430048B766 /* TestView.swift */; };
+		929B4F63260BE5A70048B766 /* HistoryDateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929B4F62260BE5A70048B766 /* HistoryDateView.swift */; };
 		92A3BA252553616F00DF3707 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A3BA242553616F00DF3707 /* AppDelegate.swift */; };
 		92A3BA272553616F00DF3707 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A3BA262553616F00DF3707 /* SceneDelegate.swift */; };
 		92A3BA292553616F00DF3707 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A3BA282553616F00DF3707 /* ContentView.swift */; };
@@ -102,6 +109,7 @@
 		92CA837C25D5C4EF00727F89 /* ChargeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92CA837B25D5C4EF00727F89 /* ChargeView.swift */; };
 		92DA82FC25F7B9D100E4834B /* CarBode in Frameworks */ = {isa = PBXBuildFile; productRef = 92DA82FB25F7B9D100E4834B /* CarBode */; };
 		92E3FE2425C0AA4A00320396 /* testView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E3FE2325C0AA4A00320396 /* testView.swift */; };
+		92F43D8425FC1667009D58AD /* TestModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92F43D8325FC1667009D58AD /* TestModalView.swift */; };
 		C0100033257ACF3B00945FCA /* SlideFormJoinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0100032257ACF3B00945FCA /* SlideFormJoinView.swift */; };
 		C05413E525783C2F000343EB /* TestWizardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05413E425783C2F000343EB /* TestWizardView.swift */; };
 		C0722FA8257197AC00D5B225 /* ListBankView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0722FA7257197AC00D5B225 /* ListBankView.swift */; };
@@ -124,7 +132,9 @@
 		9224FE69256DE45F00F79FA4 /* MembershipView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MembershipView.swift; sourceTree = "<group>"; };
 		92278A5E2556186E00D746EA /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		923AE28725CAF3A30015ECA8 /* QrChargeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QrChargeView.swift; sourceTree = "<group>"; };
-		9256A32C25C4B6E200DEC3AD /* TestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestView.swift; sourceTree = "<group>"; };
+		9240081E26014DFE00B75AE3 /* PayScanView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayScanView.swift; sourceTree = "<group>"; };
+		924008232601548A00B75AE3 /* QrPayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QrPayView.swift; sourceTree = "<group>"; };
+		9240083226015B0400B75AE3 /* TransactionDetailChargePayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionDetailChargePayView.swift; sourceTree = "<group>"; };
 		925F07272580323000153B5A /* Afiliacion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Afiliacion.swift; sourceTree = "<group>"; };
 		925F072A2580372B00153B5A /* AfiliacionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AfiliacionViewModel.swift; sourceTree = "<group>"; };
 		9271EF19258D4D2E009659F4 /* AffiliateModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AffiliateModel.swift; sourceTree = "<group>"; };
@@ -133,8 +143,12 @@
 		9279D54E256F15A400890C84 /* QrGeneratorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QrGeneratorView.swift; sourceTree = "<group>"; };
 		927D1DA025785C4200A97455 /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 		927D1DA325785DF700A97455 /* UserDataViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataViewModel.swift; sourceTree = "<group>"; };
+		9284925B2603E7E2002CA258 /* DownloadQr.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadQr.swift; sourceTree = "<group>"; };
 		92900DDC25C9A9280009B8F6 /* NewHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewHomeView.swift; sourceTree = "<group>"; };
 		9290C1BA257AFFB000504158 /* TestpayDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestpayDetail.swift; sourceTree = "<group>"; };
+		929B4F5A260B94D40048B766 /* DayRangeIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayRangeIndicatorView.swift; sourceTree = "<group>"; };
+		929B4F5E260BD6430048B766 /* TestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestView.swift; sourceTree = "<group>"; };
+		929B4F62260BE5A70048B766 /* HistoryDateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryDateView.swift; sourceTree = "<group>"; };
 		92A3BA212553616F00DF3707 /* fastgi wallet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "fastgi wallet.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		92A3BA242553616F00DF3707 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		92A3BA262553616F00DF3707 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -209,6 +223,7 @@
 		92B75E4925B795C3005A2DCC /* EnterAmountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterAmountView.swift; sourceTree = "<group>"; };
 		92CA837B25D5C4EF00727F89 /* ChargeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChargeView.swift; sourceTree = "<group>"; };
 		92E3FE2325C0AA4A00320396 /* testView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = testView.swift; sourceTree = "<group>"; };
+		92F43D8325FC1667009D58AD /* TestModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestModalView.swift; sourceTree = "<group>"; };
 		C0100032257ACF3B00945FCA /* SlideFormJoinView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideFormJoinView.swift; sourceTree = "<group>"; };
 		C05413E425783C2F000343EB /* TestWizardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestWizardView.swift; sourceTree = "<group>"; };
 		C0722FA7257197AC00D5B225 /* ListBankView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListBankView.swift; sourceTree = "<group>"; };
@@ -229,6 +244,7 @@
 				92DA82FC25F7B9D100E4834B /* CarBode in Frameworks */,
 				573DD5AA824DD586829F7E7E /* Pods_fastgi.framework in Frameworks */,
 				92C9723425F9573D005D2DBB /* SwiftUIX in Frameworks */,
+				92543454260A44A600AE5F40 /* HorizonCalendar in Frameworks */,
 				92A3BAFF25536D7A00DF3707 /* ValidatedPropertyKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -256,10 +272,21 @@
 				9290C1BA257AFFB000504158 /* TestpayDetail.swift */,
 				92B75E4925B795C3005A2DCC /* EnterAmountView.swift */,
 				92E3FE2325C0AA4A00320396 /* testView.swift */,
-				923AE28725CAF3A30015ECA8 /* QrChargeView.swift */,
 				92CA837B25D5C4EF00727F89 /* ChargeView.swift */,
+				92F43D8325FC1667009D58AD /* TestModalView.swift */,
 			);
 			path = QrPayment;
+			sourceTree = "<group>";
+		};
+		924008212601535600B75AE3 /* ScanPayCharge */ = {
+			isa = PBXGroup;
+			children = (
+				923AE28725CAF3A30015ECA8 /* QrChargeView.swift */,
+				9240081E26014DFE00B75AE3 /* PayScanView.swift */,
+				924008232601548A00B75AE3 /* QrPayView.swift */,
+				9240083226015B0400B75AE3 /* TransactionDetailChargePayView.swift */,
+			);
+			path = ScanPayCharge;
 			sourceTree = "<group>";
 		};
 		92A3BA182553616F00DF3707 = {
@@ -349,6 +376,7 @@
 				927D1DA025785C4200A97455 /* UserData.swift */,
 				92AB8CF12579B6C4006F0FA7 /* QrPayment.swift */,
 				925F07272580323000153B5A /* Afiliacion.swift */,
+				9284925B2603E7E2002CA258 /* DownloadQr.swift */,
 			);
 			path = Api;
 			sourceTree = "<group>";
@@ -403,6 +431,7 @@
 		92A3BA9D2553675C00DF3707 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				924008212601535600B75AE3 /* ScanPayCharge */,
 				9224FE5E256DE2E500F79FA4 /* QrPayment */,
 				92A3BABC255368DD00DF3707 /* History */,
 				92A3BAB12553685900DF3707 /* Settings */,
@@ -447,7 +476,8 @@
 				92A3BAB6255368A600DF3707 /* TermsAndConditionsView.swift */,
 				92A3BAB9255368BE00DF3707 /* SettingsView.swift */,
 				9202E996255DF485009115ED /* test.swift */,
-				9256A32C25C4B6E200DEC3AD /* TestView.swift */,
+				929B4F5A260B94D40048B766 /* DayRangeIndicatorView.swift */,
+				929B4F5E260BD6430048B766 /* TestView.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -456,6 +486,7 @@
 			isa = PBXGroup;
 			children = (
 				92A3BABD255368F300DF3707 /* HistoryView.swift */,
+				929B4F62260BE5A70048B766 /* HistoryDateView.swift */,
 			);
 			path = History;
 			sourceTree = "<group>";
@@ -561,6 +592,7 @@
 				9279D54B256F0D5400890C84 /* CodeScanner */,
 				92DA82FB25F7B9D100E4834B /* CarBode */,
 				92C9723325F9573D005D2DBB /* SwiftUIX */,
+				92543453260A44A600AE5F40 /* HorizonCalendar */,
 			);
 			productName = fastgi;
 			productReference = 92A3BA212553616F00DF3707 /* fastgi wallet.app */;
@@ -594,6 +626,7 @@
 				9279D54A256F0D5400890C84 /* XCRemoteSwiftPackageReference "CodeScanner" */,
 				92DA82FA25F7B9D100E4834B /* XCRemoteSwiftPackageReference "CarBode-Barcode-Scanner-For-SwiftUI" */,
 				92C9723225F9573D005D2DBB /* XCRemoteSwiftPackageReference "SwiftUIX" */,
+				92543452260A44A500AE5F40 /* XCRemoteSwiftPackageReference "HorizonCalendar" */,
 			);
 			productRefGroup = 92A3BA222553616F00DF3707 /* Products */;
 			projectDirPath = "";
@@ -664,13 +697,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9256A32D25C4B6E200DEC3AD /* TestView.swift in Sources */,
 				92B75E4A25B795C3005A2DCC /* EnterAmountView.swift in Sources */,
+				9240081F26014DFE00B75AE3 /* PayScanView.swift in Sources */,
+				9240083326015B0400B75AE3 /* TransactionDetailChargePayView.swift in Sources */,
 				927D1DA125785C4200A97455 /* UserData.swift in Sources */,
 				92AB8CF82579B7F4006F0FA7 /* QrPaymentModel.swift in Sources */,
 				92A3BAB7255368A600DF3707 /* TermsAndConditionsView.swift in Sources */,
 				92A3BB0425536DB100DF3707 /* Optional+Extensions.swift in Sources */,
 				92A3BAF325536B3400DF3707 /* BtnsView.swift in Sources */,
+				9284925C2603E7E2002CA258 /* DownloadQr.swift in Sources */,
 				92A3BA8F255366C400DF3707 /* UpdateUserResponse.swift in Sources */,
 				C0722FAE2571A49300D5B225 /* ListTransportTypeView.swift in Sources */,
 				9208DE4B256EFB4A00EA9C23 /* RegistrationFormView.swift in Sources */,
@@ -684,9 +719,11 @@
 				92A3BA68255364CF00DF3707 /* ContactsViewModel.swift in Sources */,
 				9202E997255DF485009115ED /* test.swift in Sources */,
 				92900DDD25C9A9280009B8F6 /* NewHomeView.swift in Sources */,
+				929B4F63260BE5A70048B766 /* HistoryDateView.swift in Sources */,
 				92A3BA252553616F00DF3707 /* AppDelegate.swift in Sources */,
 				92A3BA822553661600DF3707 /* UpdateUserModel.swift in Sources */,
 				9202E994255DF196009115ED /* WelcomeTermsAndConditionsView.swift in Sources */,
+				92F43D8425FC1667009D58AD /* TestModalView.swift in Sources */,
 				92A3BACB2553698200DF3707 /* SearchBar.swift in Sources */,
 				92A3BAB32553687000DF3707 /* FormUserDataView.swift in Sources */,
 				C0722FA8257197AC00D5B225 /* ListBankView.swift in Sources */,
@@ -703,6 +740,7 @@
 				9290C1BB257AFFB000504158 /* TestpayDetail.swift in Sources */,
 				92A3BB0725536DCD00DF3707 /* Validation+Extensions.swift in Sources */,
 				92A3BABA255368BE00DF3707 /* SettingsView.swift in Sources */,
+				929B4F5F260BD6430048B766 /* TestView.swift in Sources */,
 				92A3BA272553616F00DF3707 /* SceneDelegate.swift in Sources */,
 				92A3BAA6255367E200DF3707 /* LoginView.swift in Sources */,
 				92A3BAE625536AAB00DF3707 /* Loader.swift in Sources */,
@@ -721,6 +759,7 @@
 				92A3BA492553631C00DF3707 /* NavigationRoot.swift in Sources */,
 				92A3BA422553629F00DF3707 /* PhotoCaptureView.swift in Sources */,
 				92E3FE2425C0AA4A00320396 /* testView.swift in Sources */,
+				929B4F5B260B94D40048B766 /* DayRangeIndicatorView.swift in Sources */,
 				92A3BA292553616F00DF3707 /* ContentView.swift in Sources */,
 				92A3BA6E2553651C00DF3707 /* RecargaViewModel.swift in Sources */,
 				92A3BAD4255369EC00DF3707 /* InputCreditAmountView.swift in Sources */,
@@ -738,6 +777,7 @@
 				92A3BA6B255364F900DF3707 /* ImportContactsViewModel.swift in Sources */,
 				92A3BA982553671200DF3707 /* SmsResponse.swift in Sources */,
 				927D1DA425785DF700A97455 /* UserDataViewModel.swift in Sources */,
+				924008242601548A00B75AE3 /* QrPayView.swift in Sources */,
 				92A3BAE325536A9500DF3707 /* TabsView.swift in Sources */,
 				92A3BB0A25536DE600DF3707 /* BrokenRule.swift in Sources */,
 				92A3BAE925536ACD00DF3707 /* ListAreaCodeView.swift in Sources */,
@@ -905,12 +945,12 @@
 				DEVELOPMENT_TEAM = 8434L4CAU2;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = fastgi/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.0;
+				MARKETING_VERSION = 1.1.5;
 				PRODUCT_BUNDLE_IDENTIFIER = com.hegaro.fastgi;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -931,12 +971,12 @@
 				DEVELOPMENT_TEAM = 8434L4CAU2;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = fastgi/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.0;
+				MARKETING_VERSION = 1.1.5;
 				PRODUCT_BUNDLE_IDENTIFIER = com.hegaro.fastgi;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -969,6 +1009,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		92543452260A44A500AE5F40 /* XCRemoteSwiftPackageReference "HorizonCalendar" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/airbnb/HorizonCalendar.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.8.0;
+			};
+		};
 		9279D54A256F0D5400890C84 /* XCRemoteSwiftPackageReference "CodeScanner" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "http://github.com/twostraws/CodeScanner";
@@ -1004,6 +1052,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		92543453260A44A600AE5F40 /* HorizonCalendar */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 92543452260A44A500AE5F40 /* XCRemoteSwiftPackageReference "HorizonCalendar" */;
+			productName = HorizonCalendar;
+		};
 		9279D54B256F0D5400890C84 /* CodeScanner */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 9279D54A256F0D5400890C84 /* XCRemoteSwiftPackageReference "CodeScanner" */;

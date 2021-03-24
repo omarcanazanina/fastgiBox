@@ -42,4 +42,7 @@ struct ErrorVerificaUserResponse : Codable {
     var err : ErrorVerificaUser
 }
 
-
+struct GetPagosResponse : Codable {
+    let ok :Bool
+    let recarga: [QrPaymentModel]
+}

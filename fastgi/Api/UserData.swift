@@ -52,7 +52,7 @@ class UserData: ObservableObject {
                     AF.request(url,method:.get,headers: headers )
                         //.validate(contentType: ["application/json"])
                         .responseData{response in
-                             debugPrint(response)
+                            // debugPrint(response)
                             switch response.result {
                             case let .success(data):
                                 //Cast respuesta a MeResponce

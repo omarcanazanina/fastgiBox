@@ -134,6 +134,14 @@ struct HistoryView: View {
                     Text("No realizadas").tag(1)
                 }.pickerStyle(SegmentedPickerStyle())
                 .padding()
+                Button(action: {
+                    self.action = 5
+                }){
+                    Text("Filtrar")
+                }
+                NavigationLink(destination: HistoryDateView(), tag: 5, selection: self.$action) {
+                    EmptyView()
+                }
                 if(optionPicker==0){
                     self.list
                     NavigationLink(destination: TransactionDetailView(fecha: self.fecha, hora: self.hora, empresa: self.empresa, phone: self.phone, monto: self.monto, control: 0, fechaFormat: "", horaFormat: ""), tag: 1, selection: self.$action) {

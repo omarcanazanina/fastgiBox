@@ -18,6 +18,8 @@
 	<string>$(MARKETING_VERSION)</string>
 	<key>CFBundleVersion</key>
 	<string>$(CURRENT_PROJECT_VERSION)</string>
+	<key>LSApplicationCategoryType</key>
+	<string></string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>
@@ -31,6 +33,8 @@
 	<string>You can take photos to document your profile picture and do qr code reading.</string>
 	<key>NSContactsUsageDescription</key>
 	<string>Please allow access to contacts to register your phone number.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>You can save qr image in your device gallery.</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>

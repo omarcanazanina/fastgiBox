@@ -20,6 +20,15 @@
         }
       },
       {
+        "package": "HorizonCalendar",
+        "repositoryURL": "https://github.com/airbnb/HorizonCalendar.git",
+        "state": {
+          "branch": null,
+          "revision": "4fa9d72c4e14bd99e8d7272acd9e88291daee824",
+          "version": "1.8.0"
+        }
+      },
+      {
         "package": "SwiftUIX",
         "repositoryURL": "https://github.com/SwiftUIX/SwiftUIX",
         "state": {

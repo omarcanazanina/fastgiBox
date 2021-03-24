@@ -1,19 +1,20 @@
 //
-//  ChargeView.swift
-//  fastgi
+//  PayScanView.swift
+//  fastgi wallet
 //
-//  Created by Hegaro on 11/02/2021.
+//  Created by Hegaro on 16/03/2021.
 //
 
+//despues de scan del modulo morado
 import SwiftUI
 import SDWebImageSwiftUI
 
-struct ChargeView: View {
+struct PayScanView: View {
     var dataUserPay: UpdateUserPagoModel
     @State private var monto: String = ""
-    
+    //
+    @Binding var montoPagoQR : String
     @State private var action:Int? = 0
-    @Binding var montoCobroQR : String
     var imageProfile:some View {
         HStack(alignment: .center){
                 WebImage(url: URL(string: "https://i.postimg.cc/8kJ4bSVQ/image.jpg" ))
@@ -32,6 +33,8 @@ struct ChargeView: View {
         }
         
     }
+    
+    
     var buttonSuccess:some View {
         VStack(){
             Button(action: {
@@ -46,27 +49,26 @@ struct ChargeView: View {
                     .shadow(color: Color.black.opacity(0.1), radius: 4, x: 2, y: 3)
                 
             }
-            if montoCobroQR == "" {
-                NavigationLink(destination: TransactionDetailChargePayView(fecha: "", hora: "", empresa: "", phone: "", monto: self.monto, control: 1, fechaFormat: "", horaFormat: "") , tag: 1, selection: self.$action) {
+            if self.montoPagoQR == "" {
+                NavigationLink(destination: TransactionDetailChargePayView(fecha: "", hora: "", empresa: "cobro", phone: "", monto: self.monto, control: 1, fechaFormat: "", horaFormat: "") , tag: 1, selection: self.$action) {
                     EmptyView()
                 }
             }else{
-                NavigationLink(destination: TransactionDetailChargePayView(fecha: "", hora: "", empresa: "", phone: "", monto: self.montoCobroQR, control: 1, fechaFormat: "", horaFormat: "") , tag: 1, selection: self.$action) {
+                NavigationLink(destination: TransactionDetailChargePayView(fecha: "", hora: "", empresa: "cobro", phone: "", monto: self.montoPagoQR, control: 1, fechaFormat: "", horaFormat: "") , tag: 1, selection: self.$action) {
                     EmptyView()
                 }
             }
             
         }
         .padding()
-        
       
+        
     }
- 
     
-
-    var charge: some View {
+    
+    var pay: some View {
         VStack{
-            Text("Cobrar")
+            Text("Pagar")
                 .font(.title)
             self.imageProfile
             if self.dataUserPay.nombres == Optional(""){
@@ -76,11 +78,9 @@ struct ChargeView: View {
             }
             VStack(alignment: .leading, spacing: 8){
                 Text("")
-                    //.textStyle(TitleStyle())
-                
                 Text("MONTO BS.")
                     .textStyle(TitleStyle())
-                if self.montoCobroQR == "" {
+                if self.montoPagoQR == ""{
                     TextField("Ingrese monto", text: $monto)
                         .textFieldStyle(Input())
                         .keyboardType(.decimalPad)
@@ -95,7 +95,7 @@ struct ChargeView: View {
                             //textField.becomeFirstResponder()
                         }
                 }else{
-                    TextField("Ingrese monto", text: $montoCobroQR)
+                    TextField("Ingrese monto", text: $montoPagoQR)
                         .textFieldStyle(Input())
                         .keyboardType(.decimalPad)
                         .introspectTextField { (textField) in
@@ -116,18 +116,15 @@ struct ChargeView: View {
         }
     }
     
-  
-    
-    
     var body: some View {
         VStack{
-            self.charge
+            self.pay
         }
     }
 }
 
-/*struct ChargeView_Previews: PreviewProvider {
+/*struct PayScanView_Previews: PreviewProvider {
     static var previews: some View {
-        ChargeView()
+        PayScanView()
     }
 }*/

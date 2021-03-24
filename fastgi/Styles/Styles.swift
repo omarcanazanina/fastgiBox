@@ -125,11 +125,14 @@ struct Input: ViewModifier {
         content
             .padding(.horizontal,12)
             .padding(.vertical,8)
+            .width(150)
             .background(Color("input"))
             .clipShape(Capsule())
         
     }
 }
+
+
 
 
 func UIColorPrimary() -> UIColor {

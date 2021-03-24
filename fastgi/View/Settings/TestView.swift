@@ -1,45 +1,70 @@
 //
 //  TestView.swift
-//  fastgi
+//  fastgi wallet
 //
-//  Created by Hegaro on 29/01/2021.
+//  Created by Hegaro on 24/03/2021.
 //
 
 import SwiftUI
-import SwiftUIX
+
 struct TestView: View {
-    var navigationRoot = NavigationRoot()
-    @State private var email = ""
-    
     var body: some View {
-        VStack {
-            CocoaTextField("Confirmation Code", text: $email)
-              //  .isFirstResponder(true)
-            
+        Home()
+    }
+}
+
+struct TestView_Previews: PreviewProvider {
+    static var previews: some View {
+        TestView()
+    }
+}
+
+struct Home : View{
+    @State var items : [Any] = []
+    @State var sheet = false
+    
+    var body: some View{
+        VStack{
             Button(action: {
-                self.navigationRoot.setRootView()
-            }){
-            Text("prueba")
+                items.removeAll()
+                items.append(UIImage(named: "Up")!)
+                sheet.toggle()
+            }) {
+                Text("Share")
+                    .fontWeight(.heavy)
             }
-            
-            VStack {
-                TextField("Ingrese monto", text: $email)
-                    .textFieldStyle(Input())
-                    .keyboardType(.decimalPad)
-                    .introspectTextField { (textField) in
-                        let toolBar = UIToolbar(frame: CGRect(x: 0, y: 0, width: textField.frame.size.width, height: 44))
-                        let flexButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil)
-                        let doneButton = UIBarButtonItem(title: "Cerrar", style: .done, target: self, action: #selector(textField.doneButtonTapped(button:)))
-                     doneButton.tintColor = .darkGray
-                        toolBar.items = [flexButton, doneButton]
-                        toolBar.setItems([flexButton, doneButton], animated: true)
-                        textField.inputAccessoryView = toolBar
-                        textField.becomeFirstResponder()
-                        
-            }
-            
-        }
+            .sheet(isPresented: $sheet, content: {
+                ShareSheet(items: items)
+            })
+            //opcion 2
+            Button(action: actionSheet) {
+                            Image(systemName: "square.and.arrow.up")
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(width: 36, height: 36)
+                        }
+          
         }
     }
-
+    func actionSheet() {
+           guard let urlShare = URL(string: "https://developer.apple.com/xcode/swiftui/") else { return }
+           let activityVC = UIActivityViewController(activityItems: [urlShare], applicationActivities: nil)
+           UIApplication.shared.windows.first?.rootViewController?.present(activityVC, animated: true, completion: nil)
+       }
+    
 }
+
+// share
+struct ShareSheet1 : UIViewControllerRepresentable {
+    var items : [Any]
+    func makeUIViewController(context: Context) -> UIActivityViewController {
+        
+        let controller = UIActivityViewController(activityItems: items, applicationActivities: nil)
+        return controller
+    }
+    
+    func updateUIViewController(_ uiViewController: UIActivityViewController, context: Context) {
+        
+    }
+}
+

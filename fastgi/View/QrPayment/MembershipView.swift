@@ -29,6 +29,9 @@ struct MembershipView: View {
     @State var rotate = CBBarcodeView.Orientation.up
     @State var barcodeImage: UIImage?
     
+    //alert
+    @State private var showingAlert = false
+    
     init() {
         UISegmentedControl.appearance().selectedSegmentTintColor = UIColorPrimary()
         UISegmentedControl.appearance().setTitleTextAttributes([.foregroundColor: UIColor.white], for: .selected)
@@ -103,6 +106,37 @@ struct MembershipView: View {
         }
         .padding()
     }
+    
+    var vista: some View {
+        ScrollView{
+            HStack{
+                    VStack{
+                        self.imageProfile
+                        if self.userDataVM.user1.nombres == Optional(""){
+                            Text("+591 \(self.userDataVM.user1.telefono)")
+                                .bold()
+                        }else{
+                            Text("\(self.userDataVM.user1.nombres) \(self.userDataVM.user1.apellidos)")
+                                .bold()
+                        }
+                        //barcode
+                        CBBarcodeView(data: .constant(self.userDataVM.user1._id) ,
+                                      barcodeType: $barcodeType,
+                                      orientation: $rotate)
+                        { image in
+                            self.barcodeImage = image
+                        }.frame(minWidth: 0, maxWidth: .infinity, minHeight: 100, maxHeight: 100, alignment: .topLeading)
+                        
+                        Image(uiImage: generarQR(text: self.userDataVM.user1._id))
+                            .interpolation(.none)
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 300, height: 300)
+                        Text("su afiliación ya fue aprobada")
+                    }
+            }.padding(30)
+        }
+    }
     var body: some View {
         ScrollView{
             HStack{
@@ -134,23 +168,16 @@ struct MembershipView: View {
                             .scaledToFit()
                             .frame(width: 300, height: 300)
                         Text("su afiliación ya fue aprobada")
-                        
-                        /*if self.showBtn! {
-                            Button(action: {
-                                self.exportToPDF(nombreUser_: "\(self.userDataVM.user1.nombres) \(self.userDataVM.user1.apellidos)", showBtn_: false)
-                            }){
-                                Text("Compartir")
-                            }.buttonStyle(PrimaryButtonOutlineStyle())
-                            
-                        }*/
+                        Button("Decargar") {
+                            let image = self.vista.snapshot()
+                            UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
+                            showingAlert = true
+                        }.buttonStyle(PrimaryButtonOutlineStyle())
                     }
                 }
                 
             }
         }
-       /* .alert(isPresented:  self.$alertState){
-            self.alerts
-        }*/
     }
     
     var alerts:Alert{
@@ -168,52 +195,5 @@ struct MembershipView: View {
 }*/
 
 
-extension MembershipView {
-    func exportToPDF(nombreUser_: String, showBtn_: Bool) {
-        
-        let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
-        let outputFileURL = documentDirectory.appendingPathComponent("Fastgi.pdf")
-        
-        //Normal with
-        let width: CGFloat = 8.5 * 72.0
-        //Estimate the height of your view
-        let height: CGFloat = 1000
-        let charts = MembershipView()
-        
-        let pdfVC = UIHostingController(rootView: charts)
-        pdfVC.view.frame = CGRect(x: 0, y: 0, width: width, height: height)
-        
-        //Render the view behind all other views
-        let rootVC = UIApplication.shared.windows.first?.rootViewController
-        rootVC?.addChild(pdfVC)
-        rootVC?.view.insertSubview(pdfVC.view, at: 0)
-        
-        //Render the PDF
-        let pdfRenderer = UIGraphicsPDFRenderer(bounds: CGRect(x: 0, y: 0, width: 8.5 * 72.0, height: height))
-        
-        do {
-            try pdfRenderer.writePDF(to: outputFileURL, withActions: { (context) in
-                context.beginPage()
-                
-                pdfVC.view.layer.render(in: context.cgContext)
-            })
-            
-            let items = [outputFileURL]
-            
-            let av = UIActivityViewController(activityItems: items, applicationActivities: nil)
-            UIApplication.shared.windows.first?.rootViewController?.present(av, animated: true, completion: nil)
-            
-
-            
-        }catch {
-            //self.showError = true
-            print("Could not create PDF file: \(error)")
-        }
-        
-        pdfVC.removeFromParent()
-        pdfVC.view.removeFromSuperview()
-    }
-    
-}
 
 
