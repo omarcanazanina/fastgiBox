@@ -43,7 +43,12 @@ struct HomeView: View {
     //calendar
     //@State private var birthdate = Date()
  
- 
+    // compartir img
+    @State var items : [Any] = []
+    @State var sheet = false
+    //
+    @State var showingSheetBank = false
+    @State var bank: String = "Seleccionar"
     init(currentBtnEm: Binding<BtnEm>) {
         self._currentBtnEm = currentBtnEm
         //Config for NavigationBar Transparent
@@ -55,22 +60,30 @@ struct HomeView: View {
     }
     
     var btnTeleferic:some View{
-        Button(action: {
-            self.showScannerTeleferico = true
-        }){
-            VStack{
-                Image("Mi_teleferico")
-                    .resizable()
-                    .frame(width:80, height: 80)
-                    .padding(10)
+        HStack{
+            Button(action: {
+               // self.showScannerTeleferico = true
+                self.action = 99
+            }){
+                VStack{
+                    Image("Mi_teleferico")
+                        .resizable()
+                        .frame(width:80, height: 80)
+                        .padding(10)
+                }
+                .background(Color("card"))
+                .cornerRadius(10)
+                .frame(maxWidth:.infinity)
+                .shadow(color: Color.black.opacity(0.1), radius: 4, x: 2, y: 3)
             }
-            .background(Color("card"))
-            .cornerRadius(10)
-            .frame(maxWidth:.infinity)
-            .shadow(color: Color.black.opacity(0.1), radius: 4, x: 2, y: 3)
+            NavigationLink(destination: QrTelefericoView(dataUserlog: self.userDataVM.user, monto: ""), tag: 99, selection: self.$action) {
+                EmptyView()
+            }
         }
+      
+      
         //.background(Color.red.opacity(0.5))
-        .sheet(isPresented: self.$showScannerTeleferico) {
+        /*.sheet(isPresented: self.$showScannerTeleferico) {
             CodeScannerView(codeTypes: [.qr]){ result in
                 switch result {
                 case .success(let codigo):
@@ -85,7 +98,9 @@ struct HomeView: View {
                     EmptyView()
             }
             }
-        }
+        }*/
+       
+  
     }
     
     var btnTransport:some View{
@@ -163,7 +178,7 @@ struct HomeView: View {
                     VStack{
                         Image(systemName: "viewfinder")
                             .resizable()
-                            .frame(width:50, height: 50)
+                            .frame(width:20, height: 20)
                             .padding(25)
                             .foregroundColor(Color.white)
                         Text("Scan")
@@ -248,6 +263,27 @@ struct HomeView: View {
         }
     }
     
+    var pickerBank: some View{
+        Button(action: {
+            self.showingSheetBank.toggle()
+        }) {
+            HStack{
+                Text(self.bank)
+                Spacer()
+                Image(systemName: "arrowtriangle.down.fill")
+                    .font(.caption)
+                    .foregroundColor(Color("primary"))
+            }
+        }
+        .buttonStyle(PlainButtonStyle())
+        .sheet(isPresented: $showingSheetBank) {
+            ListCardsView(
+                showingSheet: self.$showingSheetBank,
+                card: self.$bank)
+        }
+    }
+    
+    
     var btnPay:some View{
         HStack{
             Button(action: {
@@ -257,7 +293,7 @@ struct HomeView: View {
                     VStack{
                         Image(systemName: "barcode")
                             .resizable()
-                            .frame(width:50, height: 50)
+                            .frame(width:20, height: 20)
                             .padding(25)
                             .foregroundColor(Color.white)
                         Text("Pagar")
@@ -290,7 +326,7 @@ struct HomeView: View {
                     VStack{
                         Image(systemName: "qrcode")
                             .resizable()
-                            .frame(width:50, height: 50)
+                            .frame(width:20, height: 20)
                             .padding(25)
                             .foregroundColor(Color.white)
                         Text("Recibir")
@@ -314,13 +350,48 @@ struct HomeView: View {
         }
     }
     
+    var btnRegisterCard:some View{
+        HStack{
+            Button(action: {
+                self.action = 12
+            }){
+                HStack{
+                    VStack{
+                        Image(systemName: "creditcard")
+                            .resizable()
+                            .frame(width:20, height: 20)
+                            .padding(25)
+                            .foregroundColor(Color.white)
+                        Text("Registro")
+                            .foregroundColor(Color.white)
+                            .font(.headline)
+                    }
+                    
+                }
+                // .frame(width:100, height: 100)
+                 .background(Color("primary"))
+                 .cornerRadius(10)
+                 .padding(5)
+                 //
+                
+                 .frame(maxWidth:.infinity)
+                 .shadow(color: Color.black.opacity(0.1), radius: 4, x: 2, y: 3)
+            }
+            NavigationLink(destination: ListCreditCardView(), tag: 12, selection: self.$action) {
+                EmptyView()
+            }
+        }
+    }
+    
     var home:some View{
         ScrollView{
             VStack{
+               // self.pickerBank
                 HStack(spacing:10){
                     self.btnScan
                     self.btnPay
                     self.btnIngresar
+                    self.btnRegisterCard
                 }.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
                 
                 VStack{
@@ -352,10 +423,10 @@ struct HomeView: View {
                Button(action: {
                    self.action = 44
                }){
-                 Text("test1")
+                 //Text("test1")
                  }
                     
-                    NavigationLink(destination: TestView(), tag: 44, selection: self.$action) {
+                    NavigationLink(destination: DetalleTelefericoView(), tag: 44, selection: self.$action) {
                  EmptyView()
                  }
                     /* //modal test
@@ -367,9 +438,6 @@ struct HomeView: View {
                         TestModalView(modal: $modal)
                     }
                     */
-                
-                    
-                    
                  }
                 
                 Button("") {

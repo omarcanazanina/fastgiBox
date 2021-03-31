@@ -32,7 +32,9 @@ struct QrChargeView: View {
     //compartir img
     @State var items : [Any] = []
     @State var sheet = false
-    
+    @State var testImg: UIImage?
+    //
+   
     func generarQR(text: String) -> UIImage{
         let data = Data(text.utf8)
         filter.setValue(data, forKey: "inputMessage")
@@ -44,6 +46,8 @@ struct QrChargeView: View {
         }
         return UIImage(systemName: "xmark.circle") ?? UIImage()
     }
+    
+
     
     var imageProfile:some View {
         HStack(alignment: .center){
@@ -65,8 +69,10 @@ struct QrChargeView: View {
     var vista:some View {
         ScrollView{
             VStack{
+               
+                
                 self.imageProfile
-                if self.dataUserlog.nombres == Optional(""){
+                if self.dataUserlog.nombres == Optional("") || self.dataUserlog.nombres == nil{
                     Text("+591 \(self.dataUserlog.telefono)")
                         .font(.title)
                         .bold()
@@ -110,6 +116,8 @@ struct QrChargeView: View {
                     Text("\(self.monto) Bs.")
                         .font(.title)
                 }
+             
+                
             }
             .padding(30)
         }
@@ -140,6 +148,16 @@ struct QrChargeView: View {
                     .sheet(isPresented: $sheet, content: {
                         ShareSheet(items: items)
                     })
+                    /*Button(action: {
+                        self.testImg = self.vista.snapshot()
+                           self.showingSheet = true
+                       }) {
+                           Text("Share")
+                       }
+                       .sheet(isPresented: $showingSheet,
+                              content: {
+                                ActivityView(activityItems: [self.testImg as Any], applicationActivities: nil) })
+                    */
                    /* Button("Decargar") {
                         let image = self.vista.snapshot()
                         UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
@@ -162,6 +180,24 @@ struct QrChargeView: View {
     }
 }*/
 // share
+
+struct ActivityView: UIViewControllerRepresentable {
+
+    let activityItems: [Any]
+    let applicationActivities: [UIActivity]?
+
+    func makeUIViewController(context: UIViewControllerRepresentableContext<ActivityView>) -> UIActivityViewController {
+        return UIActivityViewController(activityItems: activityItems,
+                                        applicationActivities: applicationActivities)
+    }
+
+    func updateUIViewController(_ uiViewController: UIActivityViewController,
+                                context: UIViewControllerRepresentableContext<ActivityView>) {
+
+    }
+}
+
+
 struct ShareSheet : UIViewControllerRepresentable {
     var items : [Any]
     func makeUIViewController(context: Context) -> UIActivityViewController {

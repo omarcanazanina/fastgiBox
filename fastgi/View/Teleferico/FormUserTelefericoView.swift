@@ -1,13 +1,14 @@
 //
-//  FormUserDataView.swift
-//  fastgi
+//  FormUserTelefericoView.swift
+//  fastgi wallet
 //
-//  Created by Hegaro on 04/11/2020.
+//  Created by Hegaro on 30/03/2021.
 //
+
 
 import SwiftUI
 
-struct FormUserDataView: View {
+struct FormUserTelefericoView: View {
     var updateUser = UpdateUser()
     @State var text: String = ""
     @ObservedObject var login = Login()
@@ -39,26 +40,6 @@ struct FormUserDataView: View {
                     /*EntryField(sfSymbolName: "envelope", placeHolder: "Name", prompt: validationVM.namePrompt, field: .constant(self.userDataVM.user1.nombres))*/
                     Text("DATOS PERSONALES")
                         .textStyle(TitleStyle())
-                    
-                    Text("DOCUMENTO DE IDENTIDAD")
-                        .textStyle(TitleStyle())
-                    TextField("C.I.", text:  self.$userDataVM.user1.ci, onEditingChanged: { changed in self.AddSpace = false})
-                    .textFieldStyle(Input())
-                        .keyboardType(.numberPad)
-                        .introspectTextField { (textField) in
-                            let toolBar = UIToolbar(frame: CGRect(x: 0, y: 0, width: textField.frame.size.width, height: 44))
-                            let flexButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil)
-                            let doneButton = UIBarButtonItem(title: "Cerrar", style: .done, target: self, action: #selector(textField.doneButtonTapped(button:)))
-                         doneButton.tintColor = .darkGray
-                            toolBar.items = [flexButton, doneButton]
-                            toolBar.setItems([flexButton, doneButton], animated: true)
-                            textField.inputAccessoryView = toolBar
-                         }
-                    Text("CORREO ELECTRÓNICO")
-                        .textStyle(TitleStyle())
-                    TextField("user@email.com", text: self.$userDataVM.user1.correo, onEditingChanged: { changed in self.AddSpace = false})
-                    .textFieldStyle(Input())
-                        .keyboardType(.emailAddress)
                     Text("NOMBRES")
                         .textStyle(TitleStyle())
                     TextField("user name", text: self.$userDataVM.user1.nombres, onEditingChanged: { changed in self.AddSpace = false})
@@ -69,43 +50,27 @@ struct FormUserDataView: View {
                     TextField("user lastname", text: self.$userDataVM.user1.apellidos, onEditingChanged: { changed in self.AddSpace = false})
                     .textFieldStyle(Input())
                         .keyboardType(.alphabet)
+                    Text("NUMERO CELULAR")
+                        .textStyle(TitleStyle())
+                    TextField("phone", text: self.$userDataVM.user1.telefono, onEditingChanged: { changed in self.AddSpace = false})
+                    .textFieldStyle(Input())
+                        .keyboardType(.numberPad)
+                    
+                    Text("CORREO ELECTRÓNICO")
+                        .textStyle(TitleStyle())
+                    TextField("user@email.com", text: self.$userDataVM.user1.correo, onEditingChanged: { changed in self.AddSpace = false})
+                    .textFieldStyle(Input())
+                        .keyboardType(.emailAddress)
+                   
                 }
                 VStack(alignment: .leading, spacing: 8){
-                    Text("DIRECCIÓN")
-                        .textStyle(TitleStyle())
-                    TextField("user address", text: self.$userDataVM.user1.direccion, onEditingChanged: { changed in self.AddSpace = false})
-                    .textFieldStyle(Input())
-                        .keyboardType(.alphabet)
-                    Divider()
-                        .padding(.vertical)
-                    Text("DATOS DE FACTURACIÓN")
-                        .textStyle(TitleStyle())
-                    Text("NOMBRE")
-                        .textStyle(TitleStyle())
-                    TextField("Nombre", text: self.$userDataVM.user1.nombrenit, onEditingChanged: { changed in self.AddSpace = false})
-                        .textFieldStyle(Input())
-                        .keyboardType(.alphabet)
-                    //.onAppear(perform: {self.IsKeyboardUp(Is: false)})
-                    
                     Text("NIT")
                         .textStyle(TitleStyle())
-                    TextField("nit", text: self.$userDataVM.user1.nit, onEditingChanged: { changed in self.AddSpace = false})
-                        .textFieldStyle(Input())
+                    TextField("phone", text: self.$userDataVM.user1.nit, onEditingChanged: { changed in self.AddSpace = false})
+                    .textFieldStyle(Input())
                         .keyboardType(.numberPad)
-                        .introspectTextField { (textField) in
-                            let toolBar = UIToolbar(frame: CGRect(x: 0, y: 0, width: textField.frame.size.width, height: 44))
-                            let flexButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil)
-                            let doneButton = UIBarButtonItem(title: "Cerrar", style: .done, target: self, action: #selector(textField.doneButtonTapped(button:)))
-                         doneButton.tintColor = .darkGray
-                            toolBar.items = [flexButton, doneButton]
-                            toolBar.setItems([flexButton, doneButton], animated: true)
-                            textField.inputAccessoryView = toolBar
-                         }
-                    /*Spacer()
-                        .frame(height:80)*/
                 }
-              
-            
+               
         }
         .frame(maxWidth: .infinity, alignment: .leading)
         .padding([.top,.horizontal])
@@ -118,9 +83,9 @@ struct FormUserDataView: View {
     var buttonSuccess:some View {
         VStack(){
             Button(action: {
-                self.updateVM.updateUser(ci: self.userDataVM.user1.ci, correo: self.userDataVM.user1.correo, nombres: self.userDataVM.user1.nombres, apellidos: self.userDataVM.user1.apellidos, direccion: self.userDataVM.user1.direccion, nombrenit: self.userDataVM.user1.nombrenit, nit: self.userDataVM.user1.nit)
+                /*self.updateVM.updateUser(ci: self.userDataVM.user1.ci, correo: self.userDataVM.user1.correo, nombres: self.userDataVM.user1.nombres, apellidos: self.userDataVM.user1.apellidos, direccion: self.userDataVM.user1.direccion, nombrenit: self.userDataVM.user1.nombrenit, nit: self.userDataVM.user1.nit)
                 //self.authState.navigateBack = true
-                self.alertState = true
+                self.alertState = true*/
             }){
                 Text("Aceptar")
                     .foregroundColor(Color.white)
@@ -187,31 +152,6 @@ struct FormUserDataView: View {
         VStack(){
             self.infoUser
             self.buttonSuccess
-     //test validacion
-     /*   VStack{
-         
-           
-         
-            Form {
-           Text("DOCUMENTO DE IDENTIDAD")
-                    .textStyle(TitleStyle())
-                TextField("C.I.", text: self.$update.ci.bound, onEditingChanged: { changed in self.AddSpace = false})
-                .textFieldStyle(Input())
-                TextField("Correo", text: self.$update.correo.bound)
-                TextField("Nombres", text: self.$update.nombres.bound)
-                TextField("Apellidos", text: self.$update.apellidos.bound)
-                TextField("Direccion", text: self.$update.direccion.bound)
-                TextField("NombreNit", text: self.$update.nombrenit.bound)
-                TextField("Nit", text: self.$update.nit.bound)
-                BrokenRulesView(brokenRules: self.update.brokenRules)
-            }
-            
-        }
-        Button("Test Validation") {
-            self.update.validationInput()
-        }*/
-             //
-
         }
             
         .offset(y: -self.valueKeyboard)
@@ -228,8 +168,8 @@ struct FormUserDataView: View {
 }
 
 
-struct FormUserDataView_Previews: PreviewProvider {
+struct FormUserTelefericoView_Previews: PreviewProvider {
     static var previews: some View {
-        FormUserDataView()
+        FormUserTelefericoView()
     }
 }

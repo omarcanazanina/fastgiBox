@@ -6,10 +6,11 @@
 //
 
 import SwiftUI
-
+import UIKit
 struct TestView: View {
     var body: some View {
         Home()
+       
     }
 }
 
@@ -37,22 +38,66 @@ struct Home : View{
                 ShareSheet(items: items)
             })
             //opcion 2
-            Button(action: actionSheet) {
-                            Image(systemName: "square.and.arrow.up")
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .frame(width: 36, height: 36)
-                        }
-          
+            Button(action: {
+                // actionSheet
+                actionSheetTest(info: "jhbjh")
+            }) {
+                Image(systemName: "square.and.arrow.up")
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 36, height: 36)
+            }
+            
+            //opcion 3
+         
+            Button(action: {
+               
+            }) {
+                Text("prueba 3")
+            }
         }
     }
+    
+    func prueba3(){
+        let items = ["Mi_teleferico"]
+        let ac = UIActivityViewController(activityItems: items, applicationActivities: nil)
+      
+        ac.present(ac, animated: true)
+    }
+    
+   
+    
+    
+    
+    
     func actionSheet() {
            guard let urlShare = URL(string: "https://developer.apple.com/xcode/swiftui/") else { return }
            let activityVC = UIActivityViewController(activityItems: [urlShare], applicationActivities: nil)
            UIApplication.shared.windows.first?.rootViewController?.present(activityVC, animated: true, completion: nil)
        }
     
+    func actionSheetTest(info:Any) {
+        let infoU = info
+        let av = UIActivityViewController(activityItems: [infoU], applicationActivities: nil)
+           //guard let urlShare = URL(string: "https://developer.apple.com/xcode/swiftui/") else { return }
+           //let activityVC = UIActivityViewController(activityItems: [urlShare], applicationActivities: nil)
+           UIApplication.shared.windows.first?.rootViewController?.present(av, animated: true, completion: nil)
+        if UIDevice.current.userInterfaceIdiom == .pad{
+            av.popoverPresentationController?.sourceView = UIApplication.shared.windows.first
+            av.popoverPresentationController?.sourceRect = CGRect(x: UIScreen.main.bounds.width / 2.1, y: UIScreen.main.bounds.height / 1.3, width: 200, height: 200)
+        }
+       }
+    //
+    func opcion3(){
+        guard let image = UIImage(systemName: "bell"), let url = URL(string: "https://www/google.com")else {
+            return
+        }
+        let shareSheetVC = UIActivityViewController(activityItems: [image,url], applicationActivities: nil)
+            
+        //present(shareSheetVC, animated: true)
+    }
 }
+
 
 // share
 struct ShareSheet1 : UIViewControllerRepresentable {
@@ -67,4 +112,7 @@ struct ShareSheet1 : UIViewControllerRepresentable {
         
     }
 }
+
+
+
 

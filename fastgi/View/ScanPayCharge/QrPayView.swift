@@ -65,7 +65,7 @@ struct QrPayView: View {
         ScrollView{
             VStack{
                 self.imageProfile
-                if self.dataUserlog.nombres == Optional(""){
+                if self.dataUserlog.nombres == Optional("") || self.dataUserlog.nombres == nil{
                     Text("+591 \(self.dataUserlog.telefono)")
                         .font(.title)
                         .bold()

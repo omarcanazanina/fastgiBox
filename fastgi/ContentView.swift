@@ -6,21 +6,37 @@
 //
 
 import SwiftUI
-import SwiftUIRefresh
+
 
 struct ContentView: View {
     
-    @State private var isShowing = false
+    @State private var showingSheet = false
     var body: some View {
-        List {
-            Text("Item 1")
-            Text("Item 2")
-        }
-        .pullToRefresh(isShowing: $isShowing) {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                self.isShowing = false
-                print("cargo")
-            }
-        }
+        Button(action: {
+               self.showingSheet = true
+           }) {
+               Text("Share")
+           }
+           .sheet(isPresented: $showingSheet,
+                  content: {
+                    ActivityView(activityItems: [self.body.snapshot()] as [Any], applicationActivities: nil) })
+       }
     }
-}
+
+
+/*struct ActivityView: UIViewControllerRepresentable {
+
+    let activityItems: [Any]
+    let applicationActivities: [UIActivity]?
+
+    func makeUIViewController(context: UIViewControllerRepresentableContext<ActivityView>) -> UIActivityViewController {
+        return UIActivityViewController(activityItems: activityItems,
+                                        applicationActivities: applicationActivities)
+    }
+
+    func updateUIViewController(_ uiViewController: UIActivityViewController,
+                                context: UIViewControllerRepresentableContext<ActivityView>) {
+
+    }
+}*/
+

@@ -14,6 +14,11 @@ struct ChargeView: View {
     
     @State private var action:Int? = 0
     @Binding var montoCobroQR : String
+    //
+    @State var showingSheetBank = false
+    @State var bank: String = "Seleccionar"
+    @State private var showingSheet = false
+    
     var imageProfile:some View {
         HStack(alignment: .center){
                 WebImage(url: URL(string: "https://i.postimg.cc/8kJ4bSVQ/image.jpg" ))
@@ -32,6 +37,26 @@ struct ChargeView: View {
         }
         
     }
+    var pickerCard: some View{
+        Button(action: {
+            self.showingSheetBank.toggle()
+        }) {
+            HStack{
+                Text(self.bank)
+                Spacer()
+                Image(systemName: "arrowtriangle.down.fill")
+                    .font(.caption)
+                    .foregroundColor(Color("primary"))
+            }
+        }
+        .buttonStyle(PlainButtonStyle())
+        .sheet(isPresented: $showingSheetBank) {
+            ListCardsView(
+                showingSheet: self.$showingSheetBank,
+                card: self.$bank)
+        }
+    }
+    
     var buttonSuccess:some View {
         VStack(){
             Button(action: {
@@ -110,7 +135,11 @@ struct ChargeView: View {
                         }
                 }
               
-            }
+            }.padding()
+            Text("Tarjetas")
+                .textStyle(TitleStyle())
+            self.pickerCard
+            
             self.buttonSuccess
             
         }

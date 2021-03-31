@@ -31,6 +31,12 @@ struct MembershipView: View {
     
     //alert
     @State private var showingAlert = false
+    // compartir img
+    @State var items : [Any] = []
+    @State var sheet = false
+    //modal para el monto
+    @State var modal = false
+    @State var monto = ""
     
     init() {
         UISegmentedControl.appearance().selectedSegmentTintColor = UIColorPrimary()
@@ -119,24 +125,45 @@ struct MembershipView: View {
                             Text("\(self.userDataVM.user1.nombres) \(self.userDataVM.user1.apellidos)")
                                 .bold()
                         }
-                        //barcode
-                        CBBarcodeView(data: .constant(self.userDataVM.user1._id) ,
-                                      barcodeType: $barcodeType,
-                                      orientation: $rotate)
-                        { image in
-                            self.barcodeImage = image
-                        }.frame(minWidth: 0, maxWidth: .infinity, minHeight: 100, maxHeight: 100, alignment: .topLeading)
-                        
-                        Image(uiImage: generarQR(text: self.userDataVM.user1._id))
-                            .interpolation(.none)
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 300, height: 300)
+                        if self.monto == ""{
+                            //barcode
+                            CBBarcodeView(data: .constant(self.userDataVM.user1._id) ,
+                                          barcodeType: $barcodeType,
+                                          orientation: $rotate)
+                            { image in
+                                self.barcodeImage = image
+                            }.frame(minWidth: 0, maxWidth: .infinity, minHeight: 100, maxHeight: 100, alignment: .topLeading)
+                            
+                            Image(uiImage: generarQR(text: self.userDataVM.user1._id))
+                                .interpolation(.none)
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 300, height: 300)
+                        }else{
+                            //barcode
+                            CBBarcodeView(data: .constant("\(self.userDataVM.user1._id)\(self.monto)") ,
+                                          barcodeType: $barcodeType,
+                                          orientation: $rotate)
+                            { image in
+                                self.barcodeImage = image
+                            }.frame(minWidth: 0, maxWidth: .infinity, minHeight: 100, maxHeight: 100, alignment: .topLeading)
+                            
+                            Image(uiImage: generarQR(text: "\(self.userDataVM.user1._id)\(self.monto)"))
+                                .interpolation(.none)
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 300, height: 300)
+                        }
+                        if self.monto != ""{
+                            Text("\(self.monto) Bs.")
+                                .font(.title)
+                        }
                         Text("su afiliación ya fue aprobada")
                     }
             }.padding(30)
         }
     }
+    
     var body: some View {
         ScrollView{
             HStack{
@@ -146,34 +173,29 @@ struct MembershipView: View {
                     Text("afiliación en progreso")
                 }else if self.afiliacionVM.afiliacionHabilitacion.habilitado == true{
                     VStack{
-                        self.imageProfile
-                        if self.userDataVM.user1.nombres == Optional(""){
-                            Text("+591 \(self.userDataVM.user1.telefono)")
-                                .bold()
-                        }else{
-                            Text("\(self.userDataVM.user1.nombres) \(self.userDataVM.user1.apellidos)")
-                                .bold()
+                        self.vista
+                        HStack{
+                            Button("Monto") {
+                                self.modal.toggle()
+                            }.buttonStyle(PrimaryButtonOutlineStyle())
+                            .sheet(isPresented: $modal) {
+                                EnterAmountView(modal: self.$modal, monto: self.$monto)
+                            }
+                            
+                            Button(action: {
+                                items.removeAll()
+                                items.append(self.vista.snapshot())
+                                //items.append(UIImage(named: self.imageShare)!)
+                                sheet.toggle()
+                            }){
+                                Text("Compartir")
+                            }.buttonStyle(PrimaryButtonOutlineStyle())
+                            .sheet(isPresented: $sheet, content: {
+                                ShareSheet(items: items)
+                            })
                         }
-                        //barcode
-                        CBBarcodeView(data: .constant(self.userDataVM.user1._id) ,
-                                      barcodeType: $barcodeType,
-                                      orientation: $rotate)
-                        { image in
-                            self.barcodeImage = image
-                        }.frame(minWidth: 0, maxWidth: .infinity, minHeight: 100, maxHeight: 100, alignment: .topLeading)
-                        
-                        Image(uiImage: generarQR(text: self.userDataVM.user1._id))
-                            .interpolation(.none)
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 300, height: 300)
-                        Text("su afiliación ya fue aprobada")
-                        Button("Decargar") {
-                            let image = self.vista.snapshot()
-                            UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
-                            showingAlert = true
-                        }.buttonStyle(PrimaryButtonOutlineStyle())
                     }
+                    
                 }
                 
             }

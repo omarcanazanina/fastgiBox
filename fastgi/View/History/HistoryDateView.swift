@@ -11,15 +11,21 @@ struct HistoryDateView: View {
     @State private var fechaInicial = Date()
     @State private var fechaFinal = Date()
     var body: some View {
-        DatePicker("Fecha inicial", selection: $fechaInicial, in: ...Date(), displayedComponents: .date)
-        DatePicker("Fecha final", selection: $fechaFinal, in: ...Date(), displayedComponents: .date)
-        Button(action: {
-           // self.action = 5
-            print(self.fechaInicial)
-            print(self.fechaFinal)
-        }){
-            Text("Consultar")
-        }.buttonStyle(PrimaryButtonOutlineStyle())
+        Form{
+            DatePicker("Fecha inicial", selection: $fechaInicial, in: ...Date(), displayedComponents: .date)
+            DatePicker("Fecha final", selection: $fechaFinal, in: ...Date(), displayedComponents: .date)
+            
+            Button(action: {
+               // self.action = 5
+                print(self.fechaInicial)
+                print(self.fechaFinal)
+            }){
+                Text("Consultar")
+            }.buttonStyle(PrimaryButtonOutlineStyle())
+        }
+        
+        
+       
     }
 }
 

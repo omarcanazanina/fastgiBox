@@ -64,7 +64,14 @@ struct PayView: View {
                 }*/
                 
                 //
-                self.qrPaymentVM.pagoQr(id_cobrador: self.user._id, monto: self.monto)
+                if self.montoQR == "" {
+                    self.qrPaymentVM.pagoQr(id_cobrador: self.user._id, monto: self.monto)
+                }else{
+                    self.qrPaymentVM.pagoQr(id_cobrador: self.user._id, monto: self.montoQR)
+                }
+                print("este es el id cobrador \(self.user._id)")
+                print("el monto \(self.monto)")
+                print("el montoqr \(self.montoQR)")
                 self.action = 1
             }){
                 Text("Pagar")
@@ -91,11 +98,11 @@ struct PayView: View {
                 }
             }else{
                 if self.userDataVM.user.nombres == Optional(""){
-                    NavigationLink(destination: TestpayDetail(monto: self.monto, nombreCobrador: "\(self.user.nombres) \(self.user.apellidos)", fecha: "", nombreUser: "+591 \(self.userDataVM.user.telefono)",fechaFormat: "", horaFormat: ""), tag: 1, selection: self.$action) {
+                    NavigationLink(destination: TestpayDetail(monto: self.montoQR, nombreCobrador: "\(self.user.nombres) \(self.user.apellidos)", fecha: "", nombreUser: "+591 \(self.userDataVM.user.telefono)",fechaFormat: "", horaFormat: ""), tag: 1, selection: self.$action) {
                         EmptyView()
                     }
                 }else{
-                    NavigationLink(destination: TestpayDetail(monto: self.monto, nombreCobrador: "\(self.user.nombres) \(self.user.apellidos)", fecha: "", nombreUser: "\(self.userDataVM.user.nombres ?? "") \(self.userDataVM.user.apellidos ?? "")",fechaFormat: "", horaFormat: ""), tag: 1, selection: self.$action) {
+                    NavigationLink(destination: TestpayDetail(monto: self.montoQR, nombreCobrador: "\(self.user.nombres) \(self.user.apellidos)", fecha: "", nombreUser: "\(self.userDataVM.user.nombres ?? "") \(self.userDataVM.user.apellidos ?? "")",fechaFormat: "", horaFormat: ""), tag: 1, selection: self.$action) {
                         EmptyView()
                     }
                 }
@@ -154,7 +161,7 @@ struct PayView: View {
                              }
                     }
                     
-                }
+                }.padding()
                 self.buttonSuccess
                 VStack{
                     Button(action: {

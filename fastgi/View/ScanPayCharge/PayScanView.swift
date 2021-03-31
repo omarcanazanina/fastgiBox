@@ -15,6 +15,11 @@ struct PayScanView: View {
     //
     @Binding var montoPagoQR : String
     @State private var action:Int? = 0
+    //
+    //
+    @State var showingSheetBank = false
+    @State var bank: String = "Seleccionar"
+    @State private var showingSheet = false
     var imageProfile:some View {
         HStack(alignment: .center){
                 WebImage(url: URL(string: "https://i.postimg.cc/8kJ4bSVQ/image.jpg" ))
@@ -64,6 +69,26 @@ struct PayScanView: View {
       
         
     }
+    var pickerCard: some View{
+        Button(action: {
+            self.showingSheetBank.toggle()
+        }) {
+            HStack{
+                Text(self.bank)
+                Spacer()
+                Image(systemName: "arrowtriangle.down.fill")
+                    .font(.caption)
+                    .foregroundColor(Color("primary"))
+            }
+        }
+        .buttonStyle(PlainButtonStyle())
+        .sheet(isPresented: $showingSheetBank) {
+            ListCardsView(
+                showingSheet: self.$showingSheetBank,
+                card: self.$bank)
+        }
+    }
+    
     
     
     var pay: some View {
@@ -110,7 +135,12 @@ struct PayScanView: View {
                         }
                 }
               
-            }
+            }.padding()
+            Text("Tarjetas")
+                .textStyle(TitleStyle())
+            self.pickerCard
+            
+            
             self.buttonSuccess
             
         }

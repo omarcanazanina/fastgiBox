@@ -31,6 +31,10 @@
 		9284925C2603E7E2002CA258 /* DownloadQr.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9284925B2603E7E2002CA258 /* DownloadQr.swift */; };
 		92900DDD25C9A9280009B8F6 /* NewHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92900DDC25C9A9280009B8F6 /* NewHomeView.swift */; };
 		9290C1BB257AFFB000504158 /* TestpayDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9290C1BA257AFFB000504158 /* TestpayDetail.swift */; };
+		9295E7902612804600312054 /* QrTelefericoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9295E78F2612804600312054 /* QrTelefericoView.swift */; };
+		9295E7992613768A00312054 /* DetalleTelefericoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9295E7982613768A00312054 /* DetalleTelefericoView.swift */; };
+		9295E79D2613ABB900312054 /* FormUserTelefericoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9295E79C2613ABB900312054 /* FormUserTelefericoView.swift */; };
+		9295E7A02613C4F300312054 /* ListCardsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9295E79F2613C4F300312054 /* ListCardsView.swift */; };
 		929B4F5B260B94D40048B766 /* DayRangeIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929B4F5A260B94D40048B766 /* DayRangeIndicatorView.swift */; };
 		929B4F5F260BD6430048B766 /* TestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929B4F5E260BD6430048B766 /* TestView.swift */; };
 		929B4F63260BE5A70048B766 /* HistoryDateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929B4F62260BE5A70048B766 /* HistoryDateView.swift */; };
@@ -100,6 +104,8 @@
 		92A3BB0425536DB100DF3707 /* Optional+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A3BB0325536DB100DF3707 /* Optional+Extensions.swift */; };
 		92A3BB0725536DCD00DF3707 /* Validation+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A3BB0625536DCD00DF3707 /* Validation+Extensions.swift */; };
 		92A3BB0A25536DE600DF3707 /* BrokenRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A3BB0925536DE600DF3707 /* BrokenRule.swift */; };
+		92AA7BF5260E697D006CA008 /* Test2View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92AA7BF4260E697D006CA008 /* Test2View.swift */; };
+		92AA7BF9260E7250006CA008 /* ValidationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92AA7BF8260E7250006CA008 /* ValidationViewModel.swift */; };
 		92AB8CF22579B6C4006F0FA7 /* QrPayment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92AB8CF12579B6C4006F0FA7 /* QrPayment.swift */; };
 		92AB8CF52579B779006F0FA7 /* QrPaymentResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92AB8CF42579B779006F0FA7 /* QrPaymentResponse.swift */; };
 		92AB8CF82579B7F4006F0FA7 /* QrPaymentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92AB8CF72579B7F4006F0FA7 /* QrPaymentModel.swift */; };
@@ -146,6 +152,10 @@
 		9284925B2603E7E2002CA258 /* DownloadQr.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadQr.swift; sourceTree = "<group>"; };
 		92900DDC25C9A9280009B8F6 /* NewHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewHomeView.swift; sourceTree = "<group>"; };
 		9290C1BA257AFFB000504158 /* TestpayDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestpayDetail.swift; sourceTree = "<group>"; };
+		9295E78F2612804600312054 /* QrTelefericoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QrTelefericoView.swift; sourceTree = "<group>"; };
+		9295E7982613768A00312054 /* DetalleTelefericoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetalleTelefericoView.swift; sourceTree = "<group>"; };
+		9295E79C2613ABB900312054 /* FormUserTelefericoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormUserTelefericoView.swift; sourceTree = "<group>"; };
+		9295E79F2613C4F300312054 /* ListCardsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCardsView.swift; sourceTree = "<group>"; };
 		929B4F5A260B94D40048B766 /* DayRangeIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayRangeIndicatorView.swift; sourceTree = "<group>"; };
 		929B4F5E260BD6430048B766 /* TestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestView.swift; sourceTree = "<group>"; };
 		929B4F62260BE5A70048B766 /* HistoryDateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryDateView.swift; sourceTree = "<group>"; };
@@ -216,6 +226,8 @@
 		92A3BB0325536DB100DF3707 /* Optional+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Optional+Extensions.swift"; sourceTree = "<group>"; };
 		92A3BB0625536DCD00DF3707 /* Validation+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Validation+Extensions.swift"; sourceTree = "<group>"; };
 		92A3BB0925536DE600DF3707 /* BrokenRule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrokenRule.swift; sourceTree = "<group>"; };
+		92AA7BF4260E697D006CA008 /* Test2View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Test2View.swift; sourceTree = "<group>"; };
+		92AA7BF8260E7250006CA008 /* ValidationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidationViewModel.swift; sourceTree = "<group>"; };
 		92AB8CF12579B6C4006F0FA7 /* QrPayment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QrPayment.swift; sourceTree = "<group>"; };
 		92AB8CF42579B779006F0FA7 /* QrPaymentResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QrPaymentResponse.swift; sourceTree = "<group>"; };
 		92AB8CF72579B7F4006F0FA7 /* QrPaymentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QrPaymentModel.swift; sourceTree = "<group>"; };
@@ -287,6 +299,17 @@
 				9240083226015B0400B75AE3 /* TransactionDetailChargePayView.swift */,
 			);
 			path = ScanPayCharge;
+			sourceTree = "<group>";
+		};
+		9295E78E26127FFE00312054 /* Teleferico */ = {
+			isa = PBXGroup;
+			children = (
+				9295E78F2612804600312054 /* QrTelefericoView.swift */,
+				9295E7982613768A00312054 /* DetalleTelefericoView.swift */,
+				9295E79C2613ABB900312054 /* FormUserTelefericoView.swift */,
+				9295E79F2613C4F300312054 /* ListCardsView.swift */,
+			);
+			path = Teleferico;
 			sourceTree = "<group>";
 		};
 		92A3BA182553616F00DF3707 = {
@@ -393,6 +416,7 @@
 				927D1DA325785DF700A97455 /* UserDataViewModel.swift */,
 				92AB8CFA2579B9E1006F0FA7 /* QrPaymentViewModel.swift */,
 				925F072A2580372B00153B5A /* AfiliacionViewModel.swift */,
+				92AA7BF8260E7250006CA008 /* ValidationViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -431,6 +455,7 @@
 		92A3BA9D2553675C00DF3707 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				9295E78E26127FFE00312054 /* Teleferico */,
 				924008212601535600B75AE3 /* ScanPayCharge */,
 				9224FE5E256DE2E500F79FA4 /* QrPayment */,
 				92A3BABC255368DD00DF3707 /* History */,
@@ -478,6 +503,7 @@
 				9202E996255DF485009115ED /* test.swift */,
 				929B4F5A260B94D40048B766 /* DayRangeIndicatorView.swift */,
 				929B4F5E260BD6430048B766 /* TestView.swift */,
+				92AA7BF4260E697D006CA008 /* Test2View.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -723,6 +749,7 @@
 				92A3BA252553616F00DF3707 /* AppDelegate.swift in Sources */,
 				92A3BA822553661600DF3707 /* UpdateUserModel.swift in Sources */,
 				9202E994255DF196009115ED /* WelcomeTermsAndConditionsView.swift in Sources */,
+				9295E7902612804600312054 /* QrTelefericoView.swift in Sources */,
 				92F43D8425FC1667009D58AD /* TestModalView.swift in Sources */,
 				92A3BACB2553698200DF3707 /* SearchBar.swift in Sources */,
 				92A3BAB32553687000DF3707 /* FormUserDataView.swift in Sources */,
@@ -752,6 +779,7 @@
 				C0F0CF5C258037E000959338 /* ListCITypeView.swift in Sources */,
 				92A3BA45255362C500DF3707 /* ImagePicker.swift in Sources */,
 				92A3BA58255363D800DF3707 /* Contacts.swift in Sources */,
+				92AA7BF5260E697D006CA008 /* Test2View.swift in Sources */,
 				92A3BA882553664700DF3707 /* UsuarioModel.swift in Sources */,
 				92A3BAC22553692E00DF3707 /* FormCreditCardView.swift in Sources */,
 				92A3BA712553655500DF3707 /* LoginViewModel.swift in Sources */,
@@ -767,13 +795,16 @@
 				92A3BA7C255365E000DF3707 /* ContactsModel.swift in Sources */,
 				C05413E525783C2F000343EB /* TestWizardView.swift in Sources */,
 				92A3BADD25536A5600DF3707 /* CardServiceView.swift in Sources */,
+				9295E7992613768A00312054 /* DetalleTelefericoView.swift in Sources */,
 				925F07282580323000153B5A /* Afiliacion.swift in Sources */,
 				92A3BAA3255367C600DF3707 /* BrokenRulesView.swift in Sources */,
 				92A3BA512553638700DF3707 /* ImageAvatar.swift in Sources */,
 				92A3BA5B2553641100DF3707 /* Recargas.swift in Sources */,
 				9271EF1D258D4DC8009659F4 /* AffiliateResponse.swift in Sources */,
 				92A3BAF025536B1E00DF3707 /* ContentButtonsView.swift in Sources */,
+				9295E79D2613ABB900312054 /* FormUserTelefericoView.swift in Sources */,
 				92A3BA4D2553635F00DF3707 /* AuthState.swift in Sources */,
+				92AA7BF9260E7250006CA008 /* ValidationViewModel.swift in Sources */,
 				92A3BA6B255364F900DF3707 /* ImportContactsViewModel.swift in Sources */,
 				92A3BA982553671200DF3707 /* SmsResponse.swift in Sources */,
 				927D1DA425785DF700A97455 /* UserDataViewModel.swift in Sources */,
@@ -799,6 +830,7 @@
 				92A3BAAA2553682400DF3707 /* FormLoadCreditView.swift in Sources */,
 				92064B8E25706ABA00D84932 /* PayView.swift in Sources */,
 				92A3BAA02553678900DF3707 /* CodeView.swift in Sources */,
+				9295E7A02613C4F300312054 /* ListCardsView.swift in Sources */,
 				92A3BAFB25536CEC00DF3707 /* Styles.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -950,7 +982,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.5;
+				MARKETING_VERSION = 1.1.7;
 				PRODUCT_BUNDLE_IDENTIFIER = com.hegaro.fastgi;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -976,7 +1008,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.5;
+				MARKETING_VERSION = 1.1.7;
 				PRODUCT_BUNDLE_IDENTIFIER = com.hegaro.fastgi;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
