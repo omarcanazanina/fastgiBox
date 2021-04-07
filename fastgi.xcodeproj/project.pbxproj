@@ -13,6 +13,7 @@
 		92064B8E25706ABA00D84932 /* PayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92064B8D25706ABA00D84932 /* PayView.swift */; };
 		9208DE4B256EFB4A00EA9C23 /* RegistrationFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9208DE4A256EFB4A00EA9C23 /* RegistrationFormView.swift */; };
 		9224FE6A256DE45F00F79FA4 /* MembershipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9224FE69256DE45F00F79FA4 /* MembershipView.swift */; };
+		92266A3026150E6600CDE792 /* FormLoadBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92266A2F26150E6600CDE792 /* FormLoadBoxView.swift */; };
 		92278A5F2556186E00D746EA /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92278A5E2556186E00D746EA /* Helper.swift */; };
 		923AE28825CAF3A30015ECA8 /* QrChargeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 923AE28725CAF3A30015ECA8 /* QrChargeView.swift */; };
 		9240081F26014DFE00B75AE3 /* PayScanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9240081E26014DFE00B75AE3 /* PayScanView.swift */; };
@@ -136,6 +137,7 @@
 		92064B8D25706ABA00D84932 /* PayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayView.swift; sourceTree = "<group>"; };
 		9208DE4A256EFB4A00EA9C23 /* RegistrationFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationFormView.swift; sourceTree = "<group>"; };
 		9224FE69256DE45F00F79FA4 /* MembershipView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MembershipView.swift; sourceTree = "<group>"; };
+		92266A2F26150E6600CDE792 /* FormLoadBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormLoadBoxView.swift; sourceTree = "<group>"; };
 		92278A5E2556186E00D746EA /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		923AE28725CAF3A30015ECA8 /* QrChargeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QrChargeView.swift; sourceTree = "<group>"; };
 		9240081E26014DFE00B75AE3 /* PayScanView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayScanView.swift; sourceTree = "<group>"; };
@@ -288,6 +290,14 @@
 				92F43D8325FC1667009D58AD /* TestModalView.swift */,
 			);
 			path = QrPayment;
+			sourceTree = "<group>";
+		};
+		92266A2E26150DF100CDE792 /* InternalBox */ = {
+			isa = PBXGroup;
+			children = (
+				92266A2F26150E6600CDE792 /* FormLoadBoxView.swift */,
+			);
+			path = InternalBox;
 			sourceTree = "<group>";
 		};
 		924008212601535600B75AE3 /* ScanPayCharge */ = {
@@ -455,6 +465,7 @@
 		92A3BA9D2553675C00DF3707 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				92266A2E26150DF100CDE792 /* InternalBox */,
 				9295E78E26127FFE00312054 /* Teleferico */,
 				924008212601535600B75AE3 /* ScanPayCharge */,
 				9224FE5E256DE2E500F79FA4 /* QrPayment */,
@@ -809,6 +820,7 @@
 				92A3BA982553671200DF3707 /* SmsResponse.swift in Sources */,
 				927D1DA425785DF700A97455 /* UserDataViewModel.swift in Sources */,
 				924008242601548A00B75AE3 /* QrPayView.swift in Sources */,
+				92266A3026150E6600CDE792 /* FormLoadBoxView.swift in Sources */,
 				92A3BAE325536A9500DF3707 /* TabsView.swift in Sources */,
 				92A3BB0A25536DE600DF3707 /* BrokenRule.swift in Sources */,
 				92A3BAE925536ACD00DF3707 /* ListAreaCodeView.swift in Sources */,
@@ -982,7 +994,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.7;
+				MARKETING_VERSION = 1.1.9;
 				PRODUCT_BUNDLE_IDENTIFIER = com.hegaro.fastgi;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -1008,7 +1020,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.7;
+				MARKETING_VERSION = 1.1.9;
 				PRODUCT_BUNDLE_IDENTIFIER = com.hegaro.fastgi;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

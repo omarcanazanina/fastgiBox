@@ -46,9 +46,8 @@ struct HomeView: View {
     // compartir img
     @State var items : [Any] = []
     @State var sheet = false
-    //
-    @State var showingSheetBank = false
-    @State var bank: String = "Seleccionar"
+  
+   
     init(currentBtnEm: Binding<BtnEm>) {
         self._currentBtnEm = currentBtnEm
         //Config for NavigationBar Transparent
@@ -66,7 +65,7 @@ struct HomeView: View {
                 self.action = 99
             }){
                 VStack{
-                    Image("Mi_teleferico")
+                    Image("Teleferico")
                         .resizable()
                         .frame(width:80, height: 80)
                         .padding(10)
@@ -76,7 +75,7 @@ struct HomeView: View {
                 .frame(maxWidth:.infinity)
                 .shadow(color: Color.black.opacity(0.1), radius: 4, x: 2, y: 3)
             }
-            NavigationLink(destination: QrTelefericoView(dataUserlog: self.userDataVM.user, monto: ""), tag: 99, selection: self.$action) {
+            NavigationLink(destination: QrTelefericoView(dataUserlog: self.userDataVM.user), tag: 99, selection: self.$action) {
                 EmptyView()
             }
         }
@@ -263,26 +262,7 @@ struct HomeView: View {
         }
     }
     
-    var pickerBank: some View{
-        Button(action: {
-            self.showingSheetBank.toggle()
-        }) {
-            HStack{
-                Text(self.bank)
-                Spacer()
-                Image(systemName: "arrowtriangle.down.fill")
-                    .font(.caption)
-                    .foregroundColor(Color("primary"))
-            }
-        }
-        .buttonStyle(PlainButtonStyle())
-        .sheet(isPresented: $showingSheetBank) {
-            ListCardsView(
-                showingSheet: self.$showingSheetBank,
-                card: self.$bank)
-        }
-    }
-    
+   
     
     var btnPay:some View{
         HStack{
@@ -391,7 +371,7 @@ struct HomeView: View {
                     self.btnScan
                     self.btnPay
                     self.btnIngresar
-                    self.btnRegisterCard
+                    //self.btnRegisterCard
                 }.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
                 
                 VStack{
@@ -469,15 +449,15 @@ struct HomeView: View {
            
             
            // Text(self.resultadosScan)
-           /* Button(action: {
+            Button(action: {
                 self.action = 15
             }){
-                Text("test3")
+                Text("Caja")
             }
             
-            NavigationLink(destination: TransactionDetailChargePayView(fecha: "", hora: "", empresa: "", phone: "", monto: "", control: 1, fechaFormat: "", horaFormat: "") , tag: 15, selection: self.$action) {
+            NavigationLink(destination: FormLoadBoxView(MontoRecarga1: .Btn30) , tag: 15, selection: self.$action) {
          EmptyView()
-         }*/
+         }
         }
     }
     

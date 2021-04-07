@@ -143,6 +143,18 @@ struct TransactionDetailView: View {
                     }
                 }
                 HStack{
+                    Text("NÚMERO")
+                        .foregroundColor(Color("primary"))
+                        .bold()
+                        .textStyle(TitleStyle())
+                        .frame(maxWidth: .infinity, alignment: .trailing)
+                    
+                    Text("+591 \(self.phone) ")
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                    
+                }
+                
+                HStack{
                     Text("ABONADO")
                         .foregroundColor(Color("primary"))
                         .bold()
@@ -172,7 +184,7 @@ struct TransactionDetailView: View {
                         .textStyle(TitleStyle())
                         .frame(maxWidth: .infinity, alignment: .trailing)
                     
-                    Text("\(self.monto).00 Bs.")
+                    Text("\(self.monto).00 Bs. \(self.userDataVM.user.nombres ?? "")")
                         .foregroundColor(.black)
                         .frame(maxWidth: .infinity, alignment: .leading)
                 }

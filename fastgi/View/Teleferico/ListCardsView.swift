@@ -14,40 +14,35 @@ struct ListCardsView: View {
         List{
             Button(action: {
                 self.showingSheet = false
-                self.card = "Caja"
+                self.card = "* * * * 4 4 5 4"
             })
             {
                 HStack(){
-                    Text("🏦 Caja")
+                    Text("💳 * * * * 4 4 5 4")
                 }
             }
             Button(action: {
                 self.showingSheet = false
-                self.card = "********3242"
+                self.card = "* * * * 2 4 6 2"
             })
             {
                 HStack(){
-                    Text("🏦 ********3242")
+                    Text("💳 * * * * 2 4 6 2")
                 }
             }
             Button(action: {
                 self.showingSheet = false
-                self.card = "********4566"
+                self.card = "* * * * 2 6 2 7"
             })
             {
                 HStack(){
-                    Text("🏦 ********4566")
+                    Text("💳 * * * * 2 6 2 7")
                 }
             }
     
-            Button(action: {
-                self.showingSheet = false
-                self.card = "********3344"
-            })
-            {
-                HStack(){
-                    Text("🏦 ********3344")
-                }
+            NavigationLink(destination: FormCreditCardView()) {
+             Text("+ Agregar tarjeta")
+                 .foregroundColor(Color("primary"))
             }
             
         }

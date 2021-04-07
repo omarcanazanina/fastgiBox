@@ -13,105 +13,58 @@ import SDWebImageSwiftUI
 import CarBode
 
 struct QrTelefericoView: View {
-    //datos user
-    @ObservedObject var userDataVM = UserDataViewModel()
-    
-    let context = CIContext()
-    let filter = CIFilter.qrCodeGenerator()
-    
-    var showBtn: Bool? = true
-    var nombreUser : String = ""
     var dataUserlog: UserModel
     @State private var action:Int? = 0
-    //modal
-    @State var modal = false
-    @State var monto = ""
-    //barcode generator
-    @State var dataString : String = ""
-    @State var barcodeType = CBBarcodeView.BarcodeType.barcode128
-    @State var rotate = CBBarcodeView.Orientation.up
-    @State var barcodeImage: UIImage?
-    
-    // compartir img
-    @State var items : [Any] = []
-    @State var sheet = false
-    
-    
-    //funcion generar QR
-    func generarQR(text: String) -> UIImage{
-        let data = Data(text.utf8)
-        filter.setValue(data, forKey: "inputMessage")
-        
-        if let outputImage = filter.outputImage {
-            if let img = context.createCGImage(outputImage, from: outputImage.extent){
-                return UIImage(cgImage:img).resized(toWidth: 512) ?? UIImage()
-            }
-        }
-        return UIImage(systemName: "xmark.circle") ?? UIImage()
-    }
-    
-    
-    
+    //
+    @State var showingSheetBank = false
+    @State var card: String = "* * * *  3 4 5 6"
+    @State private var showingSheet = false
     
     var imageProfile:some View {
         VStack{
-            Image("Mi_teleferico")
+            Image("Teleferico")
                 .resizable()
                 .frame(width:80, height: 80)
                 .padding(10)
         }
-       
     }
     
-    
-    var vista: some View {
+    var pickerCard: some View{
         VStack{
-            /*self.imageProfile
-            if self.dataUserlog.nombres == Optional(""){
-                Text("+591 \(self.dataUserlog.telefono)")
-                    .font(.title)
-                    .bold()
-            }else{
-                Text("\(self.dataUserlog.nombres ?? "") \(self.dataUserlog.apellidos ?? "")")
-                    .font(.title)
-                    .bold()
-                /* Text(nombreUser)
-                 .font(.title)
-                 .bold()*/
-            }*/
-            Text("Mi FastgiQr")
-            // if self.user.score == 0 {
-            if self.monto == "" {
-                
-                Image(uiImage: generarQR(text: self.dataUserlog._id))
-                    .interpolation(.none)
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 300, height: 300)
-                
-                
-            }else {
-                //qr
-                Image(uiImage: generarQR(text: "\(self.dataUserlog._id)\(self.monto)"))//self.user.score
-                    .interpolation(.none)
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 300, height: 300)
+            Text("")
+            Button(action: {
+                self.showingSheetBank.toggle()
+            }) {
+                HStack{
+                    Text(self.card)
+                        .padding(.trailing)
+                        .frame(maxWidth:.infinity, alignment: .trailing)
+                    Spacer()
+                    Image(systemName: "arrowtriangle.down.fill")
+                        .font(.caption)
+                        .foregroundColor(Color("primary"))
+                }
             }
-            
-            
-            if self.monto != ""{
-                Text("\(self.monto) Bs.")
-                    .font(.title)
+            .buttonStyle(PlainButtonStyle())
+            .sheet(isPresented: $showingSheetBank) {
+                ListCardsView(
+                    showingSheet: self.$showingSheetBank,
+                    card: self.$card)
             }
         }
     }
     
-
-    
     var body: some View {
         ScrollView{
-            self.vista
+           // self.vista
+            VStack{
+                Text("")
+                Text("")
+                Image("Qr")
+                Text("")
+                Text("")
+                Text("")
+            }
             VStack{
                 HStack{
                     Text("NOMBRES")
@@ -125,11 +78,9 @@ struct QrTelefericoView: View {
                     }){
                         Image(systemName: "person.fill")
                             .font(.caption)
-                            //.resizable()
-                            //.frame(width: 100, height: 200)
                     }
-                    
                 }
+                Text("")
                 HStack{
                     Text("NUMERO CELULAR")
                         .textStyle(TitleStyle())
@@ -141,10 +92,9 @@ struct QrTelefericoView: View {
                     }){
                         Image(systemName: "phone.fill")
                             .font(.caption)
-                            //.resizable()
-                            //.frame(width: 100, height: 200)
                     }
                 }
+                Text("")
                 HStack{
                     Text("CORREO ELECTRÓNICO")
                         .textStyle(TitleStyle())
@@ -157,13 +107,11 @@ struct QrTelefericoView: View {
                     }){
                         Image(systemName: "envelope.fill")
                             .font(.caption)
-                            //.resizable()
-                            //.frame(width: 100, height: 200)
                     }
                 }
-              
+                Text("")
                 HStack{
-                    Text("NIT")
+                    Text("NIT/CI")
                         .textStyle(TitleStyle())
                     Text("\(self.dataUserlog.nit ?? "")")
                         //Text(self.loginVM.user.apellidos)
@@ -174,17 +122,29 @@ struct QrTelefericoView: View {
                     }){
                         Image(systemName: "person.crop.circle.fill")
                             .font(.caption)
-                            //.resizable()
-                            //.frame(width: 100, height: 200)
                     }
+                   
                 }
+                HStack{
+                    Text("TARJETA")
+                        .textStyle(TitleStyle())
+                    self.pickerCard
+                }
+                
                 self.imageProfile
                 HStack{
                     Button(action: {
                         self.action = 2
                     }) {
                             Text("Aceptar")
-                    }.buttonStyle(PrimaryButtonOutlineStyle())
+                                .foregroundColor(Color.white)
+                                .frame(maxWidth:.infinity)
+                                .padding(8)
+                                .background(Color("primary"))
+                                .clipShape(Capsule())
+                                .shadow(color: Color.black.opacity(0.1), radius: 4, x: 2, y: 3)
+                                .padding()
+                    }
                 }
              
                 
@@ -195,31 +155,6 @@ struct QrTelefericoView: View {
             NavigationLink(destination: DetalleTelefericoView(), tag: 2, selection: self.$action) {
                 EmptyView()
             }
-               /* HStack {
-                    Button(action: {
-                        self.modal.toggle()
-                    })
-                    {
-                        Text("Monto")
-                    }.buttonStyle(PrimaryButtonOutlineStyle())
-                    .sheet(isPresented: $modal) {
-                        EnterAmountView(modal: self.$modal, monto: self.$monto)
-                    }
-                    // if self.showBtn! {
-                    Button(action: {
-                        //self.exportToPDF(nombreUser_: "\(self.dataUserlog.nombres ?? "") \(self.dataUserlog.apellidos ?? "")", showBtn_: false, monto_: self.monto)
-                        items.removeAll()
-                        items.append(self.vista.snapshot())
-                        //items.append(UIImage(named: self.imageShare)!)
-                        sheet.toggle()
-                    }){
-                        Text("Compartir")
-                    }.buttonStyle(PrimaryButtonOutlineStyle())
-                    .sheet(isPresented: $sheet, content: {
-                        ShareSheet(items: items)
-                    })
-                }*/
-            //}
         }
         .padding()
     }

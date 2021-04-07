@@ -34,7 +34,11 @@ struct QrChargeView: View {
     @State var sheet = false
     @State var testImg: UIImage?
     //
-   
+    //select card
+    @State var showingSheetBank = false
+    @State var bank: String = "* * * *  5 6 3 6"
+    @State private var showingSheet = false
+    
     func generarQR(text: String) -> UIImage{
         let data = Data(text.utf8)
         filter.setValue(data, forKey: "inputMessage")
@@ -57,7 +61,7 @@ struct QrChargeView: View {
                     .placeholder(Image( "user-default"))
                     .resizable()
                     .foregroundColor(.white)
-                    .frame(width: 100.0, height: 100.0)
+                    .frame(width: 50.0, height: 50.0)
                     .clipShape(Circle())
                     .shadow(color: Color.black.opacity(0.1), radius: 4, x: 2, y: 3)
                     .overlay(
@@ -66,19 +70,37 @@ struct QrChargeView: View {
         }
     }
     
+    var pickerCard: some View{
+        Button(action: {
+            self.showingSheetBank.toggle()
+        }) {
+            HStack{
+                Text(self.bank)
+                Spacer()
+                Image(systemName: "arrowtriangle.down.fill")
+                    .font(.caption)
+                    .foregroundColor(Color("primary"))
+            }
+        }
+        .buttonStyle(PlainButtonStyle())
+        .sheet(isPresented: $showingSheetBank) {
+            ListCardsView(
+                showingSheet: self.$showingSheetBank,
+                card: self.$bank)
+        }
+    }
+    
     var vista:some View {
         ScrollView{
             VStack{
-               
-                
                 self.imageProfile
                 if self.dataUserlog.nombres == Optional("") || self.dataUserlog.nombres == nil{
                     Text("+591 \(self.dataUserlog.telefono)")
-                        .font(.title)
-                        .bold()
+                        .font(.subheadline)
+                        //.bold()
                 }else{
                     Text("\(self.dataUserlog.nombres ?? "") \(self.dataUserlog.apellidos ?? "")")
-                        .font(.title)
+                        .font(.subheadline)
                         .bold()
                 }
                 if self.monto == ""{
@@ -88,36 +110,36 @@ struct QrChargeView: View {
                         orientation: $rotate)
                         { image in
                             self.barcodeImage = image
-                        }.frame(minWidth: 0, maxWidth: .infinity, minHeight: 100, maxHeight: 100, alignment: .topLeading)//400
+                        }.frame(minWidth: 0, maxWidth: .infinity, minHeight: 80, maxHeight: 80, alignment: .topLeading)//400
                     
                     //qr
                     Image(uiImage: generarQR(text: self.dataUserlog._id))
                         .interpolation(.none)
                         .resizable()
                         .scaledToFit()
-                        .frame(width: 290, height: 290)
+                        .frame(width: 200, height: 200)
                 }else{
                     CBBarcodeView(data: .constant("\(self.dataUserlog._id),\(self.monto)" ) ,// self.dataUserlog._id,//$dataString,
                         barcodeType: $barcodeType,
                         orientation: $rotate)
                         { image in
                             self.barcodeImage = image
-                        }.frame(minWidth: 0, maxWidth: .infinity, minHeight: 100, maxHeight: 100, alignment: .topLeading)//400
+                        }.frame(minWidth: 0, maxWidth: .infinity, minHeight: 80, maxHeight: 80, alignment: .topLeading)//400
                     
                     //qr
                     Image(uiImage: generarQR(text: "\(self.dataUserlog._id),\(self.monto)"))
                         .interpolation(.none)
                         .resizable()
                         .scaledToFit()
-                        .frame(width: 250, height: 250)
+                        .frame(width: 200, height: 200)
                 }
                 
                 if self.monto != ""{
                     Text("\(self.monto) Bs.")
                         .font(.title)
+                }else{
+                    //print("")
                 }
-             
-                
             }
             .padding(30)
         }
@@ -127,6 +149,12 @@ struct QrChargeView: View {
         ScrollView{
             VStack{
                 self.vista
+                VStack (alignment: .leading){
+                    Text("Tarjetas")
+                        .textStyle(TitleStyle())
+                    self.pickerCard
+                }.padding()
+               
                 HStack{
                     Button(action: {
                         self.modal.toggle()
@@ -137,7 +165,7 @@ struct QrChargeView: View {
                         EnterAmountView(modal: self.$modal, monto: self.$monto)
                     }
                     
-                    Button(action: {
+                   /* Button(action: {
                         items.removeAll()
                         items.append(self.vista.snapshot())
                         //items.append(UIImage(named: self.imageShare)!)
@@ -147,7 +175,7 @@ struct QrChargeView: View {
                     }.buttonStyle(PrimaryButtonOutlineStyle())
                     .sheet(isPresented: $sheet, content: {
                         ShareSheet(items: items)
-                    })
+                    })*/
                     /*Button(action: {
                         self.testImg = self.vista.snapshot()
                            self.showingSheet = true
@@ -158,17 +186,17 @@ struct QrChargeView: View {
                               content: {
                                 ActivityView(activityItems: [self.testImg as Any], applicationActivities: nil) })
                     */
-                   /* Button("Decargar") {
+                    Button("Decargar") {
                         let image = self.vista.snapshot()
                         UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
                         showingAlert = true
-                    }.buttonStyle(PrimaryButtonOutlineStyle())*/
+                    }.buttonStyle(PrimaryButtonOutlineStyle())
                 }
-                /*.alert(isPresented: $showingAlert) {
+                .alert(isPresented: $showingAlert) {
                     Alert(title: Text("Fastgi"), message: Text("Descarga completa"), dismissButton: .default(Text("Aceptar")))
-                }*/
+                }
                
-            }
+            }.navigationBarTitle(Text("Pagar"), displayMode: .inline)
         }
     
     }

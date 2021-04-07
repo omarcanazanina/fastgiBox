@@ -36,6 +36,7 @@ struct QrGeneratorView: View {
     @State var items : [Any] = []
     @State var sheet = false
     
+    @State private var showingAlert = false
     //funcion generar QR
     func generarQR(text: String) -> UIImage{
         let data = Data(text.utf8)
@@ -102,7 +103,7 @@ struct QrGeneratorView: View {
                     .interpolation(.none)
                     .resizable()
                     .scaledToFit()
-                    .frame(width: 300, height: 300)
+                    .frame(width: 200, height: 200)
                 
                 
             }else {
@@ -118,7 +119,7 @@ struct QrGeneratorView: View {
                     .interpolation(.none)
                     .resizable()
                     .scaledToFit()
-                    .frame(width: 300, height: 300)
+                    .frame(width: 200, height: 200)
             }
             
             
@@ -126,7 +127,7 @@ struct QrGeneratorView: View {
                 Text("\(self.monto) Bs.")
                     .font(.title)
             }
-        }
+        }.padding()
     }
     
     var body: some View {
@@ -143,7 +144,7 @@ struct QrGeneratorView: View {
                         EnterAmountView(modal: self.$modal, monto: self.$monto)
                     }
                     // if self.showBtn! {
-                    Button(action: {
+                   /* Button(action: {
                         //self.exportToPDF(nombreUser_: "\(self.dataUserlog.nombres ?? "") \(self.dataUserlog.apellidos ?? "")", showBtn_: false, monto_: self.monto)
                         items.removeAll()
                         items.append(self.vista.snapshot())
@@ -154,7 +155,14 @@ struct QrGeneratorView: View {
                     }.buttonStyle(PrimaryButtonOutlineStyle())
                     .sheet(isPresented: $sheet, content: {
                         ShareSheet(items: items)
-                    })
+                    })*/
+                    Button("Decargar") {
+                        let image = self.vista.snapshot()
+                        UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
+                        showingAlert = true
+                    }.buttonStyle(PrimaryButtonOutlineStyle())
+                } .alert(isPresented: $showingAlert) {
+                    Alert(title: Text("Fastgi"), message: Text("Descarga completa"), dismissButton: .default(Text("Aceptar")))
                 }
             //}
         }

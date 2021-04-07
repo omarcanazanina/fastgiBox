@@ -18,7 +18,7 @@ struct PayScanView: View {
     //
     //
     @State var showingSheetBank = false
-    @State var bank: String = "Seleccionar"
+    @State var bank: String = "* * * *  5 6 3 6"
     @State private var showingSheet = false
     var imageProfile:some View {
         HStack(alignment: .center){
@@ -45,7 +45,7 @@ struct PayScanView: View {
             Button(action: {
                 self.action = 1
             }){
-                Text("Cobrar")
+                Text("Pagar")
                     .foregroundColor(Color.white)
                     .frame(maxWidth:.infinity)
                     .padding(8)
@@ -55,15 +55,27 @@ struct PayScanView: View {
                 
             }
             if self.montoPagoQR == "" {
-                NavigationLink(destination: TransactionDetailChargePayView(fecha: "", hora: "", empresa: "cobro", phone: "", monto: self.monto, control: 1, fechaFormat: "", horaFormat: "") , tag: 1, selection: self.$action) {
-                    EmptyView()
+                if self.dataUserPay.nombres == Optional(""){
+                    NavigationLink(destination: TransactionDetailChargePayView(fecha: "", hora: "", empresa: "cobro", phone: "", monto: self.monto, abonado: "+591 \(self.dataUserPay.telefono)", control: 1, fechaFormat: "", horaFormat: "") , tag: 1, selection: self.$action) {
+                        EmptyView()
+                    }
+                }else{
+                    NavigationLink(destination: TransactionDetailChargePayView(fecha: "", hora: "", empresa: "cobro", phone: "", monto: self.monto, abonado: "\(self.dataUserPay.nombres) \(self.dataUserPay.apellidos)", control: 1, fechaFormat: "", horaFormat: "") , tag: 1, selection: self.$action) {
+                        EmptyView()
+                    }
                 }
+              
             }else{
-                NavigationLink(destination: TransactionDetailChargePayView(fecha: "", hora: "", empresa: "cobro", phone: "", monto: self.montoPagoQR, control: 1, fechaFormat: "", horaFormat: "") , tag: 1, selection: self.$action) {
-                    EmptyView()
+                if self.dataUserPay.nombres == Optional(""){
+                    NavigationLink(destination: TransactionDetailChargePayView(fecha: "", hora: "", empresa: "cobro", phone: "", monto: self.montoPagoQR, abonado: "+591 \(self.dataUserPay.telefono)", control: 1, fechaFormat: "", horaFormat: "") , tag: 1, selection: self.$action) {
+                        EmptyView()
+                    }
+                }else{
+                    NavigationLink(destination: TransactionDetailChargePayView(fecha: "", hora: "", empresa: "cobro", phone: "", monto: self.montoPagoQR, abonado: "\(self.dataUserPay.nombres) \(self.dataUserPay.apellidos)", control: 1, fechaFormat: "", horaFormat: "") , tag: 1, selection: self.$action) {
+                        EmptyView()
+                    }
                 }
             }
-            
         }
         .padding()
       
@@ -134,13 +146,12 @@ struct PayScanView: View {
                             //textField.becomeFirstResponder()
                         }
                 }
-              
+                Text("")
+                Text("")
+                Text("Tarjetas")
+                    .textStyle(TitleStyle())
+                self.pickerCard
             }.padding()
-            Text("Tarjetas")
-                .textStyle(TitleStyle())
-            self.pickerCard
-            
-            
             self.buttonSuccess
             
         }

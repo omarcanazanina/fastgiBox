@@ -13,6 +13,7 @@ struct TransactionDetailChargePayView: View {
     var empresa: String
     var phone: String
     var monto: String
+    var abonado: String
     var control: Int
     //fechaformat
     let date = Date()
@@ -156,7 +157,7 @@ struct TransactionDetailChargePayView: View {
                         .textStyle(TitleStyle())
                         .frame(maxWidth: .infinity, alignment: .trailing)
                     
-                    Text("Nombre")
+                    Text(self.abonado)
                         .foregroundColor(.black)
                         .frame(maxWidth: .infinity, alignment: .leading)
                     
@@ -235,7 +236,7 @@ struct TransactionDetailChargePayView_Previews: PreviewProvider {
     }
 }
 
-
+/*
 extension TransactionDetailChargePayView {
     func exportToPDF(fecha_: String, empresa_: String, phone_: String, monto_: String,fechaFormat_: String,horaFormat_:String, showBtn_: Bool, nombreO_: String, hora_: String) {
         
@@ -285,3 +286,4 @@ extension TransactionDetailChargePayView {
     
 }
 
+*/

@@ -50,7 +50,7 @@ struct QrPayView: View {
                     .placeholder(Image( "user-default"))
                     .resizable()
                     .foregroundColor(.white)
-                    .frame(width: 100.0, height: 100.0)
+                    .frame(width: 50.0, height: 50.0)
                     .clipShape(Circle())
                     .shadow(color: Color.black.opacity(0.1), radius: 4, x: 2, y: 3)
                     .overlay(
@@ -67,12 +67,12 @@ struct QrPayView: View {
                 self.imageProfile
                 if self.dataUserlog.nombres == Optional("") || self.dataUserlog.nombres == nil{
                     Text("+591 \(self.dataUserlog.telefono)")
-                        .font(.title)
-                        .bold()
+                        .font(.subheadline)
+                        //.bold()
                 }else{
                     Text("\(self.dataUserlog.nombres ?? "") \(self.dataUserlog.apellidos ?? "")")
-                        .font(.title)
-                        .bold()
+                        .font(.subheadline)
+                        //.bold()
                 }
                 if self.monto == ""{
                     //qr
@@ -80,14 +80,14 @@ struct QrPayView: View {
                         .interpolation(.none)
                         .resizable()
                         .scaledToFit()
-                        .frame(width: 250, height: 250)
+                        .frame(width: 200, height: 200)
                 }else{
                     //qr
                     Image(uiImage: generarQR(text: "pagar,\(self.dataUserlog._id),\(self.monto)"))
                         .interpolation(.none)
                         .resizable()
                         .scaledToFit()
-                        .frame(width: 290, height: 290)
+                        .frame(width: 200, height: 200)
                 }
                 if self.monto != ""{
                     Text("\(self.monto) Bs.")
@@ -114,7 +114,7 @@ struct QrPayView: View {
                         EnterAmountView(modal: self.$modal, monto: self.$monto)
                     }
                     
-                    Button(action: {
+                   /* Button(action: {
                         items.removeAll()
                         items.append(self.vista.snapshot())
                         //items.append(UIImage(named: self.imageShare)!)
@@ -124,17 +124,17 @@ struct QrPayView: View {
                     }.buttonStyle(PrimaryButtonOutlineStyle())
                     .sheet(isPresented: $sheet, content: {
                         ShareSheet(items: items)
-                    })
-                    /*Button("Decargar") {
+                    })*/
+                    Button("Decargar") {
                         let image = self.vista.snapshot()
                         UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
                         showingAlert = true
-                    }.buttonStyle(PrimaryButtonOutlineStyle())*/
+                    }.buttonStyle(PrimaryButtonOutlineStyle())
                 }
-                /*.alert(isPresented: $showingAlert) {
+                .alert(isPresented: $showingAlert) {
                     Alert(title: Text("Fastgi"), message: Text("Descarga completa"), dismissButton: .default(Text("Aceptar")))
-                }*/
-            }
+                }
+            }.navigationBarTitle(Text("Cobrar"), displayMode: .inline)
         }
     }
 }
