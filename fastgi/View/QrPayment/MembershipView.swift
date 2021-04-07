@@ -67,7 +67,7 @@ struct MembershipView: View {
                     .placeholder(Image( "user-default"))
                     .resizable()
                     .foregroundColor(.white)
-                    .frame(width: 100.0, height: 100.0)
+                    .frame(width: 50.0, height: 50.0)
                     .clipShape(Circle())
                     .shadow(color: Color.black.opacity(0.1), radius: 4, x: 2, y: 3)
                     .overlay(
@@ -138,7 +138,7 @@ struct MembershipView: View {
                                 .interpolation(.none)
                                 .resizable()
                                 .scaledToFit()
-                                .frame(width: 300, height: 300)
+                                .frame(width: 200, height: 200)
                         }else{
                             //barcode
                             CBBarcodeView(data: .constant("\(self.userDataVM.user1._id)\(self.monto)") ,
@@ -152,7 +152,7 @@ struct MembershipView: View {
                                 .interpolation(.none)
                                 .resizable()
                                 .scaledToFit()
-                                .frame(width: 300, height: 300)
+                                .frame(width: 200, height: 200)
                         }
                         if self.monto != ""{
                             Text("\(self.monto) Bs.")
