@@ -23,6 +23,8 @@ struct TransactionDetailChargePayView: View {
     
     let dateFormatter = DateFormatter()
     var dateStringFormatter = DateFormatter()
+    //imagen
+       @State private var showingAlert = false
     
     //datos user
     @ObservedObject var userDataVM = UserDataViewModel()
@@ -53,178 +55,178 @@ struct TransactionDetailChargePayView: View {
             .resizable()
             .frame(width: 80, height: 80)
     }
-    
-    var body: some View {
-        VStack(alignment: .center, spacing: 10){
-            self.logo
-                .padding(.top,30)
-            Text("Comprobante Electrónico")
-                .foregroundColor(.black)
-                .font(.title3)
-            
-            Text("Transferencia de Qr")
-                .foregroundColor(.black)
-                .padding(.bottom,30)
-            
+    var vista: some View {
             VStack(alignment: .center, spacing: 10){
-                HStack{
-                    Text("Nro. TRANSACCIÓN")
-                        .foregroundColor(Color("primary"))
-                        .bold()
-                        .textStyle(TitleStyle())
-                        .frame(maxWidth: .infinity, alignment: .trailing)
-                    
-                    Text("123")
-                        .foregroundColor(.black)
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                    
-                }
-                HStack{
-                    Text("FECHA")
-                        .foregroundColor(Color("primary"))
-                        .bold()
-                        .textStyle(TitleStyle())
-                        .frame(maxWidth: .infinity, alignment: .trailing)
-                    if self.fechaFormat != ""{
-                        Text(self.fechaFormat)
-                            .foregroundColor(.black)
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                    }else{
-                        Text(self.fecha)
-                            .foregroundColor(.black)
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                    }
-                  
-                    
-                }
-                HStack{
-                    Text("HORA")
-                        .foregroundColor(Color("primary"))
-                        .bold()
-                        .textStyle(TitleStyle())
-                        .frame(maxWidth: .infinity, alignment: .trailing)
-                    if self.horaFormat != ""{
-                        Text(self.horaFormat)
-                            .foregroundColor(.black)
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                    }else{
-                        Text(self.hora)
-                            .foregroundColor(.black)
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                    }
-                    
-                    
-                }
-                HStack{
-                    Text("SERVICIO")
-                        .foregroundColor(Color("primary"))
-                        .bold()
-                        .textStyle(TitleStyle())
-                        .frame(maxWidth: .infinity, alignment: .trailing)
-                    if self.empresa == "cobro"{
-                        Text("Pago QR")
-                            .foregroundColor(.black)
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                    }else{
-                        Text("Cobro QR")
-                            .foregroundColor(.black)
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                    }
-                    
-                    
-                }
-                HStack{
-                    Text("ORIGEN")
-                        .foregroundColor(Color("primary"))
-                        .bold()
-                        .textStyle(TitleStyle())
-                        .frame(maxWidth: .infinity, alignment: .trailing)
-                    //comentado
-                    if self.userDataVM.user.nombres == Optional(""){
-                        Text ("+591 \(self.userDataVM.user.telefono)")//("\(self.userDataVM.user.nombres) \(self.userDataVM.user.apellidos)")
-                            .foregroundColor(.black)
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                    }else{
-                        Text ("\(self.userDataVM.user.nombres ?? "") \(self.userDataVM.user.apellidos ?? "")")
-                            .foregroundColor(.black)
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                    }
-                }
-                HStack{
-                    Text("ABONADO")
-                        .foregroundColor(Color("primary"))
-                        .bold()
-                        .textStyle(TitleStyle())
-                        .frame(maxWidth: .infinity, alignment: .trailing)
-                    
-                    Text(self.abonado)
-                        .foregroundColor(.black)
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                    
-                }
-              /*  HStack{
-                    Text("NÚMERO")
-                        .foregroundColor(Color("primary"))
-                        .bold()
-                        .textStyle(TitleStyle())
-                        .frame(maxWidth: .infinity, alignment: .trailing)
-                    
-                    Text("+591 \(self.phone) ")
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                    
-                }*/
-                HStack{
-                    Text("MONTO")
-                        .foregroundColor(Color("primary"))
-                        .bold()
-                        .textStyle(TitleStyle())
-                        .frame(maxWidth: .infinity, alignment: .trailing)
-                    
-                    Text("\(self.monto).00 Bs.")
-                        .foregroundColor(.black)
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                }
-            }
-
-            .onAppear{
-                print("el control q llego \(self.control)")
-                self.userDataVM.DatosUser()
-                if self.control == 1 {
-                    //fechaformat
-                    print("fecharecibidaaqui\(self.fecha)")
-                    dateStringFormatter.dateFormat = "dd/MM/YYYY"// HH:mm:ss"
-                    let dateFromString = dateStringFormatter.date(from: self.fecha)
-                    self.fechaFormat = dateStringFormatter.string(from: dateFromString ?? date)
-                    print("la fechaFormat es \(dateFromString ?? date)")
-                    //horaformat
-                    dateStringFormatter.dateFormat = "HH:mm:ss"
-                    let horaFromString = dateStringFormatter.date(from: self.fecha)
-                    self.horaFormat = dateStringFormatter.string(from: horaFromString ?? date)
-                }
-                    
+                self.logo
+                    .padding(.top,30)
+                Text("Comprobante Electrónico")
+                    .foregroundColor(.black)
+                    .font(.title3)
                 
-            }
-            Spacer()
-            HStack{
-                if self.showBtn! {
-                    Button(action: {
-                       // self.exportToPDF(fecha_: self.fechaFormat, empresa_: self.empresa, phone_: self.phone, monto_: self.monto,fechaFormat_: self.fechaFormat, horaFormat_: self.horaFormat, showBtn_: false, nombreO_: self.userDataVM.user.nombres, hora_: self.hora)
-                    }){
-                        Text("Compartir")
-                    }.buttonStyle(PrimaryButtonOutlineStyle())
-                    
+                Text("Transferencia de Qr")
+                    .foregroundColor(.black)
+                    .padding(.bottom,30)
+                
+                VStack(alignment: .center, spacing: 10){
+                    HStack{
+                        Text("Nro. TRANSACCIÓN")
+                            .foregroundColor(Color("primary"))
+                            .bold()
+                            .textStyle(TitleStyle())
+                            .frame(maxWidth: .infinity, alignment: .trailing)
+                        
+                        Text("123")
+                            .foregroundColor(.black)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                        
+                    }
+                    HStack{
+                        Text("FECHA")
+                            .foregroundColor(Color("primary"))
+                            .bold()
+                            .textStyle(TitleStyle())
+                            .frame(maxWidth: .infinity, alignment: .trailing)
+                        if self.fechaFormat != ""{
+                            Text(self.fechaFormat)
+                                .foregroundColor(.black)
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                        }else{
+                            Text(self.fecha)
+                                .foregroundColor(.black)
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                        }
+                      
+                        
+                    }
+                    HStack{
+                        Text("HORA")
+                            .foregroundColor(Color("primary"))
+                            .bold()
+                            .textStyle(TitleStyle())
+                            .frame(maxWidth: .infinity, alignment: .trailing)
+                        if self.horaFormat != ""{
+                            Text(self.horaFormat)
+                                .foregroundColor(.black)
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                        }else{
+                            Text(self.hora)
+                                .foregroundColor(.black)
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                        }
+                        
+                        
+                    }
+                    HStack{
+                        Text("SERVICIO")
+                            .foregroundColor(Color("primary"))
+                            .bold()
+                            .textStyle(TitleStyle())
+                            .frame(maxWidth: .infinity, alignment: .trailing)
+                        if self.empresa == "cobro"{
+                            Text("Pago QR")
+                                .foregroundColor(.black)
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                        }else{
+                            Text("Cobro QR")
+                                .foregroundColor(.black)
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                        }
+                        
+                        
+                    }
+                    HStack{
+                        Text("ORIGEN")
+                            .foregroundColor(Color("primary"))
+                            .bold()
+                            .textStyle(TitleStyle())
+                            .frame(maxWidth: .infinity, alignment: .trailing)
+                        //comentado
+                        if self.userDataVM.user.nombres == Optional(""){
+                            Text ("+591 \(self.userDataVM.user.telefono)")//("\(self.userDataVM.user.nombres) \(self.userDataVM.user.apellidos)")
+                                .foregroundColor(.black)
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                        }else{
+                            Text ("\(self.userDataVM.user.nombres ?? "") \(self.userDataVM.user.apellidos ?? "")")
+                                .foregroundColor(.black)
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                        }
+                    }
+                    HStack{
+                        Text("ABONADO")
+                            .foregroundColor(Color("primary"))
+                            .bold()
+                            .textStyle(TitleStyle())
+                            .frame(maxWidth: .infinity, alignment: .trailing)
+                        
+                        Text(self.abonado)
+                            .foregroundColor(.black)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                        
+                    }
+                    HStack{
+                        Text("MONTO")
+                            .foregroundColor(Color("primary"))
+                            .bold()
+                            .textStyle(TitleStyle())
+                            .frame(maxWidth: .infinity, alignment: .trailing)
+                        
+                        Text("\(self.monto).00 Bs.")
+                            .foregroundColor(.black)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                    }
                 }
-                Button(action: {
-                    self.navigationRoot.setRootView()
-                })
-                {
-                    Text("Aceptar")
-                }.buttonStyle(PrimaryButtonOutlineStyle())
+
+                .onAppear{
+                    print("el control q llego \(self.control)")
+                    self.userDataVM.DatosUser()
+                    if self.control == 1 {
+                        //fechaformat
+                        print("fecharecibidaaqui\(self.fecha)")
+                        dateStringFormatter.dateFormat = "dd/MM/YYYY"// HH:mm:ss"
+                        let dateFromString = dateStringFormatter.date(from: self.fecha)
+                        self.fechaFormat = dateStringFormatter.string(from: dateFromString ?? date)
+                        print("la fechaFormat es \(dateFromString ?? date)")
+                        //horaformat
+                        dateStringFormatter.dateFormat = "HH:mm:ss"
+                        let horaFromString = dateStringFormatter.date(from: self.fecha)
+                        self.horaFormat = dateStringFormatter.string(from: horaFromString ?? date)
+                    }
+                }
+                Spacer()
             }
+            .background(Color.white)
         }
-        .background(Color.white)
+        
+        var body: some View {
+            ScrollView{
+                VStack(){
+                    self.vista
+                    HStack{
+                        // if self.showBtn! {
+                        Button(action: {
+                            // self.exportToPDF(fecha_: self.fechaFormat, empresa_: self.empresa, phone_: self.phone, monto_: self.monto,fechaFormat_: self.fechaFormat, horaFormat_: self.horaFormat, showBtn_: false, nombreO_: self.userDataVM.user.nombres, hora_: self.hora)
+                            let image = self.vista.snapshot()
+                            UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
+                            showingAlert = true
+                        }){
+                            Text("Descargar")
+                        }.buttonStyle(PrimaryButtonOutlineStyle())
+                        .alert(isPresented: $showingAlert) {
+                            Alert(title: Text("Fastgi"), message: Text("Descarga completa"), dismissButton: .default(Text("Aceptar")))
+                        }
+                        //}
+                        Button(action: {
+                            self.navigationRoot.setRootView()
+                        })
+                        {
+                            Text("Aceptar")
+                        }.buttonStyle(PrimaryButtonOutlineStyle())
+                    }
+                }
+            }
+            .background(Color.white)
+        }
     }
-}
 
 struct TransactionDetailChargePayView_Previews: PreviewProvider {
     static var previews: some View {
