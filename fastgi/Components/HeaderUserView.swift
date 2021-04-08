@@ -40,7 +40,8 @@ struct HeaderUserView: View {
             HStack{
                 imgProfile
                 textHeader
-                Text("asdasdasddsf")
+                
+                Text("            ")
                     .foregroundColor(.white)
                 
                 Button(action: {

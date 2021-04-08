@@ -161,7 +161,7 @@
 		929B4F5A260B94D40048B766 /* DayRangeIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayRangeIndicatorView.swift; sourceTree = "<group>"; };
 		929B4F5E260BD6430048B766 /* TestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestView.swift; sourceTree = "<group>"; };
 		929B4F62260BE5A70048B766 /* HistoryDateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryDateView.swift; sourceTree = "<group>"; };
-		92A3BA212553616F00DF3707 /* fastgi wallet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "fastgi wallet.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		92A3BA212553616F00DF3707 /* fastgi box.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "fastgi box.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		92A3BA242553616F00DF3707 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		92A3BA262553616F00DF3707 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		92A3BA282553616F00DF3707 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -335,7 +335,7 @@
 		92A3BA222553616F00DF3707 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				92A3BA212553616F00DF3707 /* fastgi wallet.app */,
+				92A3BA212553616F00DF3707 /* fastgi box.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -609,9 +609,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		92A3BA202553616F00DF3707 /* fastgi wallet */ = {
+		92A3BA202553616F00DF3707 /* fastgi box */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 92A3BA352553617400DF3707 /* Build configuration list for PBXNativeTarget "fastgi wallet" */;
+			buildConfigurationList = 92A3BA352553617400DF3707 /* Build configuration list for PBXNativeTarget "fastgi box" */;
 			buildPhases = (
 				974B1E4A235B59D7E00209E0 /* [CP] Check Pods Manifest.lock */,
 				92A3BA1D2553616F00DF3707 /* Sources */,
@@ -623,7 +623,7 @@
 			);
 			dependencies = (
 			);
-			name = "fastgi wallet";
+			name = "fastgi box";
 			packageProductDependencies = (
 				92A3BAFE25536D7A00DF3707 /* ValidatedPropertyKit */,
 				9279D54B256F0D5400890C84 /* CodeScanner */,
@@ -632,7 +632,7 @@
 				92543453260A44A600AE5F40 /* HorizonCalendar */,
 			);
 			productName = fastgi;
-			productReference = 92A3BA212553616F00DF3707 /* fastgi wallet.app */;
+			productReference = 92A3BA212553616F00DF3707 /* fastgi box.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -669,7 +669,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				92A3BA202553616F00DF3707 /* fastgi wallet */,
+				92A3BA202553616F00DF3707 /* fastgi box */,
 			);
 		};
 /* End PBXProject section */
@@ -994,8 +994,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.9;
-				PRODUCT_BUNDLE_IDENTIFIER = com.hegaro.fastgi;
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hegaro.fastgibox1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1020,8 +1020,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.9;
-				PRODUCT_BUNDLE_IDENTIFIER = com.hegaro.fastgi;
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hegaro.fastgibox1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
@@ -1041,7 +1041,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		92A3BA352553617400DF3707 /* Build configuration list for PBXNativeTarget "fastgi wallet" */ = {
+		92A3BA352553617400DF3707 /* Build configuration list for PBXNativeTarget "fastgi box" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				92A3BA362553617400DF3707 /* Debug */,
