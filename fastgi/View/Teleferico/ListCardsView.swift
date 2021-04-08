@@ -14,6 +14,15 @@ struct ListCardsView: View {
         List{
             Button(action: {
                 self.showingSheet = false
+                self.card = "Saldo"
+            })
+            {
+                HStack(){
+                    Text("🏦 Saldo")
+                }
+            }
+            Button(action: {
+                self.showingSheet = false
                 self.card = "* * * * 4 4 5 4"
             })
             {

@@ -445,19 +445,6 @@ struct HomeView: View {
     var body: some View {
         VStack{
             self.home
-           // DatePicker("calendar", selection: $birthdate, in: ...Date(), displayedComponents: .date)
-           
-            
-           // Text(self.resultadosScan)
-            Button(action: {
-                self.action = 15
-            }){
-                Text("Caja")
-            }
-            
-            NavigationLink(destination: FormLoadBoxView(MontoRecarga1: .Btn30) , tag: 15, selection: self.$action) {
-         EmptyView()
-         }
         }
     }
     

@@ -11,7 +11,7 @@ import SDWebImageSwiftUI
 struct HeaderUserView: View {
     var text: String
     var _id: String
-    
+    @State private var action:Int? = 0
     @ObservedObject var userDataVM = UserDataViewModel()
     @State var controlMenu = 1
     //
@@ -40,6 +40,18 @@ struct HeaderUserView: View {
             HStack{
                 imgProfile
                 textHeader
+                Text("asdasdasddsf")
+                    .foregroundColor(.white)
+                
+                Button(action: {
+                    self.action = 15
+                }){
+                    Text("55.0 Bs")
+                }
+                
+                NavigationLink(destination: FormLoadBoxView(MontoRecarga1: .Btn30) , tag: 15, selection: self.$action) {
+                    EmptyView()
+                }
                 Spacer()
             }
             

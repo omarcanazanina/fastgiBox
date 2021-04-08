@@ -65,6 +65,7 @@ struct TabsView: View {
                     self.headerIzquierda(),
                  trailing:
                     self.headerDerecha()
+                    //self.headerHome()
              )
         }.navigationViewStyle(StackNavigationViewStyle())
     }
@@ -128,19 +129,31 @@ extension TabsView{
     }
     
     func headerIzquierda() -> AnyView{
-           if   self.selectedTab == 0 || self.selectedTab == 1 || self.selectedTab == 2 {//} || self.selectedTab == 3{
+           if    self.selectedTab == 0 || self.selectedTab == 1 || self.selectedTab == 2 {//} || self.selectedTab == 3{
+               //return AnyView(HeaderUserView(text: "\(self.userDataVM.user.nombres) \(self.userDataVM.user.apellidos)", _id :self.userDataVM.user._id))
+               if self.userDataVM.user.nombres == nil || self.userDataVM.user.nombres == Optional("") {
+                   return AnyView(HeaderUserView(text: "+591 \(self.userDataVM.user.telefono)", _id :self.userDataVM.user._id))
+               }else{
+                   return AnyView(HeaderUserView(text: "\(self.userDataVM.user.nombres ?? "") \(self.userDataVM.user.apellidos ?? "")", _id :self.userDataVM.user._id))
+                
+               }
+             
+           }
+           return AnyView(EmptyView())
+       }
+    
+    func headerHome() -> AnyView{
+           if   self.selectedTab == 0 {//} || self.selectedTab == 3{
                //return AnyView(HeaderUserView(text: "\(self.userDataVM.user.nombres) \(self.userDataVM.user.apellidos)", _id :self.userDataVM.user._id))
                if self.userDataVM.user.nombres == nil || self.userDataVM.user.nombres == Optional("") {
                    return AnyView(HeaderUserView(text: "+591 \(self.userDataVM.user.telefono)", _id :self.userDataVM.user._id))
                }else{
                    return AnyView(HeaderUserView(text: "\(self.userDataVM.user.nombres ?? "") \(self.userDataVM.user.apellidos ?? "")", _id :self.userDataVM.user._id))
                }
-             
+         
            }
            return AnyView(EmptyView())
-           
        }
-    
 }
 
 
