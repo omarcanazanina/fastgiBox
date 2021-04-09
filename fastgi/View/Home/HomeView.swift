@@ -250,10 +250,10 @@ struct HomeView: View {
                 }
               
             }
-            NavigationLink(destination: ChargeView(dataUserPay: self.userDataVM.userResponsePay, montoCobroQR: self.$montoCobroQR), tag: 11, selection: self.$action) {
+            NavigationLink(destination: ChargeView(dataUserPay: self.userDataVM.userResponsePay, dataUser: self.userDataVM.user, montoCobroQR: self.$montoCobroQR), tag: 11, selection: self.$action) {
                 EmptyView()
             }
-            NavigationLink(destination: PayScanView(dataUserPay: self.userDataVM.userResponsePay, montoPagoQR: self.$montoPagoQR), tag: 10, selection: self.$action) {
+            NavigationLink(destination: PayScanView(dataUserPay: self.userDataVM.userResponsePay, dataUser: self.userDataVM.user, montoPagoQR: self.$montoPagoQR), tag: 10, selection: self.$action) {
                 EmptyView()
             }
            /* NavigationLink(destination: ChargeView(dataUserPay: self.userDataVM.userResponsePay), isActive: self.$userDataVM.nextPayview) {

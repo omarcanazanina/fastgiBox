@@ -14,6 +14,7 @@ struct TransactionDetailChargePayView: View {
     var phone: String
     var monto: String
     var abonado: String
+    var dataUser: UserModel
     var control: Int
     //fechaformat
     let date = Date()
@@ -141,12 +142,12 @@ struct TransactionDetailChargePayView: View {
                             .textStyle(TitleStyle())
                             .frame(maxWidth: .infinity, alignment: .trailing)
                         //comentado
-                        if self.userDataVM.user.nombres == Optional(""){
-                            Text ("+591 \(self.userDataVM.user.telefono)")//("\(self.userDataVM.user.nombres) \(self.userDataVM.user.apellidos)")
+                        if self.dataUser.nombres == Optional("") || self.dataUser.nombres == nil{
+                            Text ("+591 \(self.dataUser.telefono)")//("\(self.userDataVM.user.nombres) \(self.userDataVM.user.apellidos)")
                                 .foregroundColor(.black)
                                 .frame(maxWidth: .infinity, alignment: .leading)
                         }else{
-                            Text ("\(self.userDataVM.user.nombres ?? "") \(self.userDataVM.user.apellidos ?? "")")
+                            Text ("\(self.dataUser.nombres ?? "") \(self.dataUser.apellidos ?? "")")
                                 .foregroundColor(.black)
                                 .frame(maxWidth: .infinity, alignment: .leading)
                         }
@@ -209,7 +210,7 @@ struct TransactionDetailChargePayView: View {
                             UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
                             showingAlert = true
                         }){
-                            Text("Descargar")
+                            Text("Descargar \(self.userDataVM.user.nombres ?? "")")
                         }.buttonStyle(PrimaryButtonOutlineStyle())
                         .alert(isPresented: $showingAlert) {
                             Alert(title: Text("Fastgi"), message: Text("Descarga completa"), dismissButton: .default(Text("Aceptar")))

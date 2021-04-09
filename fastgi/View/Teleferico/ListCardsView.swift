@@ -14,7 +14,7 @@ struct ListCardsView: View {
         List{
             Button(action: {
                 self.showingSheet = false
-                self.card = "Saldo"
+                self.card = "Saldo                  55.0 Bs."
             })
             {
                 HStack(spacing: 200, content: {
