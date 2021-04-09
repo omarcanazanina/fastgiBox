@@ -9,7 +9,7 @@ import SwiftUI
 import Introspect
 
 struct FormLoadCreditView: View {
-//    var contContacts : Int
+    //var contContacts : Int
     var empresa: String
     @State  var selectEm :BtnEm
     var dataUser: UserModel
@@ -63,6 +63,7 @@ struct FormLoadCreditView: View {
                             textField.inputAccessoryView = toolBar
                          }
                     Button(action: {
+                        
                         if self.contactsVM.listContacts.count == 0{
                                 print("no hay contactos")
                                 //print(self.contContacts)

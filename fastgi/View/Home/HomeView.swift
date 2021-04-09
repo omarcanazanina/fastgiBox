@@ -56,6 +56,7 @@ struct HomeView: View {
         UINavigationBar.appearance().standardAppearance = appearance
         //self.contactsVM.getContacts()
         self.userDataVM.DatosUser()
+        //self.contactsVM.getContacts()
     }
     
     var btnTeleferic:some View{
@@ -380,9 +381,9 @@ struct HomeView: View {
                         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
                         .padding(.vertical,10)
                     HStack{
-                        CardServiceHomeView( logo: "Entel", dataUser: self.userDataVM.user, isSelect: false, currentBtnEm: self.$currentBtnEm, btn: .Entel)
-                        CardServiceHomeView(logo: "Viva", dataUser: self.userDataVM.user, isSelect: false, currentBtnEm: self.$currentBtnEm, btn: .Viva)
-                        CardServiceHomeView(logo: "Tigo", dataUser: self.userDataVM.user, isSelect: false, currentBtnEm: self.$currentBtnEm, btn: .Tigo)
+                        CardServiceHomeView(logo: "Entel", dataUser: self.userDataVM.user, isSelect: false, currentBtnEm: self.$currentBtnEm, btn: .Entel)
+                        CardServiceHomeView( logo: "Viva", dataUser: self.userDataVM.user, isSelect: false, currentBtnEm: self.$currentBtnEm, btn: .Viva)
+                        CardServiceHomeView( logo: "Tigo", dataUser: self.userDataVM.user, isSelect: false, currentBtnEm: self.$currentBtnEm, btn: .Tigo)
                     }
                 }.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
                 VStack{

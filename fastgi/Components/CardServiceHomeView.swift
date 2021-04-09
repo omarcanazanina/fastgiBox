@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct CardServiceHomeView: View {
-   // var contContacts : Int
+    //var contContacts : Int
     var logo : String
     var dataUser: UserModel
     @State var isSelect:Bool
@@ -46,7 +46,7 @@ struct CardServiceHomeView: View {
                            EmptyView()
                        }
                    }else{
-                    NavigationLink(destination: FormLoadCreditView(empresa: self.logo, selectEm: .Tigo, dataUser: self.dataUser, MontoRecarga1: .Btn30, MontoRecarga: ""), tag: 1, selection: self.$action) {
+                    NavigationLink(destination: FormLoadCreditView( empresa: self.logo, selectEm: .Tigo, dataUser: self.dataUser, MontoRecarga1: .Btn30, MontoRecarga: ""), tag: 1, selection: self.$action) {
                            EmptyView()
                        }
                    }
