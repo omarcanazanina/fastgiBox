@@ -13,6 +13,7 @@ struct TransactionDetailView: View {
     var empresa: String
     var phone: String
     var monto: String
+    var dataUser: UserModel
     var control: Int
     //fechaformat
     let date = Date()
@@ -133,28 +134,43 @@ struct TransactionDetailView: View {
                            .textStyle(TitleStyle())
                            .frame(maxWidth: .infinity, alignment: .trailing)
                        //comentado
-                       if self.userDataVM.user.nombres == Optional(""){
-                           Text ("+591 \(self.userDataVM.user.telefono)")//("\(self.userDataVM.user.nombres) \(self.userDataVM.user.apellidos)")
-                               .foregroundColor(.black)
-                               .frame(maxWidth: .infinity, alignment: .leading)
-                       }else{
-                           Text ("\(self.userDataVM.user.nombres ?? "") \(self.userDataVM.user.apellidos ?? "")")
-                               .foregroundColor(.black)
-                               .frame(maxWidth: .infinity, alignment: .leading)
-                       }
+                    if self.control == 0 {
+                        if self.userDataVM.user.nombres == Optional(""){
+                            Text ("+591 \(self.userDataVM.user.telefono)")//("\(self.userDataVM.user.nombres) \(self.userDataVM.user.apellidos)")
+                                .foregroundColor(.black)
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                        }else{
+                            Text ("\(self.userDataVM.user.nombres ?? "") \(self.userDataVM.user.apellidos ?? "")")
+                                .foregroundColor(.black)
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                        }
+                    }else{
+                        if self.dataUser.nombres == Optional(""){
+                            Text ("+591 \(self.dataUser.telefono)")//("\(self.userDataVM.user.nombres) \(self.userDataVM.user.apellidos)")
+                                .foregroundColor(.black)
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                        }else{
+                            Text ("\(self.dataUser.nombres ?? "") \(self.dataUser.apellidos ?? "")")
+                                .foregroundColor(.black)
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                        }
+                    }
                    }
-                   HStack{
-                       Text("NÚMERO")
-                           .foregroundColor(Color("primary"))
-                           .bold()
-                           .textStyle(TitleStyle())
-                           .frame(maxWidth: .infinity, alignment: .trailing)
-                       
-                       Text("+591 \(self.userDataVM.user.telefono)")
-                           .frame(maxWidth: .infinity, alignment: .leading)
-                       
-                   }
-                   
+                HStack{
+                    Text("NÚMERO")
+                        .foregroundColor(Color("primary"))
+                        .bold()
+                        .textStyle(TitleStyle())
+                        .frame(maxWidth: .infinity, alignment: .trailing)
+                    if self.control == 0 {
+                        Text("+591 \(self.userDataVM.user.telefono)")
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                    }else{
+                        Text("+591 \(self.dataUser.telefono)")
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                    }
+                }
+                
                    HStack{
                        Text("ABONADO")
                            .foregroundColor(Color("primary"))
@@ -246,7 +262,7 @@ struct TransactionDetailView: View {
            }
        }
    }
-    struct TransactionDetailView_Previews: PreviewProvider {
+   /* struct TransactionDetailView_Previews: PreviewProvider {
         static var previews: some View {
             Group {
                 TransactionDetailView(fecha: "", hora: "", empresa: "", phone: "", monto: "", control: 0, fechaFormat: "", horaFormat: "")
@@ -305,3 +321,4 @@ extension TransactionDetailView {
     }
     
 }
+*/

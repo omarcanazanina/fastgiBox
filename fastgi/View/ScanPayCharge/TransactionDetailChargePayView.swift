@@ -153,6 +153,20 @@ struct TransactionDetailChargePayView: View {
                         }
                     }
                     HStack{
+                        Text("NÚMERO")
+                            .foregroundColor(Color("primary"))
+                            .bold()
+                            .textStyle(TitleStyle())
+                            .frame(maxWidth: .infinity, alignment: .trailing)
+                        if self.control == 0 {
+                            Text("+591 \(self.userDataVM.user.telefono)")
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                        }else{
+                            Text("+591 \(self.dataUser.telefono)")
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                        }
+                    }
+                    HStack{
                         Text("ABONADO")
                             .foregroundColor(Color("primary"))
                             .bold()
@@ -229,7 +243,7 @@ struct TransactionDetailChargePayView: View {
         }
     }
 
-struct TransactionDetailChargePayView_Previews: PreviewProvider {
+/*struct TransactionDetailChargePayView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             TransactionDetailView(fecha: "", hora: "", empresa: "", phone: "", monto: "", control: 0, fechaFormat: "", horaFormat: "")
@@ -237,7 +251,7 @@ struct TransactionDetailChargePayView_Previews: PreviewProvider {
                 .preferredColorScheme(.dark)
         }
     }
-}
+}*/
 
 /*
 extension TransactionDetailChargePayView {

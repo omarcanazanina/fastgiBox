@@ -10,6 +10,7 @@ import SwiftUI
 struct CardServiceHomeView: View {
    // var contContacts : Int
     var logo : String
+    var dataUser: UserModel
     @State var isSelect:Bool
     @ObservedObject var login = Login()
     @State private var  estado : Bool = false
@@ -37,20 +38,19 @@ struct CardServiceHomeView: View {
                 )
             }.buttonStyle(PlainButtonStyle())
             if self.logo == "Entel"{
-                NavigationLink(destination: FormLoadCreditView(empresa: self.logo, selectEm: .Entel, MontoRecarga1: .Btn30, MontoRecarga: ""), tag: 1, selection: self.$action) {
-                    EmptyView()
-                }
-            }else if self.logo == "Viva"{
-                NavigationLink(destination: FormLoadCreditView( empresa: self.logo, selectEm: .Viva, MontoRecarga1: .Btn30, MontoRecarga: ""), tag: 1, selection: self.$action) {
-                    EmptyView()
-                }
-            }else{
-                NavigationLink(destination: FormLoadCreditView(empresa: self.logo, selectEm: .Tigo, MontoRecarga1: .Btn30, MontoRecarga: ""), tag: 1, selection: self.$action) {
-                    EmptyView()
-                }
-            }
-        }
-            
+                NavigationLink(destination: FormLoadCreditView(empresa: self.logo, selectEm: .Entel, dataUser: self.dataUser, MontoRecarga1: .Btn30, MontoRecarga: ""), tag: 1, selection: self.$action) {
+                           EmptyView()
+                       }
+                   }else if self.logo == "Viva"{
+                    NavigationLink(destination: FormLoadCreditView( empresa: self.logo, selectEm: .Viva, dataUser: self.dataUser, MontoRecarga1: .Btn30, MontoRecarga: ""), tag: 1, selection: self.$action) {
+                           EmptyView()
+                       }
+                   }else{
+                    NavigationLink(destination: FormLoadCreditView(empresa: self.logo, selectEm: .Tigo, dataUser: self.dataUser, MontoRecarga1: .Btn30, MontoRecarga: ""), tag: 1, selection: self.$action) {
+                           EmptyView()
+                       }
+                   }
+               }
         .background(Color("card"))
         .cornerRadius(10)
         .frame(maxWidth:.infinity)
