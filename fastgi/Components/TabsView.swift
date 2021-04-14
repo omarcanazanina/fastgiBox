@@ -16,7 +16,8 @@ struct TabsView: View {
     //@ObservedObject var loginVM = LoginViewModel()
     @State var menu : Bool = false
     @ObservedObject var userDataVM = UserDataViewModel()
-    
+    //
+    @State var isShowingPopUp = false
     init(currentBtnEm: Binding<BtnEm>) {
         self._currentBtnEm = currentBtnEm
         //Config for NavigationBar Transparent
@@ -69,6 +70,8 @@ struct TabsView: View {
              )
         }.navigationViewStyle(StackNavigationViewStyle())
     }
+
+
     
 }
 

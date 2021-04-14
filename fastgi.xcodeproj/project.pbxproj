@@ -116,6 +116,7 @@
 		92CA837C25D5C4EF00727F89 /* ChargeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92CA837B25D5C4EF00727F89 /* ChargeView.swift */; };
 		92DA82FC25F7B9D100E4834B /* CarBode in Frameworks */ = {isa = PBXBuildFile; productRef = 92DA82FB25F7B9D100E4834B /* CarBode */; };
 		92E3FE2425C0AA4A00320396 /* testView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E3FE2325C0AA4A00320396 /* testView.swift */; };
+		92E8C44D2627374E00B03512 /* PopupView in Frameworks */ = {isa = PBXBuildFile; productRef = 92E8C44C2627374E00B03512 /* PopupView */; };
 		92F43D8425FC1667009D58AD /* TestModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92F43D8325FC1667009D58AD /* TestModalView.swift */; };
 		C0100033257ACF3B00945FCA /* SlideFormJoinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0100032257ACF3B00945FCA /* SlideFormJoinView.swift */; };
 		C05413E525783C2F000343EB /* TestWizardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05413E425783C2F000343EB /* TestWizardView.swift */; };
@@ -255,6 +256,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9279D54C256F0D5400890C84 /* CodeScanner in Frameworks */,
+				92E8C44D2627374E00B03512 /* PopupView in Frameworks */,
 				92DA82FC25F7B9D100E4834B /* CarBode in Frameworks */,
 				573DD5AA824DD586829F7E7E /* Pods_fastgi.framework in Frameworks */,
 				92C9723425F9573D005D2DBB /* SwiftUIX in Frameworks */,
@@ -630,6 +632,7 @@
 				92DA82FB25F7B9D100E4834B /* CarBode */,
 				92C9723325F9573D005D2DBB /* SwiftUIX */,
 				92543453260A44A600AE5F40 /* HorizonCalendar */,
+				92E8C44C2627374E00B03512 /* PopupView */,
 			);
 			productName = fastgi;
 			productReference = 92A3BA212553616F00DF3707 /* fastgi box.app */;
@@ -664,6 +667,7 @@
 				92DA82FA25F7B9D100E4834B /* XCRemoteSwiftPackageReference "CarBode-Barcode-Scanner-For-SwiftUI" */,
 				92C9723225F9573D005D2DBB /* XCRemoteSwiftPackageReference "SwiftUIX" */,
 				92543452260A44A500AE5F40 /* XCRemoteSwiftPackageReference "HorizonCalendar" */,
+				92E8C44B2627374E00B03512 /* XCRemoteSwiftPackageReference "PopupView" */,
 			);
 			productRefGroup = 92A3BA222553616F00DF3707 /* Products */;
 			projectDirPath = "";
@@ -1093,6 +1097,14 @@
 				minimumVersion = 2.2.2;
 			};
 		};
+		92E8C44B2627374E00B03512 /* XCRemoteSwiftPackageReference "PopupView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/exyte/PopupView.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.0.12;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1120,6 +1132,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 92DA82FA25F7B9D100E4834B /* XCRemoteSwiftPackageReference "CarBode-Barcode-Scanner-For-SwiftUI" */;
 			productName = CarBode;
+		};
+		92E8C44C2627374E00B03512 /* PopupView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 92E8C44B2627374E00B03512 /* XCRemoteSwiftPackageReference "PopupView" */;
+			productName = PopupView;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
