@@ -74,12 +74,15 @@ class Login: ObservableObject {
     func confirmCode(telefono:String,pin:String) {
        // self.iscomplete = false
         self.isloading = true
-        print("desde el login \(storage.string(forKey: tokenDevice))")
+        let tokenDev = storage.string(forKey: tokenDevice) ?? ""
+        print("desde el log \(tokenDev)")
+        //print("desde el login \(storage.string(forKey: tokenDevice) ?? "")")
        // let tokenDevice = storage.string(forKey: tokenDevice)
         
         let parametros : Parameters = [
             "telefono": telefono,
             "pin": pin
+            //"tokenDev": tokenDev
         ]
         guard let url = URL(string: "https://api.fastgi.com/loginsms") else { return }
         DispatchQueue.main.async {

@@ -238,6 +238,7 @@
 		92B75E4925B795C3005A2DCC /* EnterAmountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterAmountView.swift; sourceTree = "<group>"; };
 		92CA837B25D5C4EF00727F89 /* ChargeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChargeView.swift; sourceTree = "<group>"; };
 		92E3FE2325C0AA4A00320396 /* testView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = testView.swift; sourceTree = "<group>"; };
+		92E8C45B262786AC00B03512 /* fastgi box.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "fastgi box.entitlements"; sourceTree = "<group>"; };
 		92F43D8325FC1667009D58AD /* TestModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestModalView.swift; sourceTree = "<group>"; };
 		C0100032257ACF3B00945FCA /* SlideFormJoinView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideFormJoinView.swift; sourceTree = "<group>"; };
 		C05413E425783C2F000343EB /* TestWizardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestWizardView.swift; sourceTree = "<group>"; };
@@ -327,6 +328,7 @@
 		92A3BA182553616F00DF3707 = {
 			isa = PBXGroup;
 			children = (
+				92E8C45B262786AC00B03512 /* fastgi box.entitlements */,
 				92A3BA232553616F00DF3707 /* fastgi */,
 				92A3BA222553616F00DF3707 /* Products */,
 				7087B4D9F9AA9607359709B4 /* Pods */,
@@ -987,6 +989,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "fastgi box.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"fastgi/Preview Content\"";
@@ -1012,6 +1015,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "fastgi box.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;

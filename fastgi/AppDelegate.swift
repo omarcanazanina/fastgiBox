@@ -65,8 +65,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
       let tokenParts = deviceToken.map { data in String(format: "%02.2hhx", data) }
       let tokenDevice = tokenParts.joined()
       print("Device Token: \(tokenDevice)")
-        //storage.removeObject(forKey: "tokenDevice")
-       // storage.setValue(tokenDevice, forKey: "tokenDevice")
+        storage.removeObject(forKey: "tokenDevice")
+        storage.setValue(tokenDevice, forKey: "tokenDevice")
     
     }
 
@@ -89,5 +89,35 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
       }
       NewsItem.makeNewsItem(aps)
     }*/
+    
+    /*extension AppDelegate: UNUserNotificationCenterDelegate {
+      func userNotificationCenter(
+        _ center: UNUserNotificationCenter,
+        didReceive response: UNNotificationResponse,
+        withCompletionHandler completionHandler: @escaping () -> Void
+      ) {
+        // 1
+        let userInfo = response.notification.request.content.userInfo
+        
+        // 2
+        if
+          let aps = userInfo["aps"] as? [String: AnyObject],
+          let newsItem = NewsItem.makeNewsItem(aps) {
+          (window?.rootViewController as? UITabBarController)?.selectedIndex = 1
+          
+          // 3
+          if response.actionIdentifier == Identifiers.viewAction,
+            let url = URL(string: newsItem.link) {
+            let safari = SFSafariViewController(url: url)
+            window?.rootViewController?
+              .present(safari, animated: true, completion: nil)
+          }
+        }
+        
+        // 4
+        completionHandler()
+      }
+    }*/
+    
 }
 
